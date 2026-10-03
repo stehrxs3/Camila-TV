@@ -1,47 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1. 0">
-    <title>CONVITE</title>
-
-    <link rel="styleseet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila TV</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="hearts"></div>
-    <div class="container">
-        <div id="pergunta">
-            <h1>🩷Tenho uma pergunta para você...</h1>
-            <p>Você quer sair comigo tal dia?</p>
+    <header class="navbar">
+        <div class="nav-left">
+            <h1 class="logo">Camila TV</h1>
+            <nav class="categories">
+                <button class="cat-btn active" onclick="filtrarCategoria('todos', this)">Início</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Shows', this)">Shows</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Performances', this)">Performances</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Entrevistas', this)">Entrevistas</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Vlogs', this)">Vlogs</button>
+                <button class="cat-btn" onclick="filtrarCategoria('Movie & Series', this)">Movie & Series</button>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <button class="live-btn" onclick="abrirTransmissaoAoVivo()">
+                <span class="live-dot"></span> AO VIVO
+            </button>
+            <input type="text" id="searchInput" placeholder="Pesquisar título..." oninput="filtrarPorBusca()">
+        </div>
+    </header>
 
-            <div class="botoes">
-                <button id="sim>" 🩷 Sim </button>
-                    <button id="não" 😔 Não</button>
+    <section class="hero" id="heroBanner">
+        <div class="hero-content">
+            <span class="badge" id="heroBadge">Destaque</span>
+            <h2 id="heroTitle">Título do Destaque</h2>
+            <p id="heroDesc">Descrição breve do conteúdo que está em destaque.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="playHeroVideo()">▶ Assistir</button>
             </div>
         </div>
-        <div id="formulario" class="escondido">
-            <h1>aeee!</h1>
-            <p>Agora escolha os detalhes:</p>
-            <label> Data:</label>
-            <select id="horario">
-                <option>isso</option>
-                <option>aquilo</option>
-                <option>ou aquilo outro</option>
-                <opinion>sua escolha</opinion>
-            </select>
+    </section>
 
-            <br><br>
+    <main class="container">
+        <h2 class="section-title" id="sectionTitle">Todos os Conteúdos</h2>
+        <div class="video-grid" id="videoGrid"></div>
+    </main>
 
-            <button id="confirmar">Confirmar</button>
+    
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharVideo()">&times;</span>
+            <div class="modal-header-info">
+                <span id="modalVideoTitle" class="modal-video-title"></span>
+            </div>
+            <div class="iframe-container" id="videoContainer">
+                <iframe id="videoPlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
         </div>
-        <div id="resultado" class="escondido">
-            <h1> Encontro marcado!</h1>
-            <p id="mensagemFinal"></p>
-        </div>
-        <script src="script.js"></script>
     </div>
 
+    <!-- Modal para Transmissão Ao Vivo -->
+    <div id="liveModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharLive()">&times;</span>
+            <div class="modal-header-info">
+                <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
+            </div>
+            <div class="iframe-container">
+                <iframe id="livePlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
