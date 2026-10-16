@@ -114,7 +114,7 @@ const listaDeVideos = [
     }, 
     { 
        id: 12, 
-       titulo: "Lolapalloza Argentina 2018",
+       titulo: "Lolapalloza Argentina 2018 Lula ",
        categoria: "Shows",
        capa: "",
        banner: "",
