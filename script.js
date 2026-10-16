@@ -122,7 +122,16 @@ const listaDeVideos = [
        videoUrl: "",
        destaque: false    
     }, 
-     
+    {
+       id: 13, 
+       titulo: "Never Be The Same (Live - Le Rico Show Sur NRJ) 2018",
+       categoria: "Performances",
+       capa: "",
+       banner: "",
+       descricao: "",
+       videoUrl: "https://drive.google.com/file/d/1LMbQOwaCUxdxtheGDhWtL6OnhaeEm21W/view?usp=drivesdk",
+       destaque: false
+    },
 ];
 
 let videoDestaqueAtual = null;
