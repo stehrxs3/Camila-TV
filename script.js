@@ -1,65 +1,65 @@
 
-const urlTransmissaoAoVivo = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
 const listaDeVideos = [
-    {
-        id: 3,
-        titulo: "Rock in Rio 2022",
-        categoria: "Shows",
-        capa: "https://media.gettyimages.com/id/1243121400/pt/foto/us-cuban-singer-camila-cabello-performs-on-the-main-stage-of-the-rock-in-rio-music-festival-at.jpg?s=612x612&w=0&k=20&c=KsZ1OTYNbFmsXhIsM2rrfGGTQMEx38LuukhsllYLomw=",
-        banner: "https://media.gettyimages.com/id/1422667658/pt/foto/rio-de-janeiro-brazil-camila-cabello-performs-at-the-mundo-stage-during-the-rock-in-rio.jpg?s=612x612&w=0&k=20&c=Q5pZ2vHYsdYBIDJMg43v2xm-dKbMFuhsnsR1zfIQKTE=",
-        descricao: "Assista aos melhores momentos das performances no festival Rock in Rio.",
-        videoUrl: "https://drive.google.com/file/d/1JWNVyIacFmMOfSZ_cUZQIndM4QgSLbxl/view?usp=sharing",
-        destaque: false
-    },
-    {
-        id: 9,
-        titulo: "Summer Sonic 2025",
-        categoria: "Shows",
-        capa: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&q=80",
-        banner: "https://www.summersonic.com/wp/wp-content/uploads/2025/08/005-196.jpg?v=1755512287",
-        descricao: "Assista aos melhores momentos das performances no festival Summer Sonic.",
-        videoUrl: "https://drive.google.com/file/d/1LjeO47v5gq0vu2gltbk_G0HQBuOAalCl/view?usp=sharing",
-        destaque: false
-    },
     {
         id: 1,
         titulo: "The Town 2025",
         categoria: "Shows",
         capa: "https://s2-gshow.glbimg.com/ucNEzQ54aaImFHMN6Mefx-qUcSE=/0x0:1440x1920/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2025/J/6/EkvVnBS9m21to89kBRsQ/549377481-18544454284012900-5440134041403180128-n.jpg",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
-        descricao: "Assista ao show completo do festival The Town 2025.",
-        videoUrl: "https://drive.google.com/file/d/1Vg6XHtr-xStwtK6o0pdg7YmDF_EtEr2x/view?usp=sharing",
-        destaque: true
-    },
-    {
-        id: 4,
-        titulo: "Bastidores & Entrevista Exclusiva",
-        categoria: "Entrevistas",
-        capa: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=500&q=80",
-        banner: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&q=80",
-        descricao: "Conversa aberta sobre carreira, projetos futuros e criação artística.",
-        videoUrl: "https://photos.fife.usercontent.google.com/pw/AP1GczOKokZ5jV1pgs_LfmHxUxSJHyLTNtwln4-mrbLeFuGbkjmf04tPk4RKCw=w783-h438-s-k-no-gm?authuser=0",
+        descricao: "Assista aos melhores momentos das performances no festival Rock in Rio.",
+        videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=drive_link",
         destaque: false
     },
     {
-        id: 5,
-        titulo: "Vlog de Turnê pela Europa",
-        categoria: "Vlogs",
-        capa: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&q=80",
-        banner: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=80",
-        descricao: "Acompanhe o dia a dia na estrada durante a turnê internacional.",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
+        id: 2,
+        titulo: "Summer Sonic 2025",
+        categoria: "Shows",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlwvQSJ4ypl6knolhMiEE9Yahf1BB7xsImJBvrYG1ksg&s=10",
+        banner: "https://www.summersonic.com/wp/wp-content/uploads/2025/08/005-196.jpg?v=1755512287",
+        descricao: "Assista aos melhores momentos das performances no festival Summer Sonic.",
+        videoUrl: "https://drive.google.com/file/d/1LjeO47v5gq0vu2gltbk_G0HQBuOAalCl/view?usp=sharing",
         destaque: false
     },
     {
-        id: 6,
+        id: 3,
         titulo: "IHeartRadio Music Festival 2024",
         categoria: "Shows",
         capa: "https://media.gettyimages.com/id/2173487722/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at-t.jpg?s=612x612&w=0&k=20&c=D9UvxfYY25y2UaYslF6_zUmj2SJp5tp9DvuC9ZoRBqs=",
         banner: "https://media.gettyimages.com/id/2173487877/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at-t.jpg?s=612x612&w=0&k=20&c=Tm4ZJmkXVqEa2AEQWhH96NxQlvLFJ4urW-voPR2nOVM=",
         descricao: "show pos cabelo loiro",
         videoUrl:"https://drive.google.com/file/d/1OtCC_oCNlFlOyWktmldKBc5k1bPGj--i/view?usp=sharing",
+        destaque: false
+    },
+    {
+        id: 4,
+        titulo: "Glastonbury 2024",
+       categoria: "Shows",
+       capa: "https://media.gettyimages.com/id/2159846745/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=I6U1Io-fy0l_NxpL5TA47PFYf5bk_ggC09l5Ru5x1ng=",
+       banner: "https://media.gettyimages.com/id/2159836703/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=_4Oj66cMwi0ZwZQozs5qzjLh9o-zET8Ajb9uX0KiRsI=",
+       descricao: "mais de blond mila",
+       videoUrl: "https://drive.google.com/file/d/1kD4gzfJpWgEKR0F7XRjyhrnMPruZ6wvK/view?usp=sharing",
+       destaque: false
+    },
+    {
+        id: 5,
+        titulo: "Rock in Rio Lisboa 2024",
+        categoria: "Shows",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeYBYDVs2dYsWoja06ekRWwmUBi7RVGLJiFewt6aVC1A&s=10",
+        banner: "https://images.impresa.pt/expresso/2024-06-24-camilacabelo_mundo_diegopadilha_rirlisboa2024_23jun-7269.jpg-ac3c7552/3x2/mw-694",
+        descricao: "Rock in rio lisboa.",
+        videoUrl: "https://drive.google.com/file/d/1uV1MaLJRLKefxjGB3XMx1tKDh7yZcEi7/view?usp=drive_link",
+        destaque: false
+    },
+    {
+        id: 6,
+        titulo: "Rock in Rio 2022",
+        categoria: "Shows",
+        capa: "https://media.gettyimages.com/id/1243121400/pt/foto/us-cuban-singer-camila-cabello-performs-on-the-main-stage-of-the-rock-in-rio-music-festival-at.jpg?s=612x612&w=0&k=20&c=KsZ1OTYNbFmsXhIsM2rrfGGTQMEx38LuukhsllYLomw=",
+        banner: "https://media.gettyimages.com/id/1422667658/pt/foto/rio-de-janeiro-brazil-camila-cabello-performs-at-the-mundo-stage-during-the-rock-in-rio.jpg?s=612x612&w=0&k=20&c=Q5pZ2vHYsdYBIDJMg43v2xm-dKbMFuhsnsR1zfIQKTE=",
+        descricao: "show pos cabelo loiro",
+        videoUrl:"https://drive.google.com/file/d/1JWNVyIacFmMOfSZ_cUZQIndM4QgSLbxl/view?usp=sharing",
         destaque: false
     },
     {
@@ -74,27 +74,59 @@ const listaDeVideos = [
     },
     {
         id: 8,
-        titulo: "Summertime Ball 2018",
+        titulo: "iHeartRadio Jigle Ball 2019",
         categoria: "Shows",
-        capa: "https://media.gettyimages.com/id/970340350/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=vihNcrU_247D0c0KqqBoRtDiIBxYDlUsrdqQ84btozk=",
-        banner: "https://media.gettyimages.com/id/970339910/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=X9lQwVbSAbVEgpEDCtZNfByrjN0UcH2WjQlXwzj_nkY=",
-        descricao: "terninho azul de nbts",
-        videoUrl: "https://drive.google.com/file/d/12ibBC8hM_nCjcsx0fCs_UIhC3or49Wqy/view?usp=drive_link",
+        capa: "https://media.gettyimages.com/id/1193821355/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=SuAV38TgPP8TNVep50ayatwwb9LpwEPnyIMwnmr1wbM=",
+        banner: "https://media.gettyimages.com/id/1193821767/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=K_DrlPmO1IDZecDEAOx3aRu3uXMeLbqHUw-QVuLLNtU=",
+        descricao: "Ultimo Show antes pandemia",
+        videoUrl: "https://drive.google.com/file/d/1Fw7tp1C1e9UwjgIe3FXo7AifFKkPxJrB/view?usp=drive_link",
         destaque: false
     },
     {
-        id: 2,
-        titulo: "Lolapalloza Argentina 2018",
+        id: 9,
+        titulo: "iHeartRadio Festival 2019",
         categoria: "Shows",
-        capa: "https://media.gettyimages.com/id/1085989126/pt/foto/chicago-il-camila-cabello-performs-on-day-one-of-lollapalooza-at-grant-park-on-august-2-2018.jpg?s=612x612&w=0&k=20&c=EyyWSxjuOtAIICI3ssMKFlUZhgCNhTQ-yWhnpbWDlTI=",
-        banner: "https://media.gettyimages.com/id/1085989152/pt/foto/chicago-il-camila-cabello-performs-on-day-one-of-lollapalooza-at-grant-park-on-august-2-2018.jpg?s=612x612&w=0&k=20&c=B8eVEbISsmKC2i77zzVAdLW5AhenHSRxKlC-72rnTbc=",
+        capa: "https://media.gettyimages.com/id/1177003039/pt/foto/las-vegas-nevada-camila-cabello-performs-at-t-mobile-arena-on-september-20-2019-in-las-vegas.jpg?s=612x612&w=0&k=20&c=QlDvVHM0FUt-fvVYJEgn2lGlao3SEeXJLe21cbDr_bU=",
+        banner: "https://media.gettyimages.com/id/1176060717/pt/foto/las-vegas-nevada-camila-cabello-performs-onstage-during-the-2019-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=hWKHIApRxAGL7jRlZR_K0dHq_nKSpFfZuGY2XYTtlvc=",
         descricao: "lolapalloza 2018",
-        videoUrl: "https://drive.google.com/file/d/16qBvKPA277VtQJSxcBzksMS_zdmZn8HW/view?usp=drive_link",
+        videoUrl: "https://drive.google.com/file/d/147hXAzlBEXO56tb6YbRFUW7CIVplSBtI/view?usp=sharing",
         destaque: false
-    }
+    },
+    { 
+       id: 10, 
+       titulo: "Summertime Ball 2018",
+       categoria: "Shows",
+       capa: "",
+       banner: "",
+       descricao: "",
+       videoUrl: "",
+       destaque: false    
+    }, 
+    { 
+       id: 11, 
+       titulo: "Lolapalloza Chile 2018",
+       categoria: "Shows",
+       capa: "",
+       banner: "",
+       descricao: "",
+       videoUrl: "",
+       destaque: false    
+    }, 
+    { 
+       id: 12, 
+       titulo: "Lolapalloza Argentina 2018",
+       categoria: "Shows",
+       capa: "",
+       banner: "",
+       descricao: "",
+       videoUrl: "",
+       destaque: false    
+    }, 
+     
 ];
 
 let videoDestaqueAtual = null;
+
 
 document.addEventListener("DOMContentLoaded", () => {
     configurarDestaque();
@@ -110,10 +142,10 @@ function configurarDestaque() {
     const destaque = listaDeVideos.find(v => v.destaque) || listaDeVideos[0];
     if (!destaque) return;
     videoDestaqueAtual = destaque;
-    document.getElementById("heroBanner").style.backgroundImage = `linear-gradient(to right, rgba(20,20,20,0.9), rgba(20,20,20,0.2)), url('${destaque.banner}')`;
-    document.getElementById("heroTitle").innerText = destaque.titulo || "Sem título";
+    document.getElementById("heroBanner").style.backgroundImage = `url('${destaque.banner || destaque.capa}')`;
+    document.getElementById("heroTitle").innerText = destaque.titulo || "";
     document.getElementById("heroDesc").innerText = destaque.descricao || "";
-    document.getElementById("heroBadge").innerText = destaque.categoria || "Destaque";
+    document.getElementById("heroBadge").innerText = destaque.categoria || "EM DESTAQUE";
 }
 
 function carregarVideos(videos) {
@@ -145,6 +177,7 @@ function carregarVideos(videos) {
         videoGrid.appendChild(card);
     });
 }
+
 
 function filtrarCategoria(cat, btn) {
     document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -206,13 +239,11 @@ function playHeroVideo() {
 function fecharVideo() {
     const modal = document.getElementById("videoModal");
     const container = document.getElementById("videoContainer");
-
-    // Limpa o conteúdo para parar a execução do áudio/vídeo
     container.innerHTML = "";
     modal.style.display = "none";
 }
 
-/* Funções para Transmissão Ao Vivo */
+
 function abrirTransmissaoAoVivo() {
     const liveModal = document.getElementById("liveModal");
     const livePlayer = document.getElementById("livePlayer");

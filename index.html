@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camila TV</title>
+    <title>Camila TV+</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
+
     <header class="navbar">
         <div class="nav-left">
-            <h1 class="logo">Camila TV</h1>
+            <h1 class="logo">Camila<span class="plus"> tv+</span></h1>
             <nav class="categories">
                 <button class="cat-btn active" onclick="filtrarCategoria('todos', this)">Início</button>
                 <button class="cat-btn" onclick="filtrarCategoria('Shows', this)">Shows</button>
@@ -21,6 +22,8 @@
                 <button class="cat-btn" onclick="filtrarCategoria('Movie & Series', this)">Movie & Series</button>
             </nav>
         </div>
+
+   
         <div class="nav-right">
             <button class="live-btn" onclick="abrirTransmissaoAoVivo()">
                 <span class="live-dot"></span> AO VIVO
@@ -29,22 +32,26 @@
         </div>
     </header>
 
+
     <section class="hero" id="heroBanner">
         <div class="hero-content">
-            <span class="badge" id="heroBadge">Destaque</span>
+            <span class="badge" id="heroBadge"> Em Destaque</span>
             <h2 id="heroTitle">Título do Destaque</h2>
             <p id="heroDesc">Descrição breve do conteúdo que está em destaque.</p>
+           
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="playHeroVideo()">▶ Assistir</button>
+                <button class="btn-secondary" onclick="playHeroVideo()">ⓘ Mais informações</button>
             </div>
         </div>
     </section>
 
-    <main class="container">
+   
+<main class="container">
         <h2 class="section-title" id="sectionTitle">Todos os Conteúdos</h2>
         <div class="video-grid" id="videoGrid"></div>
     </main>
-
+    
     
     <div id="videoModal" class="modal">
         <div class="modal-content">
@@ -58,7 +65,15 @@
         </div>
     </div>
 
-    <!-- Modal para Transmissão Ao Vivo -->
+    <div id="modal-detalhes" class="modal oculto">
+        <div class="modal-conteudo">
+            <button class="fechar-btn" onclick="fecharModal()">&times;</button>
+            <h2 id="modal-titulo">Titulo do Vídeo</h2>
+            <p id="modal=descricao">Descriçao do video ...</p>
+        </div>
+    </div>
+
+    
     <div id="liveModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
