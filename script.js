@@ -98,7 +98,7 @@ const listaDeVideos = [
        categoria: "Shows",
        capa: "",
        banner: "",
-       descricao: "",
+       descricao: "ghdjsgdhj",
        videoUrl: "",
        destaque: false    
     }, 
