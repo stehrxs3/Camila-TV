@@ -132,6 +132,16 @@ const listaDeVideos = [
        videoUrl: "https://drive.google.com/file/d/1LMbQOwaCUxdxtheGDhWtL6OnhaeEm21W/view?usp=drivesdk",
        destaque: false
     },
+     {
+       id: 14, 
+       titulo: "sei la oq",
+       categoria: "Performances",
+       capa: "https://media.gettyimages.com/id/2300238369/pt/foto/camila-cabello-at-the-6th-annual-academy-museum-gala-held-at-the-academy-museum-of-motion.jpg?s=612x612&w=0&k=20&c=gPi9qwPChWNyrVPncMd2NDujalzgHbQ0Suyb0Hr8qO0=",
+       banner: "https://media.gettyimages.com/id/2300238226/pt/foto/camila-cabello-at-the-6th-annual-academy-museum-gala-held-at-the-academy-museum-of-motion.jpg?s=612x612&w=0&k=20&c=4GRc_WJxRAE5_lGtgBc4syIrRaD95WDTIORirS3KKHY=",
+       descricao: "stephany linda",
+       videoUrl: "https://drive.google.com/file/d/1LMbQOwaCUxdxtheGDhWtL6OnhaeEm21W/view?usp=drivesdk",
+       destaque: false
+    },
 ];
 
 let videoDestaqueAtual = null;
