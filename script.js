@@ -6,7 +6,7 @@ const listaDeVideos = [
         id: 1,
         titulo: "The Town 2025",
         categoria: "Shows",
-        capa: "https://s2-gshow.glbimg.com/ucNEzQ54aaImFHMN6Mefx-qUcSE=/0x0:1440x1920/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2025/J/6/EkvVnBS9m21to89kBRsQ/549377481-18544454284012900-5440134041403180128-n.jpg",
+        capa: "https://drive.google.com/file/d/1xIXu7sMQyOD5bd3ayu8F9X5xHU9a_hHg/view?usp=sharing",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista aos melhores momentos das performances no festival Rock in Rio.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=drive_link",
