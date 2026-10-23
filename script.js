@@ -6,7 +6,7 @@ const listaDeVideos = [
         id: 1,
         titulo: "The Town 2025",
         categoria: "Shows",
-        capa: "https://media.canva.com/v2/image-resize/format:PNG/height:800/quality:100/uri:ifs%3A%2F%2FM%2F08b16e42-dc85-4f64-a5ac-024570796acd/watermark:F/width:500?csig=AAAAAAAAAAAAAAAAAAAAAJLLPsHzFvizjb3cCFWXpWkhatz2B-L-bnO9GVbIQeyC&exp=1792332390&osig=AAAAAAAAAAAAAAAAAAAAANmDNv1ia08eoLHyuRR8DrLaNldNskVydhZ-xA7tp9ai&signer=media-rpc&token=AAIAAU0AJDA4YjE2ZTQyLWRjODUtNGY2NC1hNWFjLTAyNDU3MDc5NmFjZAAAAAABoU9V3nDOIYyki283R7hmOyNU71yDP0ieWznepAD9zSC6nxNrqA&x-canva-quality=screen",
+        capa: "https://media.canva.com/v2/image-resize/format:PNG/height:800/quality:100/uri:ifs%3A%2F%2FM%2F08b16e42-dc85-4f64-a5ac-024570796acd/watermark:F/width:500?csig=AAAAAAAAAAAAAAAAAAAAAMWTtUO3IQSUflpgjApCTBbxF636qeEJWtQrIk4ftt6O&exp=1792749990&osig=AAAAAAAAAAAAAAAAAAAAAFgFN307Vq-efhMX5bj-MIocer4WLy6PrOT0btmrZZoZ&signer=media-rpc&token=AAIAAU0AJDA4YjE2ZTQyLWRjODUtNGY2NC1hNWFjLTAyNDU3MDc5NmFjZAAAAAABoWg58HA7eICmleVpmZKEX93eD4d_SinB8yVU3SjF_8aum29ukg&x-canva-quality=screen",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista aos melhores momentos das performances no festival Rock in Rio.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
