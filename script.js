@@ -76,7 +76,7 @@ const listaDeVideos = [
        id: 8, 
        titulo: "New Music Daily Presents 2019",
        categoria: "Shows",
-       capa: "",
+       capa: "https://static.wikia.nocookie.net/karlacamilacabello/images/1/18/New_Music_Daily_Presents_Camila_Cabello.jpg/revision/latest?cb=20191213175642",
        banner: "",
        descricao: "?????",
        videoUrl: "",
