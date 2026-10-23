@@ -9,8 +9,8 @@ const listaDeVideos = [
         capa: "https://media.canva.com/v2/image-resize/format:PNG/height:800/quality:100/uri:ifs%3A%2F%2FM%2F08b16e42-dc85-4f64-a5ac-024570796acd/watermark:F/width:500?csig=AAAAAAAAAAAAAAAAAAAAAJLLPsHzFvizjb3cCFWXpWkhatz2B-L-bnO9GVbIQeyC&exp=1792332390&osig=AAAAAAAAAAAAAAAAAAAAANmDNv1ia08eoLHyuRR8DrLaNldNskVydhZ-xA7tp9ai&signer=media-rpc&token=AAIAAU0AJDA4YjE2ZTQyLWRjODUtNGY2NC1hNWFjLTAyNDU3MDc5NmFjZAAAAAABoU9V3nDOIYyki283R7hmOyNU71yDP0ieWznepAD9zSC6nxNrqA&x-canva-quality=screen",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista aos melhores momentos das performances no festival Rock in Rio.",
-        videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=drive_link",
-        destaque: false
+        videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
+        destaque: true
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlwvQSJ4ypl6knolhMiEE9Yahf1BB7xsImJBvrYG1ksg&s=10",
         banner: "https://www.summersonic.com/wp/wp-content/uploads/2025/08/005-196.jpg?v=1755512287",
         descricao: "Assista aos melhores momentos das performances no festival Summer Sonic.",
-        videoUrl: "https://drive.google.com/file/d/1LjeO47v5gq0vu2gltbk_G0HQBuOAalCl/view?usp=sharing",
+        videoUrl: "https://drive.google.com/file/d/1nHYSRQUiakqT6ha8yaJVOeJijjvW7VCp/view?usp=sharing",
         destaque: false
     },
     {
@@ -29,7 +29,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/2173487722/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at-t.jpg?s=612x612&w=0&k=20&c=D9UvxfYY25y2UaYslF6_zUmj2SJp5tp9DvuC9ZoRBqs=",
         banner: "https://media.gettyimages.com/id/2173487877/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at-t.jpg?s=612x612&w=0&k=20&c=Tm4ZJmkXVqEa2AEQWhH96NxQlvLFJ4urW-voPR2nOVM=",
         descricao: "show pos cabelo loiro",
-        videoUrl:"https://drive.google.com/file/d/1OtCC_oCNlFlOyWktmldKBc5k1bPGj--i/view?usp=sharing",
+        videoUrl:"",
         destaque: false
     },
     {
@@ -39,7 +39,7 @@ const listaDeVideos = [
        capa: "https://media.gettyimages.com/id/2159846745/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=I6U1Io-fy0l_NxpL5TA47PFYf5bk_ggC09l5Ru5x1ng=",
        banner: "https://media.gettyimages.com/id/2159836703/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=_4Oj66cMwi0ZwZQozs5qzjLh9o-zET8Ajb9uX0KiRsI=",
        descricao: "mais de blond mila",
-       videoUrl: "https://drive.google.com/file/d/1kD4gzfJpWgEKR0F7XRjyhrnMPruZ6wvK/view?usp=sharing",
+       videoUrl: "",
        destaque: false
     },
     {
@@ -49,7 +49,7 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeYBYDVs2dYsWoja06ekRWwmUBi7RVGLJiFewt6aVC1A&s=10",
         banner: "https://images.impresa.pt/expresso/2024-06-24-camilacabelo_mundo_diegopadilha_rirlisboa2024_23jun-7269.jpg-ac3c7552/3x2/mw-694",
         descricao: "Rock in rio lisboa.",
-        videoUrl: "https://drive.google.com/file/d/1uV1MaLJRLKefxjGB3XMx1tKDh7yZcEi7/view?usp=drive_link",
+        videoUrl: "",
         destaque: false
     },
     {
@@ -59,7 +59,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/1243121400/pt/foto/us-cuban-singer-camila-cabello-performs-on-the-main-stage-of-the-rock-in-rio-music-festival-at.jpg?s=612x612&w=0&k=20&c=KsZ1OTYNbFmsXhIsM2rrfGGTQMEx38LuukhsllYLomw=",
         banner: "https://media.gettyimages.com/id/1422667658/pt/foto/rio-de-janeiro-brazil-camila-cabello-performs-at-the-mundo-stage-during-the-rock-in-rio.jpg?s=612x612&w=0&k=20&c=Q5pZ2vHYsdYBIDJMg43v2xm-dKbMFuhsnsR1zfIQKTE=",
         descricao: "show pos cabelo loiro",
-        videoUrl:"https://drive.google.com/file/d/1JWNVyIacFmMOfSZ_cUZQIndM4QgSLbxl/view?usp=sharing",
+        videoUrl:"",
         destaque: false
     },
     {
@@ -69,79 +69,119 @@ const listaDeVideos = [
         capa:"https://media.gettyimages.com/id/1401261095/pt/foto/carson-california-singer-camila-cabello-performing-at-the-iheartradio-concert-at-wango-tango.jpg?s=612x612&w=0&k=20&c=0bBQ-fmV1_t-RyM1_uBtrY4M_zYdWZBp51PyaJhIApw=",
         banner: "https://media.gettyimages.com/id/1401260356/pt/foto/carson-california-singer-camila-cabello-performing-at-the-iheartradio-concert-at-wango-tango.jpg?s=612x612&w=0&k=20&c=7ricEAvrhF-SlOJZXjL68L95WFKjBEyLDP2HqUPrK8A=",
         descricao: "nao sei oq era familia",
-        videoUrl:"https://drive.google.com/file/d/1YXVjpEy1qBnQWc5SFd0GqHBQrhbsKvg-/view?usp=drive_link",
+        videoUrl:"https://drive.google.com/file/d/1k90V_-YORgQeT5AD9jsk63cTe2cM6qcr/view?usp=sharing",
         destaque: false
     },
+      {
+       id: 8, 
+       titulo: "New Music Daily Presents 2019",
+       categoria: "Shows",
+       capa: "",
+       banner: "",
+       descricao: "?????",
+       videoUrl: "",
+       destaque: false
+    },
     {
-        id: 8,
-        titulo: "iHeartRadio Jigle Ball 2019",
+        id: 9,
+        titulo: "iHeartRadio JigleBall 2019",
         categoria: "Shows",
         capa: "https://media.gettyimages.com/id/1193821355/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=SuAV38TgPP8TNVep50ayatwwb9LpwEPnyIMwnmr1wbM=",
         banner: "https://media.gettyimages.com/id/1193821767/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=K_DrlPmO1IDZecDEAOx3aRu3uXMeLbqHUw-QVuLLNtU=",
         descricao: "Ultimo Show antes pandemia",
-        videoUrl: "https://drive.google.com/file/d/1Fw7tp1C1e9UwjgIe3FXo7AifFKkPxJrB/view?usp=drive_link",
+        videoUrl: "https://drive.google.com/file/d/1yzCJeVlDfP-_PVKDr9gmb5iNeA2fhiMw/view?usp=sharing",
         destaque: false
     },
     {
-        id: 9,
+        id: 10,
         titulo: "iHeartRadio Festival 2019",
         categoria: "Shows",
         capa: "https://media.gettyimages.com/id/1177003039/pt/foto/las-vegas-nevada-camila-cabello-performs-at-t-mobile-arena-on-september-20-2019-in-las-vegas.jpg?s=612x612&w=0&k=20&c=QlDvVHM0FUt-fvVYJEgn2lGlao3SEeXJLe21cbDr_bU=",
         banner: "https://media.gettyimages.com/id/1176060717/pt/foto/las-vegas-nevada-camila-cabello-performs-onstage-during-the-2019-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=hWKHIApRxAGL7jRlZR_K0dHq_nKSpFfZuGY2XYTtlvc=",
         descricao: "lolapalloza 2018",
-        videoUrl: "https://drive.google.com/file/d/147hXAzlBEXO56tb6YbRFUW7CIVplSBtI/view?usp=sharing",
+        videoUrl: "https://drive.google.com/file/d/1OQsQkKUuccFD4HNQpBO_b95bZqcIeVY1/view?usp=sharing",
         destaque: false
     },
     { 
-       id: 10, 
-       titulo: "Summertime Ball 2018",
-       categoria: "Shows",
-       capa: "",
-       banner: "",
-       descricao: "ghdjsgdhj",
-       videoUrl: "",
-       destaque: false    
-    }, 
-    { 
        id: 11, 
-       titulo: "LulaLolapalloza Chile 2018",
+       titulo: "ACL Festival 2018",
        categoria: "Shows",
-       capa: "",
-       banner: "",
+       capa: "https://media.gettyimages.com/id/1047403510/pt/foto/austin-texas-camila-cabello-performs-in-concert-during-the-acl-music-festival-at-zilker-park.jpg?s=612x612&w=0&k=20&c=rxV6kBrNbQGxhlODEWO68GlwqmznylUlPapX97bjhVo=",
+       banner: "https://media.gettyimages.com/id/1047309006/pt/foto/us-cuban-singer-camila-cabello-performs-onstage-at-the-acl-music-festival-at-zilker-park-in.jpg?s=612x612&w=0&k=20&c=i1731AEGWDq-GUpyatcGt8OBg-XpNceDOpnbHdZ3ABQ=",
        descricao: "",
-       videoUrl: "",
-       destaque: false    
-    }, 
-    { 
-       id: 12, 
-       titulo: "Lulapalloza Argentina 2018",
-       categoria: "Shows",
-       capa: "",
-       banner: "",
-       descricao: "",
-       videoUrl: "",
+       videoUrl: "https://drive.google.com/file/d/1wc7av7YEvK7xOFX9YiXjCRilCWJ8PTVh/view?usp=sharing",
        destaque: false    
     }, 
     {
+       id: 12, 
+       titulo: "Lollapaloza Chicago 2018",
+       categoria: "Shows",
+       capa: "https://media.gettyimages.com/id/1010046494/pt/foto/chicago-il-camila-cabello-performs-on-day-one-of-lollapalooza-at-grant-park-on-august-2-2018.jpg?s=612x612&w=0&k=20&c=6aZbY6xfLPU8JUzthHvsVPDdg4BxXynm16WRq607UVM=",
+       banner: "https://media.gettyimages.com/id/1010046488/pt/foto/chicago-il-camila-cabello-performs-on-day-one-of-lollapalooza-at-grant-park-on-august-2-2018.jpg?s=612x612&w=0&k=20&c=7AzX2q532QVirnkqADm8-Xn3qDPHIt-lp_gjL3Knqmw=",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/17VKNLqaGVyomvgIljSmOXJ6ln2Aej2Bq/view?usp=sharing",
+       destaque: false
+    },
+    { 
        id: 13, 
-       titulo: "Never Be The Same (Live - Le Rico Show Sur NRJ) 2018",
-       categoria: "Performances",
+       titulo: "Isle Of Wight Festival 2018",
+       categoria: "Shows",
+       capa: "https://media.gettyimages.com/id/982947594/pt/foto/newport-isle-of-wight-camila-cabello-performing-on-the-main-stage-at-seaclose-park-on-june-24.jpg?s=612x612&w=0&k=20&c=gdW8Y3tZFI53ljyA1cTnQ9VCTSGsf9qUrfCy-TdWfsQ=",
+       banner: "https://media.gettyimages.com/id/982947560/pt/foto/newport-isle-of-wight-camila-cabello-performing-on-the-main-stage-at-seaclose-park-on-june-24.jpg?s=612x612&w=0&k=20&c=6OwsHNzuCb5VHDppCw6q0J44Sxlg623OkoHaumDXy8E=",
+       descricao: "",
+       videoUrl: "https://drive.google.com/file/d/1TYQL_bFKxtpRDam_SwDMIpYU0CR8bnFv/view?usp=sharing",
+       destaque: false    
+    }, 
+    { 
+       id: 14, 
+       titulo: "Summertime Ball 2018",
+       categoria: "Shows",
+       capa: "https://media.gettyimages.com/id/970340350/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=vihNcrU_247D0c0KqqBoRtDiIBxYDlUsrdqQ84btozk=",
+       banner: "https://media.gettyimages.com/id/970340112/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=WsGghi5o3t0wZ3uvoZysrdIw7QzVMTn-edtQWdoOqqE=",
+       descricao: "",
+       videoUrl: "https://drive.google.com/file/d/1CnGEpf8eVLbuFSL-dIOa6M396TspLASt/view?usp=sharing",
+       destaque: false    
+    }, 
+    {
+       id: 15, 
+       titulo: "BBC The Biggest Weekend 2018",
+       categoria: "Shows",
+       capa: "https://media.gettyimages.com/id/963054434/pt/foto/swansea-wales-camila-cabello-performs-at-bbc-music-biggest-weekend-held-at-singleton-park-on.jpg?s=612x612&w=0&k=20&c=ysLWhX2EgwILolCk1hLYIgyN6DFaPMVGTsRJO5X671w=",
+       banner: "https://media.gettyimages.com/id/963001974/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=fn4VdBtUD0NbtJkoK9MgBxjMLzVTnzcANdYvti4yI7Q=",
+       descricao: "",
+       videoUrl: "https://drive.google.com/file/d/15v8Hpnz2qLtEGE3es8nQD699WvzAkDCK/view?usp=sharing",
+       destaque: false
+    },
+    {
+       id: 16, 
+       titulo: "Lollapaloza Chile 2018",
+       categoria: "Shows",
        capa: "",
        banner: "",
-       descricao: "",
-       videoUrl: "https://drive.google.com/file/d/1LMbQOwaCUxdxtheGDhWtL6OnhaeEm21W/view?usp=drivesdk",
+       descricao: "?????",
+       videoUrl: "",
+       destaque: false
+    },
+    {
+       id: 17, 
+       titulo: "Lollapaloza Argentina 2018",
+       categoria: "Shows",
+       capa: "https://www.lanacion.com.ar/resizer/v2/camila-cabello-en-lollapalooza-A3RKSU74QZHNNNRLFC74LVGMJE.jpg?auth=c8c3d0b86f4eed26b8ef5e463b6fafb2441df599dd611ac505de719e41bc1bcb&width=780&height=892&quality=70&smart=true",
+       banner: "https://www.billboard.com/wp-content/uploads/media/05-Camila-Cabello-lollapalooza-argentina-march-16-2018-billboard-1548.jpg?w=1280",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
        destaque: false
     },
      {
-       id: 14, 
-       titulo: "sei la oq",
-       categoria: "Performances",
-       capa: "https://media.gettyimages.com/id/2300238369/pt/foto/camila-cabello-at-the-6th-annual-academy-museum-gala-held-at-the-academy-museum-of-motion.jpg?s=612x612&w=0&k=20&c=gPi9qwPChWNyrVPncMd2NDujalzgHbQ0Suyb0Hr8qO0=",
-       banner: "https://media.gettyimages.com/id/2300238226/pt/foto/camila-cabello-at-the-6th-annual-academy-museum-gala-held-at-the-academy-museum-of-motion.jpg?s=612x612&w=0&k=20&c=4GRc_WJxRAE5_lGtgBc4syIrRaD95WDTIORirS3KKHY=",
-       descricao: "stephany linda",
-       videoUrl: "https://drive.google.com/file/d/1LMbQOwaCUxdxtheGDhWtL6OnhaeEm21W/view?usp=drivesdk",
+       id: 16, 
+       titulo: "iHeartRadio Fiesta Latina 2017",
+       categoria: "Shows",
+       capa: "https://media.gettyimages.com/id/870318566/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=2X-C0tgCPMFgLAp8EourmteU5xc1FZd150JamU0VUuw=",
+       banner: "https://media.gettyimages.com/id/870318450/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=UXsrchL1bVKPyfC4xKv5i1phuOzEHGtQK-dzzTj6WcU=",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
        destaque: false
-    },
+    }, 
 ];
 
 let videoDestaqueAtual = null;
