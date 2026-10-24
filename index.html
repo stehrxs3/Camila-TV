@@ -7,8 +7,8 @@
     <title>Camila TV+</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
 
     <header class="navbar">
         <div class="nav-left">
@@ -23,7 +23,6 @@
             </nav>
         </div>
 
-   
         <div class="nav-right">
             <button class="live-btn" onclick="abrirTransmissaoAoVivo()">
                 <span class="live-dot"></span> AO VIVO
@@ -32,13 +31,12 @@
         </div>
     </header>
 
-
     <section class="hero" id="heroBanner">
         <div class="hero-content">
             <span class="badge" id="heroBadge"> Em Destaque</span>
             <h2 id="heroTitle">Título do Destaque</h2>
             <p id="heroDesc">Descrição breve do conteúdo que está em destaque.</p>
-           
+
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="playHeroVideo()">▶ Assistir</button>
                 <button class="btn-secondary" onclick="playHeroVideo()">ⓘ Mais informações</button>
@@ -46,36 +44,42 @@
         </div>
     </section>
 
-   
-<main class="container">
+    <main class="container">
         <h2 class="section-title" id="sectionTitle">Todos os Conteúdos</h2>
         <div class="video-grid" id="videoGrid"></div>
     </main>
-    
+
+
     
     <div id="videoModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
-            <div class="modal-header-info">
-                <span id="modalVideoTitle" class="modal-video-title"></span>
-            </div>
+ 
+
             <div class="iframe-container" id="videoContainer">
                 <iframe id="videoPlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
+
+
+            <div class="modal-info-body">
+                <h2 id="modalVideoTitle" class="video-info-title">Título do Vídeo</h2>
+
+                <div class="video-meta-tags">
+                    <span id="modalVideoCategory" class="badge-category">Shows</span>
+                    <span class="meta-divider">•</span>
+                    <span id="modalVideoDate" class="meta-item">2025</span>
+                </div>
+
+                <p id="modalVideoDesc" class="video-info-desc">
+                    Descrição completa do conteúdo.
+                </p>
+            </div>
         </div>
     </div>
 
-    <div id="modal-detalhes" class="modal oculto">
-        <div class="modal-conteudo">
-            <button class="fechar-btn" onclick="fecharModal()">&times;</button>
-            <h2 id="modal-titulo">Titulo do Vídeo</h2>
-            <p id="modal=descricao">Descriçao do video ...</p>
-        </div>
-    </div>
-
-    
+   
     <div id="liveModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
             <div class="modal-header-info">
                 <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
