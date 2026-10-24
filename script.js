@@ -182,6 +182,76 @@ const listaDeVideos = [
        videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
        destaque: false
     }, 
+     {
+       id: 17, 
+       titulo: "'Bad Things'Fundraising Concert Benefiting The ACLU ",
+       categoria: "Performances",
+       capa: "https://media.gettyimages.com/id/664384476/pt/foto/los-angeles-ca-camila-cabello-performs-during-zedd-presents-welcome-fundraising-concert.jpg?s=612x612&w=0&k=20&c=VWdFje9ZjSD9YmRFVyrR_xWPA9VEtEIXIH8gguWY0p0=",
+       banner: "https://media.gettyimages.com/id/664384664/pt/foto/los-angeles-ca-camila-cabello-and-machine-gun-kelly-perform-during-zedd-presents-welcome.jpg?s=612x612&w=0&k=20&c=eZnjtRtlSD4J9KummQQqH0gAbsHcUFUDpBkPTo2oRok=",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1yNKMNI7_pxhtmfAFB8AiOo4UxlDlBs8o/view?usp=sharing",
+       destaque: false
+    },
+    {
+       id: 18, 
+       titulo: "'Bad Things' Radio 1's Live Lounge 2017 ",
+       categoria: "Performances",
+       capa: "",
+       banner: "https://ichef.bbci.co.uk/images/ic/768xn/p04rfdh6.jpg",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1rHhfRgyt4MSdxlbL-udfESa7xuYXyZY6/view?usp=sharing",
+       destaque: false
+    },
+    {
+       id: 19, 
+       titulo: "'Crying in the Club' Britain's Got Talent 2017 ",
+       categoria: "Performances",
+       capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-vw9dVJjWm_OVaaSB_jUAJUIuSdEOV3-NAgHxJCRYBg&s=10",
+       banner: "",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1SQ2EThTRidKzJZe1IjmYyGfBaGHB8XMQ/view?usp=sharing",
+       destaque: false
+    },
+    {
+       id: 20, 
+       titulo: "'Crying in the Club' The Tonight Show 2017 ",
+       categoria: "Performances",
+       capa: "https://jj-justjared-media.s3.amazonaws.com/wp-content/uploads/2017/06/cabello-sumtweets/thumbs/camila-cabello-sings-summer-tweets-performs-crying-in-the-club-01.JPG",
+       banner: "https://cdn01.justjared.com/wp-content/uploads/headlines/2017/06/cabello-summer-tweets.jpg",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1hXBgVnHjiWqt7eHIJr6xf9zI7Y9TCAje/view?usp=sharing",
+       destaque: false
+    },
+    {
+       id: 21, 
+       titulo: "'Havana' iHeartRadio Music Awards 2018 ",
+       categoria: "Performances",
+       capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqhMtZjEXZ7Wbsy3m_sZcpgiBcNcSx2rHFAazKwxq-_Q&s=10",
+       banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcoIrln1lmFjl2IJTgbVFYJGX5XOi15pvAeR7VUyiUJT6qmhvoHq02Ugi8&s=10",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1b1eTRDz0oU5pLjv4HnPbbWJqLH3jDGe0/view?usp=sharing",
+       destaque: false
+    }, 
+    {
+       id: 22, 
+       titulo: "'Havana' The Ellen DeGeneres Show 2018 ",
+       categoria: "Performances",
+       capa: "https://celebmafia.com/wp-content/uploads/2018/01/camila-cabello-at-the-ellen-degeneres-show-in-burbank-0_thumbnail.jpg",
+       banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Qui-RGcdB9dgiyEKJrwOgr8cFCcIaCPEKM_yAvzRKQ&s=10",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1P5v0_d4VBmg-M7oapGAtgBlWglFC3wrB/view?usp=sharing",
+       destaque: false
+    }, 
+    {
+       id: 23, 
+       titulo: "'Havana' The Global Awards 2020 ",
+       categoria: "Performances",
+       capa: "https://media.gettyimages.com/id/1205431331/pt/foto/camila-cabello-performs-on-stage-during-the-global-awards-2020-with-very-co-uk-held-at-londons.jpg?s=612x612&w=0&k=20&c=ftN8S9-ZESNPUnlf9wru1x5sLclrufDl0-VTrEJm3I8=",
+       banner: "https://media.gettyimages.com/id/1205431321/pt/foto/camila-cabello-performs-on-stage-during-the-global-awards-2020-with-very-co-uk-held-at-londons.jpg?s=612x612&w=0&k=20&c=csW0AUIAm6w6ycRuo_SYB6lLiFc5mj6wCdWQ9irTdTw=",
+       descricao: "?????",
+       videoUrl: "https://drive.google.com/file/d/1zw-s9hCuKhd97i82d9duzj7MsB_PP8eU/view?usp=sharing",
+       destaque: false
+    }, 
 ];
 
 let videoDestaqueAtual = null;
