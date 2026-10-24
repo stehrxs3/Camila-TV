@@ -84,8 +84,8 @@ const listaDeVideos = [
         titulo: "Global Citizen Live",
         categoria: "Shows",
         data: "25 de setembro de 2021",
-        capa: "",
-        banner: "",
+        capa: "https://media.gettyimages.com/id/1342508806/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-global-citizen-live-new-york-on.jpg?s=612x612&w=0&k=20&c=27pfpGkkTwixJwCUIoALvhH99Gfb6wcP3frKX7zMO8M=",
+        banner: "https://media.gettyimages.com/id/1235516869/pt/foto/new-york-ny-camila-cabello-at-global-citizen-live-on-september-25-2021-in-new-york-city.jpg?s=612x612&w=0&k=20&c=0rcdZV303rshiNf4CcbOqtgwuDqgJd8tK3uq6CqOFjM=",
         descricao: "",
         videoUrl: "",
         destaque: false
