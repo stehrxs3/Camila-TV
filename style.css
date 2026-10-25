@@ -11,7 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-/* NAVBAR */
 .navbar {
     background: linear-gradient(to bottom, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.7));
     padding: 20px 50px;
@@ -135,7 +134,6 @@ body {
     border-color: #38bdf8;
 }
 
-/* HERO BANNER */
 .hero {
     position: relative;
     width: 100%;
@@ -224,7 +222,6 @@ body {
     transform: scale(1.03);
 }
 
-/* CARDS & GRID */
 .container {
     padding: 0 50px 60px 50px;
     position: relative;
@@ -282,7 +279,7 @@ body {
     margin-top: 2px;
 }
 
-/* MODAL DO PLAYER LIMPO COM DETALHES */
+
 .modal {
     display: none;
     position: fixed;
@@ -338,7 +335,7 @@ body {
     border: none;
 }
 
-/* PAINEL DE INFORMAÇÕES ABAIXO DO PLAYER */
+
 .modal-info-body {
     padding: 24px 28px;
     text-align: left;
@@ -385,3 +382,105 @@ body {
     line-height: 1.6;
 }
 
+@media screen and (max-width: 768px) {
+.navbar {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+.nav-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        width: 100%;
+    } 
+    
+categories {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 6px;
+        scrollbar-width: none; 
+    }
+
+.categories::-webkit-scrollbar {
+        display: none;
+    }
+
+.cat-btn {
+        flex-shrink: 0;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .live-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-right input {
+        width: 100%;
+    }
+
+.hero {
+        padding: 0 20px 40px 20px;
+        min-height: 400px;
+        height: 75vh;
+    }
+
+    .hero h2 {
+        font-size: 2.1rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+
+.container {
+        padding: 0 20px 40px 20px;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card img {
+        height: 180px; 
+    }
+
+.modal-clean {
+        max-width: 100%;
+        border-radius: 12px 12px 0 0;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal {
+        align-items: flex-end; 
+        padding: 0;
+    }
+}
