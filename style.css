@@ -385,124 +385,152 @@ body {
 
 @media screen and (max-width: 768px) {
 .navbar {
-        padding: 5px 10px;
-        gap: 5px;
-    }
-
+    padding: 8px 12px;
+    gap: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+    
 .nav-left {
-        gap: 5px;
-        width: 50%;
-    } 
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    flex: 1;
+    overflow: hidden;
+}
     
 .categories {
-        overflow-x: auto;
-        white-space: nowrap;
-        scrollbar-width: none;
-    }
-
-.categories::-webkit-scrollbar {
-        display: none;
-    }
-
-.cat-btn {
-       flex-shrink: 0;
-    }
-
-.nav-right {
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-.live-btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-.nav-right input {
-        width: 40px;
-    }
-
-.hero {
-        padding: 0 20px 40px 20px;
-        min-height: 400px;
-        height: 75vh;
-    }
-
-.hero h2 {
-        font-size: 2.1rem;
-    }
-
-.hero p {
-        font-size: 0.95rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-.hero-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-.btn-primary, .btn-secondary {
-        width: 100%;
-        text-align: center;
-    }
-
-
-.container {
-        padding: 0 20px 40px 20px;
-    }
-
-.video-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-.card img {
-        height: 331,1px; 
-    }
-
-.modal-clean {
-        max-width: 100%;
-        border-radius: 12px 12px 0 0;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-.modal {
-        padding: 15px;
-        align-items: center;
-        justify-content: center;
-    }
-
-.modal-clean {
-        width: 100%;
-        max-width: 100%;
-        max-height: 70vh;
-        border-radius: 14px; 
-        overflow-y: auto;
-    } 
-    
-.close-btn {
-        top: 10px;
-        right: 15px;
-        font-size: 28px;
-    }
-    
- .iframe-container {
-        width: 100%;
-        flex-shrink: 0; 
-    }   
- .modal-info-body {
-        padding: 20px 16px;
-        flex-grow: 1;
-    }
-
-.video-info-title {
-        font-size: 1.3rem;
-    }  
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
 }
 
+.categories::-webkit-scrollbar {
+    display: none;
+}
+
+.cat-btn {
+    flex-shrink: 0;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+}
+    
+.nav-right {
+    width: auto;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+}
+    
+.live-btn {
+    width: auto;
+    padding: 5px 8px;
+    font-size: 0.7rem;
+    gap: 4px;
+}
+
+.live-dot {
+    width: 6px;
+    height: 6px;
+}    
+
+.nav-right input{
+    width: 90px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+}
+    
+.nav-right input:focus {
+    width: 130px;
+}
+
+.hero {
+   padding: 0 20px 40px 20px;
+   min-height: 400px;
+   height: 75vh;
+}
+
+.hero h2 {
+   font-size: 2.1rem;
+}
+
+.hero p {
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-buttons {
+    flex-direction: column;
+    width: 100%;
+}
+
+.btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
+}
+    
+.logo {    
+    font-size: 1.2rem;
+}
+
+.container {
+    padding: 0 20px 40px 20px;
+}
+
+.video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card img {
+    height: 331,1px; 
+}
+
+.modal-clean {
+    max-width: 100%;
+    border-radius: 12px 12px 0 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal {
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-clean {
+    width: 100%;
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 14px; 
+    overflow-y: auto;
+} 
+    
+.close-btn {
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+}
+    
+ .iframe-container {
+    width: 100%;
+    flex-shrink: 0; 
+}   
+ .modal-info-body {
+    padding: 20px 16px;
+    flex-grow: 1;
+}
+
+.video-info-title {
+    font-size: 1.3rem;
+}  
+}
+
+ 
