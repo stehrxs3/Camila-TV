@@ -397,7 +397,7 @@ body {
         width: 100%;
     } 
     
-categories {
+.categories {
         width: 100%;
         overflow-x: auto;
         white-space: nowrap;
@@ -415,18 +415,18 @@ categories {
         font-size: 0.8rem;
     }
 
-    .nav-right {
+.nav-right {
         width: 100%;
         flex-direction: column;
         gap: 10px;
     }
 
-    .live-btn {
+.live-btn {
         width: 100%;
         justify-content: center;
     }
 
-    .nav-right input {
+.nav-right input {
         width: 100%;
     }
 
@@ -436,11 +436,11 @@ categories {
         height: 75vh;
     }
 
-    .hero h2 {
+.hero h2 {
         font-size: 2.1rem;
     }
 
-    .hero p {
+.hero p {
         font-size: 0.95rem;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -448,12 +448,12 @@ categories {
         overflow: hidden;
     }
 
-    .hero-buttons {
+.hero-buttons {
         flex-direction: column;
         width: 100%;
     }
 
-    .btn-primary, .btn-secondary {
+.btn-primary, .btn-secondary {
         width: 100%;
         text-align: center;
     }
@@ -463,12 +463,12 @@ categories {
         padding: 0 20px 40px 20px;
     }
 
-    .video-grid {
+.video-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
 
-    .card img {
+.card img {
         height: 180px; 
     }
 
@@ -479,8 +479,49 @@ categories {
         overflow-y: auto;
     }
 
-    .modal {
-        align-items: flex-end; 
+.modal {
         padding: 0;
+        align-items: stretch;
+        justify-content: stretch;
     }
+
+.modal-clean {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0; 
+        border: none;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }   +
+.close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 36px;
+        background: rgba(0, 0, 0, 0.6);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        backdrop-filter: blur(4px);
+    }
+
+ .iframe-container {
+        width: 100%;
+        flex-shrink: 0; 
+    }   
+ .modal-info-body {
+        padding: 20px 16px;
+        flex-grow: 1;
+    }
+
+.video-info-title {
+        font-size: 1.3rem;
+    }   
 }
+
