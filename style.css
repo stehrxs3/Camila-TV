@@ -382,22 +382,22 @@ body {
     line-height: 1.6;
 }
 
+
 @media screen and (max-width: 768px) {
 .navbar {
-        padding: 15px 20px;
-        gap: 10px;
+        padding: 5px 10px;
+        gap: 5px;
     }
 
 .nav-left {
-        gap: 15px;
-        width: 100%;
+        gap: 5px;
+        width: 50%;
     } 
     
 .categories {
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: none;
-    }
     }
 
 .categories::-webkit-scrollbar {
@@ -420,7 +420,7 @@ body {
     }
 
 .nav-right input {
-        width: 140px;
+        width: 40px;
     }
 
 .hero {
