@@ -211,6 +211,17 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
+    {
+        id: 20,
+        titulo: "",
+        categoria: "Performances",
+        data: "",
+        capa: "",
+        banner: "",
+        descricao: "",
+        videoUrl: "",
+        destaque: false
+    }, 
  ];
 
 let videoDestaqueAtual = null;
