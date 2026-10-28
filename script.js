@@ -223,12 +223,12 @@ const listaDeVideos = [
         destaque: false
     }, 
  ];
-
 let videoDestaqueAtual = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     configurarDestaque();
     carregarVideos(listaDeVideos);
+    verificarSessaoUsuario();
 });
 
 function converterParaEmbedDrive(url) {
@@ -260,7 +260,6 @@ function carregarVideos(videos) {
     videosValidos.forEach((video) => {
         const card = document.createElement("div");
         card.classList.add("card");
-        
         card.onclick = () => abrirVideo(video);
 
         const imagemCapa = video.capa || "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
@@ -305,10 +304,11 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
+
 function abrirVideo(video) {
     const modal = document.getElementById("videoModal");
     const container = document.getElementById("videoContainer");
-    
+
     const title = document.getElementById("modalVideoTitle");
     const category = document.getElementById("modalVideoCategory");
     const date = document.getElementById("modalVideoDate");
@@ -320,7 +320,6 @@ function abrirVideo(video) {
     desc.innerText = video.descricao || "Nenhuma descrição disponível.";
 
     container.innerHTML = "";
-
     let url = video.videoUrl || "";
 
     if (url.includes("drive.google.com")) {
@@ -363,8 +362,9 @@ function fecharLive() {
     liveModal.style.display = "none";
 }
 
+
 function abrirAuthModal() {
-    document.getElementById"authModal").style.display = "flex";
+    document.getElementById("authModal").style.display = "flex";
 }
 
 function fecharAuthModal() {
@@ -380,7 +380,7 @@ function mudarAba(aba) {
     const feedback = document.getElementById("mensagemFeedback");
 
     feedback.innerText = "";
-    
+
     loginForm.style.display = "none";
     registerForm.style.display = "none";
     if (resetForm) resetForm.style.display = "none";
@@ -407,7 +407,7 @@ function realizarCadastro(event) {
     const senha = document.getElementById("regPass").value;
     const avatarSelecionado = document.querySelector('input[name="avatarSelect"]:checked').value;
     const feedback = document.getElementById("mensagemFeedback");
-   
+
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
     const jaExiste = usuarios.some(u => u.contato === contato);
@@ -449,8 +449,8 @@ function realizarLogin(event) {
         }));
 
         setTimeout(() => {
-        fecharAuthModal();
-        verificarSessaoUsuario();
+            fecharAuthModal();
+            verificarSessaoUsuario();
         }, 1200);
     } else {
         feedback.style.color = "#e50914";
@@ -470,7 +470,6 @@ function enviarRedefinicaoSenha(event) {
         mudarAba('login');
     }, 2500);
 }
-
 
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
@@ -494,6 +493,14 @@ function verificarSessaoUsuario() {
         btnAuth.onclick = abrirAuthModal;
     }
 }
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        fecharVideo();
+        fecharLive();
+        fecharAuthModal();
+    }
+});
 
 
 document.addEventListener("keydown", (e) => {
