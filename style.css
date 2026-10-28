@@ -11,6 +11,7 @@ body {
     overflow-x: hidden;
 }
 
+
 .navbar {
     background: linear-gradient(to bottom, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.7));
     padding: 20px 50px;
@@ -109,15 +110,8 @@ body {
 }
 
 @keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.2;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
 }
 
 .nav-right input {
@@ -128,11 +122,29 @@ body {
     border-radius: 17px;
     outline: none;
     font-size: 0.85rem;
+    transition: width 0.3s;
 }
 
 .nav-right input:focus {
     border-color: #38bdf8;
 }
+
+.btn-auth-trigger {
+    background-color: #2b39d2;
+    color: #ffffff;
+    border: none;
+    padding: 9px 18px;
+    font-size: 0.85rem;
+    border-radius: 17px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-auth-trigger:hover {
+    background-color: #1e289f;
+}
+
 
 .hero {
     position: relative;
@@ -222,6 +234,7 @@ body {
     transform: scale(1.03);
 }
 
+
 .container {
     padding: 0 50px 60px 50px;
     position: relative;
@@ -257,7 +270,7 @@ body {
 
 .card img {
     width: 100%;
-    height: 331,1px;
+    height: 295px;
     object-fit: cover;
 }
 
@@ -335,7 +348,6 @@ body {
     border: none;
 }
 
-
 .modal-info-body {
     padding: 24px 28px;
     text-align: left;
@@ -383,154 +395,261 @@ body {
 }
 
 
-@media screen and (max-width: 768px) {
-.navbar {
-    padding: 8px 12px;
-    gap: 8px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-    
-.nav-left {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: auto;
-    flex: 1;
-    overflow: hidden;
-}
-    
-.categories {
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
+.auth-container {
+    position: relative;
+    background-color: #0b0f19;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85);
+    color: #ffffff;
 }
 
-.categories::-webkit-scrollbar {
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: #2b39d2;
+    color: #ffffff;
+}
+
+.auth-form h2 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.input-group input:focus {
+    border-color: #2b39d2;
+}
+
+
+.avatar-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+    justify-content: space-between;
+}
+
+.avatar-option {
+    cursor: pointer;
+    position: relative;
+}
+
+.avatar-option input[type="radio"] {
     display: none;
 }
 
-.cat-btn {
-    flex-shrink: 0;
-    padding: 4px 8px;
-    font-size: 0.7rem;
+.avatar-option img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px;
+    transition: transform 0.2s, border-color 0.2s;
 }
-    
-.nav-right {
-    width: auto;
-    flex-direction: row;
-    gap: 6px;
+
+.avatar-option input[type="radio"]:checked + img {
+    border-color: #2b39d2;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(43, 57, 210, 0.5);
+}
+
+
+.user-profile-btn {
+    display: flex;
     align-items: center;
-}
-    
-.live-btn {
-    width: auto;
-    padding: 5px 8px;
-    font-size: 0.7rem;
-    gap: 4px;
-}
-
-.live-dot {
-    width: 6px;
-    height: 6px;
-}    
-
-.nav-right input{
-    width: 90px;
-    padding: 6px 10px;
-    font-size: 0.75rem;
-    border-radius: 12px;
-}
-    
-.nav-right input:focus {
-    width: 130px;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 4px 12px 4px 6px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-.hero {
-   padding: 0 20px 40px 20px;
-   min-height: 400px;
-   height: 75vh;
+.user-profile-btn img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.hero h2 {
-   font-size: 2.1rem;
-}
-
-.hero p {
-    font-size: 0.95rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.hero-buttons {
-    flex-direction: column;
+.btn-submit {
     width: 100%;
+    background-color: #2b39d2;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
 }
 
-.btn-primary, .btn-secondary {
-    width: 100%;
+.btn-submit:hover {
+    background-color: #1e289f;
+}
+
+.feedback {
+    margin-top: 12px;
+    font-size: 0.85rem;
     text-align: center;
 }
-    
-.logo {    
-    font-size: 1.2rem;
-}
 
-.container {
-    padding: 0 20px 40px 20px;
-}
 
-.video-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 8px 12px;
+        gap: 8px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-.card img {
-    height: 331,1px; 
-}
+    .nav-left {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        width: auto;
+        flex: 1;
+        overflow: hidden;
+    }
 
-.modal-clean {
-    max-width: 100%;
-    border-radius: 12px 12px 0 0;
-    max-height: 90vh;
-    overflow-y: auto;
-}
+    .logo {
+        font-size: 1.2rem;
+    }
 
-.modal {
-    padding: 15px;
-    align-items: center;
-    justify-content: center;
-}
+    .categories {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        padding: 2px;
+        gap: 2px;
+    }
 
-.modal-clean {
-    width: 100%;
-    max-width: 100%;
-    max-height: 70vh;
-    border-radius: 14px; 
-    overflow-y: auto;
-} 
-    
-.close-btn {
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-}
-    
- .iframe-container {
-    width: 100%;
-    flex-shrink: 0; 
-}   
- .modal-info-body {
-    padding: 20px 16px;
-    flex-grow: 1;
-}
+    .categories::-webkit-scrollbar {
+        display: none;
+    }
 
-.video-info-title {
-    font-size: 1.3rem;
-}  
-}
+    .cat-btn {
+        flex-shrink: 0;
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
 
- 
+    .nav-right {
+        width: auto;
+        flex-direction: row;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .live-btn {
+        width: auto;
+        padding: 5px 8px;
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+
+    .live-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .nav-right input {
+        width: 80px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        border-radius: 12px;
+    }
+
+    .nav-right input:focus {
+        width: 120px;
+    }
+
+    .btn-auth-trigger, .user-profile-btn {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+
+    .hero {
+        padding: 0 20px 40px 20px;
+        min-height: 400px;
+        height: 75vh;
+    }
+
+    .hero h2 {
+        font-size: 2.1rem;
+    }
+
+    .container {
+        padding: 0 20px 40px 20px;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .modal {
+        padding: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-clean {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+}
