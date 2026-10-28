@@ -406,12 +406,13 @@ function realizarCadastro(event) {
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
     
-    const avatarSelecionado = document.querySelector('input[name="avatarSelect"]:checked').value;
-    const feedback = document.getElementById("mensagemFeedback");
     const radioSelecionado = document.querySelector('input[name="avatarSelect"]:checked');
     const avatarPronto = radioSelecionado ? radioSelecionado.value : null;
 
+   
     const fotoFinal = fotoPersonalizadaBase64 || avatarPronto || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1";
+    
+    const feedback = document.getElementById("mensagemFeedback");
 
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
@@ -422,15 +423,15 @@ function realizarCadastro(event) {
         return;
     }
 
-    usuarios.push({ nickname, contato, senha, avatar: avatarSelecionado });
+    usuarios.push({ nickname, contato, senha, avatar: fotoFinal });
     localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
 
     feedback.style.color = "#38bdf8";
     feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
-   setTimeout(() => {
+    setTimeout(() => {
         document.getElementById("registerForm").reset();
-        fotoPersonalizadaBase64 = "";
+        fotoPersonalizadaBase64 = ""; 
         mudarAba('login');
     }, 1500);
 }
@@ -508,9 +509,38 @@ function converterFotoParaBase64(event) {
 
     const leitor = new FileReader();
     leitor.onload = function(e) {
-        fotoPersonalizadaBase64 = e.target.result; 
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = function() {
+          
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const tamanhoMaximo = 200;
+            let largura = img.width;
+            let altura = img.height;
+
+            if (largura > altura) {
+                if (largura > tamanhoMaximo) {
+                    altura *= tamanhoMaximo / largura;
+                    largura = tamanhoMaximo;
+                }
+            } else {
+                if (altura > tamanhoMaximo) {
+                    largura *= tamanhoMaximo / altura;
+                    altura = tamanhoMaximo;
+                }
+            }
+
+            canvas.width = largura;
+            canvas.height = altura;
+            ctx.drawImage(img, 0, 0, largura, largura);
+
+          
+            fotoPersonalizadaBase64 = canvas.toDataURL("image/jpeg", 0.8);
+
         
-        document.querySelectorAll('input[name="avatarSelect"]').forEach(radio => radio.checked = false);
+            document.querySelectorAll('input[name="avatarSelect"]').forEach(radio => radio.checked = false);
+        };
     };
     leitor.readAsDataURL(arquivo);
 }
