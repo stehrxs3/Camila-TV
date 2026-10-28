@@ -7,7 +7,7 @@ const listaDeVideos = [
         titulo: "The Town",
         categoria: "Shows",
         data: " 13 de setembro de 2025",
-        capa: "https://media.canva.com/v2/image-resize/format:PNG/height:800/quality:100/uri:ifs%3A%2F%2FM%2F08b16e42-dc85-4f64-a5ac-024570796acd/watermark:F/width:500?csig=AAAAAAAAAAAAAAAAAAAAAG4JoRFG17B9deGRxK3st5ypQJoic0h12tW13DStIQJ0&exp=1792839990&osig=AAAAAAAAAAAAAAAAAAAAAB0DwtTf3nmFr_CTO-4urHjUZ3sEWNtiee53ITVJikJG&signer=media-rpc&token=AAIAAU0AJDA4YjE2ZTQyLWRjODUtNGY2NC1hNWFjLTAyNDU3MDc5NmFjZAAAAAABoW2XOvAW14vHjDc5AXUPuU7a1rOs2W3BwTRIqotn1eMDVI_EkA&x-canva-quality=screen",
+        capa: "https://canva.link/sv0zu3hcqtkxaqn",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista ao show completo de camila cabello no the town, esse sendo a ultima parada da your's c tour.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
