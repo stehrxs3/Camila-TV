@@ -101,7 +101,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: 10,
+        id: 10 ,
         titulo: "Z100/iHeartRadio Jingle Ball ",
         categoria: "Shows",
         data: "2019",
@@ -132,7 +132,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1wc7av7YEvK7xOFX9YiXjCRilCWJ8PTVh/view?usp=sharing",
         destaque: false
-    },
+   },
     {
         id: 13,
         titulo: "Lollapalooza Chicago",
@@ -165,7 +165,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1CnGEpf8eVLbuFSL-dIOa6M396TspLASt/view?usp=sharing",
         destaque: false
-    },
+    }, 
     {
         id: 16,
         titulo: "BBC The Biggest Weekend",
@@ -176,7 +176,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/15v8Hpnz2qLtEGE3es8nQD699WvzAkDCK/view?usp=sharing",
         destaque: false
-    },
+    }, 
     {
         id: 17,
         titulo: "Lollapalooza Chile ",
@@ -187,7 +187,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "",
         destaque: false
-    },
+    }, 
     {
         id: 18,
         titulo: "Lollapalooza Argentina",
@@ -198,7 +198,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
         destaque: false
-    },
+    }, 
     {
         id: 19,
         titulo: "iHeartRadio Festa Latina",
@@ -220,12 +220,9 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "",
         destaque: false
-    }
-];
-
+    }, 
+ ];
 let videoDestaqueAtual = null;
-let fotoPersonalizadaBase64 = "";
-let fotoPerfilEditadaBase64 = "";
 
 document.addEventListener("DOMContentLoaded", () => {
     configurarDestaque();
@@ -276,7 +273,7 @@ function carregarVideos(videos) {
         card.classList.add("card");
         card.onclick = () => abrirVideo(video);
 
-        const imagemCapa = converterImagemDrive(video.capa);
+      const imagemCapa = converterImagemDrive(video.capa);
 
         card.innerHTML = `
             <img src="${imagemCapa}" alt="${video.titulo}">
@@ -318,16 +315,8 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-// Bloqueia a abertura do vídeo se o usuário não estiver logado
+
 function abrirVideo(video) {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    if (!usuarioLogado || !usuarioLogado.nickname) {
-        alert("Acesso restrito! Por favor, faça login ou cadastre-se para assistir aos vídeos.");
-        abrirAuthModal();
-        return;
-    }
-
     const modal = document.getElementById("videoModal");
     const container = document.getElementById("videoContainer");
 
@@ -384,6 +373,7 @@ function fecharLive() {
     liveModal.style.display = "none";
 }
 
+
 function abrirAuthModal() {
     document.getElementById("authModal").style.display = "flex";
 }
@@ -420,17 +410,6 @@ function mudarAba(aba) {
     }
 }
 
-function converterFotoParaBase64(event) {
-    const arquivo = event.target.files[0];
-    if (arquivo) {
-        const leitor = new FileReader();
-        leitor.onload = function(e) {
-            fotoPersonalizadaBase64 = e.target.result;
-        };
-        leitor.readAsDataURL(arquivo);
-    }
-}
-
 function realizarCadastro(event) {
     event.preventDefault();
 
@@ -441,7 +420,9 @@ function realizarCadastro(event) {
     const radioSelecionado = document.querySelector('input[name="avatarSelect"]:checked');
     const avatarPronto = radioSelecionado ? radioSelecionado.value : null;
 
+   
     const fotoFinal = fotoPersonalizadaBase64 || avatarPronto || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1";
+    
     const feedback = document.getElementById("mensagemFeedback");
 
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
@@ -482,7 +463,6 @@ function realizarLogin(event) {
 
         localStorage.setItem("usuarioLogado", JSON.stringify({ 
             nickname: usuarioEncontrado.nickname,
-            contato: usuarioEncontrado.contato,
             avatar: usuarioEncontrado.avatar || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1"
         }));
 
@@ -509,7 +489,6 @@ function enviarRedefinicaoSenha(event) {
     }, 2500);
 }
 
-// Atualiza o botão da navbar para abrir o modal de perfil ao invés de deslogar direto
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -520,7 +499,12 @@ function verificarSessaoUsuario() {
             <img src="${usuarioLogado.avatar}" alt="Avatar">
             <span>${usuarioLogado.nickname}</span>
         `;
-        btnAuth.onclick = abrirPerfilModal;
+        btnAuth.onclick = () => {
+            if (confirm(`Deseja sair da conta de ${usuarioLogado.nickname}?`)) {
+                localStorage.removeItem("usuarioLogado");
+                verificarSessaoUsuario();
+            }
+        };
     } else {
         btnAuth.className = "btn-auth-trigger";
         btnAuth.innerText = "Entrar";
@@ -528,76 +512,59 @@ function verificarSessaoUsuario() {
     }
 }
 
-// Funções do Modal de Perfil
-function abrirPerfilModal() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuarioLogado) return;
+let fotoPersonalizadaBase64 = "";
 
-    document.getElementById("profileNickname").value = usuarioLogado.nickname;
-    document.getElementById("profileContato").value = usuarioLogado.contato || "Não informado";
-    document.getElementById("profilePreviewImg").src = usuarioLogado.avatar;
-    fotoPerfilEditadaBase64 = usuarioLogado.avatar;
-    document.getElementById("mensagemPerfilFeedback").innerText = "";
-
-    document.getElementById("profileModal").style.display = "flex";
-}
-
-function fecharPerfilModal() {
-    document.getElementById("profileModal").style.display = "none";
-}
-
-function converterAvatarPerfil(event) {
+function converterFotoParaBase64(event) {
     const arquivo = event.target.files[0];
-    if (arquivo) {
-        const leitor = new FileReader();
-        leitor.onload = function(e) {
-            fotoPerfilEditadaBase64 = e.target.result;
-            document.getElementById("profilePreviewImg").src = fotoPerfilEditadaBase64;
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = function() {
+          
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const tamanhoMaximo = 200;
+            let largura = img.width;
+            let altura = img.height;
+
+            if (largura > altura) {
+                if (largura > tamanhoMaximo) {
+                    altura *= tamanhoMaximo / largura;
+                    largura = tamanhoMaximo;
+                }
+            } else {
+                if (altura > tamanhoMaximo) {
+                    largura *= tamanhoMaximo / altura;
+                    altura = tamanhoMaximo;
+                }
+            }
+
+            canvas.width = largura;
+            canvas.height = altura;
+            ctx.drawImage(img, 0, 0, largura, largura);
+
+          
+            fotoPersonalizadaBase64 = canvas.toDataURL("image/jpeg", 0.8);
+
+        
+            document.querySelectorAll('input[name="avatarSelect"]').forEach(radio => radio.checked = false);
         };
-        leitor.readAsDataURL(arquivo);
-    }
+    };
+    leitor.readAsDataURL(arquivo);
 }
 
-function salvarAlteracoesPerfil() {
-    const novoNickname = document.getElementById("profileNickname").value.trim();
-    const feedback = document.getElementById("mensagemPerfilFeedback");
 
-    if (!novoNickname) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "O nickname não pode ficar vazio.";
-        return;
+
+
+
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        fecharVideo();
+        fecharLive();
+        fecharAuthModal();
     }
-
-    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-
-    usuarios = usuarios.map(u => {
-        if (u.contato === usuarioLogado.contato) {
-            u.nickname = novoNickname;
-            u.avatar = fotoPerfilEditadaBase64;
-        }
-        return u;
-    });
-
-    usuarioLogado.nickname = novoNickname;
-    usuarioLogado.avatar = fotoPerfilEditadaBase64;
-
-    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
-    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-
-    feedback.style.color = "#22c55e";
-    feedback.innerText = "Perfil atualizado com sucesso!";
-
-    setTimeout(() => {
-        fecharPerfilModal();
-        verificarSessaoUsuario();
-    }, 1000);
-}
-
-function fazerLogout() {
-    if (confirm("Deseja realmente sair da sua conta?")) {
-        localStorage.removeItem("usuarioLogado");
-        fecharPerfilModal();
-        verificarSessaoUsuario();
-    }
-}
+});
