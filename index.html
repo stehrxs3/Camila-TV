@@ -50,7 +50,7 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-    <!-- MODAL DO PLAYER DE VÍDEO -->
+
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE TRANSMISSÃO AO VIVO -->
+  
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
@@ -88,18 +88,18 @@
         </div>
     </div>
 
-    <!-- MODAL DE LOGIN, CADASTRO E RECUPERAÇÃO DE SENHA -->
+ 
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
 
-            <!-- Alternador de Abas -->
+          
             <div class="auth-tabs">
                 <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
             </div>
 
-            <!-- Formulário de Login -->
+         
             <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
                 <h2>Bem-vindo de volta!</h2>
                 <div class="input-group">
@@ -116,7 +116,7 @@
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
 
-            <!-- Formulário de Cadastro com Nickname e Avatares -->
+            
             <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
                 <h2>Crie sua conta</h2>
                 
@@ -126,7 +126,9 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Escolha seu Avatar</label>
+                    <label>Escolha seu Avatar </label>
+                    <label>Ou envie uma foto da sua galeria</label>
+                    <input type="file" id="uploadFoto" accept="image/*" onchange="converterFotoParaBase64(event)">
                     <div class="avatar-options">
                         <label class="avatar-option">
                             <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" checked>
