@@ -7,7 +7,7 @@ const listaDeVideos = [
         titulo: "The Town",
         categoria: "Shows",
         data: " 13 de setembro de 2025",
-        capa: "https://canva.link/sv0zu3hcqtkxaqn",
+        capa: "https://canva.link/44ug59m2eh68d1k",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista ao show completo de camila cabello no the town, esse sendo a ultima parada da your's c tour.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
@@ -231,6 +231,18 @@ document.addEventListener("DOMContentLoaded", () => {
     verificarSessaoUsuario();
 });
 
+function converterImagemDrive(url) {
+    if (!url) return "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
+
+    if (url.includes("drive.google.com")) {
+        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) {
+            return `https://lh3.googleusercontent.com/d/${match[1]}`;
+        }
+    }
+    return url; 
+}
+
 function converterParaEmbedDrive(url) {
     if (!url) return "";
     return url.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
@@ -262,7 +274,7 @@ function carregarVideos(videos) {
         card.classList.add("card");
         card.onclick = () => abrirVideo(video);
 
-        const imagemCapa = video.capa || "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
+      const imagemCapa = converterImagemDrive(video.capa);
 
         card.innerHTML = `
             <img src="${imagemCapa}" alt="${video.titulo}">
