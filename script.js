@@ -1,4 +1,3 @@
-
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
 const listaDeVideos = [
@@ -102,7 +101,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: 10 ,
+        id: 10,
         titulo: "Z100/iHeartRadio Jingle Ball ",
         categoria: "Shows",
         data: "2019",
@@ -133,7 +132,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1wc7av7YEvK7xOFX9YiXjCRilCWJ8PTVh/view?usp=sharing",
         destaque: false
-   },
+    },
     {
         id: 13,
         titulo: "Lollapalooza Chicago",
@@ -166,7 +165,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1CnGEpf8eVLbuFSL-dIOa6M396TspLASt/view?usp=sharing",
         destaque: false
-    }, 
+    },
     {
         id: 16,
         titulo: "BBC The Biggest Weekend",
@@ -177,7 +176,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/15v8Hpnz2qLtEGE3es8nQD699WvzAkDCK/view?usp=sharing",
         destaque: false
-    }, 
+    },
     {
         id: 17,
         titulo: "Lollapalooza Chile ",
@@ -188,7 +187,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "",
         destaque: false
-    }, 
+    },
     {
         id: 18,
         titulo: "Lollapalooza Argentina",
@@ -199,7 +198,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
         destaque: false
-    }, 
+    },
     {
         id: 19,
         titulo: "iHeartRadio Festa Latina",
@@ -221,8 +220,8 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "",
         destaque: false
-    }, 
- ];
+    }
+];
 
 let videoDestaqueAtual = null;
 let fotoPersonalizadaBase64 = "";
@@ -319,7 +318,7 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-
+// Bloqueia a abertura do vídeo se o usuário não estiver logado
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -510,7 +509,7 @@ function enviarRedefinicaoSenha(event) {
     }, 2500);
 }
 
-
+// Atualiza o botão da navbar para abrir o modal de perfil ao invés de deslogar direto
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -529,7 +528,7 @@ function verificarSessaoUsuario() {
     }
 }
 
-
+// Funções do Modal de Perfil
 function abrirPerfilModal() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     if (!usuarioLogado) return;
