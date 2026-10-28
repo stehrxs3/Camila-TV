@@ -405,8 +405,13 @@ function realizarCadastro(event) {
     const nickname = document.getElementById("regNickname").value.trim();
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
+    
     const avatarSelecionado = document.querySelector('input[name="avatarSelect"]:checked').value;
     const feedback = document.getElementById("mensagemFeedback");
+    const radioSelecionado = document.querySelector('input[name="avatarSelect"]:checked');
+    const avatarPronto = radioSelecionado ? radioSelecionado.value : null;
+
+    const fotoFinal = fotoPersonalizadaBase64 || avatarPronto || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1";
 
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
@@ -423,8 +428,9 @@ function realizarCadastro(event) {
     feedback.style.color = "#38bdf8";
     feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
-    setTimeout(() => {
+   setTimeout(() => {
         document.getElementById("registerForm").reset();
+        fotoPersonalizadaBase64 = "";
         mudarAba('login');
     }, 1500);
 }
@@ -494,6 +500,26 @@ function verificarSessaoUsuario() {
     }
 }
 
+let fotoPersonalizadaBase64 = "";
+
+function converterFotoParaBase64(event) {
+    const arquivo = event.target.files[0];
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        fotoPersonalizadaBase64 = e.target.result; 
+        
+        document.querySelectorAll('input[name="avatarSelect"]').forEach(radio => radio.checked = false);
+    };
+    leitor.readAsDataURL(arquivo);
+}
+
+
+
+
+
+
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         fecharVideo();
@@ -503,9 +529,4 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        fecharVideo();
-        fecharLive();
-    }
-});
+
