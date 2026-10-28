@@ -545,37 +545,43 @@ body {
 
 
 @media screen and (max-width: 768px) {
-   .navbar {
+   
+    .navbar {
         padding: 8px 10px;
-        gap: 8px;
+        gap: 6px;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
+  
     .nav-left {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         flex: 1;
         min-width: 0;
     }
 
     .logo {
-        font-size: 1.1rem;
+        font-size: 1rem;
         white-space: nowrap;
         flex-shrink: 0;
     }
+
+
     .categories {
         display: flex;
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: none; 
-        padding: 4px 6px;
-        gap: 6px;
+        -webkit-overflow-scrolling: touch;
+        padding: 3px 6px;
+        gap: 4px;
         background: rgba(255, 255, 255, 0.12); 
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.2);
+        max-width: 140px;
     }
 
     .categories::-webkit-scrollbar {
@@ -584,62 +590,70 @@ body {
 
     .cat-btn {
         flex-shrink: 0;
-        padding: 6px 12px; 
-        font-size: 0.78rem;
+        padding: 4px 10px; 
+        font-size: 0.75rem;
         font-weight: 600;
-        border-radius: 15px;
+        border-radius: 12px;
     }
+
 
     .nav-right {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         flex-shrink: 0;
     }
 
     .live-btn {
-        padding: 5px 8px;
-        font-size: 0.7rem;
+        padding: 4px 6px;
+        font-size: 0.65rem;
+        gap: 3px;
     }
 
     .live-dot {
-        width: 6px;
-        height: 6px;
+        width: 5px;
+        height: 5px;
     }
 
     .nav-right input {
-        width: 65px;
-        padding: 6px 8px;
-        font-size: 0.75rem;
-        border-radius: 12px;
+        width: 55px;
+        padding: 5px 6px;
+        font-size: 0.7rem;
+        border-radius: 10px;
     }
 
     .nav-right input:focus {
-        width: 95px;
+        width: 85px;
     }
 
     .user-profile-btn {
-        padding: 2px;
+        padding: 0;
         background: transparent;
         border: none;
     }
 
-    user-profile-btn span {
-        display: none;
+    .user-profile-btn span {
+        display: none !important;
     }
 
-    .btn-auth-trigger, .user-profile-btn {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-    }
-
-    user-profile-btn img {
-        width: 34px;
-        height: 34px;
+    .user-profile-btn img, .btn-auth-trigger {
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         border: 2px solid #2b39d2; 
-        box-shadow: 0 0 8px rgba(43, 57, 210, 0.6);
+        box-shadow: 0 0 6px rgba(43, 57, 210, 0.6);
         object-fit: cover;
+    }
+
+    .btn-auth-trigger {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        width: auto;
+        border-radius: 12px;
+    }
+
+    .card img {
+        height: 180px; /
     }
 
     .hero {
@@ -659,10 +673,6 @@ body {
     .video-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-    }
-
-    .card img {
-        height: 331,1px;
     }
 
     .modal {
@@ -693,30 +703,4 @@ body {
         overflow-y: auto;  
         padding: 20px 16px;
     }
-}
-input[type="file"] {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    border-radius: 8px;
-    color: #94a3b8;
-    width: 100%;
-    cursor: pointer;
-    font-size: 0.85rem;
-}
-
-input[type="file"]::file-selector-button {
-    background-color: #2b39d2;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-right: 10px;
-    transition: background 0.2s;
-}
-
-input[type="file"]::file-selector-button:hover {
-    background-color: #1e289f;
 }
