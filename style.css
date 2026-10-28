@@ -545,8 +545,8 @@ body {
 
 
 @media screen and (max-width: 768px) {
-    .navbar {
-        padding: 8px 12px;
+   .navbar {
+        padding: 8px 10px;
         gap: 8px;
         flex-direction: row;
         justify-content: space-between;
@@ -554,24 +554,28 @@ body {
     }
 
     .nav-left {
-        flex-direction: row;
+        display: flex;
         align-items: center;
         gap: 10px;
-        width: auto;
         flex: 1;
-        overflow: hidden;
+        min-width: 0;
     }
 
     .logo {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
-
     .categories {
+        display: flex;
         overflow-x: auto;
         white-space: nowrap;
-        scrollbar-width: none;
-        padding: 2px;
-        gap: 2px;
+        scrollbar-width: none; 
+        padding: 4px 6px;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.12); 
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .categories::-webkit-scrollbar {
@@ -580,22 +584,22 @@ body {
 
     .cat-btn {
         flex-shrink: 0;
-        padding: 4px 8px;
-        font-size: 0.7rem;
+        padding: 6px 12px; 
+        font-size: 0.78rem;
+        font-weight: 600;
+        border-radius: 15px;
     }
 
     .nav-right {
-        width: auto;
-        flex-direction: row;
-        gap: 6px;
+        display: flex;
         align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
     }
 
     .live-btn {
-        width: auto;
         padding: 5px 8px;
         font-size: 0.7rem;
-        gap: 4px;
     }
 
     .live-dot {
@@ -604,19 +608,38 @@ body {
     }
 
     .nav-right input {
-        width: 80px;
-        padding: 6px 10px;
+        width: 65px;
+        padding: 6px 8px;
         font-size: 0.75rem;
         border-radius: 12px;
     }
 
     .nav-right input:focus {
-        width: 120px;
+        width: 95px;
+    }
+
+    .user-profile-btn {
+        padding: 2px;
+        background: transparent;
+        border: none;
+    }
+
+    user-profile-btn span {
+        display: none;
     }
 
     .btn-auth-trigger, .user-profile-btn {
         padding: 4px 8px;
         font-size: 0.75rem;
+    }
+
+    user-profile-btn img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid #2b39d2; 
+        box-shadow: 0 0 8px rgba(43, 57, 210, 0.6);
+        object-fit: cover;
     }
 
     .hero {
