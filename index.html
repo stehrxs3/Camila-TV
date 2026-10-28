@@ -27,7 +27,7 @@
             <button class="live-btn" onclick="abrirTransmissaoAoVivo()">
                 <span class="live-dot"></span> AO VIVO
             </button>
-            <input type="text" id="searchInput" placeholder="Pesquisar título..." oninput="filtrarPorBusca()">
+            <input type="text" id="searchInput" placeholder="Pesquisar..." oninput="filtrarPorBusca()">
             <button class="btn-auth-trigger" onclick="abrirAuthModal()" id="userAuthBtn">Entrar</button>
         </div>
     </header>
@@ -50,11 +50,10 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-    
+    <!-- MODAL DO PLAYER DE VÍDEO -->
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
- 
 
             <div class="iframe-container" id="videoContainer">
                 <iframe id="videoPlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -76,12 +75,12 @@
         </div>
     </div>
 
-   
+    <!-- MODAL DE TRANSMISSÃO AO VIVO -->
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
             <div class="modal-header-info">
-            <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
+                <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
             </div>
             <div class="iframe-container">
                 <iframe id="livePlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -89,20 +88,23 @@
         </div>
     </div>
 
-    <div id="authModal class="modal">
-        <div class="auth-container>
-           <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
+    <!-- MODAL DE LOGIN, CADASTRO E RECUPERAÇÃO DE SENHA -->
+    <div id="authModal" class="modal">
+        <div class="auth-container">
+            <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
 
-        <div class="auth-tabs">
-           <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
-           <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
-    </div>   
-            
-     <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
-            <h2>Bem-vindo de volta!</h2>
-        <div class="input-group">
-            <label>E-mail ou Telefone </label>
-            <input type="text" id="loginUser" required placeholder="Digite seu e-mail ou telefone">
+            <!-- Alternador de Abas -->
+            <div class="auth-tabs">
+                <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
+                <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
+            </div>
+
+            <!-- Formulário de Login -->
+            <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
+                <h2>Bem-vindo de volta!</h2>
+                <div class="input-group">
+                    <label>E-mail ou Telefone</label>
+                    <input type="text" id="loginUser" required placeholder="Digite seu e-mail ou telefone">
                 </div>
                 <div class="input-group">
                     <label>Senha</label>
@@ -112,14 +114,17 @@
                     <a href="#" onclick="mudarAba('reset')" style="color: #38bdf8; font-size: 0.8rem; text-decoration: none;">Esqueceu a senha?</a>
                 </div>
                 <button type="submit" class="btn-submit">Entrar</button>
-        </form>       
+            </form>
 
-        <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
+            <!-- Formulário de Cadastro com Nickname e Avatares -->
+            <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
                 <h2>Crie sua conta</h2>
-            <div class="input-group">
+                
+                <div class="input-group">
                     <label>Nickname (Nome Público)</label>
                     <input type="text" id="regNickname" required placeholder="Ex: CamilaFan2026">
                 </div>
+
                 <div class="input-group">
                     <label>Escolha seu Avatar</label>
                     <div class="avatar-options">
@@ -139,10 +144,14 @@
                             <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4">
                             <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4" alt="Avatar 4">
                         </label>
-                        <div class="input-group">
+                    </div>
+                </div>
+
+                <div class="input-group">
                     <label>E-mail ou Telefone</label>
                     <input type="text" id="regContato" required placeholder="Seu e-mail ou número">
                 </div>
+
                 <div class="input-group">
                     <label>Senha</label>
                     <input type="password" id="regPass" required placeholder="Crie uma senha segura">
@@ -150,7 +159,8 @@
 
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
-                        
+
+            <!-- Formulário de Recuperação de Senha -->
             <form id="resetForm" class="auth-form" style="display: none;" onsubmit="enviarRedefinicaoSenha(event)">
                 <h2>Redefinir Senha</h2>
                 <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Digite seu e-mail cadastrado para redefinir sua senha.</p>
@@ -164,10 +174,7 @@
 
             <div id="mensagemFeedback" class="feedback"></div>
         </div>
-    </div>        
-
-                    </div>
-                </div>    
+    </div>
 
     <script src="script.js"></script>
 </body>
