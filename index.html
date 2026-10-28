@@ -28,6 +28,7 @@
                 <span class="live-dot"></span> AO VIVO
             </button>
             <input type="text" id="searchInput" placeholder="Pesquisar título..." oninput="filtrarPorBusca()">
+            <button class="btn-auth-trigger" onclick="abrirAuthModal()" id="userAuthBtn">Entrar</button>
         </div>
     </header>
 
@@ -49,7 +50,6 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-
     
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
@@ -59,7 +59,6 @@
             <div class="iframe-container" id="videoContainer">
                 <iframe id="videoPlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
-
 
             <div class="modal-info-body">
                 <h2 id="modalVideoTitle" class="video-info-title">Título do Vídeo</h2>
@@ -82,13 +81,93 @@
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
             <div class="modal-header-info">
-                <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
+            <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
             </div>
             <div class="iframe-container">
                 <iframe id="livePlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
         </div>
     </div>
+
+    <div id="authModal class="modal">
+        <div class="auth-container>
+           <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
+
+        <div class="auth-tabs">
+           <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
+           <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
+    </div>   
+            
+     <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
+            <h2>Bem-vindo de volta!</h2>
+        <div class="input-group">
+            <label>E-mail ou Telefone </label>
+            <input type="text" id="loginUser" required placeholder="Digite seu e-mail ou telefone">
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" id="loginPass" required placeholder="Sua senha">
+                </div>
+                <div style="text-align: right; margin-bottom: 12px;">
+                    <a href="#" onclick="mudarAba('reset')" style="color: #38bdf8; font-size: 0.8rem; text-decoration: none;">Esqueceu a senha?</a>
+                </div>
+                <button type="submit" class="btn-submit">Entrar</button>
+        </form>       
+
+        <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
+                <h2>Crie sua conta</h2>
+            <div class="input-group">
+                    <label>Nickname (Nome Público)</label>
+                    <input type="text" id="regNickname" required placeholder="Ex: CamilaFan2026">
+                </div>
+                <div class="input-group">
+                    <label>Escolha seu Avatar</label>
+                    <div class="avatar-options">
+                        <label class="avatar-option">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" checked>
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" alt="Avatar 1">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila2">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila2" alt="Avatar 2">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila3">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila3" alt="Avatar 3">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4" alt="Avatar 4">
+                        </label>
+                        <div class="input-group">
+                    <label>E-mail ou Telefone</label>
+                    <input type="text" id="regContato" required placeholder="Seu e-mail ou número">
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" id="regPass" required placeholder="Crie uma senha segura">
+                </div>
+
+                <button type="submit" class="btn-submit">Cadastrar</button>
+            </form>
+                        
+            <form id="resetForm" class="auth-form" style="display: none;" onsubmit="enviarRedefinicaoSenha(event)">
+                <h2>Redefinir Senha</h2>
+                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Digite seu e-mail cadastrado para redefinir sua senha.</p>
+                <div class="input-group">
+                    <label>E-mail registrado</label>
+                    <input type="email" id="resetEmail" required placeholder="seu@email.com">
+                </div>
+                <button type="submit" class="btn-submit">Enviar Instruções</button>
+                <button type="button" class="btn-secondary" onclick="mudarAba('login')" style="width: 100%; margin-top: 10px; font-size: 0.85rem; padding: 10px;">Voltar ao Login</button>
+            </form>
+
+            <div id="mensagemFeedback" class="feedback"></div>
+        </div>
+    </div>        
+
+                    </div>
+                </div>    
 
     <script src="script.js"></script>
 </body>
