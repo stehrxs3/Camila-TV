@@ -261,7 +261,6 @@ function carregarVideos(videos) {
         const card = document.createElement("div");
         card.classList.add("card");
         
-        // AO CLICAR NA CAPA, ABRE O MODAL DO PLAYER COM DETALHES ABAIXO
         card.onclick = () => abrirVideo(video);
 
         const imagemCapa = video.capa || "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
@@ -309,8 +308,7 @@ function filtrarPorBusca() {
 function abrirVideo(video) {
     const modal = document.getElementById("videoModal");
     const container = document.getElementById("videoContainer");
-
-    // Elementos de informação na parte inferior do modal
+    
     const title = document.getElementById("modalVideoTitle");
     const category = document.getElementById("modalVideoCategory");
     const date = document.getElementById("modalVideoDate");
@@ -364,6 +362,139 @@ function fecharLive() {
     livePlayer.src = "";
     liveModal.style.display = "none";
 }
+
+function abrirAuthModal() {
+    document.getElementById"authModal").style.display = "flex";
+}
+
+function fecharAuthModal() {
+    document.getElementById("authModal").style.display = "none";
+}
+
+function mudarAba(aba) {
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const resetForm = document.getElementById("resetForm");
+    const tabLogin = document.getElementById("tabLogin");
+    const tabRegister = document.getElementById("tabRegister");
+    const feedback = document.getElementById("mensagemFeedback");
+
+    feedback.innerText = "";
+    
+    loginForm.style.display = "none";
+    registerForm.style.display = "none";
+    if (resetForm) resetForm.style.display = "none";
+
+    tabLogin.classList.remove("active");
+    tabRegister.classList.remove("active");
+
+    if (aba === 'login') {
+        loginForm.style.display = "block";
+        tabLogin.classList.add("active");
+    } else if (aba === 'register') {
+        registerForm.style.display = "block";
+        tabRegister.classList.add("active");
+    } else if (aba === 'reset') {
+        resetForm.style.display = "block";
+    }
+}
+
+function realizarCadastro(event) {
+    event.preventDefault();
+
+    const nickname = document.getElementById("regNickname").value.trim();
+    const contato = document.getElementById("regContato").value.trim();
+    const senha = document.getElementById("regPass").value;
+    const avatarSelecionado = document.querySelector('input[name="avatarSelect"]:checked').value;
+    const feedback = document.getElementById("mensagemFeedback");
+   
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+
+    const jaExiste = usuarios.some(u => u.contato === contato);
+    if (jaExiste) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Este e-mail ou telefone já está cadastrado!";
+        return;
+    }
+
+    usuarios.push({ nickname, contato, senha, avatar: avatarSelecionado });
+    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
+
+    setTimeout(() => {
+        document.getElementById("registerForm").reset();
+        mudarAba('login');
+    }, 1500);
+}
+
+function realizarLogin(event) {
+    event.preventDefault();
+
+    const contatoInput = document.getElementById("loginUser").value.trim();
+    const senhaInput = document.getElementById("loginPass").value;
+    const feedback = document.getElementById("mensagemFeedback");
+
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    const usuarioEncontrado = usuarios.find(u => u.contato === contatoInput && u.senha === senhaInput);
+
+    if (usuarioEncontrado) {
+        feedback.style.color = "#22c55e";
+        feedback.innerText = `Bem-vindo(a), ${usuarioEncontrado.nickname}!`;
+
+        localStorage.setItem("usuarioLogado", JSON.stringify({ 
+            nickname: usuarioEncontrado.nickname,
+            avatar: usuarioEncontrado.avatar || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1"
+        }));
+
+        setTimeout(() => {
+        fecharAuthModal();
+        verificarSessaoUsuario();
+        }, 1200);
+    } else {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "E-mail/Telefone ou senha incorretos.";
+    }
+}
+
+function enviarRedefinicaoSenha(event) {
+    event.preventDefault();
+    const email = document.getElementById("resetEmail").value.trim();
+    const feedback = document.getElementById("mensagemFeedback");
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = `Instruções de redefinição enviadas para ${email}. (Simulação)`;
+
+    setTimeout(() => {
+        mudarAba('login');
+    }, 2500);
+}
+
+
+function verificarSessaoUsuario() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const btnAuth = document.getElementById("userAuthBtn");
+
+    if (usuarioLogado && usuarioLogado.nickname) {
+        btnAuth.className = "user-profile-btn";
+        btnAuth.innerHTML = `
+            <img src="${usuarioLogado.avatar}" alt="Avatar">
+            <span>${usuarioLogado.nickname}</span>
+        `;
+        btnAuth.onclick = () => {
+            if (confirm(`Deseja sair da conta de ${usuarioLogado.nickname}?`)) {
+                localStorage.removeItem("usuarioLogado");
+                verificarSessaoUsuario();
+            }
+        };
+    } else {
+        btnAuth.className = "btn-auth-trigger";
+        btnAuth.innerText = "Entrar";
+        btnAuth.onclick = abrirAuthModal;
+    }
+}
+
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
