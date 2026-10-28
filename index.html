@@ -131,7 +131,7 @@
                     <input type="file" id="uploadFoto" accept="image/*" onchange="converterFotoParaBase64(event)">
                     <div class="avatar-options">
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/2e/08/72/2e0872d643593d60a2ac42527c4eba3a.jpg" 
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/2e/08/72/2e0872d643593d60a2ac42527c4eba3a.jpg">
                             <img src="https://i.pinimg.com/736x/2e/08/72/2e0872d643593d60a2ac42527c4eba3a.jpg" alt="Avatar 1">
                         </label>
                         <label class="avatar-option">
@@ -158,8 +158,8 @@
                 </div>
 
                 <div class="input-group">
-                    <label>E-mail ou Telefone</label>
-                    <input type="text" id="regContato" required placeholder="Seu e-mail ou número">
+                    <label>E-mail e Telefone</label>
+                    <input type="text" id="regContato" required placeholder="Seu e-mail e número">
                 </div>
 
                 <div class="input-group">
@@ -170,7 +170,7 @@
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
-            <!-- Formulário de Recuperação de Senha -->
+            
             <form id="resetForm" class="auth-form" style="display: none;" onsubmit="enviarRedefinicaoSenha(event)">
                 <h2>Redefinir Senha</h2>
                 <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Digite seu e-mail cadastrado para redefinir sua senha.</p>
@@ -182,10 +182,42 @@
                 <button type="button" class="btn-secondary" onclick="mudarAba('login')" style="width: 100%; margin-top: 10px; font-size: 0.85rem; padding: 10px;">Voltar ao Login</button>
             </form>
 
-            <div id="mensagemFeedback" class="feedback"></div>
+            <div id="mensagemFeedback" class="feedback">  
+            </div>
         </div>
-    </div>
 
+     <div id="profileModal" class="modal">
+        <div class="auth-container">
+            <span class="close-btn" onclick="fecharPerfilModal()">&times;</span>
+            <h2>Meu Perfil</h2>
+            
+            <div class="input-group" style="text-align: center;">
+                <img id="profilePreviewImg" src="" alt="Avatar" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid #38bdf8;">
+                <br>
+                <label style="cursor: pointer; color: #38bdf8; font-size: 0.9rem;">
+                    Trocar Foto de Perfil
+                    <input type="file" id="editAvatarFile" accept="image/*" onchange="converterAvatarPerfil(event)" style="display: none;">
+                </label>
+            </div>
+
+            <div class="input-group">
+                <label>E-mail ou Telefone (Conta)</label>
+                <input type="text" id="profileContato" disabled style="background-color: #1e293b; color: #94a3b8; cursor: not-allowed;">
+            </div>
+
+            <div class="input-group">
+                <label>Nickname (Nome Público)</label>
+                <input type="text" id="profileNickname" placeholder="Seu novo nickname">
+            </div>
+
+            <button type="button" class="btn-submit" onclick="salvarAlteracoesPerfil()">Salvar Alterações</button>
+            <button type="button" class="btn-secondary" onclick="fazerLogout()" style="width: 100%; margin-top: 10px; background-color: #e50914; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">Sair da Conta</button>
+
+            <div id="mensagemPerfilFeedback" class="feedback"></div>
+        </div>
+    </div>>
+
+    
     <script src="script.js"></script>
 </body>
 
