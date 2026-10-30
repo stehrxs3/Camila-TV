@@ -317,7 +317,6 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -520,7 +519,7 @@ function solicitartokenReset() {
     }
 
     const tokenSeguro = gerarTokenAleatorio();
-    const expiraEm = new Date().getTime() + 15 * 60 * 1000; // 15 minutos
+    const expiraEm = new Date().getTime() + 15 * 60 * 1000; 
 
     usuario.resetToken = tokenSeguro;
     usuario.tokenExpira = expiraEm;
@@ -582,7 +581,6 @@ function processarRedefinicaoSenha(event) {
         mudarAba('login');
     }, 2000);
 }
-
 
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
@@ -697,7 +695,7 @@ function fazerLogout() {
 
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
-    if (senhaAdmin !== "admin123") {
+    if (senhaAdmin !== "adm123") {
         alert("Senha incorreta!");
         return;
     }
@@ -727,3 +725,11 @@ function abrirPainelAdmin() {
 function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
 }
+
+//Pressione Ctrl + Shift + A
+document.addEventListener("keydown", (event) => {
+    if (event.ctrlKey && event.shiftKey && event.code === "KeyA") {
+        event.preventDefault();
+        abrirPainelAdmin();
+    }
+});
