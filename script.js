@@ -317,6 +317,7 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
+// 🛡️ BLOQUEIO DE VÍDEO PARA QUEM NÃO ESTÁ LOGADO
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -494,7 +495,7 @@ function enviarRedefinicaoSenha(event) {
     }, 2500);
 }
 
-
+// 👤 GERENCIAMENTO DE SESSÃO E PERFIL
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -505,7 +506,6 @@ function verificarSessaoUsuario() {
             <img src="${usuarioLogado.avatar}" alt="Avatar">
             <span>${usuarioLogado.nickname}</span>
         `;
-       
         btnAuth.onclick = abrirProfileModal;
     } else {
         btnAuth.className = "btn-auth-trigger";
@@ -514,14 +514,23 @@ function verificarSessaoUsuario() {
     }
 }
 
+let fotoTempPerfil = "";
+
 function abrirProfileModal() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     if (!usuarioLogado) return;
 
     document.getElementById("editNickname").value = usuarioLogado.nickname;
-    document.getElementById("editAvatar").value = usuarioLogado.avatar;
     document.getElementById("profileModalAvatar").src = usuarioLogado.avatar;
     
+    fotoTempPerfil = usuarioLogado.avatar;
+
+    const radios = document.getElementsByName("editAvatarSelect");
+    radios.forEach(radio => {
+        radio.checked = (radio.value === usuarioLogado.avatar);
+    });
+
+    document.getElementById("editAvatarFile").value = "";
     document.getElementById("mensagemProfileFeedback").innerText = "";
     document.getElementById("profileModal").style.display = "flex";
 }
@@ -530,27 +539,47 @@ function fecharProfileModal() {
     document.getElementById("profileModal").style.display = "none";
 }
 
+function selecionarAvatarPredefinido(url) {
+    fotoTempPerfil = url;
+    document.getElementById("profileModalAvatar").src = url;
+    document.getElementById("editAvatarFile").value = "";
+}
+
+function carregarFotoArquivo(event) {
+    const arquivo = event.target.files[0];
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        fotoTempPerfil = e.target.result;
+        document.getElementById("profileModalAvatar").src = fotoTempPerfil;
+
+        const radios = document.getElementsByName("editAvatarSelect");
+        radios.forEach(radio => radio.checked = false);
+    };
+    leitor.readAsDataURL(arquivo);
+}
+
 function atualizarPerfil(event) {
     event.preventDefault();
 
     const novoNickname = document.getElementById("editNickname").value.trim();
-    const novaFoto = document.getElementById("editAvatar").value.trim();
     const feedback = document.getElementById("mensagemProfileFeedback");
 
     let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
-   
+    const fotoFinal = fotoTempPerfil || usuarioLogado.avatar;
+
     const index = usuarios.findIndex(u => u.contato === usuarioLogado.contato);
     if (index !== -1) {
         usuarios[index].nickname = novoNickname;
-        usuarios[index].avatar = novaFoto || usuarios[index].avatar;
+        usuarios[index].avatar = fotoFinal;
         localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
     }
 
-   
     usuarioLogado.nickname = novoNickname;
-    usuarioLogado.avatar = novaFoto || usuarioLogado.avatar;
+    usuarioLogado.avatar = fotoFinal;
     localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
     feedback.style.color = "#22c55e";
