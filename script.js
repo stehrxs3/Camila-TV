@@ -726,10 +726,11 @@ function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
 }
 
-//Pressione Ctrl + Shift + A
 document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.shiftKey && event.code === "KeyA") {
+    if (event.code === "F8") {
         event.preventDefault();
         abrirPainelAdmin();
+    }
+})
     }
 });
