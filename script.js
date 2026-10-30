@@ -317,7 +317,6 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-// 🛡️ BLOQUEIO DE VÍDEO PARA QUEM NÃO ESTÁ LOGADO
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -495,7 +494,7 @@ function enviarRedefinicaoSenha(event) {
     }, 2500);
 }
 
-// 👤 GERENCIAMENTO DE SESSÃO E PERFIL
+
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -506,7 +505,7 @@ function verificarSessaoUsuario() {
             <img src="${usuarioLogado.avatar}" alt="Avatar">
             <span>${usuarioLogado.nickname}</span>
         `;
-        // Agora abre o Modal de Perfil ao clicar na navbar
+       
         btnAuth.onclick = abrirProfileModal;
     } else {
         btnAuth.className = "btn-auth-trigger";
@@ -541,7 +540,7 @@ function atualizarPerfil(event) {
     let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
-    // Atualiza na base de dados geral de usuários
+   
     const index = usuarios.findIndex(u => u.contato === usuarioLogado.contato);
     if (index !== -1) {
         usuarios[index].nickname = novoNickname;
@@ -549,7 +548,7 @@ function atualizarPerfil(event) {
         localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
     }
 
-    // Atualiza na sessão ativa atual
+   
     usuarioLogado.nickname = novoNickname;
     usuarioLogado.avatar = novaFoto || usuarioLogado.avatar;
     localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
