@@ -183,7 +183,7 @@ const listaDeVideos = [
         categoria: "Shows",
         data: "17 de março de 2018",
         capa: "",
-        banner: "blob:https://web.whatsapp.com/ba2d8731-2ab6-4e2c-b2ad-43b333fbde03",
+        banner: "https://drive.google.com/file/d/1XW9c-I1WLK15mVeOexsHqCn080k6CZ54/view?usp=sharing",
         descricao: "",
         videoUrl: "",
         destaque: true
