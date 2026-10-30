@@ -317,7 +317,7 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-// 🛡️ BLOQUEIO DE VÍDEO PARA QUEM NÃO ESTÁ LOGADO
+
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -495,7 +495,7 @@ function enviarRedefinicaoSenha(event) {
     }, 2500);
 }
 
-// 👤 GERENCIAMENTO DE SESSÃO E PERFIL
+
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -506,14 +506,18 @@ function verificarSessaoUsuario() {
             <img src="${usuarioLogado.avatar}" alt="Avatar">
             <span>${usuarioLogado.nickname}</span>
         `;
-        btnAuth.onclick = abrirProfileModal;
+
+        btnAuth.onclick = null;
+        btnAuth.onclick = (e) => {
+            e.preventDefault();
+            abrirProfileModal();
+        };
     } else {
         btnAuth.className = "btn-auth-trigger";
         btnAuth.innerText = "Entrar";
         btnAuth.onclick = abrirAuthModal;
     }
 }
-
 let fotoTempPerfil = "";
 
 function abrirProfileModal() {
