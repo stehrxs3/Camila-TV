@@ -101,7 +101,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: 10 ,
+        id: 10,
         titulo: "Z100/iHeartRadio Jingle Ball ",
         categoria: "Shows",
         data: "2019",
@@ -221,7 +221,8 @@ const listaDeVideos = [
         videoUrl: "",
         destaque: false
     }, 
- ];
+];
+
 let videoDestaqueAtual = null;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -252,8 +253,6 @@ function configurarDestaque() {
     if (!destaque) return;
     videoDestaqueAtual = destaque;
 
-    const urlBannerDrive = converterImagemDrive(destaque.banner || destaque.capa);
-
     document.getElementById("heroBanner").style.backgroundImage = `url('${destaque.banner || destaque.capa}')`;
     document.getElementById("heroTitle").innerText = destaque.titulo || "";
     document.getElementById("heroDesc").innerText = destaque.descricao || "";
@@ -276,7 +275,7 @@ function carregarVideos(videos) {
         card.classList.add("card");
         card.onclick = () => abrirVideo(video);
 
-      const imagemCapa = converterImagemDrive(video.capa);
+        const imagemCapa = converterImagemDrive(video.capa);
 
         card.innerHTML = `
             <img src="${imagemCapa}" alt="${video.titulo}">
@@ -318,8 +317,16 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-
+// 🛡️ BLOQUEIO DE VÍDEO PARA QUEM NÃO ESTÁ LOGADO
 function abrirVideo(video) {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuarioLogado) {
+        alert("Você precisa fazer login ou se cadastrar para assistir aos vídeos!");
+        abrirAuthModal();
+        return;
+    }
+
     const modal = document.getElementById("videoModal");
     const container = document.getElementById("videoContainer");
 
@@ -376,7 +383,6 @@ function fecharLive() {
     liveModal.style.display = "none";
 }
 
-
 function abrirAuthModal() {
     document.getElementById("authModal").style.display = "flex";
 }
@@ -421,10 +427,7 @@ function realizarCadastro(event) {
     const senha = document.getElementById("regPass").value;
     
     const radioSelecionado = document.querySelector('input[name="avatarSelect"]:checked');
-    const avatarPronto = radioSelecionado ? radioSelecionado.value : null;
-
-   
-    const fotoFinal = fotoPersonalizadaBase64 || avatarPronto || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1";
+    const avatarPronto = radioSelecionado ? radioSelecionado.value : "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1";
     
     const feedback = document.getElementById("mensagemFeedback");
 
@@ -437,7 +440,7 @@ function realizarCadastro(event) {
         return;
     }
 
-    usuarios.push({ nickname, contato, senha, avatar: fotoFinal });
+    usuarios.push({ nickname, contato, senha, avatar: avatarPronto });
     localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
 
     feedback.style.color = "#38bdf8";
@@ -445,7 +448,6 @@ function realizarCadastro(event) {
 
     setTimeout(() => {
         document.getElementById("registerForm").reset();
-        fotoPersonalizadaBase64 = ""; 
         mudarAba('login');
     }, 1500);
 }
@@ -465,6 +467,7 @@ function realizarLogin(event) {
         feedback.innerText = `Bem-vindo(a), ${usuarioEncontrado.nickname}!`;
 
         localStorage.setItem("usuarioLogado", JSON.stringify({ 
+            contato: usuarioEncontrado.contato,
             nickname: usuarioEncontrado.nickname,
             avatar: usuarioEncontrado.avatar || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1"
         }));
@@ -492,6 +495,7 @@ function enviarRedefinicaoSenha(event) {
     }, 2500);
 }
 
+// 👤 GERENCIAMENTO DE SESSÃO E PERFIL
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -502,12 +506,8 @@ function verificarSessaoUsuario() {
             <img src="${usuarioLogado.avatar}" alt="Avatar">
             <span>${usuarioLogado.nickname}</span>
         `;
-        btnAuth.onclick = () => {
-            if (confirm(`Deseja sair da conta de ${usuarioLogado.nickname}?`)) {
-                localStorage.removeItem("usuarioLogado");
-                verificarSessaoUsuario();
-            }
-        };
+        // Agora abre o Modal de Perfil ao clicar na navbar
+        btnAuth.onclick = abrirProfileModal;
     } else {
         btnAuth.className = "btn-auth-trigger";
         btnAuth.innerText = "Entrar";
@@ -515,59 +515,59 @@ function verificarSessaoUsuario() {
     }
 }
 
-let fotoPersonalizadaBase64 = "";
+function abrirProfileModal() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuarioLogado) return;
 
-function converterFotoParaBase64(event) {
-    const arquivo = event.target.files[0];
-    if (!arquivo) return;
-
-    const leitor = new FileReader();
-    leitor.onload = function(e) {
-        const img = new Image();
-        img.src = e.target.result;
-        img.onload = function() {
-          
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-            const tamanhoMaximo = 200;
-            let largura = img.width;
-            let altura = img.height;
-
-            if (largura > altura) {
-                if (largura > tamanhoMaximo) {
-                    altura *= tamanhoMaximo / largura;
-                    largura = tamanhoMaximo;
-                }
-            } else {
-                if (altura > tamanhoMaximo) {
-                    largura *= tamanhoMaximo / altura;
-                    altura = tamanhoMaximo;
-                }
-            }
-
-            canvas.width = largura;
-            canvas.height = altura;
-            ctx.drawImage(img, 0, 0, largura, largura);
-
-          
-            fotoPersonalizadaBase64 = canvas.toDataURL("image/jpeg", 0.8);
-
-        
-            document.querySelectorAll('input[name="avatarSelect"]').forEach(radio => radio.checked = false);
-        };
-    };
-    leitor.readAsDataURL(arquivo);
+    document.getElementById("editNickname").value = usuarioLogado.nickname;
+    document.getElementById("editAvatar").value = usuarioLogado.avatar;
+    document.getElementById("profileModalAvatar").src = usuarioLogado.avatar;
+    
+    document.getElementById("mensagemProfileFeedback").innerText = "";
+    document.getElementById("profileModal").style.display = "flex";
 }
 
+function fecharProfileModal() {
+    document.getElementById("profileModal").style.display = "none";
+}
 
+function atualizarPerfil(event) {
+    event.preventDefault();
 
+    const novoNickname = document.getElementById("editNickname").value.trim();
+    const novaFoto = document.getElementById("editAvatar").value.trim();
+    const feedback = document.getElementById("mensagemProfileFeedback");
 
+    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
-
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        fecharVideo();
-        fecharLive();
-        fecharAuthModal();
+    // Atualiza na base de dados geral de usuários
+    const index = usuarios.findIndex(u => u.contato === usuarioLogado.contato);
+    if (index !== -1) {
+        usuarios[index].nickname = novoNickname;
+        usuarios[index].avatar = novaFoto || usuarios[index].avatar;
+        localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
     }
-});
+
+    // Atualiza na sessão ativa atual
+    usuarioLogado.nickname = novoNickname;
+    usuarioLogado.avatar = novaFoto || usuarioLogado.avatar;
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+
+    feedback.style.color = "#22c55e";
+    feedback.innerText = "Perfil atualizado com sucesso!";
+
+    verificarSessaoUsuario();
+
+    setTimeout(() => {
+        fecharProfileModal();
+    }, 1200);
+}
+
+function fazerLogout() {
+    if (confirm("Deseja realmente sair da sua conta?")) {
+        localStorage.removeItem("usuarioLogado");
+        fecharProfileModal();
+        verificarSessaoUsuario();
+    }
+}
