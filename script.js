@@ -317,6 +317,7 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
+
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -519,7 +520,7 @@ function solicitartokenReset() {
     }
 
     const tokenSeguro = gerarTokenAleatorio();
-    const expiraEm = new Date().getTime() + 15 * 60 * 1000; 
+    const expiraEm = new Date().getTime() + 15 * 60 * 1000; // 15 minutos
 
     usuario.resetToken = tokenSeguro;
     usuario.tokenExpira = expiraEm;
@@ -581,6 +582,7 @@ function processarRedefinicaoSenha(event) {
         mudarAba('login');
     }, 2000);
 }
+
 
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
@@ -726,11 +728,32 @@ function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
 }
 
+
 document.addEventListener("keydown", (event) => {
     if (event.code === "F8") {
         event.preventDefault();
         abrirPainelAdmin();
     }
-})
+});
+
+
+let cliquesLogo = 0;
+let tempoUltimoClique = 0;
+
+function clicarLogoAdmin() {
+    const agora = new Date().getTime();
+    
+    if (agora - tempoUltimoClique > 1000) {
+        cliquesLogo = 1;
+    } else {
+        cliquesLogo++;
     }
+    
+    tempoUltimoClique = agora;
+
+    if (cliquesLogo === 13) {
+        cliquesLogo = 0;
+        abrirPainelAdmin();
+    }
+}
 });
