@@ -183,10 +183,10 @@ const listaDeVideos = [
         categoria: "Shows",
         data: "17 de março de 2018",
         capa: "",
-        banner: "",
+        banner: "blob:https://web.whatsapp.com/ba2d8731-2ab6-4e2c-b2ad-43b333fbde03",
         descricao: "",
         videoUrl: "",
-        destaque: false
+        destaque: true
     }, 
     {
         id: 18,
