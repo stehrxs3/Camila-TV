@@ -12,7 +12,7 @@
 
     <header class="navbar">
         <div class="nav-left">
-            <h1 class="logo">Camila<span class="plus"> tv+</span></h1>
+            <h1 class="logo" onclick="clicarLogoAdmin()" style="cursor: pointer;">Camila<span class="plus"> tv+</span></h1>
             <nav class="categories">
                 <button class="cat-btn active" onclick="filtrarCategoria('todos', this)">Início</button>
                 <button class="cat-btn" onclick="filtrarCategoria('Shows', this)">Shows</button>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    
+  
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
@@ -88,17 +88,18 @@
         </div>
     </div>
 
- 
+
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
 
-            
+         
             <div class="auth-tabs">
                 <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
             </div>
 
+     
             <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
                 <h2>Bem-vindo de volta!</h2>
                 <div class="input-group">
@@ -115,7 +116,6 @@
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
 
-           
             <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
                 <h2>Crie sua conta</h2>
                 
@@ -172,7 +172,6 @@
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
-          
             <form id="resetForm" class="auth-form" style="display: none;" onsubmit="processarRedefinicaoSenha(event)">
                 <h2>Redefinir Senha</h2>
                 <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Recupere sua senha com segurança.</p>
@@ -204,7 +203,7 @@
         </div>
     </div>
 
-   
+  
     <div id="profileModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharProfileModal()">&times;</span>
@@ -262,7 +261,7 @@
         </div>
     </div>
 
-  
+ 
     <div id="adminModal" class="modal">
         <div class="auth-container" style="max-width: 600px;">
             <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
