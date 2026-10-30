@@ -503,18 +503,14 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #1e293b;
-    color: #ffffff;
-    border: 1px solid #38bdf8;
-    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 4px 12px 4px 6px;
     border-radius: 20px;
     cursor: pointer;
+    color: #fff;
+    font-size: 0.85rem;
     font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-
-.user-profile-btn span {
-    pointer-events: none; 
 }
 
 .user-profile-btn img {
@@ -522,6 +518,7 @@ body {
     height: 26px;
     border-radius: 50%;
     object-fit: cover;
+    pointer-events: none;
 }
 
 .btn-submit {
@@ -538,7 +535,10 @@ body {
 }
 
 .btn-submit:hover {
-    background-color: #334155;
+    background-color: #1e289f;
+}
+.user-profile-btn span {
+    pointer-events: none; 
 }
 
 .feedback {
