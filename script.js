@@ -251,6 +251,9 @@ function configurarDestaque() {
     const destaque = listaDeVideos.find(v => v.destaque) || listaDeVideos[0];
     if (!destaque) return;
     videoDestaqueAtual = destaque;
+
+    const urlBannerDrive = converterImagemDrive(destaque.banner || destaque.capa);
+
     document.getElementById("heroBanner").style.backgroundImage = `url('${destaque.banner || destaque.capa}')`;
     document.getElementById("heroTitle").innerText = destaque.titulo || "";
     document.getElementById("heroDesc").innerText = destaque.descricao || "";
