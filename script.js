@@ -419,16 +419,34 @@ function mudarAba(aba) {
     }
 }
 
+
+let fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
+
+function selecionarAvatarCadastro(url) {
+    fotoTempCadastro = url;
+    const fileInput = document.getElementById("regAvatarFile");
+    if (fileInput) fileInput.value = "";
+}
+
+function carregarFotoCadastro(event) {
+    const arquivo = event.target.files[0];
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        fotoTempCadastro = e.target.result;
+        const radios = document.getElementsByName("avatarSelect");
+        radios.forEach(radio => radio.checked = false);
+    };
+    leitor.readAsDataURL(arquivo);
+}
+
 function realizarCadastro(event) {
     event.preventDefault();
 
     const nickname = document.getElementById("regNickname").value.trim();
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
-    
-    const radioSelecionado = document.querySelector('input[name="avatarSelect"]:checked');
-    const avatarPronto = radioSelecionado ? radioSelecionado.value : "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1";
-    
     const feedback = document.getElementById("mensagemFeedback");
 
     let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
@@ -440,7 +458,7 @@ function realizarCadastro(event) {
         return;
     }
 
-    usuarios.push({ nickname, contato, senha, avatar: avatarPronto });
+    usuarios.push({ nickname, contato, senha, avatar: fotoTempCadastro });
     localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
 
     feedback.style.color = "#38bdf8";
@@ -448,6 +466,7 @@ function realizarCadastro(event) {
 
     setTimeout(() => {
         document.getElementById("registerForm").reset();
+        fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
         mudarAba('login');
     }, 1500);
 }
@@ -469,7 +488,7 @@ function realizarLogin(event) {
         localStorage.setItem("usuarioLogado", JSON.stringify({ 
             contato: usuarioEncontrado.contato,
             nickname: usuarioEncontrado.nickname,
-            avatar: usuarioEncontrado.avatar || "https://api.dicebear.com/7.x/bottts/svg?seed=Camila1"
+            avatar: usuarioEncontrado.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg"
         }));
 
         setTimeout(() => {
@@ -482,17 +501,86 @@ function realizarLogin(event) {
     }
 }
 
-function enviarRedefinicaoSenha(event) {
-    event.preventDefault();
-    const email = document.getElementById("resetEmail").value.trim();
+
+function gerarTokenAleatorio() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function solicitartokenReset() {
+    const emailInput = document.getElementById("resetEmail").value.trim();
     const feedback = document.getElementById("mensagemFeedback");
 
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = `Instruções de redefinição enviadas para ${email}. (Simulação)`;
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    const usuario = usuarios.find(u => u.contato === emailInput);
+
+    if (!usuario) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Este e-mail não está cadastrado no sistema.";
+        return;
+    }
+
+    const tokenSeguro = gerarTokenAleatorio();
+    const expiraEm = new Date().getTime() + 15 * 60 * 1000; // 15 minutos
+
+    usuario.resetToken = tokenSeguro;
+    usuario.tokenExpira = expiraEm;
+    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+
+    console.log("TOKEN DE RECUPERAÇÃO:", tokenSeguro);
+    alert(`[Simulação de E-mail] Seu código de recuperação é: ${tokenSeguro}`);
+
+    document.getElementById("etapaEmailReset").style.display = "none";
+    document.getElementById("etapaNovaSenhaReset").style.display = "block";
+    feedback.style.color = "#22c55e";
+    feedback.innerText = "Código enviado! Verifique seu e-mail.";
+}
+
+function processarRedefinicaoSenha(event) {
+    event.preventDefault();
+    const emailInput = document.getElementById("resetEmail").value.trim();
+    const tokenDigitado = document.getElementById("resetTokenInput").value.trim();
+    const novaSenha = document.getElementById("novaSenhaInput").value;
+    const feedback = document.getElementById("mensagemFeedback");
+
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    const usuarioIndex = usuarios.findIndex(u => u.contato === emailInput);
+
+    if (usuarioIndex === -1) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Usuário não encontrado.";
+        return;
+    }
+
+    const usuario = usuarios[usuarioIndex];
+    const agora = new Date().getTime();
+
+    if (!usuario.resetToken || usuario.resetToken !== tokenDigitado) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Código de recuperação inválido!";
+        return;
+    }
+
+    if (agora > usuario.tokenExpira) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Este código expirou. Solicite um novo.";
+        return;
+    }
+
+    usuarios[usuarioIndex].senha = novaSenha;
+    delete usuarios[usuarioIndex].resetToken;
+    delete usuarios[usuarioIndex].tokenExpira;
+
+    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+
+    feedback.style.color = "#22c55e";
+    feedback.innerText = "Senha redefinida com sucesso! Faça login.";
 
     setTimeout(() => {
+        document.getElementById("resetForm").reset();
+        document.getElementById("etapaNovaSenhaReset").style.display = "none";
+        document.getElementById("etapaEmailReset").style.display = "block";
         mudarAba('login');
-    }, 2500);
+    }, 2000);
 }
 
 
@@ -506,8 +594,6 @@ function verificarSessaoUsuario() {
             <img src="${usuarioLogado.avatar}" alt="Avatar">
             <span>${usuarioLogado.nickname}</span>
         `;
-
-        btnAuth.onclick = null;
         btnAuth.onclick = (e) => {
             e.preventDefault();
             abrirProfileModal();
@@ -518,6 +604,7 @@ function verificarSessaoUsuario() {
         btnAuth.onclick = abrirAuthModal;
     }
 }
+
 let fotoTempPerfil = "";
 
 function abrirProfileModal() {
@@ -534,7 +621,9 @@ function abrirProfileModal() {
         radio.checked = (radio.value === usuarioLogado.avatar);
     });
 
-    document.getElementById("editAvatarFile").value = "";
+    const fileInput = document.getElementById("editAvatarFile");
+    if (fileInput) fileInput.value = "";
+
     document.getElementById("mensagemProfileFeedback").innerText = "";
     document.getElementById("profileModal").style.display = "flex";
 }
@@ -546,7 +635,8 @@ function fecharProfileModal() {
 function selecionarAvatarPredefinido(url) {
     fotoTempPerfil = url;
     document.getElementById("profileModalAvatar").src = url;
-    document.getElementById("editAvatarFile").value = "";
+    const fileInput = document.getElementById("editAvatarFile");
+    if (fileInput) fileInput.value = "";
 }
 
 function carregarFotoArquivo(event) {
@@ -602,4 +692,38 @@ function fazerLogout() {
         fecharProfileModal();
         verificarSessaoUsuario();
     }
+}
+
+
+function abrirPainelAdmin() {
+    const senhaAdmin = prompt("Digite a senha de Administrador:");
+    if (senhaAdmin !== "admin123") {
+        alert("Senha incorreta!");
+        return;
+    }
+
+    const tbody = document.getElementById("adminUserTableBody");
+    tbody.innerHTML = "";
+
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+
+    if (usuarios.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado.</td></tr>";
+    } else {
+        usuarios.forEach(u => {
+            tbody.innerHTML += `
+                <tr style="border-bottom: 1px solid #334155;">
+                    <td style="padding: 8px;">${u.nickname}</td>
+                    <td style="padding: 8px;">${u.contato}</td>
+                    <td style="padding: 8px;">${u.senha}</td>
+                </tr>
+            `;
+        });
+    }
+
+    document.getElementById("adminModal").style.display = "flex";
+}
+
+function fecharAdminModal() {
+    document.getElementById("adminModal").style.display = "none";
 }
