@@ -5,10 +5,10 @@ const listaDeVideos = [
         id: 1,
         titulo: "The Town",
         categoria: "Shows",
-        data: " 13 de setembro de 2025",
+        data: "13 de setembro de 2025",
         capa: "https://drive.google.com/file/d/1ID9G0SteQCO3Q3qrJ7tTWO0NL7RQ_VdN/view?usp=sharing",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
-        descricao: "Assista ao show completo de camila cabello no the town, esse sendo a ultima parada da your's c tour.",
+        descricao: "Assista ao show completo de Camila Cabello no The Town, sendo a última parada da C,XOXO Tour.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
         destaque: true
     },
@@ -19,29 +19,29 @@ const listaDeVideos = [
         data: "17 de agosto de 2025",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlwvQSJ4ypl6knolhMiEE9Yahf1BB7xsImJBvrYG1ksg&s=10",
         banner: "https://www.summersonic.com/wp/wp-content/uploads/2025/08/005-196.jpg?v=1755512287",
-        descricao: "Assista aos melhores momentos das performances no festival Summer Sonic.",
+        descricao: "Assista aos melhores momentos das performances no festival Summer Sonic no Japão.",
         videoUrl: "https://drive.google.com/file/d/1nHYSRQUiakqT6ha8yaJVOeJijjvW7VCp/view?usp=sharing",
         destaque: false
     },
     {
         id: 3,
-        titulo: "IHeartRadio Music Festival ",
+        titulo: "IHeartRadio Music Festival",
         categoria: "Shows",
         data: "20 de setembro de 2024",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2rqjw7FC8dh-RgxdeOT3vnFRpVHHax0XPP-h-qcNS0w&s=10",
         banner: "https://media.gettyimages.com/id/2173487877/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=Tm4ZJmkXVqEa2AEQWhH96NxQlvLFJ4urW-voPR2nOVM=",
-        descricao: "Show no IHeartRadio Music Festival 2024.",
+        descricao: "Show eletrizante no iHeartRadio Music Festival 2024.",
         videoUrl: "",
         destaque: false
     },
     {
         id: 4,
-        titulo: "Glastonbury ",
+        titulo: "Glastonbury",
         categoria: "Shows",
-        data: " 29 de junho de 2024",
+        data: "29 de junho de 2024",
         capa: "https://media.gettyimages.com/id/2159846745/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=I6U1Io-fy0l_NxpL5TA47PFYf5bk_ggC09l5Ru5x1ng=",
         banner: "https://media.gettyimages.com/id/2159836703/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=_4Oj66cMwi0ZwZQozs5qzjLh9o-zET8Ajb9uX0KiRsI=",
-        descricao: "Apresentação no icônico festival Glastonbury 2024.",
+        descricao: "Apresentação icônica no festival Glastonbury 2024.",
         videoUrl: "",
         destaque: false
     },
@@ -58,7 +58,7 @@ const listaDeVideos = [
     },
     {
         id: 6,
-        titulo: "Rock in Rio ",
+        titulo: "Rock in Rio",
         categoria: "Shows",
         data: "10 de setembro de 2022",
         capa: "https://media.gettyimages.com/id/1243121400/pt/foto/us-cuban-singer-camila-cabello-performs-on-the-main-stage-of-the-rock-in-rio-music-festival-at.jpg?s=612x612&w=0&k=20&c=KsZ1OTYNbFmsXhIsM2rrfGGTQMEx38LuukhsllYLomw=",
@@ -85,24 +85,24 @@ const listaDeVideos = [
         data: "25 de setembro de 2021",
         capa: "https://media.gettyimages.com/id/1342508806/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-global-citizen-live-new-york-on.jpg?s=612x612&w=0&k=20&c=27pfpGkkTwixJwCUIoALvhH99Gfb6wcP3frKX7zMO8M=",
         banner: "https://media.gettyimages.com/id/1235516869/pt/foto/new-york-ny-camila-cabello-at-global-citizen-live-on-september-25-2021-in-new-york-city.jpg?s=612x612&w=0&k=20&c=0rcdZV303rshiNf4CcbOqtgwuDqgJd8tK3uq6CqOFjM=",
-        descricao: "",
+        descricao: "Performance no Global Citizen Live em Nova York.",
         videoUrl: "https://drive.google.com/file/d/1yHI_3P4Sm0xt8yzl8XB4E6U4lCS0HFU7/view?usp=sharing",
         destaque: false
     },
     {
         id: 9,
-        titulo: "New Music Daily Presents ",
+        titulo: "New Music Daily Presents",
         categoria: "Shows",
-        data: "21 de novembro de 2019/20 de dezembro de 2019",
+        data: "21 de novembro de 2019",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyek7IGOhzvk7QZjo__hr9qDntGPdoeaSd4XZ1Op5K8g&s",
         banner: "",
-        descricao: "",
+        descricao: "Apresentação especial para o Apple Music New Music Daily.",
         videoUrl: "https://drive.google.com/file/d/1t4TOMOPPi_Ul-fMknRd1JZaeN40Prdvb/view?usp=sharing",
         destaque: false
     },
     {
         id: 10,
-        titulo: "Z100/iHeartRadio Jingle Ball ",
+        titulo: "Z100/iHeartRadio Jingle Ball",
         categoria: "Shows",
         data: "2019",
         capa: "https://media.gettyimages.com/id/1193821355/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=SuAV38TgPP8TNVep50ayatwwb9LpwEPnyIMwnmr1wbM=",
@@ -113,7 +113,7 @@ const listaDeVideos = [
     },
     {
         id: 11,
-        titulo: "iHeartRadio Festival ",
+        titulo: "iHeartRadio Festival",
         categoria: "Shows",
         data: "20 de setembro de 2019",
         capa: "https://media.gettyimages.com/id/1177003039/pt/foto/las-vegas-nevada-camila-cabello-performs-at-t-mobile-arena-on-september-20-2019-in-las-vegas.jpg?s=612x612&w=0&k=20&c=QlDvVHM0FUt-fvVYJEgn2lGlao3SEeXJLe21cbDr_bU=",
@@ -129,10 +129,10 @@ const listaDeVideos = [
         data: "7 de outubro de 2018",
         capa: "https://media.gettyimages.com/id/1047445330/pt/foto/austin-tx-camila-cabello-performs-during-the-2018-austin-city-limits-music-festival-at-zilker.jpg?s=612x612&w=0&k=20&c=nY3iPoT_WLFGiwnzDttvhTh_TmPsL2W5FvkSvGE9Avc=",
         banner: "https://media.gettyimages.com/id/1047445328/pt/foto/austin-tx-camila-cabello-performs-during-the-2018-austin-city-limits-music-festival-at-zilker.jpg?s=612x612&w=0&k=20&c=7IOxaq0lDyf7fbETPEZ2r97tc4mG8xoN6XyKBJ-nPao=",
-        descricao: "",
+        descricao: "Austin City Limits Music Festival 2018.",
         videoUrl: "https://drive.google.com/file/d/1wc7av7YEvK7xOFX9YiXjCRilCWJ8PTVh/view?usp=sharing",
         destaque: false
-   },
+    },
     {
         id: 13,
         titulo: "Lollapalooza Chicago",
@@ -140,7 +140,7 @@ const listaDeVideos = [
         data: "2 de agosto de 2018",
         capa: "https://media.gettyimages.com/id/1085989112/photo/chicago-il-camila-cabello-performs-on-day-one-of-lollapalooza-at-grant-park-on-august-2-2018.jpg?s=612x612&w=0&k=20&c=MvlkMXOsp3eafqjiFNOgWLMK1umCjsatY4ej0wCmUIs=",
         banner: "https://media.gettyimages.com/id/1012311284/photo/chicago-il-camila-cabello-performs-at-lollapalooza-2018-in-grant-park-on-august-2-2018-in.jpg?s=612x612&w=0&k=20&c=YVczRSqjEMfj3Syxj9tZHu5Wn4aD-he_COZLZ92ke6Q=",
-        descricao: "",
+        descricao: "Lollapalooza Chicago 2018 no Grant Park.",
         videoUrl: "https://drive.google.com/file/d/17VKNLqaGVyomvgIljSmOXJ6ln2Aej2Bq/view?usp=sharing",
         destaque: false
     },
@@ -151,7 +151,7 @@ const listaDeVideos = [
         data: "24 de junho de 2018",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoXP-SWd5YneNoP3PyC_3oxLnoTDmNobRg93JcnUyxZA&s=10",
         banner: "https://i.dailymail.co.uk/i/newpix/2018/06/24/23/4D97737200000578-5880531-In_the_moment_Camila_commanded_attention_as_she_interacted_with_-a-40_1529878946662.jpg",
-        descricao: "",
+        descricao: "Isle of Wight Festival 2018.",
         videoUrl: "https://drive.google.com/file/d/1TYQL_bFKxtpRDam_SwDMIpYU0CR8bnFv/view?usp=sharing",
         destaque: false
     },
@@ -162,10 +162,10 @@ const listaDeVideos = [
         data: "9 de junho de 2018",
         capa: "https://media.gettyimages.com/id/970340138/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=XzQ0O5L1055pStQ8EwZqpAs7syHIzyFBFIGAuEC3ClM=",
         banner: "https://metro.co.uk/wp-content/uploads/2018/06/sei_16179016.jpg?quality=90&strip=all",
-        descricao: "",
+        descricao: "Capital's Summertime Ball no Wembley Stadium.",
         videoUrl: "https://drive.google.com/file/d/1CnGEpf8eVLbuFSL-dIOa6M396TspLASt/view?usp=sharing",
         destaque: false
-    }, 
+    },
     {
         id: 16,
         titulo: "BBC The Biggest Weekend",
@@ -173,21 +173,21 @@ const listaDeVideos = [
         data: "27 de maio de 2018",
         capa: "https://media.gettyimages.com/id/962996256/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=gtJ8FfYJ4qDDlR12hDG6FkaeMMbLHAy_lcz6y_0bD-o=",
         banner: "https://media.gettyimages.com/id/963001974/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=fn4VdBtUD0NbtJkoK9MgBxjMLzVTnzcANdYvti4yI7Q=",
-        descricao: "",
+        descricao: "BBC Radio 1's Biggest Weekend em Swansea.",
         videoUrl: "https://drive.google.com/file/d/15v8Hpnz2qLtEGE3es8nQD699WvzAkDCK/view?usp=sharing",
         destaque: false
-    }, 
+    },
     {
         id: 17,
-        titulo: "Lollapalooza Chile ",
+        titulo: "Lollapalooza Chile",
         categoria: "Shows",
         data: "17 de março de 2018",
         capa: "",
         banner: "",
-        descricao: "",
+        descricao: "Lollapalooza Chile 2018.",
         videoUrl: "",
         destaque: false
-    }, 
+    },
     {
         id: 18,
         titulo: "Lollapalooza Argentina",
@@ -195,10 +195,10 @@ const listaDeVideos = [
         data: "16 de março de 2018",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfCS8nhSn5NEHWeW2kxb1Pm7DOpmTYk4MXUdt9Iac--w&s=10",
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSFyFThZuX9A92iKCnGXm1XN_8s0m1VAqMCPKvB0UQfg&s=10",
-        descricao: "",
+        descricao: "Lollapalooza Argentina 2018.",
         videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
         destaque: false
-    }, 
+    },
     {
         id: 19,
         titulo: "iHeartRadio Festa Latina",
@@ -206,21 +206,21 @@ const listaDeVideos = [
         data: "4 de novembro de 2017",
         capa: "https://media.gettyimages.com/id/870318566/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=2X-C0tgCPMFgLAp8EourmteU5xc1FZd150JamU0VUuw=",
         banner: "https://media.gettyimages.com/id/870316968/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=CFSakseKeNi-LeDCb2ttb_9daDS4p_XM6K7dmjw5ECo=",
-        descricao: "",
+        descricao: "iHeartRadio Festa Latina em Miami.",
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
     {
         id: 20,
-        titulo: "",
+        titulo: "Performance Especial",
         categoria: "Performances",
-        data: "",
+        data: "2025",
         capa: "",
         banner: "",
-        descricao: "",
+        descricao: "Performance exclusiva.",
         videoUrl: "",
         destaque: false
-    }, 
+    }
 ];
 
 let videoDestaqueAtual = null;
@@ -233,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function converterImagemDrive(url) {
     if (!url) return "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
-
     if (url.includes("drive.google.com")) {
         const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
         if (match && match[1]) {
@@ -520,7 +519,7 @@ function solicitartokenReset() {
     }
 
     const tokenSeguro = gerarTokenAleatorio();
-    const expiraEm = new Date().getTime() + 15 * 60 * 1000; // 15 minutos
+    const expiraEm = new Date().getTime() + 3 * 20 * 1000; 
 
     usuario.resetToken = tokenSeguro;
     usuario.tokenExpira = expiraEm;
@@ -697,7 +696,7 @@ function fazerLogout() {
 
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
-    if (senhaAdmin !== "adm123") {
+    if (senhaAdmin !== "admin123") {
         alert("Senha incorreta!");
         return;
     }
@@ -742,18 +741,15 @@ let tempoUltimoClique = 0;
 
 function clicarLogoAdmin() {
     const agora = new Date().getTime();
-    
     if (agora - tempoUltimoClique > 1000) {
         cliquesLogo = 1;
     } else {
         cliquesLogo++;
     }
-    
     tempoUltimoClique = agora;
 
-    if (cliquesLogo === 13) {
+    if (cliquesLogo === 5) {
         cliquesLogo = 0;
         abrirPainelAdmin();
     }
 }
-});
