@@ -29,8 +29,6 @@
             </button>
             <input type="text" id="searchInput" placeholder="Pesquisar..." oninput="filtrarPorBusca()">
             <button class="btn-auth-trigger" onclick="abrirAuthModal()" id="userAuthBtn">Entrar</button>
-           
-           
         </div>
     </header>
 
@@ -52,7 +50,7 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-  
+   
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
@@ -77,6 +75,7 @@
         </div>
     </div>
 
+    
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
@@ -89,10 +88,12 @@
         </div>
     </div>
 
+ 
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
 
+            
             <div class="auth-tabs">
                 <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
@@ -171,7 +172,7 @@
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
-            
+          
             <form id="resetForm" class="auth-form" style="display: none;" onsubmit="processarRedefinicaoSenha(event)">
                 <h2>Redefinir Senha</h2>
                 <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Recupere sua senha com segurança.</p>
@@ -203,6 +204,7 @@
         </div>
     </div>
 
+   
     <div id="profileModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharProfileModal()">&times;</span>
@@ -260,7 +262,7 @@
         </div>
     </div>
 
-
+  
     <div id="adminModal" class="modal">
         <div class="auth-container" style="max-width: 600px;">
             <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
@@ -277,7 +279,7 @@
                         </tr>
                     </thead>
                     <tbody id="adminUserTableBody">
-                        
+                     
                     </tbody>
                 </table>
             </div>
