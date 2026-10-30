@@ -10,7 +10,7 @@ const listaDeVideos = [
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista ao show completo de camila cabello no the town, esse sendo a ultima parada da your's c tour.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
-        destaque: true
+        destaque: false
     },
     {
         id: 2,
