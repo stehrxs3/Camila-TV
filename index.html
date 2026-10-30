@@ -29,6 +29,8 @@
             </button>
             <input type="text" id="searchInput" placeholder="Pesquisar..." oninput="filtrarPorBusca()">
             <button class="btn-auth-trigger" onclick="abrirAuthModal()" id="userAuthBtn">Entrar</button>
+           
+            <button onclick="abrirPainelAdmin()" style="background: #334155; color: #fff; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Admin</button>
         </div>
     </header>
 
@@ -75,7 +77,6 @@
         </div>
     </div>
 
-    
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
@@ -88,18 +89,15 @@
         </div>
     </div>
 
-    
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
 
-            
             <div class="auth-tabs">
                 <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
             </div>
 
-            
             <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
                 <h2>Bem-vindo de volta!</h2>
                 <div class="input-group">
@@ -116,7 +114,7 @@
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
 
-            
+           
             <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
                 <h2>Crie sua conta</h2>
                 
@@ -128,32 +126,36 @@
                 <div class="input-group">
                     <label>Escolha seu Avatar</label>
                     <div class="avatar-options">
-                        <div class="avatar-options">
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg" checked>
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg" checked onchange="selecionarAvatarCadastro(this.value)">
                             <img src="https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg" alt="Avatar 1">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/4c/0e/3e/4c0e3e27bbbb2bb56a2ee8235e8c2f09.jpg">
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/4c/0e/3e/4c0e3e27bbbb2bb56a2ee8235e8c2f09.jpg" onchange="selecionarAvatarCadastro(this.value)">
                             <img src="https://i.pinimg.com/736x/4c/0e/3e/4c0e3e27bbbb2bb56a2ee8235e8c2f09.jpg" alt="Avatar 2">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/ac/e3/b9/ace3b9c2aa9e5c23a83d5117bb63e633.jpg">
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/ac/e3/b9/ace3b9c2aa9e5c23a83d5117bb63e633.jpg" onchange="selecionarAvatarCadastro(this.value)">
                             <img src="https://i.pinimg.com/1200x/ac/e3/b9/ace3b9c2aa9e5c23a83d5117bb63e633.jpg" alt="Avatar 3">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg">
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg" onchange="selecionarAvatarCadastro(this.value)">
                             <img src="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg" alt="Avatar 4">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg">
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg" onchange="selecionarAvatarCadastro(this.value)">
                             <img src="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg" alt="Avatar 5">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg">
+                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg" onchange="selecionarAvatarCadastro(this.value)">
                             <img src="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg" alt="Avatar 6">
                         </label>
                     </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Ou envie uma Foto do Dispositivo</label>
+                    <input type="file" id="regAvatarFile" accept="image/*" onchange="carregarFotoCadastro(event)">
                 </div>
 
                 <div class="input-group">
@@ -170,14 +172,30 @@
             </form>
 
             
-            <form id="resetForm" class="auth-form" style="display: none;" onsubmit="enviarRedefinicaoSenha(event)">
+            <form id="resetForm" class="auth-form" style="display: none;" onsubmit="processarRedefinicaoSenha(event)">
                 <h2>Redefinir Senha</h2>
-                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Digite seu e-mail cadastrado para redefinir sua senha.</p>
-                <div class="input-group">
-                    <label>E-mail registrado</label>
-                    <input type="email" id="resetEmail" required placeholder="seu@email.com">
+                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Recupere sua senha com segurança.</p>
+                
+                <div id="etapaEmailReset">
+                    <div class="input-group">
+                        <label>E-mail cadastrado</label>
+                        <input type="email" id="resetEmail" placeholder="seu@email.com">
+                    </div>
+                    <button type="button" class="btn-submit" onclick="solicitartokenReset()">Enviar Código</button>
                 </div>
-                <button type="submit" class="btn-submit">Enviar Instruções</button>
+
+                <div id="etapaNovaSenhaReset" style="display: none;">
+                    <div class="input-group">
+                        <label>Código de Recuperação (Token)</label>
+                        <input type="text" id="resetTokenInput" placeholder="Cole o código recebido">
+                    </div>
+                    <div class="input-group">
+                        <label>Nova Senha</label>
+                        <input type="password" id="novaSenhaInput" placeholder="Digite sua nova senha">
+                    </div>
+                    <button type="submit" class="btn-submit">Salvar Nova Senha</button>
+                </div>
+
                 <button type="button" class="btn-secondary" onclick="mudarAba('login')" style="width: 100%; margin-top: 10px; font-size: 0.85rem; padding: 10px;">Voltar ao Login</button>
             </form>
 
@@ -185,7 +203,6 @@
         </div>
     </div>
 
-   
     <div id="profileModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharProfileModal()">&times;</span>
@@ -201,7 +218,6 @@
                     <input type="text" id="editNickname" required>
                 </div>
 
-                
                 <div class="input-group">
                     <label>Escolha um Avatar Pré-definido</label>
                     <div class="avatar-options">
@@ -221,20 +237,19 @@
                             <input type="radio" name="editAvatarSelect" value="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg" onchange="selecionarAvatarPredefinido(this.value)">
                             <img src="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg" alt="Avatar 4">
                         </label>
-                         <label class="avatar-option">
+                        <label class="avatar-option">
                             <input type="radio" name="editAvatarSelect" value="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg" onchange="selecionarAvatarPredefinido(this.value)">
                             <img src="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg" alt="Avatar 5">
                         </label>
-                         <label class="avatar-option">
+                        <label class="avatar-option">
                             <input type="radio" name="editAvatarSelect" value="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg" onchange="selecionarAvatarPredefinido(this.value)">
                             <img src="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg" alt="Avatar 6">
                         </label>
                     </div>
                 </div>
 
-                
                 <div class="input-group">
-                    <label>Ou envie uma Foto do seu Dispositivo</label>
+                    <label>Ou envie uma Foto do Dispositivo</label>
                     <input type="file" id="editAvatarFile" accept="image/*" onchange="carregarFotoArquivo(event)">
                 </div>
 
@@ -242,6 +257,30 @@
                 <button type="button" class="btn-secondary" onclick="fazerLogout()" style="width: 100%; margin-top: 10px; background-color: #e50914; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer;">Sair da Conta</button>
             </form>
             <div id="mensagemProfileFeedback" class="feedback"></div>
+        </div>
+    </div>
+
+
+    <div id="adminModal" class="modal">
+        <div class="auth-container" style="max-width: 600px;">
+            <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
+            <h2>Painel do Administrador</h2>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Lista de usuários cadastrados:</p>
+            
+            <div style="max-height: 300px; overflow-y: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; color: #fff;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #475569;">
+                            <th style="padding: 8px;">Nickname</th>
+                            <th style="padding: 8px;">E-mail / Telefone</th>
+                            <th style="padding: 8px;">Senha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminUserTableBody">
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
