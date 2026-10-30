@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
     <header class="navbar">
         <div class="nav-left">
@@ -50,7 +50,7 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-    
+    <!-- MODAL DO PLAYER DE VÍDEO -->
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
@@ -75,11 +75,11 @@
         </div>
     </div>
 
-    
+    <!-- MODAL DE TRANSMISSÃO AO VIVO -->
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
-            <div class="modal-header-info">
+            <div class="modal-header-info" style="padding: 15px 20px; font-weight: bold;">
                 <span class="modal-video-title">🔴 Transmissão Ao Vivo - Camila TV</span>
             </div>
             <div class="iframe-container">
@@ -88,7 +88,7 @@
         </div>
     </div>
 
- 
+    <!-- MODAL DE LOGIN, CADASTRO E RECUPERAÇÃO -->
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
@@ -98,7 +98,7 @@
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
             </div>
 
-           
+            <!-- Formulário de Login -->
             <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
                 <h2>Bem-vindo de volta!</h2>
                 <div class="input-group">
@@ -115,6 +115,7 @@
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
 
+           
             <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
                 <h2>Crie sua conta</h2>
                 
@@ -203,7 +204,7 @@
         </div>
     </div>
 
-    
+  
     <div id="profileModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharProfileModal()">&times;</span>
@@ -211,7 +212,7 @@
             
             <form id="profileForm" onsubmit="atualizarPerfil(event)" style="margin-top: 20px;">
                 <div style="text-align: center; margin-bottom: 15px;">
-                    <img id="profileModalAvatar" src="" alt="Avatar Atual" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8;">
+                    <img id="profileModalAvatar" src="" alt="Avatar Atual" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #2b39d2;">
                 </div>
 
                 <div class="input-group">
@@ -261,24 +262,24 @@
         </div>
     </div>
 
-  
+  >
     <div id="adminModal" class="modal">
-        <div class="auth-container" style="max-width: 600px;">
+        <div class="auth-container" style="max-width: 650px;">
             <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
-            <h2>Painel do Administrador</h2>
-            <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Lista de usuários cadastrados:</p>
+            <h2>Painel do Administrador - E-mails Cadastrados</h2>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Lista completa de usuários e credenciais do sistema:</p>
             
-            <div style="max-height: 300px; overflow-y: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; color: #fff;">
+            <div style="max-height: 350px; overflow-y: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; color: #fff; font-size: 0.9rem;">
                     <thead>
-                        <tr style="border-bottom: 1px solid #475569;">
-                            <th style="padding: 8px;">Nickname</th>
-                            <th style="padding: 8px;">E-mail / Telefone</th>
-                            <th style="padding: 8px;">Senha</th>
+                        <tr style="border-bottom: 1px solid #475569; background: rgba(255,255,255,0.05);">
+                            <th style="padding: 10px;">Nickname</th>
+                            <th style="padding: 10px;">E-mail / Telefone</th>
+                            <th style="padding: 10px;">Senha</th>
                         </tr>
                     </thead>
                     <tbody id="adminUserTableBody">
-                      
+                     
                     </tbody>
                 </table>
             </div>
