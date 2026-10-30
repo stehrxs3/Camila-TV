@@ -1,15 +1,14 @@
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
-// 🔒 PROTEÇÃO DE CÓDIGO (Bloqueia inspeção, F12 e atalhos de desenvolvedor)
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", (e) => {
-    // Bloqueia F12
+ 
     if (e.key === "F12") {
         e.preventDefault();
         return false;
     }
-    // Bloqueia Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+ 
     if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j" || e.key === "C" || e.key === "c")) {
         e.preventDefault();
         return false;
@@ -336,7 +335,7 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-// 🛡️ BLOQUEIO DE VÍDEO PARA QUEM NÃO ESTÁ LOGADO
+
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -438,7 +437,7 @@ function mudarAba(aba) {
     }
 }
 
-// --- CONTROLE DE FOTO NO CADASTRO ---
+
 let fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
 
 function selecionarAvatarCadastro(url) {
@@ -520,7 +519,7 @@ function realizarLogin(event) {
     }
 }
 
-// --- RECUPERAÇÃO DE SENHA COM TOKEN SEGURO ---
+
 function gerarTokenAleatorio() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
@@ -602,7 +601,7 @@ function processarRedefinicaoSenha(event) {
     }, 2000);
 }
 
-// 👤 GERENCIAMENTO DE SESSÃO E PERFIL
+
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -713,7 +712,7 @@ function fazerLogout() {
     }
 }
 
-// 👑 PAINEL DO ADMINISTRADOR (OCULTO)
+
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
     if (senhaAdmin !== "admin123") {
@@ -747,7 +746,7 @@ function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
 }
 
-// Atalho Teclado: F8
+
 document.addEventListener("keydown", (event) => {
     if (event.code === "F8") {
         event.preventDefault();
@@ -755,7 +754,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// Atalho Logo: 5 cliques rápidos
+
 let cliquesLogo = 0;
 let tempoUltimoClique = 0;
 
