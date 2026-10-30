@@ -50,7 +50,7 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-    
+  
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-   
+    
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
@@ -88,18 +88,18 @@
         </div>
     </div>
 
-   
+    
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
 
-          
+            
             <div class="auth-tabs">
                 <button id="tabLogin" class="tab-btn active" onclick="mudarAba('login')">Entrar</button>
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
             </div>
 
-          
+            
             <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
                 <h2>Bem-vindo de volta!</h2>
                 <div class="input-group">
@@ -116,7 +116,7 @@
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
 
-         
+            
             <form id="registerForm" class="auth-form" style="display: none;" onsubmit="realizarCadastro(event)">
                 <h2>Crie sua conta</h2>
                 
@@ -129,28 +129,20 @@
                     <label>Escolha seu Avatar</label>
                     <div class="avatar-options">
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg" checked>
-                            <img src="https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg" alt="Avatar 1">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" checked>
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" alt="Avatar 1">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/4c/0e/3e/4c0e3e27bbbb2bb56a2ee8235e8c2f09.jpg">
-                            <img src="https://i.pinimg.com/736x/4c/0e/3e/4c0e3e27bbbb2bb56a2ee8235e8c2f09.jpg" alt="Avatar 2">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila2">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila2" alt="Avatar 2">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/ac/e3/b9/ace3b9c2aa9e5c23a83d5117bb63e633.jpg">
-                            <img src="https://i.pinimg.com/1200x/ac/e3/b9/ace3b9c2aa9e5c23a83d5117bb63e633.jpg" alt="Avatar 3">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila3">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila3" alt="Avatar 3">
                         </label>
                         <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg">
-                            <img src="https://i.pinimg.com/1200x/55/8c/fb/558cfb5f998f61779102ba68df18a4f5.jpg" alt="Avatar 4">
-                        </label>
-                        <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg">
-                            <img src="https://i.pinimg.com/736x/e2/23/2a/e2232a0a174092386c2da6f78b45147e.jpg" alt="Avatar 5">
-                        </label>
-                        <label class="avatar-option">
-                            <input type="radio" name="avatarSelect" value="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg">
-                            <img src="https://i.pinimg.com/736x/38/db/2f/38db2fb88288f146f67d9afbf69c10a7.jpg" alt="Avatar 6">
+                            <input type="radio" name="avatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4" alt="Avatar 4">
                         </label>
                     </div>
                 </div>
@@ -168,7 +160,7 @@
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
-         
+            
             <form id="resetForm" class="auth-form" style="display: none;" onsubmit="enviarRedefinicaoSenha(event)">
                 <h2>Redefinir Senha</h2>
                 <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Digite seu e-mail cadastrado para redefinir sua senha.</p>
@@ -184,7 +176,7 @@
         </div>
     </div>
 
-  
+   
     <div id="profileModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharProfileModal()">&times;</span>
@@ -192,17 +184,41 @@
             
             <form id="profileForm" onsubmit="atualizarPerfil(event)" style="margin-top: 20px;">
                 <div style="text-align: center; margin-bottom: 15px;">
-                    <img id="profileModalAvatar" src="" alt="Avatar" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8;">
+                    <img id="profileModalAvatar" src="" alt="Avatar Atual" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8;">
                 </div>
 
                 <div class="input-group">
-                    <label>Novo Nickname</label>
+                    <label>Nickname (Nome Público)</label>
                     <input type="text" id="editNickname" required>
                 </div>
 
+                
                 <div class="input-group">
-                    <label>Alterar Foto (URL da Imagem)</label>
-                    <input type="text" id="editAvatar" placeholder="Cole o link de uma nova foto">
+                    <label>Escolha um Avatar Pré-definido</label>
+                    <div class="avatar-options">
+                        <label class="avatar-option">
+                            <input type="radio" name="editAvatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" onchange="selecionarAvatarPredefinido(this.value)">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila1" alt="Avatar 1">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="editAvatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila2" onchange="selecionarAvatarPredefinido(this.value)">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila2" alt="Avatar 2">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="editAvatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila3" onchange="selecionarAvatarPredefinido(this.value)">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila3" alt="Avatar 3">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="editAvatarSelect" value="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4" onchange="selecionarAvatarPredefinido(this.value)">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Camila4" alt="Avatar 4">
+                        </label>
+                    </div>
+                </div>
+
+                
+                <div class="input-group">
+                    <label>Ou envie uma Foto do seu Dispositivo</label>
+                    <input type="file" id="editAvatarFile" accept="image/*" onchange="carregarFotoArquivo(event)">
                 </div>
 
                 <button type="submit" class="btn-submit" style="margin-top: 10px;">Salvar Alterações</button>
