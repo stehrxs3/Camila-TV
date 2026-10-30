@@ -503,14 +503,18 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 4px 12px 4px 6px;
+    background-color: #1e293b;
+    color: #ffffff;
+    border: 1px solid #38bdf8;
+    padding: 6px 12px;
     border-radius: 20px;
     cursor: pointer;
-    color: #fff;
-    font-size: 0.85rem;
     font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.user-profile-btn span {
+    pointer-events: none; 
 }
 
 .user-profile-btn img {
