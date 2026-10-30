@@ -524,33 +524,47 @@ function gerarTokenAleatorio() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-function solicitartokenReset() {
+-
+async function solicitartokenReset() {
     const emailInput = document.getElementById("resetEmail").value.trim();
     const feedback = document.getElementById("mensagemFeedback");
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-    const usuario = usuarios.find(u => u.contato === emailInput);
-
-    if (!usuario) {
+    if (!emailInput) {
         feedback.style.color = "#e50914";
-        feedback.innerText = "Este e-mail não está cadastrado no sistema.";
+        feedback.innerText = "Por favor, digite o seu e-mail cadastrado.";
         return;
     }
 
-    const tokenSeguro = gerarTokenAleatorio();
-    const expiraEm = new Date().getTime() + 15 * 60 * 1000; // 15 minutos
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A enviar código para o seu e-mail...";
 
-    usuario.resetToken = tokenSeguro;
-    usuario.tokenExpira = expiraEm;
-    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+   
+    const tokenSeguro = Math.floor(100000 + Math.random() * 900000).toString();
 
-    console.log("TOKEN DE RECUPERAÇÃO:", tokenSeguro);
-    alert(`[Simulação de E-mail] Seu código de recuperação é: ${tokenSeguro}`);
+   
+    const parametrosEmail = {
+        to_email: emailInput,   
+        token: tokenSeguro      
+    };
 
-    document.getElementById("etapaEmailReset").style.display = "none";
-    document.getElementById("etapaNovaSenhaReset").style.display = "block";
-    feedback.style.color = "#22c55e";
-    feedback.innerText = "Código enviado! Verifique seu e-mail.";
+    try {
+        await emailjs.send('service_camila tv', 'template_x43q5wt', parametrosEmail);
+
+        feedback.style.color = "#22c55e";
+        feedback.innerText = "Código enviado com sucesso para o seu e-mail!";
+
+      
+        localStorage.setItem("tempResetEmail", emailInput);
+        localStorage.setItem("tempResetToken", tokenSeguro);
+
+        document.getElementById("etapaEmailReset").style.display = "none";
+        document.getElementById("etapaNovaSenhaReset").style.display = "block";
+
+    } catch (error) {
+        console.error("Erro ao enviar e-mail:", error);
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Erro ao enviar o e-mail. Verifique os dados.";
+    }
 }
 
 function processarRedefinicaoSenha(event) {
