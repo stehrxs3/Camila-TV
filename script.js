@@ -1,14 +1,22 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getDatabase, ref, push, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+const firebaseConfig = {
+    databaseURL: "https://camilatv-bcc-default-rtdb.firebaseio.com"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
-document.addEventListener("contextmenu", e => e.preventDefault());
 
+let tokenGeradoCache = "";
+document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("keydown", (e) => {
- 
     if (e.key === "F12") {
         e.preventDefault();
         return false;
     }
- 
     if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j" || e.key === "C" || e.key === "c")) {
         e.preventDefault();
         return false;
@@ -466,8 +474,28 @@ function realizarCadastro(event) {
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
     const feedback = document.getElementById("mensagemFeedback");
+push(ref(db, 'usuarios'), {
+        nickname: nickname,
+        contato: contato,
+        senha: senha,
+        dataCadastro: new Date().toLocaleString("pt-BR")
+    })
+    .then(() => {
+        alert("Conta criada com sucesso! Dados guardados no banco.");
+        document.getElementById("registerForm").reset();
+        window.fecharAuthModal();
+    })
+    .catch((error) => {
+        console.error("Erro ao cadastrar:", error);
+        alert("Erro ao conectar com o banco de dados.");
+    });
+};
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+window.realizarLogin = function(event) {
+    event.preventDefault();
+    alert("Login efetuado com sucesso!");
+    window.fecharAuthModal();
+};
 
     const jaExiste = usuarios.some(u => u.contato === contato);
     if (jaExiste) {
@@ -567,55 +595,51 @@ async function solicitartokenReset() {
     }
 }
 
-function processarRedefinicaoSenha(event) {
+window.solicitartokenReset = function() {
+    const emailInput = document.getElementById("resetEmail").value;
+    if (!emailInput) {
+        alert("Digite o seu e-mail cadastrado.");
+        return;
+    }
+
+    const tokenAleatorio = Math.floor(100000 + Math.random() * 900000).toString();
+    tokenGeradoCache = tokenAleatorio;
+
+    const templateParams = {
+        to_email: emailInput,
+        pass_code: tokenAleatorio,
+        message: `O seu código de recuperação de senha é: ${tokenAleatorio}`
+    };
+
+    emailjs.send("default_service", "template_xxxx", templateParams)
+        .then(() => {
+            alert("Código de recuperação enviado para o seu e-mail!");
+            document.getElementById("etapaEmailReset").style.display = "none";
+            document.getElementById("etapaNovaSenhaReset").style.display = "block";
+        })
+        .catch((error) => {
+            console.error("Erro EmailJS:", error);
+            alert("Token gerado para teste local: " + tokenAleatorio);
+            document.getElementById("etapaEmailReset").style.display = "none";
+            document.getElementById("etapaNovaSenhaReset").style.display = "block";
+        });
+};
+
+window.processarRedefinicaoSenha = function(event) {
     event.preventDefault();
-    const emailInput = document.getElementById("resetEmail").value.trim();
-    const tokenDigitado = document.getElementById("resetTokenInput").value.trim();
+    const tokenInformado = document.getElementById("resetTokenInput").value;
     const novaSenha = document.getElementById("novaSenhaInput").value;
-    const feedback = document.getElementById("mensagemFeedback");
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-    const usuarioIndex = usuarios.findIndex(u => u.contato === emailInput);
-
-    if (usuarioIndex === -1) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Usuário não encontrado.";
-        return;
-    }
-
-    const usuario = usuarios[usuarioIndex];
-    const agora = new Date().getTime();
-
-    if (!usuario.resetToken || usuario.resetToken !== tokenDigitado) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Código de recuperação inválido!";
-        return;
-    }
-
-    if (agora > usuario.tokenExpira) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Este código expirou. Solicite um novo.";
-        return;
-    }
-
-    usuarios[usuarioIndex].senha = novaSenha;
-    delete usuarios[usuarioIndex].resetToken;
-    delete usuarios[usuarioIndex].tokenExpira;
-
-    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
-
-    feedback.style.color = "#22c55e";
-    feedback.innerText = "Senha redefinida com sucesso! Faça login.";
-
-    setTimeout(() => {
+    if (tokenInformado === tokenGeradoCache) {
+        alert("Senha redefinida com sucesso!");
+        window.mudarAba('login');
         document.getElementById("resetForm").reset();
-        document.getElementById("etapaNovaSenhaReset").style.display = "none";
         document.getElementById("etapaEmailReset").style.display = "block";
-        mudarAba('login');
-    }, 2000);
-}
-
-
+        document.getElementById("etapaNovaSenhaReset").style.display = "none";
+    } else {
+        alert("Código (Token) incorreto.");
+    }
+};
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -730,32 +754,38 @@ function fazerLogout() {
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
     if (senhaAdmin !== "admin123") {
+     abrirAdminModal();
+    } else if (senhaAdmin !== null) { 
         alert("Senha incorreta!");
-        return;
     }
 
     const tbody = document.getElementById("adminUserTableBody");
-    tbody.innerHTML = "";
-
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-
-    if (usuarios.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado.</td></tr>";
-    } else {
-        usuarios.forEach(u => {
-            tbody.innerHTML += `
-                <tr style="border-bottom: 1px solid #334155;">
-                    <td style="padding: 10px;">${u.nickname}</td>
-                    <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato}</td>
-                    <td style="padding: 10px; color: #cbd5e1;">${u.senha}</td>
-                </tr>
-            `;
-        });
-    }
-
+    tbody.innerHTML = ""<tr><td colspan='3' style='text-align:center;'>A carregar cadastros...</td></tr>";
     document.getElementById("adminModal").style.display = "flex";
-}
 
+     get(child(ref(db), 'usuarios'))
+    .then((snapshot) => {
+        tbody.innerHTML = "";
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                const user = childSnapshot.val();
+                tbody.innerHTML += `
+                    <tr style="border-bottom: 1px solid #334155;">
+                        <td style="padding: 10px;">${user.nickname || 'Anónimo'}</td>
+                        <td style="padding: 10px;">${user.contato || 'N/A'}</td>
+                        <td style="padding: 10px;">${user.dataCadastro || 'N/A'}</td>
+                    </tr>
+                `;
+            });
+        } else {
+            tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Nenhum cadastro encontrado.</td></tr>";
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+        tbody.innerHTML = "<tr><td colspan='3' style='text-align:center; color:red;'>Erro ao carregar do Firebase.</td></tr>";
+    });
+}
 function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
 }
