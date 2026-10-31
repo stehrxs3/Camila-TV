@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="style.css">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "EDSdK3vf2UMmjb18F", 
-      });
-   })();
-</script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init({
+            publicKey: "EDSdK3vf2UMmjb18F", 
+          });
+       })();
+    </script>
 </head>
 
 <body oncontextmenu="return false;">
@@ -59,7 +59,7 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
-    <!-- MODAL DO PLAYER DE VÍDEO -->
+
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE TRANSMISSÃO AO VIVO -->
+   
     <div id="liveModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharLive()">&times;</span>
@@ -97,7 +97,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE LOGIN, CADASTRO E RECUPERAÇÃO -->
+   
     <div id="authModal" class="modal">
         <div class="auth-container">
             <span class="close-btn" onclick="fecharAuthModal()">&times;</span>
@@ -107,7 +107,7 @@
                 <button id="tabRegister" class="tab-btn" onclick="mudarAba('register')">Cadastrar</button>
             </div>
 
-            <!-- Formulário de Login -->
+            
             <form id="loginForm" class="auth-form" onsubmit="realizarLogin(event)">
                 <h2>Bem-vindo de volta!</h2>
                 <div class="input-group">
@@ -284,11 +284,11 @@
                         <tr style="border-bottom: 1px solid #475569; background: rgba(255,255,255,0.05);">
                             <th style="padding: 10px;">Nickname</th>
                             <th style="padding: 10px;">E-mail / Telefone</th>
-                            <th style="padding: 10px;">Senha</th>
+                           <th style="padding: 10px;">Data de Cadastro</th>
                         </tr>
                     </thead>
-                    <tbody id="adminUserTableBody">
-                     
+                    <tbody 
+                        id="adminUserTableBody">
                     </tbody>
                 </table>
             </div>
