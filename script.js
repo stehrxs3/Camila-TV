@@ -1,12 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, push, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-const firebaseConfig = {
-    databaseURL: "https://camilatv-bcc-default-rtdb.firebaseio.com"
-};
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
 
