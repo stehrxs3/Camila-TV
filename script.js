@@ -863,6 +863,19 @@ function clicarLogoAdmin() {
   
     }
 }
+
+// Adiciona isto no teu script.js
+window.onSubmit = function(token) {
+    // Quando o reCAPTCHA valida o utilizador, ele envia o token e dispara o cadastro
+    const formElement = document.getElementById("registerForm");
+    if (formElement) {
+        // Dispara o evento de envio do formulário que chama a função realizarCadastro(event)
+        formElement.dispatchEvent(new Event('submit', { cancelable: true }));
+    }
+};
+
+
+  
 // Garante que o HTML encontre as funções de controle de modais e admin
 window.fecharAuthModal = fecharAuthModal;
 window.abrirAuthModal = abrirAuthModal;
