@@ -522,6 +522,7 @@ function realizarCadastro(event) {
                 contato: contato,
                 emailAuth: emailAuth,
                 senha: senha,
+                plano: "FREE",
                 avatar: fotoTempCadastro,
                 device: device,
                 lastAccess: dataAtual,
@@ -545,6 +546,7 @@ function realizarCadastro(event) {
             feedback.innerText = "Erro ao cadastrar: " + error.message;
         });
 }
+
 
 function onSubmit(token) {
     const formElement = document.getElementById("registerForm");
