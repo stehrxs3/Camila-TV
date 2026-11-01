@@ -795,11 +795,11 @@ function realizarAssinaturaVIP() {
         let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
         if (!usuarioLogado) return;
 
-        // Atualiza o status do utilizador para VIP localmente
+       
         usuarioLogado.plano = "VIP";
         localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-        // Se estiver logado no Firebase, atualiza também na base de dados em nuvem
+     
         if (auth.currentUser) {
             db.ref('users/' + auth.currentUser.uid).update({ plano: "VIP" });
         }
@@ -811,7 +811,7 @@ function realizarAssinaturaVIP() {
 
         setTimeout(() => {
             fecharVipModal();
-            // Se tentou abrir a live ou um vídeo VIP, abre automaticamente após assinar
+            
             if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
                 abrirTransmissaoAoVivo();
             } else if (videoTentandoAssistir) {
@@ -821,10 +821,7 @@ function realizarAssinaturaVIP() {
     }, 2000);
 }
 
-// Expõe globalmente para que os botões HTML consigam executar
-window.abrirVipModal = abrirVipModal;
-window.fecharVipModal = fecharVipModal;
-window.realizarAssinaturaVIP = realizarAssinaturaVIP;
+
 
 
 
@@ -923,3 +920,7 @@ window.selecionarAvatarCadastro = selecionarAvatarCadastro;
 window.carregarFotoCadastro = carregarFotoCadastro;
 window.solicitarRedefinicaoFirebase = solicitarRedefinicaoFirebase;
 window.abrirTransmissaoAoVivo = abrirTransmissaoAoVivo;
+window.abrirVipModal = abrirVipModal;
+window.fecharVipModal = fecharVipModal;
+window.realizarAssinaturaVIP = realizarAssinaturaVIP;
+
