@@ -474,40 +474,66 @@ function carregarFotoCadastro(event) {
     };
     leitor.readAsDataURL(arquivo);
 }
-function realizarCadastro(event) {
-    event.preventDefault();
+// Intercepta o envio do formulário de cadastro
+document.addEventListener("DOMContentLoaded", () => {
+    const registerForm = document.getElementById("registerForm");
+    if (registerForm) {
+        registerForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o envio imediato
 
+            // Executa o reCAPTCHA Enterprise invisível
+            grecaptcha.enterprise.ready(async () => {
+                try {
+                    // Substitui pela tua chave de site real do reCAPTCHA
+                    const token = await grecaptcha.enterprise.execute('6LfJogsuAAAAAJswD09A19yw3a5gwVs146iUYX3Z', { action: 'signup' });
+                    
+                    if (token) {
+                        // Se o reCAPTCHA validar com sucesso, prossegue com o teu cadastro normal
+                        executarCadastroReal();
+                    }
+                } catch (error) {
+                    console.error("Erro no reCAPTCHA:", error);
+                    alert("Erro na validação de segurança. Tente novamente.");
+                }
+            });
+        });
+    }
+});
+
+// A tua função de cadastro original renomeada para ser chamada após a validação
+function executarCadastroReal() {
+    const feedback = document.getElementById("mensagemFeedback");
     const lgpdAceito = document.getElementById("regLgpd").checked;
+
     if (!lgpdAceito) {
-        alert("Você precisa aceitar os termos da LGPD para se cadastrar.");
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Você precisa aceitar os termos da LGPD para continuar.";
         return;
     }
-     
+
     const nickname = document.getElementById("regNickname").value.trim();
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
-    const feedback = document.getElementById("mensagemFeedback");
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    // Formata o e-mail para o Auth (caso o usuário digite apenas números de telefone)
     const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
 
     auth.createUserWithEmailAndPassword(emailAuth, senha)
         .then((userCredential) => {
             const user = userCredential.user;
             
-            // Salva os dados completos no Realtime Database do Firebase
             db.ref('users/' + user.uid).set({
                 uid: user.uid,
                 nickname: nickname,
                 contato: contato,
                 emailAuth: emailAuth,
-                senha: senha, // Mantido conforme seu modelo original
+                senha: senha,
                 avatar: fotoTempCadastro,
                 device: device,
                 lastAccess: dataAtual,
                 createdAt: dataAtual,
+                lgpdAceito: true,
                 history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
             });
 
@@ -526,7 +552,6 @@ function realizarCadastro(event) {
             feedback.innerText = "Erro ao cadastrar: " + error.message;
         });
 }
-
 
 function realizarLogin(event) {
     event.preventDefault();
@@ -863,16 +888,6 @@ function clicarLogoAdmin() {
   
     }
 }
-
-// Adiciona isto no teu script.js
-window.onSubmit = function(token) {
-    // Quando o reCAPTCHA valida o utilizador, ele envia o token e dispara o cadastro
-    const formElement = document.getElementById("registerForm");
-    if (formElement) {
-        // Dispara o evento de envio do formulário que chama a função realizarCadastro(event)
-        formElement.dispatchEvent(new Event('submit', { cancelable: true }));
-    }
-};
 
 
   
