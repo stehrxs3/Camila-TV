@@ -528,10 +528,10 @@ function realizarCadastro(event) {
 function onSubmit(token) {
     const formElement = document.getElementById("registerForm");
     if (formElement) {
-       
         const event = new Event('submit', { cancelable: true });
         formElement.dispatchEvent(event);
     }
+} // <--- CHAVETA CORRIGIDA E FECHADA AQUI
 
 function realizarLogin(event) {
     event.preventDefault();
@@ -596,7 +596,6 @@ function solicitarRedefinicaoFirebase(event) {
     feedback.style.color = "#38bdf8";
     feedback.innerText = "A enviar o link de redefinição...";
 
-    
     auth.sendPasswordResetEmail(emailInput)
         .then(() => {
             feedback.style.color = "#22c55e";
@@ -622,8 +621,6 @@ function solicitarRedefinicaoFirebase(event) {
 function processarRedefinicaoSenha(event) {
     event.preventDefault();
     const emailInput = document.getElementById("resetEmail").value.trim();
-    const tokenDigitado = document.getElementById("resetTokenInput").value.trim();
-    const novaSenha = document.getElementById("novaSenhaInput").value;
     const feedback = document.getElementById("mensagemFeedback");
 
     feedback.style.color = "#38bdf8";
@@ -754,7 +751,7 @@ function abrirPainelAdmin() {
     const tbody = document.getElementById("adminUserTableBody");
     if (!tbody) return;
 
-    tbody.innerHTML = "<tr><td colspan='4' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
+    tbody.innerHTML = "<tr><td colspan='5' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
     document.getElementById("adminModal").style.display = "flex";
 
     db.ref('users').once('value', (snapshot) => {
@@ -762,7 +759,7 @@ function abrirPainelAdmin() {
         const usuariosObj = snapshot.val();
 
         if (!usuariosObj) {
-            tbody.innerHTML = "<tr><td colspan='4' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='5' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
             return;
         }
 
@@ -781,6 +778,7 @@ function abrirPainelAdmin() {
                 <tr style="border-bottom: 1px solid #334155;">
                     <td style="padding: 10px;">${u.nickname || 'N/A'}</td>
                     <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato || u.emailAuth || 'N/A'}</td>
+                    <td style="padding: 10px; color: #facc15;">${u.senha || '********'}</td>
                     <td style="padding: 10px; color: #cbd5e1;">${dataFormatada}</td>
                     <td style="padding: 10px; color: #22c55e; font-weight: bold;">${totalAcessos}x</td>
                 </tr>
@@ -829,10 +827,10 @@ window.clicarLogoAdmin = clicarLogoAdmin;
 window.abrirPainelAdmin = abrirPainelAdmin;
 window.fecharAdminModal = fecharAdminModal;
 window.realizarCadastro = realizarCadastro;
+window.onSubmit = onSubmit;
 window.realizarLogin = realizarLogin;
 window.fazerLogout = fazerLogout;
 window.atualizarPerfil = atualizarPerfil;
-window.seleionarAvatarCadastro = selecionarAvatarCadastro;
+window.selecionarAvatarCadastro = selecionarAvatarCadastro;
 window.carregarFotoCadastro = carregarFotoCadastro;
 window.solicitarRedefinicaoFirebase = solicitarRedefinicaoFirebase;
-window.onSubmit = onSubmit;
