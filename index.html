@@ -259,6 +259,31 @@
         </div>
     </div>
 
+
+    <!-- Modal de Assinatura VIP -->
+<div id="vipModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
+    <div class="auth-container" style="background: #1e293b; padding: 30px; border-radius: 12px; width: 100%; max-width: 450px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        <span class="close-btn" onclick="fecharVipModal()" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #fff; cursor: pointer;">&times;</span>
+        <div style="font-size: 3rem; margin-bottom: 10px;">👑</div>
+        <h2 style="color: #fff; margin-bottom: 10px;">Conteúdo Exclusivo VIP</h2>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+            Este conteúdo ou transmissão é exclusivo para assinantes da Camila TV+. Faça um upgrade na sua conta para desbloquear tudo.
+        </p>
+        
+        <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid #38bdf8; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <span style="font-size: 1.1rem; font-weight: bold; color: #38bdf8;">Plano VIP Mensal</span>
+            <p style="color: #fff; font-size: 1.5rem; font-weight: bold; margin: 5px 0;">R$ 19,90 <span style="font-size: 0.8rem; color: #94a3b8;">/mês</span></p>
+        </div>
+
+        <button onclick="realizarAssinaturaVIP()" class="btn-submit" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+            Tornar-se VIP Agora
+        </button>
+        
+        <div id="mensagemVipFeedback" class="feedback" style="margin-top: 15px; font-size: 0.9rem;"></div>
+    </div>
+</div>
+
+    
     <div id="adminModal" class="modal">
         <div class="auth-container" style="max-width: 650px;">
             <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
