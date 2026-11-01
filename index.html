@@ -7,7 +7,6 @@
     <title>Camila TV+</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- Firebase App (Base) e Serviços necessários -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -184,32 +183,22 @@
             </form>
 
            
-            <form id="resetForm" class="auth-form" style="display: none;" onsubmit="processarRedefinicaoSenha(event)">
-                <h2>Redefinir Senha</h2>
-                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 15px;">Recupere sua senha com segurança.</p>
-                
-                <div id="etapaEmailReset">
-                    <div class="input-group">
-                        <label>E-mail cadastrado</label>
-                        <input type="email" id="resetEmail" placeholder="seu@email.com">
-                    </div>
-                    <button type="button" class="btn-submit" onclick="solicitartokenReset()">Enviar Código</button>
-                </div>
+           <form id="resetForm" onsubmit="solicitarRedefinicaoFirebase(event)" style="display: none;">
+    <h3>Recuperar Senha</h3>
+    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 15px;">
+        Digite o seu e-mail cadastrado para receber o link de redefinição de senha.
+    </p>
 
-                <div id="etapaNovaSenhaReset" style="display: none;">
-                    <div class="input-group">
-                        <label>Código de Recuperação (Token)</label>
-                        <input type="text" id="resetTokenInput" placeholder="Cole o código recebido">
-                    </div>
-                    <div class="input-group">
-                        <label>Nova Senha</label>
-                        <input type="password" id="novaSenhaInput" placeholder="Digite sua nova senha">
-                    </div>
-                    <button type="submit" class="btn-submit">Salvar Nova Senha</button>
-                </div>
+    <div class="input-group">
+        <input type="email" id="resetEmail" placeholder="Digite seu e-mail" required>
+    </div>
 
-                <button type="button" class="btn-secondary" onclick="mudarAba('login')" style="width: 100%; margin-top: 10px; font-size: 0.85rem; padding: 10px;">Voltar ao Login</button>
-            </form>
+    <button type="submit" class="btn-submit">Enviar Link de Recuperação</button>
+    
+    <p style="text-align: center; margin-top: 15px;">
+        <a href="#" onclick="mudarAba('login')" style="color: #38bdf8; font-size: 0.85rem;">Voltar para o Login</a>
+    </p>
+</form>
 
             <div id="mensagemFeedback" class="feedback"></div>
         </div>
