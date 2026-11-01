@@ -1,4 +1,4 @@
-// --- CONFIGURAÇÃO DO FIREBASE ---
+
 const firebaseConfig = {
   apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
@@ -401,11 +401,22 @@ function fecharVideo() {
 }
 
 function abrirTransmissaoAoVivo() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuarioLogado) {
+        alert("Você precisa fazer login para assistir à transmissão Ao Vivo!");
+        abrirAuthModal();
+        return;
+    }
+    if (!usuarioLogado.plano || usuarioLogado.plano !== "VIP") {
+        abrirVipModal({ titulo: "Transmissão Ao Vivo" });
+        return;
+    }
     const liveModal = document.getElementById("liveModal");
     const livePlayer = document.getElementById("livePlayer");
     livePlayer.src = urlTransmissaoAoVivo;
     liveModal.style.display = "flex";
 }
+
 
 function fecharLive() {
     const liveModal = document.getElementById("liveModal");
