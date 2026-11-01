@@ -248,13 +248,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// --- FUNÇÕES DE MODAIS E NAVEGAÇÃO ---
+window.abrirAuthModal = function() {
+    document.getElementById("authModal").style.display = "flex";
+};
 
+window.fecharAuthModal = function() {
+    document.getElementById("authModal").style.display = "none";
+};
 
+window.mudarAba = function(aba) {
+    document.getElementById("loginForm").style.display = aba === 'login' ? 'block' : 'none';
+    document.getElementById("registerForm").style.display = aba === 'register' ? 'block' : 'none';
+    document.getElementById("resetForm").style.display = aba === 'reset' ? 'block' : 'none';
+    
+    document.getElementById("tabLogin").classList.toggle('active', aba === 'login');
+    document.getElementById("tabRegister").classList.toggle('active', aba === 'register');
+};
 
+window.abrirTransmissaoAoVivo = function() {
+    const liveModal = document.getElementById("liveModal");
+    const livePlayer = document.getElementById("livePlayer");
+    livePlayer.src = urlTransmissaoAoVivo;
+    liveModal.style.display = "flex";
+};
 
+window.fecharLive = function() {
+    document.getElementById("liveModal").style.display = "none";
+    document.getElementById("livePlayer").src = "";
+};
 
-
-
+window.fecharVideo = function() {
+    document.getElementById("videoModal").style.display = "none";
+    document.getElementById("videoPlayer").src = "";
+};
 
 function converterImagemDrive(url) {
     if (!url) return "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
@@ -265,11 +292,6 @@ function converterImagemDrive(url) {
         }
     }
     return url; 
-}
-
-function converterParaEmbedDrive(url) {
-    if (!url) return "";
-    return url.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
 }
 
 function configurarDestaque() {
@@ -285,164 +307,46 @@ function configurarDestaque() {
 
 function carregarVideos(videos) {
     const videoGrid = document.getElementById("videoGrid");
+    if (!videoGrid) return;
     videoGrid.innerHTML = "";
 
-    const videosValidos = videos.filter(v => v && v.titulo);
-
-    if (videosValidos.length === 0) {
-        videoGrid.innerHTML = "<p style='color: #888;'>Nenhum vídeo encontrado.</p>";
-        return;
-    }
-
-    videosValidos.forEach((video) => {
+    videos.forEach((video) => {
         const card = document.createElement("div");
         card.classList.add("card");
         card.onclick = () => abrirVideo(video);
 
         const imagemCapa = converterImagemDrive(video.capa);
-
         card.innerHTML = `
             <img src="${imagemCapa}" alt="${video.titulo}">
             <div class="card-info">
-                <div class="card-title">${video.titulo}</div>
-                <div class="card-category">${video.categoria}</div>
+                <h3>${video.titulo}</h3>
+                <p>${video.data}</p>
             </div>
         `;
-
         videoGrid.appendChild(card);
     });
 }
 
-function filtrarCategoria(cat, btn) {
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const title = document.getElementById("sectionTitle");
-    title.innerText = cat === "todos" ? "Todos os Conteúdos" : cat;
-
-    if (cat === "todos") {
-        carregarVideos(listaDeVideos);
-    } else {
-        const filtrados = listaDeVideos.filter(v =>
-            v && v.categoria && v.categoria.trim().toLowerCase() === cat.trim().toLowerCase()
-        );
-        carregarVideos(filtrados);
-    }
-}
-
-function filtrarPorBusca() {
-    const termo = document.getElementById("searchInput").value.trim().toLowerCase();
-    const filtrados = listaDeVideos.filter(v =>
-        v && v.titulo && (
-            v.titulo.toLowerCase().includes(termo) ||
-            (v.categoria && v.categoria.toLowerCase().includes(termo))
-        )
-    );
-    carregarVideos(filtrados);
-}
-
-
 function abrirVideo(video) {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    if (!usuarioLogado) {
-        alert("Você precisa fazer login ou se cadastrar para assistir aos vídeos!");
-        abrirAuthModal();
-        return;
-    }
-
     const modal = document.getElementById("videoModal");
-    const container = document.getElementById("videoContainer");
+    const player = document.getElementById("videoPlayer");
+    document.getElementById("modalVideoTitle").innerText = video.titulo;
+    document.getElementById("modalVideoCategory").innerText = video.categoria;
+    document.getElementById("modalVideoDate").innerText = video.data;
+    document.getElementById("modalVideoDesc").innerText = video.descricao;
 
-    const title = document.getElementById("modalVideoTitle");
-    const category = document.getElementById("modalVideoCategory");
-    const date = document.getElementById("modalVideoDate");
-    const desc = document.getElementById("modalVideoDesc");
-
-    title.innerText = video.titulo || "Sem Título";
-    category.innerText = video.categoria || "Geral";
-    date.innerText = video.data || "2025";
-    desc.innerText = video.descricao || "Nenhuma descrição disponível.";
-
-    container.innerHTML = "";
-    let url = video.videoUrl || "";
-
-    if (url.includes("drive.google.com")) {
-        url = converterParaEmbedDrive(url);
+    let urlEmbed = video.videoUrl;
+    if (urlEmbed.includes("drive.google.com")) {
+        urlEmbed = urlEmbed.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
     }
 
-    if (url.endsWith(".mp4") || url.endsWith(".webm")) {
-        container.innerHTML = `<video src="${url}" controls autoplay allowfullscreen></video>`;
-    } else {
-        container.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    }
-
+    player.src = urlEmbed;
     modal.style.display = "flex";
 }
 
-function playHeroVideo() {
-    if (videoDestaqueAtual) {
-        abrirVideo(videoDestaqueAtual);
-    }
-}
-
-function fecharVideo() {
-    const modal = document.getElementById("videoModal");
-    const container = document.getElementById("videoContainer");
-    container.innerHTML = "";
-    modal.style.display = "none";
-}
-
-function abrirTransmissaoAoVivo() {
-    const liveModal = document.getElementById("liveModal");
-    const livePlayer = document.getElementById("livePlayer");
-    livePlayer.src = urlTransmissaoAoVivo;
-    liveModal.style.display = "flex";
-}
-
-function fecharLive() {
-    const liveModal = document.getElementById("liveModal");
-    const livePlayer = document.getElementById("livePlayer");
-    livePlayer.src = "";
-    liveModal.style.display = "none";
-}
-
-function abrirAuthModal() {
-    document.getElementById("authModal").style.display = "flex";
-}
-
-function fecharAuthModal() {
-    document.getElementById("authModal").style.display = "none";
-}
-
-function mudarAba(aba) {
-    const loginForm = document.getElementById("loginForm");
-    const registerForm = document.getElementById("registerForm");
-    const resetForm = document.getElementById("resetForm");
-    const tabLogin = document.getElementById("tabLogin");
-    const tabRegister = document.getElementById("tabRegister");
-    const feedback = document.getElementById("mensagemFeedback");
-
-    feedback.innerText = "";
-
-    loginForm.style.display = "none";
-    registerForm.style.display = "none";
-    if (resetForm) resetForm.style.display = "none";
-
-    tabLogin.classList.remove("active");
-    tabRegister.classList.remove("active");
-
-    if (aba === 'login') {
-        loginForm.style.display = "block";
-        tabLogin.classList.add("active");
-    } else if (aba === 'register') {
-        registerForm.style.display = "block";
-        tabRegister.classList.add("active");
-    } else if (aba === 'reset') {
-        resetForm.style.display = "block";
-    }
-}
-
+// ==========================================
+// INTEGRAÇÃO FIREBASE: CADASTRO, LOGIN E ADMIN
+// ==========================================
 
 let avatarSelecionadoCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
 
@@ -523,214 +427,7 @@ window.realizarLogin = async function(event) {
     }
 };
 
-
-function gerarTokenAleatorio() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
--
-async function solicitartokenReset() {
-    const emailInput = document.getElementById("resetEmail").value.trim();
-    const feedback = document.getElementById("mensagemFeedback");
-
-    if (!emailInput) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Por favor, digite o seu e-mail cadastrado.";
-        return;
-    }
-
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A enviar código para o seu e-mail...";
-
-   
-    const tokenSeguro = Math.floor(100000 + Math.random() * 900000).toString();
-
-   
-    const parametrosEmail = {
-        to_email: emailInput,   
-        token: tokenSeguro      
-    };
-
-    try {
-        await emailjs.send('service_camila tv', 'template_x43q5wt', parametrosEmail);
-
-        feedback.style.color = "#22c55e";
-        feedback.innerText = "Código enviado com sucesso para o seu e-mail!";
-
-      
-        localStorage.setItem("tempResetEmail", emailInput);
-        localStorage.setItem("tempResetToken", tokenSeguro);
-
-        document.getElementById("etapaEmailReset").style.display = "none";
-        document.getElementById("etapaNovaSenhaReset").style.display = "block";
-
-    } catch (error) {
-        console.error("Erro ao enviar e-mail:", error);
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Erro ao enviar o e-mail. Verifique os dados.";
-    }
-}
-
-function processarRedefinicaoSenha(event) {
-    event.preventDefault();
-    const emailInput = document.getElementById("resetEmail").value.trim();
-    const tokenDigitado = document.getElementById("resetTokenInput").value.trim();
-    const novaSenha = document.getElementById("novaSenhaInput").value;
-    const feedback = document.getElementById("mensagemFeedback");
-
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-    const usuarioIndex = usuarios.findIndex(u => u.contato === emailInput);
-
-    if (usuarioIndex === -1) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Usuário não encontrado.";
-        return;
-    }
-
-    const usuario = usuarios[usuarioIndex];
-    const agora = new Date().getTime();
-
-    if (!usuario.resetToken || usuario.resetToken !== tokenDigitado) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Código de recuperação inválido!";
-        return;
-    }
-
-    if (agora > usuario.tokenExpira) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Este código expirou. Solicite um novo.";
-        return;
-    }
-
-    usuarios[usuarioIndex].senha = novaSenha;
-    delete usuarios[usuarioIndex].resetToken;
-    delete usuarios[usuarioIndex].tokenExpira;
-
-    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
-
-    feedback.style.color = "#22c55e";
-    feedback.innerText = "Senha redefinida com sucesso! Faça login.";
-
-    setTimeout(() => {
-        document.getElementById("resetForm").reset();
-        document.getElementById("etapaNovaSenhaReset").style.display = "none";
-        document.getElementById("etapaEmailReset").style.display = "block";
-        mudarAba('login');
-    }, 2000);
-}
-
-
-function verificarSessaoUsuario() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    const btnAuth = document.getElementById("userAuthBtn");
-
-    if (usuarioLogado && usuarioLogado.nickname) {
-        btnAuth.className = "user-profile-btn";
-        btnAuth.innerHTML = `
-            <img src="${usuarioLogado.avatar}" alt="Avatar">
-            <span>${usuarioLogado.nickname}</span>
-        `;
-        btnAuth.onclick = (e) => {
-            e.preventDefault();
-            abrirProfileModal();
-        };
-    } else {
-        btnAuth.className = "btn-auth-trigger";
-        btnAuth.innerText = "Entrar";
-        btnAuth.onclick = abrirAuthModal;
-    }
-}
-
-let fotoTempPerfil = "";
-
-function abrirProfileModal() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuarioLogado) return;
-
-    document.getElementById("editNickname").value = usuarioLogado.nickname;
-    document.getElementById("profileModalAvatar").src = usuarioLogado.avatar;
-    
-    fotoTempPerfil = usuarioLogado.avatar;
-
-    const radios = document.getElementsByName("editAvatarSelect");
-    radios.forEach(radio => {
-        radio.checked = (radio.value === usuarioLogado.avatar);
-    });
-
-    const fileInput = document.getElementById("editAvatarFile");
-    if (fileInput) fileInput.value = "";
-
-    document.getElementById("mensagemProfileFeedback").innerText = "";
-    document.getElementById("profileModal").style.display = "flex";
-}
-
-function fecharProfileModal() {
-    document.getElementById("profileModal").style.display = "none";
-}
-
-function selecionarAvatarPredefinido(url) {
-    fotoTempPerfil = url;
-    document.getElementById("profileModalAvatar").src = url;
-    const fileInput = document.getElementById("editAvatarFile");
-    if (fileInput) fileInput.value = "";
-}
-
-function carregarFotoArquivo(event) {
-    const arquivo = event.target.files[0];
-    if (!arquivo) return;
-
-    const leitor = new FileReader();
-    leitor.onload = function(e) {
-        fotoTempPerfil = e.target.result;
-        document.getElementById("profileModalAvatar").src = fotoTempPerfil;
-
-        const radios = document.getElementsByName("editAvatarSelect");
-        radios.forEach(radio => radio.checked = false);
-    };
-    leitor.readAsDataURL(arquivo);
-}
-
-function atualizarPerfil(event) {
-    event.preventDefault();
-
-    const novoNickname = document.getElementById("editNickname").value.trim();
-    const feedback = document.getElementById("mensagemProfileFeedback");
-
-    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-
-    const fotoFinal = fotoTempPerfil || usuarioLogado.avatar;
-
-    const index = usuarios.findIndex(u => u.contato === usuarioLogado.contato);
-    if (index !== -1) {
-        usuarios[index].nickname = novoNickname;
-        usuarios[index].avatar = fotoFinal;
-        localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
-    }
-
-    usuarioLogado.nickname = novoNickname;
-    usuarioLogado.avatar = fotoFinal;
-    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-
-    feedback.style.color = "#22c55e";
-    feedback.innerText = "Perfil atualizado com sucesso!";
-
-    verificarSessaoUsuario();
-
-    setTimeout(() => {
-        fecharProfileModal();
-    }, 1200);
-}
-
-function fazerLogout() {
-    if (confirm("Deseja realmente sair da sua conta?")) {
-        localStorage.removeItem("usuarioLogado");
-        fecharProfileModal();
-        verificarSessaoUsuario();
-    }
-}
-
-
+// Painel do Administrador
 window.clicarLogoAdmin = async function() {
     const adminModal = document.getElementById("adminModal");
     const tbody = document.getElementById("adminUserTableBody");
@@ -766,29 +463,3 @@ window.clicarLogoAdmin = async function() {
 window.fecharAdminModal = function() {
     document.getElementById("adminModal").style.display = "none";
 };
-
-document.addEventListener("keydown", (event) => {
-    if (event.code === "F8") {
-        event.preventDefault();
-        abrirPainelAdmin();
-    }
-});
-
-
-let cliquesLogo = 0;
-let tempoUltimoClique = 0;
-
-function clicarLogoAdmin() {
-    const agora = new Date().getTime();
-    if (agora - tempoUltimoClique > 1000) {
-        cliquesLogo = 1;
-    } else {
-        cliquesLogo++;
-    }
-    tempoUltimoClique = agora;
-
-    if (cliquesLogo === 5) {
-        cliquesLogo = 0;
-        abrirPainelAdmin();
-    }
-}
