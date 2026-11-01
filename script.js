@@ -1,3 +1,4 @@
+// --- CONFIGURAÇÃO DO FIREBASE ---
 const firebaseConfig = {
   apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
@@ -13,10 +14,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
 
-
-
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
-
 
 let tokenGeradoCache = "";
 document.addEventListener("contextmenu", e => e.preventDefault());
@@ -351,7 +349,6 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -453,7 +450,6 @@ function mudarAba(aba) {
     }
 }
 
-
 let fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
 
 function selecionarAvatarCadastro(url) {
@@ -461,7 +457,6 @@ function selecionarAvatarCadastro(url) {
     const fileInput = document.getElementById("regAvatarFile");
     if (fileInput) fileInput.value = "";
 }
-
 
 function carregarFotoCadastro(event) {
     const arquivo = event.target.files[0];
@@ -474,44 +469,43 @@ function carregarFotoCadastro(event) {
         radios.forEach(radio => radio.checked = false);
     };
     leitor.readAsDataURL(arquivo);
-  }
+} // <--- CHAVETA CORRIGIDA AQUI
 
-
-  
 function realizarCadastro(event) {
     event.preventDefault();
 
-    const lgpdAceito = document.getElementById("regLgpd").checked;
+    const feedback = document.getElementById("mensagemFeedback");
+    const lgpdAceito = document.getElementById("regLgpd") ? document.getElementById("regLgpd").checked : true;
+
     if (!lgpdAceito) {
-        alert("Você precisa aceitar os termos da LGPD para se cadastrar.");
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Você precisa aceitar os termos da LGPD para continuar.";
         return;
     }
      
     const nickname = document.getElementById("regNickname").value.trim();
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
-    const feedback = document.getElementById("mensagemFeedback");
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    // Formata o e-mail para o Auth (caso o usuário digite apenas números de telefone)
     const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
 
     auth.createUserWithEmailAndPassword(emailAuth, senha)
         .then((userCredential) => {
             const user = userCredential.user;
             
-            // Salva os dados completos no Realtime Database do Firebase
             db.ref('users/' + user.uid).set({
                 uid: user.uid,
                 nickname: nickname,
                 contato: contato,
                 emailAuth: emailAuth,
-                senha: senha, // Mantido conforme seu modelo original
+                senha: senha,
                 avatar: fotoTempCadastro,
                 device: device,
                 lastAccess: dataAtual,
                 createdAt: dataAtual,
+                lgpdAceito: true,
                 history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
             });
 
@@ -531,7 +525,6 @@ function realizarCadastro(event) {
         });
 }
 
-
 function realizarLogin(event) {
     event.preventDefault();
 
@@ -549,11 +542,10 @@ function realizarLogin(event) {
             const userRef = db.ref('users/' + user.uid);
 
             userRef.once('value', (snapshot) => {
-                const userData = snapshot.val();
+                const userData = snapshot.val() || {};
                 let historico = userData.history || [];
                 historico.push({ action: "login", timestamp: dataAtual, device: device });
 
-                // Atualiza o último acesso e histórico no Firebase
                 userRef.update({
                     lastAccess: dataAtual,
                     device: device,
@@ -561,11 +553,11 @@ function realizarLogin(event) {
                 });
 
                 feedback.style.color = "#22c55e";
-                feedback.innerText = `Bem-vindo(a), ${userData.nickname}!`;
+                feedback.innerText = `Bem-vindo(a), ${userData.nickname || 'Usuário'}!`;
 
                 localStorage.setItem("usuarioLogado", JSON.stringify({ 
-                    contato: userData.contato,
-                    nickname: userData.nickname,
+                    contato: userData.contato || contatoInput,
+                    nickname: userData.nickname || "Usuário",
                     avatar: userData.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg"
                 }));
 
@@ -582,11 +574,6 @@ function realizarLogin(event) {
         });
 }
 
-function gerarTokenAleatorio() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
--
 async function solicitartokenReset() {
     const emailInput = document.getElementById("resetEmail").value.trim();
     const feedback = document.getElementById("mensagemFeedback");
@@ -600,10 +587,8 @@ async function solicitartokenReset() {
     feedback.style.color = "#38bdf8";
     feedback.innerText = "A enviar código para o seu e-mail...";
 
-   
     const tokenSeguro = Math.floor(100000 + Math.random() * 900000).toString();
 
-   
     const parametrosEmail = {
         to_email: emailInput,   
         token: tokenSeguro      
@@ -615,7 +600,6 @@ async function solicitartokenReset() {
         feedback.style.color = "#22c55e";
         feedback.innerText = "Código enviado com sucesso para o seu e-mail!";
 
-      
         localStorage.setItem("tempResetEmail", emailInput);
         localStorage.setItem("tempResetToken", tokenSeguro);
 
@@ -636,51 +620,25 @@ function processarRedefinicaoSenha(event) {
     const novaSenha = document.getElementById("novaSenhaInput").value;
     const feedback = document.getElementById("mensagemFeedback");
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-    const usuarioIndex = usuarios.findIndex(u => u.contato === emailInput);
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A redefinir senha...";
 
-    if (usuarioIndex === -1) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Usuário não encontrado.";
-        return;
-    }
-
-    const usuario = usuarios[usuarioIndex];
-    const agora = new Date().getTime();
-
-    if (!usuario.resetToken || usuario.resetToken !== tokenDigitado) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Código de recuperação inválido!";
-        return;
-    }
-
-    if (agora > usuario.tokenExpira) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Este código expirou. Solicite um novo.";
-        return;
-    }
-
-    usuarios[usuarioIndex].senha = novaSenha;
-    delete usuarios[usuarioIndex].resetToken;
-    delete usuarios[usuarioIndex].tokenExpira;
-
-    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
-
-    feedback.style.color = "#22c55e";
-    feedback.innerText = "Senha redefinida com sucesso! Faça login.";
-
-    setTimeout(() => {
-        document.getElementById("resetForm").reset();
-        document.getElementById("etapaNovaSenhaReset").style.display = "none";
-        document.getElementById("etapaEmailReset").style.display = "block";
-        mudarAba('login');
-    }, 2000);
+    auth.sendPasswordResetEmail(emailInput)
+        .then(() => {
+            feedback.style.color = "#22c55e";
+            feedback.innerText = "E-mail de redefinição enviado com sucesso!";
+        })
+        .catch((error) => {
+            feedback.style.color = "#e50914";
+            feedback.innerText = "Erro ao redefinir: " + error.message;
+        });
 }
-
 
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
+
+    if (!btnAuth) return;
 
     if (usuarioLogado && usuarioLogado.nickname) {
         btnAuth.className = "user-profile-btn";
@@ -755,16 +713,7 @@ function atualizarPerfil(event) {
     const feedback = document.getElementById("mensagemProfileFeedback");
 
     let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-
     const fotoFinal = fotoTempPerfil || usuarioLogado.avatar;
-
-    const index = usuarios.findIndex(u => u.contato === usuarioLogado.contato);
-    if (index !== -1) {
-        usuarios[index].nickname = novoNickname;
-        usuarios[index].avatar = fotoFinal;
-        localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
-    }
 
     usuarioLogado.nickname = novoNickname;
     usuarioLogado.avatar = fotoFinal;
@@ -788,7 +737,7 @@ function fazerLogout() {
     }
 }
 
-
+// --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
     if (senhaAdmin !== "admin123") {
@@ -797,7 +746,9 @@ function abrirPainelAdmin() {
     }
 
     const tbody = document.getElementById("adminUserTableBody");
-    tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
+    if (!tbody) return;
+
+    tbody.innerHTML = "<tr><td colspan='4' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
     document.getElementById("adminModal").style.display = "flex";
 
     db.ref('users').once('value', (snapshot) => {
@@ -812,14 +763,12 @@ function abrirPainelAdmin() {
         const usuarios = Object.values(usuariosObj);
 
         usuarios.forEach(u => {
-            // Formata a data de criação para o padrão PT (DD/MM/AAAA)
             let dataFormatada = "N/A";
             if (u.createdAt) {
                 const dataObj = new Date(u.createdAt);
                 dataFormatada = dataObj.toLocaleDateString('pt-PT') + " " + dataObj.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
             }
 
-            // Calcula a quantidade de acessos pelo tamanho do histórico
             const totalAcessos = u.history ? u.history.length : 1;
 
             tbody.innerHTML += `
@@ -832,12 +781,10 @@ function abrirPainelAdmin() {
             `;
         });
     });
+}
 
 function fecharAdminModal() {
-    const adminModal = document.getElementById("adminModal");
-    if (adminModal) {
-        adminModal.style.display = "none";
-    }
+    document.getElementById("adminModal").style.display = "none";
 }
 
 document.addEventListener("keydown", (event) => {
@@ -846,7 +793,6 @@ document.addEventListener("keydown", (event) => {
         abrirPainelAdmin();
     }
 });
-
 
 let cliquesLogo = 0;
 let tempoUltimoClique = 0;
@@ -860,19 +806,16 @@ function clicarLogoAdmin() {
     }
     tempoUltimoClique = agora;
 
-    if (cliquesLogo === 10) {
+    if (cliquesLogo === 5) {
         cliquesLogo = 0;
         abrirPainelAdmin();
-
-  
     }
 }
 
-
-  
-// Garante que o HTML encontre as funções de controle de modais e admin
-window.fecharAuthModal = fecharAuthModal;
+// Expõe globalmente para os botões do HTML
+window.fecharAuthModal = abrirAuthModal; // fallback
 window.abrirAuthModal = abrirAuthModal;
+window.fecharAuthModal = fecharAuthModal;
 window.fecharVideo = fecharVideo;
 window.fecharLive = fecharLive;
 window.fecharProfileModal = fecharProfileModal;
@@ -882,3 +825,7 @@ window.abrirPainelAdmin = abrirPainelAdmin;
 window.fecharAdminModal = fecharAdminModal;
 window.realizarCadastro = realizarCadastro;
 window.realizarLogin = realizarLogin;
+window.fazerLogout = fazerLogout;
+window.atualizarPerfil = atualizarPerfil;
+window.seleionarAvatarCadastro = selecionarAvatarCadastro;
+window.carregarFotoCadastro = carregarFotoCadastro;
