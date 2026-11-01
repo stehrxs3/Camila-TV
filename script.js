@@ -1,12 +1,11 @@
-// --- CONFIGURAÇÃO DO FIREBASE ---
 const firebaseConfig = {
-  apiKey: "AIzaSyAN9_GKVO_dONh11QlV0kpektMYcIhEZHo",
+  apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
   databaseURL: "https://camilatv-e6782-default-rtdb.firebaseio.com",
   projectId: "camilatv-e6782",
   storageBucket: "camilatv-e6782.firebasestorage.app",
   messagingSenderId: "909118652874",
-  appId: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
+  appId: "1:909118652874:web:27b569af78c796b9e58f33",
   measurementId: "G-HW0HS9T0KV"
 };
 
