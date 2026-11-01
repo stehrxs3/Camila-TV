@@ -181,14 +181,18 @@
     </label>
 </div>            
                 <button class="g-recaptcha"
-    data-sitekey="6LdV1QsuAAAAALpQt10-N_GsBpKO7t4_sm2tz8lf"
-    data-callback='onSubmit'
-    data-action='submit'>
-  Submit
-</button>
+                      data-sitekey="6LdV1QsuAAAAALpQt10-N_GsBpKO7t4_sm2tz8lf"
+                      data-callback='onSubmit'
+                      data-action='submit'> Submit</button>
+                
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
-
+        <!-- Replace the variables below. -->
+<script>
+  function onSubmit(token) {
+    document.getElementById("demo-form").submit();
+  }
+</script>
            
            <form id="resetForm" onsubmit="solicitarRedefinicaoFirebase(event)" style="display: none;">
     <h3>Recuperar Senha</h3>
