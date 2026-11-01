@@ -586,10 +586,12 @@ function realizarLogin(event) {
                 feedback.style.color = "#22c55e";
                 feedback.innerText = `Bem-vindo(a), ${userData.nickname || 'Usuário'}!`;
 
+                // Salva também o plano (FREE ou VIP) no localStorage
                 localStorage.setItem("usuarioLogado", JSON.stringify({ 
                     contato: userData.contato || contatoInput,
                     nickname: userData.nickname || "Usuário",
-                    avatar: userData.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg"
+                    avatar: userData.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg",
+                    plano: userData.plano || "FREE" // <--- Importante para o bloqueio VIP funcionar
                 }));
 
                 setTimeout(() => {
