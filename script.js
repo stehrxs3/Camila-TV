@@ -18,6 +18,7 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+
 const listaDeVideos = [
     {
         id: 1,
@@ -248,6 +249,31 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarVideos(listaDeVideos);
     verificarSessaoUsuario();
 });
+
+
+(() => {
+  const url = window.CAMILA_SUPABASE_URL;
+  const anonKey = window.CAMILA_SUPABASE_ANON_KEY;
+
+  if (!window.supabase || !url || !anonKey) {
+    console.error("Configure as credenciais públicas do Supabase.");
+    return;
+  }
+
+  window.sb = window.supabase.createClient(url, anonKey, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  });
+})();
+
+
+
+
+
+
 
 function converterImagemDrive(url) {
     if (!url) return "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
