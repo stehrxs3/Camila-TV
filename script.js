@@ -474,6 +474,7 @@ function carregarFotoCadastro(event) {
         radios.forEach(radio => radio.checked = false);
     };
     leitor.readAsDataURL(arquivo);
+  }
 
 
   
