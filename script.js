@@ -826,3 +826,4 @@ window.fazerLogout = fazerLogout;
 window.atualizarPerfil = atualizarPerfil;
 window.seleionarAvatarCadastro = selecionarAvatarCadastro;
 window.carregarFotoCadastro = carregarFotoCadastro;
+window.solicitarRedefinicaoFirebase = solicitarRedefinicaoFirebase;
