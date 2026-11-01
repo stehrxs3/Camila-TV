@@ -1,8 +1,7 @@
 import { auth, db } from './firebase.js';
 import { 
   createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword,
-  signOut 
+  signInWithEmailAndPassword 
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 import { 
   ref, 
@@ -12,9 +11,15 @@ import {
   child 
 } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';
 
-
+// --- CONFIGURAÇÕES E DADOS DO SITE ---
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", (e) => {
+    if (e.key === "F12") { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j" || e.key === "C" || e.key === "c")) { e.preventDefault(); return false; }
+    if (e.ctrlKey && (e.key === "U" || e.key === "u" || e.key === "S" || e.key === "s")) { e.preventDefault(); return false; }
+});
 
 const listaDeVideos = [
     {
@@ -244,9 +249,7 @@ let videoDestaqueAtual = null;
 document.addEventListener("DOMContentLoaded", () => {
     configurarDestaque();
     carregarVideos(listaDeVideos);
-    verificarSessaoUsuario();
 });
-
 
 // --- FUNÇÕES DE MODAIS E NAVEGAÇÃO ---
 window.abrirAuthModal = function() {
@@ -344,17 +347,34 @@ function abrirVideo(video) {
     modal.style.display = "flex";
 }
 
+// --- FUNÇÃO DE FILTROS DE CATEGORIA E BUSCA (caso o site utilize) ---
+window.filtrarCategoria = function(categoria, btn) {
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+
+    if (categoria === 'todos') {
+        carregarVideos(listaDeVideos);
+    } else {
+        const filtrados = listaDeVideos.filter(v => v.categoria === categoria);
+        carregarVideos(filtrados);
+    }
+};
+
+window.filtrarPorBusca = function() {
+    const termo = document.getElementById("searchInput").value.toLowerCase();
+    const filtrados = listaDeVideos.filter(v => v.titulo.toLowerCase().includes(termo));
+    carregarVideos(filtrados);
+};
+
 // ==========================================
 // INTEGRAÇÃO FIREBASE: CADASTRO, LOGIN E ADMIN
 // ==========================================
-
 let avatarSelecionadoCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
 
 window.selecionarAvatarCadastro = function(url) {
     avatarSelecionadoCadastro = url;
 };
 
-// Cadastro de novo usuário
 window.realizarCadastro = async function(event) {
     event.preventDefault();
     const nickname = document.getElementById("regNickname").value;
@@ -365,7 +385,6 @@ window.realizarCadastro = async function(event) {
 
     try {
         const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
-
         const userCredential = await createUserWithEmailAndPassword(auth, emailAuth, senha);
         const user = userCredential.user;
 
@@ -389,7 +408,6 @@ window.realizarCadastro = async function(event) {
     }
 };
 
-// Login do usuário
 window.realizarLogin = async function(event) {
     event.preventDefault();
     const inputUser = document.getElementById("loginUser").value;
@@ -399,7 +417,6 @@ window.realizarLogin = async function(event) {
 
     try {
         const emailAuth = inputUser.includes("@") ? inputUser : `${inputUser.replace(/\D/g, '')}@camilatv.com`;
-
         const userCredential = await signInWithEmailAndPassword(auth, emailAuth, senha);
         const user = userCredential.user;
 
@@ -427,7 +444,6 @@ window.realizarLogin = async function(event) {
     }
 };
 
-// Painel do Administrador
 window.clicarLogoAdmin = async function() {
     const adminModal = document.getElementById("adminModal");
     const tbody = document.getElementById("adminUserTableBody");
