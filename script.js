@@ -15,7 +15,7 @@ const auth = firebase.auth();
 const db = firebase.database();
 
 
-const urlTransmissaoAoVivo = "https://player.kick.com/camilatvplus";
+const urlTransmissaoAoVivo = "https://kick.com/brkk";
 
 let tokenGeradoCache = "";
 document.addEventListener("contextmenu", e => e.preventDefault());
