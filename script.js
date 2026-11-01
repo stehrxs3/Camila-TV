@@ -400,22 +400,32 @@ function fecharVideo() {
     modal.style.display = "none";
 }
 
+// Certifica-te de que esta função existe no teu script.js
 function abrirTransmissaoAoVivo() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
     if (!usuarioLogado) {
         alert("Você precisa fazer login para assistir à transmissão Ao Vivo!");
         abrirAuthModal();
         return;
     }
+
     if (!usuarioLogado.plano || usuarioLogado.plano !== "VIP") {
         abrirVipModal({ titulo: "Transmissão Ao Vivo" });
         return;
     }
+
     const liveModal = document.getElementById("liveModal");
     const livePlayer = document.getElementById("livePlayer");
-    livePlayer.src = urlTransmissaoAoVivo;
-    liveModal.style.display = "flex";
+    
+    if (liveModal && livePlayer) {
+        livePlayer.src = window.urlTransmissaoAoVivo || "https://player.kick.com/..."; // Coloca o teu link da Kick aqui
+        liveModal.style.display = "flex";
+    } else {
+        console.error("Erro: Elementos do modal da live não encontrados no HTML.");
+    }
 }
+
 
 
 function fecharLive() {
@@ -542,7 +552,7 @@ function onSubmit(token) {
         const event = new Event('submit', { cancelable: true });
         formElement.dispatchEvent(event);
     }
-} // <--- CHAVETA CORRIGIDA E FECHADA AQUI
+} 
 
 function realizarLogin(event) {
     event.preventDefault();
@@ -845,3 +855,4 @@ window.atualizarPerfil = atualizarPerfil;
 window.selecionarAvatarCadastro = selecionarAvatarCadastro;
 window.carregarFotoCadastro = carregarFotoCadastro;
 window.solicitarRedefinicaoFirebase = solicitarRedefinicaoFirebase;
+window.abrirTransmissaoAoVivo = abrirTransmissaoAoVivo;
