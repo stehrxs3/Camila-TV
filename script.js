@@ -525,6 +525,14 @@ function realizarCadastro(event) {
         });
 }
 
+function onSubmit(token) {
+    const formElement = document.getElementById("registerForm");
+    if (formElement) {
+       
+        const event = new Event('submit', { cancelable: true });
+        formElement.dispatchEvent(event);
+    }
+
 function realizarLogin(event) {
     event.preventDefault();
 
@@ -827,3 +835,4 @@ window.atualizarPerfil = atualizarPerfil;
 window.seleionarAvatarCadastro = selecionarAvatarCadastro;
 window.carregarFotoCadastro = carregarFotoCadastro;
 window.solicitarRedefinicaoFirebase = solicitarRedefinicaoFirebase;
+window.onSubmit = onSubmit;
