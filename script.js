@@ -469,7 +469,7 @@ function carregarFotoCadastro(event) {
         radios.forEach(radio => radio.checked = false);
     };
     leitor.readAsDataURL(arquivo);
-} // <--- CHAVETA CORRIGIDA AQUI
+}
 
 function realizarCadastro(event) {
     event.preventDefault();
@@ -574,7 +574,8 @@ function realizarLogin(event) {
         });
 }
 
-async function solicitartokenReset() {
+function solicitarRedefinicaoFirebase(event) {
+    event.preventDefault();
     const emailInput = document.getElementById("resetEmail").value.trim();
     const feedback = document.getElementById("mensagemFeedback");
 
@@ -585,32 +586,29 @@ async function solicitartokenReset() {
     }
 
     feedback.style.color = "#38bdf8";
-    feedback.innerText = "A enviar código para o seu e-mail...";
+    feedback.innerText = "A enviar o link de redefinição...";
 
-    const tokenSeguro = Math.floor(100000 + Math.random() * 900000).toString();
-
-    const parametrosEmail = {
-        to_email: emailInput,   
-        token: tokenSeguro      
-    };
-
-    try {
-        await emailjs.send('service_camila tv', 'template_x43q5wt', parametrosEmail);
-
-        feedback.style.color = "#22c55e";
-        feedback.innerText = "Código enviado com sucesso para o seu e-mail!";
-
-        localStorage.setItem("tempResetEmail", emailInput);
-        localStorage.setItem("tempResetToken", tokenSeguro);
-
-        document.getElementById("etapaEmailReset").style.display = "none";
-        document.getElementById("etapaNovaSenhaReset").style.display = "block";
-
-    } catch (error) {
-        console.error("Erro ao enviar e-mail:", error);
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Erro ao enviar o e-mail. Verifique os dados.";
-    }
+    
+    auth.sendPasswordResetEmail(emailInput)
+        .then(() => {
+            feedback.style.color = "#22c55e";
+            feedback.innerText = "E-mail de recuperação enviado! Verifique a sua caixa de entrada.";
+            
+            setTimeout(() => {
+                document.getElementById("resetForm").reset();
+                mudarAba('login');
+            }, 3000);
+        })
+        .catch((error) => {
+            console.error("Erro ao enviar e-mail nativo:", error);
+            feedback.style.color = "#e50914";
+            
+            if (error.code === 'auth/user-not-found') {
+                feedback.innerText = "Este e-mail não está cadastrado.";
+            } else {
+                feedback.innerText = "Erro ao enviar: " + error.message;
+            }
+        });
 }
 
 function processarRedefinicaoSenha(event) {
