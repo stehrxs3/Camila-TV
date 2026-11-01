@@ -6,7 +6,7 @@ const firebaseConfig = {
   projectId: "camilatv-e6782",
   storageBucket: "camilatv-e6782.firebasestorage.app",
   messagingSenderId: "909118652874",
-  appId: "1:909118652874:web:27b569af78c796b9e58f33",
+  appId: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   measurementId: "G-HW0HS9T0KV"
 };
 
