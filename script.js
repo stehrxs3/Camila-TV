@@ -799,7 +799,7 @@ function abrirPainelAdmin() {
             return;
         }
 
-        // Converte o objeto do Firebase em array para listar na tabela
+   
         const usuarios = Object.values(usuariosObj);
 
         usuarios.forEach(u => {
@@ -814,6 +814,12 @@ function abrirPainelAdmin() {
     });
 }
 
+function fecharAdminModal() {
+    const adminModal = document.getElementById("adminModal");
+    if (adminModal) {
+        adminModal.style.display = "none";
+    }
+}
 
 document.addEventListener("keydown", (event) => {
     if (event.code === "F8") {
