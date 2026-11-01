@@ -1,19 +1,22 @@
-import { auth, db } from './firebase.js';
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword 
-} from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
-import { 
-  ref, 
-  set, 
-  get, 
-  update, 
-  child 
-} from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';
-
-// --- CONFIGURAÇÕES E DADOS DO SITE ---
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
+
+let tokenGeradoCache = "";
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", (e) => {
+    if (e.key === "F12") {
+        e.preventDefault();
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j" || e.key === "C" || e.key === "c")) {
+        e.preventDefault();
+        return false;
+    }
+    if (e.ctrlKey && (e.key === "U" || e.key === "u" || e.key === "S" || e.key === "s")) {
+        e.preventDefault();
+        return false;
+    }
+});
 
 const listaDeVideos = [
     {
@@ -243,42 +246,8 @@ let videoDestaqueAtual = null;
 document.addEventListener("DOMContentLoaded", () => {
     configurarDestaque();
     carregarVideos(listaDeVideos);
+    verificarSessaoUsuario();
 });
-
-// --- FUNÇÕES DE MODAIS E NAVEGAÇÃO ---
-window.abrirAuthModal = function() {
-    document.getElementById("authModal").style.display = "flex";
-};
-
-window.fecharAuthModal = function() {
-    document.getElementById("authModal").style.display = "none";
-};
-
-window.mudarAba = function(aba) {
-    document.getElementById("loginForm").style.display = aba === 'login' ? 'block' : 'none';
-    document.getElementById("registerForm").style.display = aba === 'register' ? 'block' : 'none';
-    document.getElementById("resetForm").style.display = aba === 'reset' ? 'block' : 'none';
-    
-    document.getElementById("tabLogin").classList.toggle('active', aba === 'login');
-    document.getElementById("tabRegister").classList.toggle('active', aba === 'register');
-};
-
-window.abrirTransmissaoAoVivo = function() {
-    const liveModal = document.getElementById("liveModal");
-    const livePlayer = document.getElementById("livePlayer");
-    livePlayer.src = urlTransmissaoAoVivo;
-    liveModal.style.display = "flex";
-};
-
-window.fecharLive = function() {
-    document.getElementById("liveModal").style.display = "none";
-    document.getElementById("livePlayer").src = "";
-};
-
-window.fecharVideo = function() {
-    document.getElementById("videoModal").style.display = "none";
-    document.getElementById("videoPlayer").src = "";
-};
 
 function converterImagemDrive(url) {
     if (!url) return "https://via.placeholder.com/300x450/222/fff?text=Sem+Capa";
@@ -289,6 +258,11 @@ function converterImagemDrive(url) {
         }
     }
     return url; 
+}
+
+function converterParaEmbedDrive(url) {
+    if (!url) return "";
+    return url.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
 }
 
 function configurarDestaque() {
@@ -304,172 +278,510 @@ function configurarDestaque() {
 
 function carregarVideos(videos) {
     const videoGrid = document.getElementById("videoGrid");
-    if (!videoGrid) return;
     videoGrid.innerHTML = "";
 
-    videos.forEach((video) => {
+    const videosValidos = videos.filter(v => v && v.titulo);
+
+    if (videosValidos.length === 0) {
+        videoGrid.innerHTML = "<p style='color: #888;'>Nenhum vídeo encontrado.</p>";
+        return;
+    }
+
+    videosValidos.forEach((video) => {
         const card = document.createElement("div");
         card.classList.add("card");
         card.onclick = () => abrirVideo(video);
 
         const imagemCapa = converterImagemDrive(video.capa);
+
         card.innerHTML = `
             <img src="${imagemCapa}" alt="${video.titulo}">
             <div class="card-info">
-                <h3>${video.titulo}</h3>
-                <p>${video.data}</p>
+                <div class="card-title">${video.titulo}</div>
+                <div class="card-category">${video.categoria}</div>
             </div>
         `;
+
         videoGrid.appendChild(card);
     });
 }
 
-function abrirVideo(video) {
-    const modal = document.getElementById("videoModal");
-    const player = document.getElementById("videoPlayer");
-    document.getElementById("modalVideoTitle").innerText = video.titulo;
-    document.getElementById("modalVideoCategory").innerText = video.categoria;
-    document.getElementById("modalVideoDate").innerText = video.data;
-    document.getElementById("modalVideoDesc").innerText = video.descricao;
+function filtrarCategoria(cat, btn) {
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
 
-    let urlEmbed = video.videoUrl;
-    if (urlEmbed.includes("drive.google.com")) {
-        urlEmbed = urlEmbed.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
+    const title = document.getElementById("sectionTitle");
+    title.innerText = cat === "todos" ? "Todos os Conteúdos" : cat;
+
+    if (cat === "todos") {
+        carregarVideos(listaDeVideos);
+    } else {
+        const filtrados = listaDeVideos.filter(v =>
+            v && v.categoria && v.categoria.trim().toLowerCase() === cat.trim().toLowerCase()
+        );
+        carregarVideos(filtrados);
+    }
+}
+
+function filtrarPorBusca() {
+    const termo = document.getElementById("searchInput").value.trim().toLowerCase();
+    const filtrados = listaDeVideos.filter(v =>
+        v && v.titulo && (
+            v.titulo.toLowerCase().includes(termo) ||
+            (v.categoria && v.categoria.toLowerCase().includes(termo))
+        )
+    );
+    carregarVideos(filtrados);
+}
+
+
+function abrirVideo(video) {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuarioLogado) {
+        alert("Você precisa fazer login ou se cadastrar para assistir aos vídeos!");
+        abrirAuthModal();
+        return;
     }
 
-    player.src = urlEmbed;
+    const modal = document.getElementById("videoModal");
+    const container = document.getElementById("videoContainer");
+
+    const title = document.getElementById("modalVideoTitle");
+    const category = document.getElementById("modalVideoCategory");
+    const date = document.getElementById("modalVideoDate");
+    const desc = document.getElementById("modalVideoDesc");
+
+    title.innerText = video.titulo || "Sem Título";
+    category.innerText = video.categoria || "Geral";
+    date.innerText = video.data || "2025";
+    desc.innerText = video.descricao || "Nenhuma descrição disponível.";
+
+    container.innerHTML = "";
+    let url = video.videoUrl || "";
+
+    if (url.includes("drive.google.com")) {
+        url = converterParaEmbedDrive(url);
+    }
+
+    if (url.endsWith(".mp4") || url.endsWith(".webm")) {
+        container.innerHTML = `<video src="${url}" controls autoplay allowfullscreen></video>`;
+    } else {
+        container.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    }
+
     modal.style.display = "flex";
 }
 
-// --- FUNÇÃO DE FILTROS DE CATEGORIA E BUSCA (caso o site utilize) ---
-window.filtrarCategoria = function(categoria, btn) {
-    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-    if (btn) btn.classList.add("active");
-
-    if (categoria === 'todos') {
-        carregarVideos(listaDeVideos);
-    } else {
-        const filtrados = listaDeVideos.filter(v => v.categoria === categoria);
-        carregarVideos(filtrados);
+function playHeroVideo() {
+    if (videoDestaqueAtual) {
+        abrirVideo(videoDestaqueAtual);
     }
-};
+}
 
-window.filtrarPorBusca = function() {
-    const termo = document.getElementById("searchInput").value.toLowerCase();
-    const filtrados = listaDeVideos.filter(v => v.titulo.toLowerCase().includes(termo));
-    carregarVideos(filtrados);
-};
+function fecharVideo() {
+    const modal = document.getElementById("videoModal");
+    const container = document.getElementById("videoContainer");
+    container.innerHTML = "";
+    modal.style.display = "none";
+}
 
-// ==========================================
-// INTEGRAÇÃO FIREBASE: CADASTRO, LOGIN E ADMIN
-// ==========================================
-let avatarSelecionadoCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
+function abrirTransmissaoAoVivo() {
+    const liveModal = document.getElementById("liveModal");
+    const livePlayer = document.getElementById("livePlayer");
+    livePlayer.src = urlTransmissaoAoVivo;
+    liveModal.style.display = "flex";
+}
 
-window.selecionarAvatarCadastro = function(url) {
-    avatarSelecionadoCadastro = url;
-};
+function fecharLive() {
+    const liveModal = document.getElementById("liveModal");
+    const livePlayer = document.getElementById("livePlayer");
+    livePlayer.src = "";
+    liveModal.style.display = "none";
+}
 
-window.realizarCadastro = async function(event) {
+function abrirAuthModal() {
+    document.getElementById("authModal").style.display = "flex";
+}
+
+function fecharAuthModal() {
+    document.getElementById("authModal").style.display = "none";
+}
+
+function mudarAba(aba) {
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const resetForm = document.getElementById("resetForm");
+    const tabLogin = document.getElementById("tabLogin");
+    const tabRegister = document.getElementById("tabRegister");
+    const feedback = document.getElementById("mensagemFeedback");
+
+    feedback.innerText = "";
+
+    loginForm.style.display = "none";
+    registerForm.style.display = "none";
+    if (resetForm) resetForm.style.display = "none";
+
+    tabLogin.classList.remove("active");
+    tabRegister.classList.remove("active");
+
+    if (aba === 'login') {
+        loginForm.style.display = "block";
+        tabLogin.classList.add("active");
+    } else if (aba === 'register') {
+        registerForm.style.display = "block";
+        tabRegister.classList.add("active");
+    } else if (aba === 'reset') {
+        resetForm.style.display = "block";
+    }
+}
+
+
+let fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
+
+function selecionarAvatarCadastro(url) {
+    fotoTempCadastro = url;
+    const fileInput = document.getElementById("regAvatarFile");
+    if (fileInput) fileInput.value = "";
+}
+
+function carregarFotoCadastro(event) {
+    const arquivo = event.target.files[0];
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        fotoTempCadastro = e.target.result;
+        const radios = document.getElementsByName("avatarSelect");
+        radios.forEach(radio => radio.checked = false);
+    };
+    leitor.readAsDataURL(arquivo);
+}
+
+function realizarCadastro(event) {
     event.preventDefault();
-    const nickname = document.getElementById("regNickname").value;
-    const contato = document.getElementById("regContato").value; 
+
+    const nickname = document.getElementById("regNickname").value.trim();
+    const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
-    const device = navigator.userAgent;
-    const dataAtual = new Date().toISOString();
+    const feedback = document.getElementById("mensagemFeedback");
 
-    try {
-        const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
-        const userCredential = await createUserWithEmailAndPassword(auth, emailAuth, senha);
-        const user = userCredential.user;
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
 
-        await set(ref(db, 'users/' + user.uid), {
-            uid: user.uid,
-            nickname: nickname,
-            contato: contato,
-            emailAuth: emailAuth,
-            avatar: avatarSelecionadoCadastro,
-            device: device,
-            lastAccess: dataAtual,
-            createdAt: dataAtual,
-            history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
-        });
-
-        alert("Conta criada com sucesso!");
-        window.fecharAuthModal();
-    } catch (error) {
-        console.error("Erro no cadastro:", error);
-        alert("Erro ao cadastrar: " + error.message);
+    const jaExiste = usuarios.some(u => u.contato === contato);
+    if (jaExiste) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Este e-mail ou telefone já está cadastrado!";
+        return;
     }
-};
 
-window.realizarLogin = async function(event) {
+    usuarios.push({ nickname, contato, senha, avatar: fotoTempCadastro });
+    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
+
+    setTimeout(() => {
+        document.getElementById("registerForm").reset();
+        fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
+        mudarAba('login');
+    }, 1500);
+}
+
+function realizarLogin(event) {
     event.preventDefault();
-    const inputUser = document.getElementById("loginUser").value;
-    const senha = document.getElementById("loginPass").value;
-    const device = navigator.userAgent;
-    const dataAtual = new Date().toISOString();
+
+    const contatoInput = document.getElementById("loginUser").value.trim();
+    const senhaInput = document.getElementById("loginPass").value;
+    const feedback = document.getElementById("mensagemFeedback");
+
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    const usuarioEncontrado = usuarios.find(u => u.contato === contatoInput && u.senha === senhaInput);
+
+    if (usuarioEncontrado) {
+        feedback.style.color = "#22c55e";
+        feedback.innerText = `Bem-vindo(a), ${usuarioEncontrado.nickname}!`;
+
+        localStorage.setItem("usuarioLogado", JSON.stringify({ 
+            contato: usuarioEncontrado.contato,
+            nickname: usuarioEncontrado.nickname,
+            avatar: usuarioEncontrado.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg"
+        }));
+
+        setTimeout(() => {
+            fecharAuthModal();
+            verificarSessaoUsuario();
+        }, 1200);
+    } else {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "E-mail/Telefone ou senha incorretos.";
+    }
+}
+
+
+function gerarTokenAleatorio() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+-
+async function solicitartokenReset() {
+    const emailInput = document.getElementById("resetEmail").value.trim();
+    const feedback = document.getElementById("mensagemFeedback");
+
+    if (!emailInput) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Por favor, digite o seu e-mail cadastrado.";
+        return;
+    }
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A enviar código para o seu e-mail...";
+
+   
+    const tokenSeguro = Math.floor(100000 + Math.random() * 900000).toString();
+
+   
+    const parametrosEmail = {
+        to_email: emailInput,   
+        token: tokenSeguro      
+    };
 
     try {
-        const emailAuth = inputUser.includes("@") ? inputUser : `${inputUser.replace(/\D/g, '')}@camilatv.com`;
-        const userCredential = await signInWithEmailAndPassword(auth, emailAuth, senha);
-        const user = userCredential.user;
+        await emailjs.send('service_camila tv', 'template_x43q5wt', parametrosEmail);
 
-        const userRef = ref(db, 'users/' + user.uid);
-        const snapshot = await get(userRef);
+        feedback.style.color = "#22c55e";
+        feedback.innerText = "Código enviado com sucesso para o seu e-mail!";
 
-        if (snapshot.exists()) {
-            const userData = snapshot.val();
-            const historico = userData.history || [];
-            historico.push({ action: "login", timestamp: dataAtual, device: device });
+      
+        localStorage.setItem("tempResetEmail", emailInput);
+        localStorage.setItem("tempResetToken", tokenSeguro);
 
-            await update(userRef, {
-                lastAccess: dataAtual,
-                device: device,
-                history: historico
-            });
-        }
+        document.getElementById("etapaEmailReset").style.display = "none";
+        document.getElementById("etapaNovaSenhaReset").style.display = "block";
 
-        alert("Login efetuado com sucesso!");
-        window.fecharAuthModal();
-        location.reload();
     } catch (error) {
-        console.error("Erro no login:", error);
-        alert("E-mail/Telefone ou senha incorretos.");
+        console.error("Erro ao enviar e-mail:", error);
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Erro ao enviar o e-mail. Verifique os dados.";
     }
-};
+}
 
-window.clicarLogoAdmin = async function() {
-    const adminModal = document.getElementById("adminModal");
+function processarRedefinicaoSenha(event) {
+    event.preventDefault();
+    const emailInput = document.getElementById("resetEmail").value.trim();
+    const tokenDigitado = document.getElementById("resetTokenInput").value.trim();
+    const novaSenha = document.getElementById("novaSenhaInput").value;
+    const feedback = document.getElementById("mensagemFeedback");
+
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    const usuarioIndex = usuarios.findIndex(u => u.contato === emailInput);
+
+    if (usuarioIndex === -1) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Usuário não encontrado.";
+        return;
+    }
+
+    const usuario = usuarios[usuarioIndex];
+    const agora = new Date().getTime();
+
+    if (!usuario.resetToken || usuario.resetToken !== tokenDigitado) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Código de recuperação inválido!";
+        return;
+    }
+
+    if (agora > usuario.tokenExpira) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Este código expirou. Solicite um novo.";
+        return;
+    }
+
+    usuarios[usuarioIndex].senha = novaSenha;
+    delete usuarios[usuarioIndex].resetToken;
+    delete usuarios[usuarioIndex].tokenExpira;
+
+    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+
+    feedback.style.color = "#22c55e";
+    feedback.innerText = "Senha redefinida com sucesso! Faça login.";
+
+    setTimeout(() => {
+        document.getElementById("resetForm").reset();
+        document.getElementById("etapaNovaSenhaReset").style.display = "none";
+        document.getElementById("etapaEmailReset").style.display = "block";
+        mudarAba('login');
+    }, 2000);
+}
+
+
+function verificarSessaoUsuario() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const btnAuth = document.getElementById("userAuthBtn");
+
+    if (usuarioLogado && usuarioLogado.nickname) {
+        btnAuth.className = "user-profile-btn";
+        btnAuth.innerHTML = `
+            <img src="${usuarioLogado.avatar}" alt="Avatar">
+            <span>${usuarioLogado.nickname}</span>
+        `;
+        btnAuth.onclick = (e) => {
+            e.preventDefault();
+            abrirProfileModal();
+        };
+    } else {
+        btnAuth.className = "btn-auth-trigger";
+        btnAuth.innerText = "Entrar";
+        btnAuth.onclick = abrirAuthModal;
+    }
+}
+
+let fotoTempPerfil = "";
+
+function abrirProfileModal() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuarioLogado) return;
+
+    document.getElementById("editNickname").value = usuarioLogado.nickname;
+    document.getElementById("profileModalAvatar").src = usuarioLogado.avatar;
+    
+    fotoTempPerfil = usuarioLogado.avatar;
+
+    const radios = document.getElementsByName("editAvatarSelect");
+    radios.forEach(radio => {
+        radio.checked = (radio.value === usuarioLogado.avatar);
+    });
+
+    const fileInput = document.getElementById("editAvatarFile");
+    if (fileInput) fileInput.value = "";
+
+    document.getElementById("mensagemProfileFeedback").innerText = "";
+    document.getElementById("profileModal").style.display = "flex";
+}
+
+function fecharProfileModal() {
+    document.getElementById("profileModal").style.display = "none";
+}
+
+function selecionarAvatarPredefinido(url) {
+    fotoTempPerfil = url;
+    document.getElementById("profileModalAvatar").src = url;
+    const fileInput = document.getElementById("editAvatarFile");
+    if (fileInput) fileInput.value = "";
+}
+
+function carregarFotoArquivo(event) {
+    const arquivo = event.target.files[0];
+    if (!arquivo) return;
+
+    const leitor = new FileReader();
+    leitor.onload = function(e) {
+        fotoTempPerfil = e.target.result;
+        document.getElementById("profileModalAvatar").src = fotoTempPerfil;
+
+        const radios = document.getElementsByName("editAvatarSelect");
+        radios.forEach(radio => radio.checked = false);
+    };
+    leitor.readAsDataURL(arquivo);
+}
+
+function atualizarPerfil(event) {
+    event.preventDefault();
+
+    const novoNickname = document.getElementById("editNickname").value.trim();
+    const feedback = document.getElementById("mensagemProfileFeedback");
+
+    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+
+    const fotoFinal = fotoTempPerfil || usuarioLogado.avatar;
+
+    const index = usuarios.findIndex(u => u.contato === usuarioLogado.contato);
+    if (index !== -1) {
+        usuarios[index].nickname = novoNickname;
+        usuarios[index].avatar = fotoFinal;
+        localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+    }
+
+    usuarioLogado.nickname = novoNickname;
+    usuarioLogado.avatar = fotoFinal;
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+
+    feedback.style.color = "#22c55e";
+    feedback.innerText = "Perfil atualizado com sucesso!";
+
+    verificarSessaoUsuario();
+
+    setTimeout(() => {
+        fecharProfileModal();
+    }, 1200);
+}
+
+function fazerLogout() {
+    if (confirm("Deseja realmente sair da sua conta?")) {
+        localStorage.removeItem("usuarioLogado");
+        fecharProfileModal();
+        verificarSessaoUsuario();
+    }
+}
+
+
+function abrirPainelAdmin() {
+    const senhaAdmin = prompt("Digite a senha de Administrador:");
+    if (senhaAdmin !== "admin123") {
+        alert("Senha incorreta!");
+        return;
+    }
+
     const tbody = document.getElementById("adminUserTableBody");
-    tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center;'>Carregando dados...</td></tr>";
-    adminModal.style.display = "flex";
+    tbody.innerHTML = "";
 
-    try {
-        const dbRef = ref(db);
-        const snapshot = await get(child(dbRef, 'users'));
-        
-        tbody.innerHTML = "";
-        if (snapshot.exists()) {
-            snapshot.forEach((childSnapshot) => {
-                const u = childSnapshot.val();
-                const tr = document.createElement("tr");
-                tr.style.borderBottom = "1px solid rgba(255,255,255,0.1)";
-                tr.innerHTML = `
-                    <td style="padding: 10px;">${u.nickname || 'N/A'}</td>
-                    <td style="padding: 10px;">${u.contato || u.emailAuth || 'N/A'}</td>
-                    <td style="padding: 10px;">${new Date(u.createdAt).toLocaleDateString() || 'N/A'}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        } else {
-            tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center;'>Nenhum usuário cadastrado ainda.</td></tr>";
-        }
-    } catch (error) {
-        console.error("Erro ao carregar admin:", error);
-        tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: red;'>Erro ao carregar utilizadores.</td></tr>";
+    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+
+    if (usuarios.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado.</td></tr>";
+    } else {
+        usuarios.forEach(u => {
+            tbody.innerHTML += `
+                <tr style="border-bottom: 1px solid #334155;">
+                    <td style="padding: 10px;">${u.nickname}</td>
+                    <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato}</td>
+                    <td style="padding: 10px; color: #cbd5e1;">${u.senha}</td>
+                </tr>
+            `;
+        });
     }
-};
 
-window.fecharAdminModal = function() {
+    document.getElementById("adminModal").style.display = "flex";
+}
+
+function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
-};
+}
+
+
+document.addEventListener("keydown", (event) => {
+    if (event.code === "F8") {
+        event.preventDefault();
+        abrirPainelAdmin();
+    }
+});
+
+
+let cliquesLogo = 0;
+let tempoUltimoClique = 0;
+
+function clicarLogoAdmin() {
+    const agora = new Date().getTime();
+    if (agora - tempoUltimoClique > 1000) {
+        cliquesLogo = 1;
+    } else {
+        cliquesLogo++;
+    }
+    tempoUltimoClique = agora;
+
+    if (cliquesLogo === 5) {
+        cliquesLogo = 0;
+        abrirPainelAdmin();
+    }
+}
