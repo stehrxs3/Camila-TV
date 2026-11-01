@@ -1,3 +1,21 @@
+// --- CONFIGURAÇÃO DO FIREBASE ---
+const firebaseConfig = {
+  apiKey: "AIzaSyAN9_GKVO_dONh11QlV0kpektMYcIhEZHo",
+  authDomain: "camilatv-e6782.firebaseapp.com",
+  databaseURL: "https://camilatv-e6782-default-rtdb.firebaseio.com",
+  projectId: "camilatv-e6782",
+  storageBucket: "camilatv-e6782.firebasestorage.app",
+  messagingSenderId: "909118652874",
+  appId: "1:909118652874:web:27b569af78c796b9e58f33",
+  measurementId: "G-HW0HS9T0KV"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.database();
+
+
+
 const urlTransmissaoAoVivo = "https://kick.com/camilatvplus";
 
 
@@ -457,7 +475,6 @@ function carregarFotoCadastro(event) {
     };
     leitor.readAsDataURL(arquivo);
 }
-
 function realizarCadastro(event) {
     event.preventDefault();
 
@@ -465,28 +482,46 @@ function realizarCadastro(event) {
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
     const feedback = document.getElementById("mensagemFeedback");
+    const device = navigator.userAgent;
+    const dataAtual = new Date().toISOString();
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    // Formata o e-mail para o Auth (caso o usuário digite apenas números de telefone)
+    const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
 
-    const jaExiste = usuarios.some(u => u.contato === contato);
-    if (jaExiste) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Este e-mail ou telefone já está cadastrado!";
-        return;
-    }
+    auth.createUserWithEmailAndPassword(emailAuth, senha)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            
+            // Salva os dados completos no Realtime Database do Firebase
+            db.ref('users/' + user.uid).set({
+                uid: user.uid,
+                nickname: nickname,
+                contato: contato,
+                emailAuth: emailAuth,
+                senha: senha, // Mantido conforme seu modelo original
+                avatar: fotoTempCadastro,
+                device: device,
+                lastAccess: dataAtual,
+                createdAt: dataAtual,
+                history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
+            });
 
-    usuarios.push({ nickname, contato, senha, avatar: fotoTempCadastro });
-    localStorage.setItem("usuariosCamilaTV", JSON.stringify(usuarios));
+            feedback.style.color = "#38bdf8";
+            feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
-
-    setTimeout(() => {
-        document.getElementById("registerForm").reset();
-        fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
-        mudarAba('login');
-    }, 1500);
+            setTimeout(() => {
+                document.getElementById("registerForm").reset();
+                fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
+                mudarAba('login');
+            }, 1500);
+        })
+        .catch((error) => {
+            console.error("Erro no cadastro:", error);
+            feedback.style.color = "#e50914";
+            feedback.innerText = "Erro ao cadastrar: " + error.message;
+        });
 }
+
 
 function realizarLogin(event) {
     event.preventDefault();
@@ -494,30 +529,49 @@ function realizarLogin(event) {
     const contatoInput = document.getElementById("loginUser").value.trim();
     const senhaInput = document.getElementById("loginPass").value;
     const feedback = document.getElementById("mensagemFeedback");
+    const device = navigator.userAgent;
+    const dataAtual = new Date().toISOString();
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
-    const usuarioEncontrado = usuarios.find(u => u.contato === contatoInput && u.senha === senhaInput);
+    const emailAuth = contatoInput.includes("@") ? contatoInput : `${contatoInput.replace(/\D/g, '')}@camilatv.com`;
 
-    if (usuarioEncontrado) {
-        feedback.style.color = "#22c55e";
-        feedback.innerText = `Bem-vindo(a), ${usuarioEncontrado.nickname}!`;
+    auth.signInWithEmailAndPassword(emailAuth, senhaInput)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            const userRef = db.ref('users/' + user.uid);
 
-        localStorage.setItem("usuarioLogado", JSON.stringify({ 
-            contato: usuarioEncontrado.contato,
-            nickname: usuarioEncontrado.nickname,
-            avatar: usuarioEncontrado.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg"
-        }));
+            userRef.once('value', (snapshot) => {
+                const userData = snapshot.val();
+                let historico = userData.history || [];
+                historico.push({ action: "login", timestamp: dataAtual, device: device });
 
-        setTimeout(() => {
-            fecharAuthModal();
-            verificarSessaoUsuario();
-        }, 1200);
-    } else {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "E-mail/Telefone ou senha incorretos.";
-    }
+                // Atualiza o último acesso e histórico no Firebase
+                userRef.update({
+                    lastAccess: dataAtual,
+                    device: device,
+                    history: historico
+                });
+
+                feedback.style.color = "#22c55e";
+                feedback.innerText = `Bem-vindo(a), ${userData.nickname}!`;
+
+                localStorage.setItem("usuarioLogado", JSON.stringify({ 
+                    contato: userData.contato,
+                    nickname: userData.nickname,
+                    avatar: userData.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg"
+                }));
+
+                setTimeout(() => {
+                    fecharAuthModal();
+                    verificarSessaoUsuario();
+                }, 1200);
+            });
+        })
+        .catch((error) => {
+            console.error("Erro no login:", error);
+            feedback.style.color = "#e50914";
+            feedback.innerText = "E-mail/Telefone ou senha incorretos.";
+        });
 }
-
 
 function gerarTokenAleatorio() {
     return Math.floor(100000 + Math.random() * 900000).toString();
@@ -734,29 +788,31 @@ function abrirPainelAdmin() {
     }
 
     const tbody = document.getElementById("adminUserTableBody");
-    tbody.innerHTML = "";
+    tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
+    document.getElementById("adminModal").style.display = "flex";
 
-    let usuarios = JSON.parse(localStorage.getItem("usuariosCamilaTV")) || [];
+    db.ref('users').once('value', (snapshot) => {
+        tbody.innerHTML = "";
+        const usuariosObj = snapshot.val();
 
-    if (usuarios.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado.</td></tr>";
-    } else {
+        if (!usuariosObj) {
+            tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
+            return;
+        }
+
+        // Converte o objeto do Firebase em array para listar na tabela
+        const usuarios = Object.values(usuariosObj);
+
         usuarios.forEach(u => {
             tbody.innerHTML += `
                 <tr style="border-bottom: 1px solid #334155;">
-                    <td style="padding: 10px;">${u.nickname}</td>
-                    <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato}</td>
-                    <td style="padding: 10px; color: #cbd5e1;">${u.senha}</td>
+                    <td style="padding: 10px;">${u.nickname || 'N/A'}</td>
+                    <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato || u.emailAuth || 'N/A'}</td>
+                    <td style="padding: 10px; color: #cbd5e1;">${u.senha || '********'}</td>
                 </tr>
             `;
         });
-    }
-
-    document.getElementById("adminModal").style.display = "flex";
-}
-
-function fecharAdminModal() {
-    document.getElementById("adminModal").style.display = "none";
+    });
 }
 
 
