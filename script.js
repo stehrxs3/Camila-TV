@@ -839,5 +839,19 @@ function clicarLogoAdmin() {
     if (cliquesLogo === 5) {
         cliquesLogo = 0;
         abrirPainelAdmin();
+
+  
     }
 }
+// Garante que o HTML encontre as funções de controle de modais e admin
+window.fecharAuthModal = fecharAuthModal;
+window.abrirAuthModal = abrirAuthModal;
+window.fecharVideo = fecharVideo;
+window.fecharLive = fecharLive;
+window.fecharProfileModal = fecharProfileModal;
+window.mudarAba = mudarAba;
+window.clicarLogoAdmin = clicarLogoAdmin;
+window.abrirPainelAdmin = abrirPainelAdmin;
+window.fecharAdminModal = fecharAdminModal;
+window.realizarCadastro = realizarCadastro;
+window.realizarLogin = realizarLogin;
