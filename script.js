@@ -462,6 +462,7 @@ function selecionarAvatarCadastro(url) {
     if (fileInput) fileInput.value = "";
 }
 
+
 function carregarFotoCadastro(event) {
     const arquivo = event.target.files[0];
     if (!arquivo) return;
@@ -473,6 +474,9 @@ function carregarFotoCadastro(event) {
         radios.forEach(radio => radio.checked = false);
     };
     leitor.readAsDataURL(arquivo);
+
+
+  
 function realizarCadastro(event) {
     event.preventDefault();
 
