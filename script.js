@@ -477,6 +477,12 @@ function carregarFotoCadastro(event) {
 function realizarCadastro(event) {
     event.preventDefault();
 
+    const lgpdAceito = document.getElementById("regLgpd").checked;
+    if (!lgpdAceito) {
+        alert("Você precisa aceitar os termos da LGPD para se cadastrar.");
+        return;
+    }
+     
     const nickname = document.getElementById("regNickname").value.trim();
     const contato = document.getElementById("regContato").value.trim();
     const senha = document.getElementById("regPass").value;
@@ -795,24 +801,33 @@ function abrirPainelAdmin() {
         const usuariosObj = snapshot.val();
 
         if (!usuariosObj) {
-            tbody.innerHTML = "<tr><td colspan='3' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='4' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
             return;
         }
 
-   
         const usuarios = Object.values(usuariosObj);
 
         usuarios.forEach(u => {
+            // Formata a data de criação para o padrão PT (DD/MM/AAAA)
+            let dataFormatada = "N/A";
+            if (u.createdAt) {
+                const dataObj = new Date(u.createdAt);
+                dataFormatada = dataObj.toLocaleDateString('pt-PT') + " " + dataObj.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+            }
+
+            // Calcula a quantidade de acessos pelo tamanho do histórico
+            const totalAcessos = u.history ? u.history.length : 1;
+
             tbody.innerHTML += `
                 <tr style="border-bottom: 1px solid #334155;">
                     <td style="padding: 10px;">${u.nickname || 'N/A'}</td>
                     <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato || u.emailAuth || 'N/A'}</td>
-                    <td style="padding: 10px; color: #cbd5e1;">${u.senha || '********'}</td>
+                    <td style="padding: 10px; color: #cbd5e1;">${dataFormatada}</td>
+                    <td style="padding: 10px; color: #22c55e; font-weight: bold;">${totalAcessos}x</td>
                 </tr>
             `;
         });
     });
-}
 
 function fecharAdminModal() {
     const adminModal = document.getElementById("adminModal");
@@ -841,7 +856,7 @@ function clicarLogoAdmin() {
     }
     tempoUltimoClique = agora;
 
-    if (cliquesLogo === 5) {
+    if (cliquesLogo === 10) {
         cliquesLogo = 0;
         abrirPainelAdmin();
 
