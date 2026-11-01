@@ -174,7 +174,12 @@
                     <label>Senha</label>
                     <input type="password" id="regPass" required placeholder="Crie uma senha segura">
                 </div>
-
+                
+             <div class="input-group" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+              <input type="checkbox" id="regLgpd" required style="width: auto; cursor: pointer;">
+             <label for="regLgpd" style="font-size: 0.8rem; color: #94a3b8; cursor: pointer;"> Li e aceito os <a href="#" onclick="alert('Ao cadastrar-se, concorda com o armazenamento dos seus dados (nickname, e-mail e dados de acesso) para uso exclusivo na plataforma Camila TV+.')" style="color: #38bdf8; text-decoration: underline;">Termos da LGPD</a>.
+    </label>
+</div>   
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
@@ -281,8 +286,9 @@
                         <tr style="border-bottom: 1px solid #475569; background: rgba(255,255,255,0.05);">
                             <th style="padding: 10px;">Nickname</th>
                             <th style="padding: 10px;">E-mail / Telefone</th>
-                            <th style="padding: 10px;">Senha/th>
+                            <th style="padding: 10px;">Senha </th>
                            <th style="padding: 10px;">Data de Cadastro</th>
+                        <th style="padding: 10px;">Acessos</th>
                         </tr>
                     </thead>
                     <tbody 
