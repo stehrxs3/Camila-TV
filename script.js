@@ -813,7 +813,6 @@ function clicarLogoAdmin() {
 }
 
 // Expõe globalmente para os botões do HTML
-window.fecharAuthModal = abrirAuthModal; // fallback
 window.abrirAuthModal = abrirAuthModal;
 window.fecharAuthModal = fecharAuthModal;
 window.fecharVideo = fecharVideo;
