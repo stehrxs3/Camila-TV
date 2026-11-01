@@ -761,6 +761,73 @@ function fazerLogout() {
     }
 }
 
+
+// --- LÓGICA DO MODAL E ASSINATURA VIP ---
+let videoTentandoAssistir = null;
+
+function abrirVipModal(video) {
+    videoTentandoAssistir = video;
+    const feedback = document.getElementById("mensagemVipFeedback");
+    if (feedback) feedback.innerText = "";
+    
+    const vipModal = document.getElementById("vipModal");
+    if (vipModal) {
+        vipModal.style.display = "flex";
+    } else {
+        console.error("Erro: Elemento #vipModal não encontrado no HTML.");
+    }
+}
+
+function fecharVipModal() {
+    const vipModal = document.getElementById("vipModal");
+    if (vipModal) vipModal.style.display = "none";
+    videoTentandoAssistir = null;
+}
+
+function realizarAssinaturaVIP() {
+    const feedback = document.getElementById("mensagemVipFeedback");
+    if (feedback) {
+        feedback.style.color = "#38bdf8";
+        feedback.innerText = "A processar pagamento...";
+    }
+
+    setTimeout(() => {
+        let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (!usuarioLogado) return;
+
+        // Atualiza o status do utilizador para VIP localmente
+        usuarioLogado.plano = "VIP";
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+
+        // Se estiver logado no Firebase, atualiza também na base de dados em nuvem
+        if (auth.currentUser) {
+            db.ref('users/' + auth.currentUser.uid).update({ plano: "VIP" });
+        }
+
+        if (feedback) {
+            feedback.style.color = "#22c55e";
+            feedback.innerText = "Assinatura VIP ativada com sucesso!";
+        }
+
+        setTimeout(() => {
+            fecharVipModal();
+            // Se tentou abrir a live ou um vídeo VIP, abre automaticamente após assinar
+            if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
+                abrirTransmissaoAoVivo();
+            } else if (videoTentandoAssistir) {
+                abrirVideo(videoTentandoAssistir);
+            }
+        }, 1500);
+    }, 2000);
+}
+
+// Expõe globalmente para que os botões HTML consigam executar
+window.abrirVipModal = abrirVipModal;
+window.fecharVipModal = fecharVipModal;
+window.realizarAssinaturaVIP = realizarAssinaturaVIP;
+
+
+
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
