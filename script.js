@@ -14,7 +14,6 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
 
-
 const urlTransmissaoAoVivo = "https://player.kick.com/camilatvplus";
 
 let tokenGeradoCache = "";
@@ -263,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarDestaque();
     carregarVideos(listaDeVideos);
     verificarSessaoUsuario();
+    iniciarEscutaChat();
 });
 
 function converterImagemDrive(url) {
@@ -410,7 +410,6 @@ function abrirTransmissaoAoVivo() {
         return;
     }
 
-    // Verifica se o usuário é VIP
     if (!usuarioLogado.plano || usuarioLogado.plano !== "VIP") {
         abrirVipModal({ titulo: "Transmissão Ao Vivo" });
         return;
@@ -420,7 +419,6 @@ function abrirTransmissaoAoVivo() {
     const livePlayer = document.getElementById("livePlayer");
     
     if (liveModal && livePlayer) {
-        // Usa o player embed correto da Kick
         livePlayer.src = "https://player.kick.com/camilatvplus"; 
         liveModal.style.display = "flex";
     } else {
@@ -547,7 +545,6 @@ function realizarCadastro(event) {
         });
 }
 
-
 function onSubmit(token) {
     const formElement = document.getElementById("registerForm");
     if (formElement) {
@@ -586,12 +583,11 @@ function realizarLogin(event) {
                 feedback.style.color = "#22c55e";
                 feedback.innerText = `Bem-vindo(a), ${userData.nickname || 'Usuário'}!`;
 
-                // Salva também o plano (FREE ou VIP) no localStorage
                 localStorage.setItem("usuarioLogado", JSON.stringify({ 
                     contato: userData.contato || contatoInput,
                     nickname: userData.nickname || "Usuário",
                     avatar: userData.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg",
-                    plano: userData.plano || "FREE" // <--- Importante para o bloqueio VIP funcionar
+                    plano: userData.plano || "FREE"
                 }));
 
                 setTimeout(() => {
@@ -640,25 +636,6 @@ function solicitarRedefinicaoFirebase(event) {
             } else {
                 feedback.innerText = "Erro ao enviar: " + error.message;
             }
-        });
-}
-
-function processarRedefinicaoSenha(event) {
-    event.preventDefault();
-    const emailInput = document.getElementById("resetEmail").value.trim();
-    const feedback = document.getElementById("mensagemFeedback");
-
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A redefinir senha...";
-
-    auth.sendPasswordResetEmail(emailInput)
-        .then(() => {
-            feedback.style.color = "#22c55e";
-            feedback.innerText = "E-mail de redefinição enviado com sucesso!";
-        })
-        .catch((error) => {
-            feedback.style.color = "#e50914";
-            feedback.innerText = "Erro ao redefinir: " + error.message;
         });
 }
 
@@ -765,7 +742,6 @@ function fazerLogout() {
     }
 }
 
-
 // --- LÓGICA DO MODAL E ASSINATURA VIP ---
 let videoTentandoAssistir = null;
 
@@ -799,11 +775,9 @@ function realizarAssinaturaVIP() {
         let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
         if (!usuarioLogado) return;
 
-       
         usuarioLogado.plano = "VIP";
         localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-     
         if (auth.currentUser) {
             db.ref('users/' + auth.currentUser.uid).update({ plano: "VIP" });
         }
@@ -815,7 +789,6 @@ function realizarAssinaturaVIP() {
 
         setTimeout(() => {
             fecharVipModal();
-            
             if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
                 abrirTransmissaoAoVivo();
             } else if (videoTentandoAssistir) {
@@ -825,9 +798,71 @@ function realizarAssinaturaVIP() {
     }, 2000);
 }
 
+// --- LÓGICA DO CHAT VIP EM TEMPO REAL ---
 
+function iniciarEscutaChat() {
+    const chatBox = document.getElementById("chatMessages");
+    if (!chatBox) return;
 
+    db.ref('chat_vip').limitToLast(50).on('value', (snapshot) => {
+        chatBox.innerHTML = "";
+        const mensagensObj = snapshot.val();
 
+        if (!mensagensObj) {
+            chatBox.innerHTML = "<p style='color: #64748b; text-align: center; font-size: 0.9rem;'>Ainda não há mensagens no chat. Seja o primeiro a falar!</p>";
+            return;
+        }
+
+        Object.values(mensagensObj).forEach(msg => {
+            const msgElement = document.createElement("div");
+            msgElement.style.cssText = "margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start;";
+            
+            msgElement.innerHTML = `
+                <img src="${msg.avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #facc15;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <strong style="color: #38bdf8; font-size: 0.9rem;">${msg.nickname}</strong>
+                        <span style="background: #facc15; color: #000; font-size: 0.65rem; font-weight: bold; padding: 1px 6px; border-radius: 4px;">VIP 👑</span>
+                    </div>
+                    <span style="color: #cbd5e1; font-size: 0.9rem; word-break: break-word;">${msg.texto}</span>
+                </div>
+            `;
+            chatBox.appendChild(msgElement);
+        });
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
+}
+
+function enviarMensagemChat(event) {
+    event.preventDefault();
+
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuarioLogado) {
+        alert("Você precisa fazer login para participar do chat!");
+        abrirAuthModal();
+        return;
+    }
+
+    if (!usuarioLogado.plano || usuarioLogado.plano !== "VIP") {
+        abrirVipModal();
+        return;
+    }
+
+    const input = document.getElementById("chatInput");
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    db.ref('chat_vip').push({
+        nickname: usuarioLogado.nickname,
+        avatar: usuarioLogado.avatar,
+        texto: texto,
+        timestamp: new Date().toISOString()
+    });
+
+    input.value = "";
+}
 
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
@@ -927,4 +962,4 @@ window.abrirTransmissaoAoVivo = abrirTransmissaoAoVivo;
 window.abrirVipModal = abrirVipModal;
 window.fecharVipModal = fecharVipModal;
 window.realizarAssinaturaVIP = realizarAssinaturaVIP;
-
+window.enviarMensagemChat = enviarMensagemChat;
