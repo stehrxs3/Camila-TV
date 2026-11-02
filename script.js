@@ -931,7 +931,7 @@ function enviarMensagemChat(event) {
     input.value = "";
 }
 
-function criarNovaComunidade() {
+function pedirCriacaoComunidade() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
     if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
@@ -940,72 +940,45 @@ function criarNovaComunidade() {
         return;
     }
 
-    const input = document.getElementById("novaSalaInput");
-    let nomeSala = input.value.trim().toLowerCase();
-
+    let nomeSala = prompt("Digite o nome da nova comunidade (ex: #tour2026):");
     if (!nomeSala) return;
 
+    nomeSala = nomeSala.trim().toLowerCase();
     if (!nomeSala.startsWith("#")) {
         nomeSala = "#" + nomeSala;
     }
-    nomeSala = nomeSala.replace(/[^a-z0-9#_]/g, "");
+    const idSala = nomeSala.replace('#', '').replace(/[^a-z0-9_]/g, "");
 
-    db.ref(`comunidades/${nomeSala.replace('#', '')}`).set({
+    if (!idSala) {
+        alert("Nome de sala inválido!");
+        return;
+    }
+
+    // Regista no Firebase
+    db.ref(`comunidades/${idSala}`).set({
         criadoPor: usuarioLogado.nickname,
         criadoEm: new Date().toISOString()
     });
 
+    // Adiciona o botão dinamicamente na barra lateral
+    const lateralCol = document.querySelector(".auth-container div[style*='width: 160px']");
+    const botaoNovaSala = lateralCol.querySelector("button[onclick='pedirCriacaoComunidade()']");
+
+    const btnSala = document.createElement("button");
+    btnSala.className = "chat-tab";
+    btnSala.onclick = function() { mudarSalaChat(idSala, this); };
+    btnSala.style.cssText = "background: rgba(255,255,255,0.08); color: #94a3b8; border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; text-align: left; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;";
+    btnSala.innerText = `👑 ${nomeSala}`;
+
+    lateralCol.insertBefore(btnSala, botaoNovaSala);
+
+    // Entra automaticamente na nova sala
+    mudarSalaChat(idSala, btnSala);
     alert(`Comunidade ${nomeSala} criada com sucesso!`);
-    input.value = "";
-    mudarSalaChat(nomeSala.replace('#', ''), null);
 }
 
-// --- PAINEL ADMIN PUXANDO DO FIREBASE ---
-function abrirPainelAdmin() {
-    const senhaAdmin = prompt("Digite a senha de Administrador:");
-    if (senhaAdmin !== "admin123") {
-        alert("Senha incorreta!");
-        return;
-    }
+// Lembra-te de expor a função no final do script.js:
 
-    const tbody = document.getElementById("adminUserTableBody");
-    if (!tbody) return;
-
-    tbody.innerHTML = "<tr><td colspan='5' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
-    document.getElementById("adminModal").style.display = "flex";
-
-    db.ref('users').once('value', (snapshot) => {
-        tbody.innerHTML = "";
-        const usuariosObj = snapshot.val();
-
-        if (!usuariosObj) {
-            tbody.innerHTML = "<tr><td colspan='5' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
-            return;
-        }
-
-        const usuarios = Object.values(usuariosObj);
-
-        usuarios.forEach(u => {
-            let dataFormatada = "N/A";
-            if (u.createdAt) {
-                const dataObj = new Date(u.createdAt);
-                dataFormatada = dataObj.toLocaleDateString('pt-PT') + " " + dataObj.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
-            }
-
-            const totalAcessos = u.history ? u.history.length : 1;
-
-            tbody.innerHTML += `
-                <tr style="border-bottom: 1px solid #334155;">
-                    <td style="padding: 10px;">${u.nickname || 'N/A'}</td>
-                    <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato || u.emailAuth || 'N/A'}</td>
-                    <td style="padding: 10px; color: #facc15;">${u.senha || '********'}</td>
-                    <td style="padding: 10px; color: #cbd5e1;">${dataFormatada}</td>
-                    <td style="padding: 10px; color: #22c55e; font-weight: bold;">${totalAcessos}x</td>
-                </tr>
-            `;
-        });
-    });
-}
 
 function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
@@ -1063,3 +1036,4 @@ window.fecharChatModal = fecharChatModal;
 window.mudarSalaChat = mudarSalaChat;
 window.enviarMensagemChat = enviarMensagemChat;
 window.criarNovaComunidade = criarNovaComunidade;
+window.pedirCriacaoComunidade = pedirCriacaoComunidade;
