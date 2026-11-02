@@ -286,44 +286,44 @@
         </div>
     </div>
 
-   <!-- Modal do Chat com Lateral e Opção de Criar Comunidade -->
-    <div id="chatModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
-        <div class="auth-container" style="background: #1e293b; padding: 20px; border-radius: 12px; width: 100%; max-width: 650px; text-align: left; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-            <span class="close-btn" onclick="fecharChatModal()" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #fff; cursor: pointer;">&times;</span>
+   <!-- Modal do Chat com Lateral e Criação de Comunidades -->
+<div id="chatModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
+    <div class="auth-container" style="background: #1e293b; padding: 20px; border-radius: 12px; width: 100%; max-width: 650px; text-align: left; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        <span class="close-btn" onclick="fecharChatModal()" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #fff; cursor: pointer;">&times;</span>
+        
+        <h2 style="color: #fff; margin-bottom: 15px; font-size: 1.3rem;">💬 Chat & Comunidades</h2>
+        
+        <!-- Estrutura em Duas Colunas -->
+        <div style="display: flex; gap: 15px; height: 350px;">
             
-            <h2 style="color: #fff; margin-bottom: 15px; font-size: 1.3rem;">💬 Chat & Comunidades</h2>
-            
-            <!-- Estrutura em Duas Colunas -->
-            <div style="display: flex; gap: 15px; height: 350px;">
+            <!-- Coluna Lateral de Salas (com ID para manipulação dinâmica) -->
+            <div id="chatSidebar" style="width: 160px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid rgba(255,255,255,0.08); padding-right: 10px; overflow-y: auto;">
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; margin-bottom: 4px; text-transform: uppercase;">Salas</span>
                 
-                <!-- Coluna Lateral de Salas -->
-                <div style="width: 160px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid rgba(255,255,255,0.08); padding-right: 10px; overflow-y: auto;">
-                    <span style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; margin-bottom: 4px; text-transform: uppercase;">Salas</span>
-                    
-                    <button class="chat-tab active" onclick="mudarSalaChat('global', this)" style="background: #2b39d2; color: #fff; border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; text-align: left; width: 100%;">🌐 #global</button>
-                    
-                    <!-- Botão para Criar Nova Comunidade -->
-                    <button onclick="pedirCriacaoComunidade()" style="margin-top: auto; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px dashed #22c55e; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; text-align: center; width: 100%;">➕ Nova Sala</button>
-                </div>
-
-                <!-- Coluna Principal (Mensagens e Envio) -->
-                <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-                    
-                    <!-- Caixa de Mensagens -->
-                    <div id="chatMessages" style="flex: 1; overflow-y: auto; background: #030712; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 10px;">
-                        <p style="color: #64748b; text-align: center; font-size: 0.9rem;">Carregando mensagens...</p>
-                    </div>
-
-                    <!-- Formulário de Envio -->
-                    <form onsubmit="enviarMensagemChat(event)" style="display: flex; gap: 8px;">
-                        <input type="text" id="chatInput" placeholder="Escreva a sua mensagem..." required style="flex: 1; padding: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; outline: none; font-size: 0.9rem;">
-                        <button type="submit" style="padding: 0 16px; background: #2b39d2; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Enviar</button>
-                    </form>
-                </div>
-
+                <button class="chat-tab active" onclick="mudarSalaChat('global', this)" style="background: #2b39d2; color: #fff; border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; text-align: left; width: 100%;">🌐 #global</button>
+                
+                <!-- Botão para Criar Nova Comunidade -->
+                <button id="btnNovaSala" onclick="pedirCriacaoComunidade()" style="margin-top: auto; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px dashed #22c55e; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; text-align: center; width: 100%;">➕ Nova Sala</button>
             </div>
+
+            <!-- Coluna Principal (Mensagens e Envio) -->
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                
+                <!-- Caixa de Mensagens -->
+                <div id="chatMessages" style="flex: 1; overflow-y: auto; background: #030712; padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 10px;">
+                    <p style="color: #64748b; text-align: center; font-size: 0.9rem;">Carregando mensagens...</p>
+                </div>
+
+                <!-- Formulário de Envio -->
+                <form onsubmit="enviarMensagemChat(event)" style="display: flex; gap: 8px;">
+                    <input type="text" id="chatInput" placeholder="Escreva a sua mensagem..." required style="flex: 1; padding: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; outline: none; font-size: 0.9rem;">
+                    <button type="submit" style="padding: 0 16px; background: #2b39d2; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Enviar</button>
+                </form>
+            </div>
+
         </div>
     </div>
+</div>
 
     <div id="adminModal" class="modal">
         <div class="auth-container" style="max-width: 650px;">
