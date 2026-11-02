@@ -840,15 +840,6 @@ function abrirChatModal() {
     }
     const modal = document.getElementById("chatModal");
     if (modal) modal.style.display = "flex";
-
-  const isMobile = window.innerWidth <= 768;
-    const chatContainer = document.getElementById("chatContainerFlex") || document.querySelector(".chat-layout");
-    
-    if (chatContainer && isMobile) {
-        chatContainer.style.flexDirection = "column";
-        chatContainer.style.width = "100%";
-    }
-}
 }
 
 function fecharChatModal() {
