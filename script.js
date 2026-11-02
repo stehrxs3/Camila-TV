@@ -842,6 +842,29 @@ function realizarAssinaturaVIP() {
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
 
+function abrirChatModal() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuarioLogado) {
+        alert("Precisa de iniciar sessão para aceder ao chat!");
+        abrirAuthModal();
+        return;
+    }
+
+    const chatModal = document.getElementById("chatModal"); // Substitua pelo ID real do modal do chat no seu HTML
+    if (chatModal) {
+        chatModal.style.display = "flex";
+    } else {
+        console.error("Erro: Elemento #chatModal não encontrado no HTML.");
+    }
+}
+
+function fecharChatModal() {
+    const chatModal = document.getElementById("chatModal");
+    if (chatModal) {
+        chatModal.style.display = "none";
+    }
+}
+
 function mudarSalaChat(sala, btn) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
