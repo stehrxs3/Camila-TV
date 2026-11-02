@@ -25,6 +25,7 @@
                 <button class="cat-btn" onclick="filtrarCategoria('Entrevistas', this)">Entrevistas</button>
                 <button class="cat-btn" onclick="filtrarCategoria('Vlogs', this)">Vlogs</button>
                 <button class="cat-btn" onclick="filtrarCategoria('Movie & Series', this)">Movies & Series</button>
+                <button class="cat-btn" onclick="abrirVipModal()" style="color: #facc15; font-weight: bold;">👑 Torne-se VIP</button>
             </nav>
         </div>
 
@@ -55,14 +56,28 @@
         <div class="video-grid" id="videoGrid"></div>
     </main>
 
+    <!-- Secção do Chat da Comunidade VIP -->
+    <section class="container" style="margin-top: 40px;">
+        <h2 class="section-title">💬 Chat Global (Exclusivo para VIPs)</h2>
+        <div style="background: #0b0f19; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 20px; max-width: 600px;">
+            
+            <div id="chatMessages" style="height: 300px; overflow-y: auto; background: #030712; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                <p style="color: #64748b; text-align: center; font-size: 0.9rem;">Carregando mensagens...</p>
+            </div>
+
+            <form onsubmit="enviarMensagemChat(event)" style="display: flex; gap: 10px;">
+                <input type="text" id="chatInput" placeholder="Escreva a sua mensagem (Apenas VIPs)..." required style="flex: 1; padding: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; outline: none;">
+                <button type="submit" style="padding: 0 20px; background: #2b39d2; color: #fff; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">Enviar</button>
+            </form>
+        </div>
+    </section>
+
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
-
             <div class="iframe-container" id="videoContainer">
                 <iframe id="videoPlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
-
             <div class="modal-info-body">
                 <h2 id="modalVideoTitle" class="video-info-title">Título do Vídeo</h2>
                 <div class="video-meta-tags">
@@ -172,7 +187,6 @@
                     </label>
                 </div>
                 
-                <!-- Botão unificado com reCAPTCHA -->
                 <button type="submit" class="btn-submit g-recaptcha"
                     data-sitekey="6Lda5gsuAAAAALjXRgR-23fW5JuGO3kbhzmzNN8r"
                     data-callback="onSubmit"
@@ -259,31 +273,29 @@
         </div>
     </div>
 
-
     <!-- Modal de Assinatura VIP -->
-<div id="vipModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
-    <div class="auth-container" style="background: #1e293b; padding: 30px; border-radius: 12px; width: 100%; max-width: 450px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-        <span class="close-btn" onclick="fecharVipModal()" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #fff; cursor: pointer;">&times;</span>
-        <div style="font-size: 3rem; margin-bottom: 10px;">👑</div>
-        <h2 style="color: #fff; margin-bottom: 10px;">Conteúdo Exclusivo VIP</h2>
-        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
-            Este conteúdo ou transmissão é exclusivo para assinantes da Camila TV+. Faça um upgrade na sua conta para desbloquear tudo.
-        </p>
-        
-        <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid #38bdf8; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-            <span style="font-size: 1.1rem; font-weight: bold; color: #38bdf8;">Plano VIP Mensal</span>
-            <p style="color: #fff; font-size: 1.5rem; font-weight: bold; margin: 5px 0;">R$ 19,90 <span style="font-size: 0.8rem; color: #94a3b8;">/mês</span></p>
+    <div id="vipModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
+        <div class="auth-container" style="background: #1e293b; padding: 30px; border-radius: 12px; width: 100%; max-width: 450px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <span class="close-btn" onclick="fecharVipModal()" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #fff; cursor: pointer;">&times;</span>
+            <div style="font-size: 3rem; margin-bottom: 10px;">👑</div>
+            <h2 style="color: #fff; margin-bottom: 10px;">Conteúdo Exclusivo VIP</h2>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+                Este conteúdo ou transmissão é exclusivo para assinantes da Camila TV+. Faça um upgrade na sua conta para desbloquear tudo.
+            </p>
+            
+            <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid #38bdf8; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <span style="font-size: 1.1rem; font-weight: bold; color: #38bdf8;">Plano VIP Mensal</span>
+                <p style="color: #fff; font-size: 1.5rem; font-weight: bold; margin: 5px 0;">R$ 19,90 <span style="font-size: 0.8rem; color: #94a3b8;">/mês</span></p>
+            </div>
+
+            <button onclick="realizarAssinaturaVIP()" class="btn-submit" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                Tornar-se VIP Agora
+            </button>
+            
+            <div id="mensagemVipFeedback" class="feedback" style="margin-top: 15px; font-size: 0.9rem;"></div>
         </div>
-
-        <button onclick="realizarAssinaturaVIP()" class="btn-submit" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-            Tornar-se VIP Agora
-        </button>
-        
-        <div id="mensagemVipFeedback" class="feedback" style="margin-top: 15px; font-size: 0.9rem;"></div>
     </div>
-</div>
 
-    
     <div id="adminModal" class="modal">
         <div class="auth-container" style="max-width: 650px;">
             <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
