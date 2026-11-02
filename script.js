@@ -1,3 +1,4 @@
+
 const firebaseConfig = {
   apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
@@ -277,18 +278,7 @@ function converterImagemDrive(url) {
 
 function converterParaEmbedDrive(url) {
     if (!url) return "";
-    let cleanUrl = url.replace(/\/view(\?.*)?$/, "").replace(/\/edit(\?.*)?$/, "");
-    return `${cleanUrl}/preview?rm=minimal&usp=embed_object`;
-}
-function converterParaVideoDiretoDrive(url) {
-    if (!url) return "";
-    if (url.includes("drive.google.com")) {
-        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        if (match && match[1]) {
-            return `https://lh3.googleusercontent.com/d/${match[1]}`;
-        }
-    }
-    return url;
+    return url.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
 }
 
 function configurarDestaque() {
@@ -385,28 +375,13 @@ function abrirVideo(video) {
     container.innerHTML = "";
     let url = video.videoUrl || "";
 
-    if (video.legendas || url.endsWith(".mp4") || url.endsWith(".webm") || url.includes("drive.google.com")) {
-        if (url.includes("drive.google.com")) {
-            url = converterParaVideoDiretoDrive(url);
-        }
+    if (url.includes("drive.google.com")) {
+        url = converterParaEmbedDrive(url);
+    }
 
-        let tracksHtml = "";
-        if (video.legendas) {
-            if (video.legendas.pt) tracksHtml += `<track src="${video.legendas.pt}" kind="subtitles" srclang="pt" label="Português" default>`;
-            if (video.legendas.en) tracksHtml += `<track src="${video.legendas.en}" kind="subtitles" srclang="en" label="English">`;
-            if (video.legendas.es) tracksHtml += `<track src="${video.legendas.es}" kind="subtitles" srclang="es" label="Español">`;
-        }
-
-        container.innerHTML = `
-            <video controls autoplay style="width: 100%; height: 100%; border-radius: 8px;">
-                <source src="${url}" type="video/mp4">
-                ${tracksHtml}
-            </video>
-        `;
+    if (url.endsWith(".mp4") || url.endsWith(".webm")) {
+        container.innerHTML = `<video src="${url}" controls autoplay allowfullscreen></video>`;
     } else {
-        if (url.includes("drive.google.com")) {
-            url = converterParaEmbedDrive(url);
-        }
         container.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     }
 
@@ -780,6 +755,7 @@ function fazerLogout() {
     }
 }
 
+// --- LÓGICA DO MODAL E ASSINATURA VIP ---
 let videoTentandoAssistir = null;
 
 function abrirVipModal(video) {
@@ -835,6 +811,7 @@ function realizarAssinaturaVIP() {
     }, 2000);
 }
 
+// --- LÓGICA DE ABERTURA DO MODAL DE CHAT ---
 function abrirChatModal() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     if (!usuarioLogado) {
@@ -851,6 +828,7 @@ function fecharChatModal() {
     if (modal) modal.style.display = "none";
 }
 
+// --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
 
@@ -956,6 +934,7 @@ function enviarMensagemChat(event) {
 function pedirCriacaoComunidade() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
+    // Verifica se está logado e se é VIP
     if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
         alert("Apenas utilizadores VIP podem criar novas comunidades!");
         abrirVipModal({ titulo: "Criar Comunidade Exclusiva" });
@@ -976,11 +955,13 @@ function pedirCriacaoComunidade() {
         return;
     }
 
+    // Regista a nova sala no Firebase
     db.ref(`comunidades/${idSala}`).set({
         criadoPor: usuarioLogado.nickname,
         criadoEm: new Date().toISOString()
     });
 
+    // Procura os elementos pelo ID com segurança
     const lateralCol = document.getElementById("chatSidebar");
     const botaoNovaSala = document.getElementById("btnNovaSala");
 
@@ -996,10 +977,11 @@ function pedirCriacaoComunidade() {
         alert(`Comunidade ${nomeSala} criada com sucesso!`);
     } else {
         alert(`Comunidade ${nomeSala} criada com sucesso!`);
-        location.reload();
+        location.reload(); // Recarrega se houver falha no DOM para atualizar a lista
     }
 }
 
+// --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
     if (senhaAdmin !== "admin123") {
@@ -1051,6 +1033,7 @@ function fecharAdminModal() {
     if (adminModal) adminModal.style.display = "none";
 }
 
+// Atalho F8 para abrir o Admin
 document.addEventListener("keydown", (event) => {
     if (event.code === "F8") {
         event.preventDefault();
@@ -1076,6 +1059,8 @@ function clicarLogoAdmin() {
     }
 }
 
+
+// Expõe globalmente
 window.abrirAuthModal = abrirAuthModal;
 window.fecharAuthModal = fecharAuthModal;
 window.fecharVideo = fecharVideo;
