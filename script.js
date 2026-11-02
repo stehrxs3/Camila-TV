@@ -42,11 +42,6 @@ const listaDeVideos = [
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista ao show completo de Camila Cabello no The Town, sendo a última parada da C,XOXO Tour.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
-        legendas: {
-            pt: "legendas/the-town-pt.vtt",
-            en: "legendas/the-town-en.vtt",
-            es: "legendas/the-town-es.vtt"
-        },
         destaque: true
     },
     {
