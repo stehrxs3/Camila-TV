@@ -1028,11 +1028,12 @@ function abrirPainelAdmin() {
     });
 }
 
-
 function fecharAdminModal() {
-    document.getElementById("adminModal").style.display = "none";
+    const adminModal = document.getElementById("adminModal");
+    if (adminModal) adminModal.style.display = "none";
 }
 
+// Atalho F8 para abrir o Admin
 document.addEventListener("keydown", (event) => {
     if (event.code === "F8") {
         event.preventDefault();
@@ -1058,6 +1059,7 @@ function clicarLogoAdmin() {
     }
 }
 
+
 // Expõe globalmente
 window.abrirAuthModal = abrirAuthModal;
 window.fecharAuthModal = fecharAuthModal;
@@ -1065,9 +1067,9 @@ window.fecharVideo = fecharVideo;
 window.fecharLive = fecharLive;
 window.fecharProfileModal = fecharProfileModal;
 window.mudarAba = mudarAba;
-window.clicarLogoAdmin = clicarLogoAdmin;
 window.abrirPainelAdmin = abrirPainelAdmin;
 window.fecharAdminModal = fecharAdminModal;
+window.clicarLogoAdmin = clicarLogoAdmin;
 window.realizarCadastro = realizarCadastro;
 window.onSubmit = onSubmit;
 window.realizarLogin = realizarLogin;
