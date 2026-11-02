@@ -1,4 +1,3 @@
-
 const firebaseConfig = {
   apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
@@ -43,6 +42,11 @@ const listaDeVideos = [
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Assista ao show completo de Camila Cabello no The Town, sendo a última parada da C,XOXO Tour.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
+        legendas: {
+            pt: "legendas/the-town-pt.vtt",
+            en: "legendas/the-town-en.vtt",
+            es: "legendas/the-town-es.vtt"
+        },
         destaque: true
     },
     {
@@ -350,6 +354,7 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
+// --- FUNÇÃO ABRIR VÍDEO ATUALIZADA COM SUPORTE A LEGENDA ---
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -375,13 +380,25 @@ function abrirVideo(video) {
     container.innerHTML = "";
     let url = video.videoUrl || "";
 
-    if (url.includes("drive.google.com")) {
-        url = converterParaEmbedDrive(url);
-    }
+    // Se o vídeo for MP4/WebM ou possuir legendas configuradas, renderiza com suporte a <track>
+    if (url.endsWith(".mp4") || url.endsWith(".webm") || video.legendas) {
+        let tracksHtml = "";
+        if (video.legendas) {
+            if (video.legendas.pt) tracksHtml += `<track src="${video.legendas.pt}" kind="subtitles" srclang="pt" label="Português" default>`;
+            if (video.legendas.en) tracksHtml += `<track src="${video.legendas.en}" kind="subtitles" srclang="en" label="English">`;
+            if (video.legendas.es) tracksHtml += `<track src="${video.legendas.es}" kind="subtitles" srclang="es" label="Español">`;
+        }
 
-    if (url.endsWith(".mp4") || url.endsWith(".webm")) {
-        container.innerHTML = `<video src="${url}" controls autoplay allowfullscreen></video>`;
+        container.innerHTML = `
+            <video controls autoplay style="width: 100%; height: 100%; border-radius: 8px;">
+                <source src="${url}" type="video/mp4">
+                ${tracksHtml}
+            </video>
+        `;
     } else {
+        if (url.includes("drive.google.com")) {
+            url = converterParaEmbedDrive(url);
+        }
         container.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     }
 
@@ -934,7 +951,6 @@ function enviarMensagemChat(event) {
 function pedirCriacaoComunidade() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    // Verifica se está logado e se é VIP
     if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
         alert("Apenas utilizadores VIP podem criar novas comunidades!");
         abrirVipModal({ titulo: "Criar Comunidade Exclusiva" });
@@ -955,13 +971,11 @@ function pedirCriacaoComunidade() {
         return;
     }
 
-    // Regista a nova sala no Firebase
     db.ref(`comunidades/${idSala}`).set({
         criadoPor: usuarioLogado.nickname,
         criadoEm: new Date().toISOString()
     });
 
-    // Procura os elementos pelo ID com segurança
     const lateralCol = document.getElementById("chatSidebar");
     const botaoNovaSala = document.getElementById("btnNovaSala");
 
@@ -977,7 +991,7 @@ function pedirCriacaoComunidade() {
         alert(`Comunidade ${nomeSala} criada com sucesso!`);
     } else {
         alert(`Comunidade ${nomeSala} criada com sucesso!`);
-        location.reload(); // Recarrega se houver falha no DOM para atualizar a lista
+        location.reload();
     }
 }
 
@@ -1033,7 +1047,6 @@ function fecharAdminModal() {
     if (adminModal) adminModal.style.display = "none";
 }
 
-// Atalho F8 para abrir o Admin
 document.addEventListener("keydown", (event) => {
     if (event.code === "F8") {
         event.preventDefault();
@@ -1058,7 +1071,6 @@ function clicarLogoAdmin() {
         abrirPainelAdmin();
     }
 }
-
 
 // Expõe globalmente
 window.abrirAuthModal = abrirAuthModal;
