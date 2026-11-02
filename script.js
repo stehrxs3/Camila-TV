@@ -1095,6 +1095,6 @@ window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 window.abrirChatModal = abrirChatModal;
 window.fecharChatModal = fecharChatModal;
 window.mudarSalaChat = mudarSalaChat;
-window.enviarMensagemChat = enviarMensagemChat;
 window.criarNovaComunidade = criarNovaComunidade;
+window.enviarMensagemChat = enviarMensagemChat;
 window.pedirCriacaoComunidade = pedirCriacaoComunidade;
