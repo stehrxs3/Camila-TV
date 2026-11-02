@@ -934,9 +934,10 @@ function enviarMensagemChat(event) {
 function pedirCriacaoComunidade() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
+    // Verifica se está logado e se é VIP
     if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
         alert("Apenas utilizadores VIP podem criar novas comunidades!");
-        abrirVipModal();
+        abrirVipModal({ titulo: "Criar Comunidade Exclusiva" });
         return;
     }
 
@@ -954,31 +955,31 @@ function pedirCriacaoComunidade() {
         return;
     }
 
-    // Regista no Firebase
+    // Regista a nova sala no Firebase
     db.ref(`comunidades/${idSala}`).set({
         criadoPor: usuarioLogado.nickname,
         criadoEm: new Date().toISOString()
     });
 
-    // Adiciona o botão dinamicamente na barra lateral
-    const lateralCol = document.querySelector(".auth-container div[style*='width: 160px']");
-    const botaoNovaSala = lateralCol.querySelector("button[onclick='pedirCriacaoComunidade()']");
+    // Procura os elementos pelo ID com segurança
+    const lateralCol = document.getElementById("chatSidebar");
+    const botaoNovaSala = document.getElementById("btnNovaSala");
 
-    const btnSala = document.createElement("button");
-    btnSala.className = "chat-tab";
-    btnSala.onclick = function() { mudarSalaChat(idSala, this); };
-    btnSala.style.cssText = "background: rgba(255,255,255,0.08); color: #94a3b8; border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; text-align: left; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;";
-    btnSala.innerText = `👑 ${nomeSala}`;
+    if (lateralCol && botaoNovaSala) {
+        const btnSala = document.createElement("button");
+        btnSala.className = "chat-tab";
+        btnSala.onclick = function() { mudarSalaChat(idSala, this); };
+        btnSala.style.cssText = "background: rgba(255,255,255,0.08); color: #94a3b8; border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; text-align: left; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;";
+        btnSala.innerText = `👑 ${nomeSala}`;
 
-    lateralCol.insertBefore(btnSala, botaoNovaSala);
-
-    // Entra automaticamente na nova sala
-    mudarSalaChat(idSala, btnSala);
-    alert(`Comunidade ${nomeSala} criada com sucesso!`);
+        lateralCol.insertBefore(btnSala, botaoNovaSala);
+        mudarSalaChat(idSala, btnSala);
+        alert(`Comunidade ${nomeSala} criada com sucesso!`);
+    } else {
+        alert(`Comunidade ${nomeSala} criada com sucesso!`);
+        location.reload(); // Recarrega se houver falha no DOM para atualizar a lista
+    }
 }
-
-// Lembra-te de expor a função no final do script.js:
-
 
 function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
