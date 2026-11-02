@@ -401,7 +401,6 @@ function fecharVideo() {
     modal.style.display = "none";
 }
 
-// Certifica-te de que esta função existe no teu script.js
 function abrirTransmissaoAoVivo() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -411,6 +410,7 @@ function abrirTransmissaoAoVivo() {
         return;
     }
 
+    // Verifica se o usuário é VIP
     if (!usuarioLogado.plano || usuarioLogado.plano !== "VIP") {
         abrirVipModal({ titulo: "Transmissão Ao Vivo" });
         return;
@@ -420,14 +420,13 @@ function abrirTransmissaoAoVivo() {
     const livePlayer = document.getElementById("livePlayer");
     
     if (liveModal && livePlayer) {
-        livePlayer.src = window.urlTransmissaoAoVivo || "https://player.kick.com/..."; // Coloca o teu link da Kick aqui
+        // Usa o player embed correto da Kick
+        livePlayer.src = "https://player.kick.com/camilatvplus"; 
         liveModal.style.display = "flex";
     } else {
         console.error("Erro: Elementos do modal da live não encontrados no HTML.");
     }
 }
-
-
 
 function fecharLive() {
     const liveModal = document.getElementById("liveModal");
