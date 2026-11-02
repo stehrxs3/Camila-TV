@@ -277,9 +277,9 @@ function converterImagemDrive(url) {
 
 function converterParaEmbedDrive(url) {
     if (!url) return "";
-    return url.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
+    let cleanUrl = url.replace(/\/view(\?.*)?$/, "").replace(/\/edit(\?.*)?$/, "");
+    return `${cleanUrl}/preview?rm=minimal&usp=embed_object`;
 }
-
 function converterParaVideoDiretoDrive(url) {
     if (!url) return "";
     if (url.includes("drive.google.com")) {
