@@ -703,82 +703,79 @@ body {
         flex-direction: column !important;
     }
 
-   /* Container principal alinhado estritamente em coluna */
-    .chat-layout, 
+  chat-layout, 
     #chatContainerFlex, 
-    .modal-chat-content,
-    div[class*="chat-container"] {
+    .modal-chat-content {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
+        height: 100% !important;
         box-sizing: border-box !important;
-        gap: 10px !important;
+        gap: 8px !important;
+        transform: none !important; /* Garante que nada fica virado de lado */
     }
 
-    /* Transforma o painel de comunidades numa barra horizontal discreta no topo */
+    /* Barra de Salas (Comunidades) na horizontal estrita no topo */
     #chatSidebar, 
-    .chat-sidebar,
-    aside[class*="sidebar"] {
+    .chat-sidebar {
         width: 100% !important;
         min-width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
-        min-height: unset !important;
         display: flex !important;
         flex-direction: row !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
-        background: rgba(15, 23, 42, 0.6) !important;
-        padding: 6px 8px !important;
+        background: rgba(15, 23, 42, 0.8) !important;
+        padding: 8px !important;
         border-radius: 8px !important;
         gap: 8px !important;
         align-items: center !important;
         box-sizing: border-box !important;
     }
 
-    /* Transforma as salas e o botão + Nova Sala em chips/botões horizontais */
+    /* Estilo dos botões das salas na barra superior */
     #chatSidebar .chat-tab, 
     .chat-sidebar button,
-    #chatSidebar > div,
     #chatSidebar button {
         flex: 0 0 auto !important;
         width: auto !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        padding: 6px 14px !important;
+        padding: 6px 12px !important;
         font-size: 0.85rem !important;
         border-radius: 20px !important;
         margin: 0 !important;
     }
 
-    /* O painel do chat ocupa a largura total logo abaixo */
+    /* Área principal do chat logo abaixo das salas */
     .chat-main-area, 
-    #chatMainContent,
-    main[class*="chat"] {
+    #chatMainContent {
         width: 100% !important;
         min-width: 100% !important;
         flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
+        transform: none !important;
     }
 
-    /* Ajusta a área de mensagens para caber perfeitamente */
+    /* Mensagens com tamanho ideal no telemóvel */
     #chatMessages {
         width: 100% !important;
-        height: 240px !important;
-        max-height: 40vh !important;
+        height: 250px !important;
+        max-height: 45vh !important;
     }
 
-    /* Ajuste da barra de input e botão de enviar */
-    .chat-input-area, form[class*="input"] {
+    /* Campo de escrita e botão enviar alinhados em baixo */
+    .chat-input-area, form {
         width: 100% !important;
         display: flex !important;
-        gap: 8px !important;
+        gap: 6px !important;
     }
 
     #chatInput {
         flex: 1 !important;
-        font-size: 16px !important; /* Evita zoom automático no iOS/Android */
+        font-size: 16px !important; /* Impede o zoom automático no telemóvel */
     }
 }
