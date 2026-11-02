@@ -614,29 +614,36 @@ function solicitarRedefinicaoFirebase(event) {
         return;
     }
 
+    if (!emailInput.includes("@") || emailInput.endsWith("@camilatv.com")) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Recuperação disponível apenas para contas cadastradas com e-mail real.";
+        return;
+    }
+
     feedback.style.color = "#38bdf8";
     feedback.innerText = "A enviar o link de redefinição...";
 
-    auth.sendPasswordResetEmail(emailInput)
-        .then(() => {
-            feedback.style.color = "#22c55e";
-            feedback.innerText = "E-mail de recuperação enviado! Verifique a sua caixa de entrada.";
-            
-            setTimeout(() => {
-                document.getElementById("resetForm").reset();
-                mudarAba('login');
-            }, 3000);
-        })
-        .catch((error) => {
-            console.error("Erro ao enviar e-mail nativo:", error);
-            feedback.style.color = "#e50914";
-            
-            if (error.code === 'auth/user-not-found') {
-                feedback.innerText = "Este e-mail não está cadastrado.";
-            } else {
-                feedback.innerText = "Erro ao enviar: " + error.message;
-            }
-        });
+    // Configurações do redirecionamento
+    const actionCodeSettings = {
+        url: 'https://camilatv.vercel.app', // Substitua pelo seu domínio da Vercel
+        handleCodeInApp: true
+    };
+
+    auth.sendPasswordResetEmail(emailInput, actionCodeSettings)
+    .then(() => {
+        feedback.style.color = "#22c55e";
+        feedback.innerText = "E-mail enviado com sucesso! Verifique a caixa de entrada e o SPAM.";
+        
+        setTimeout(() => {
+            document.getElementById("resetForm").reset();
+            mudarAba('login');
+        }, 3000);
+    })
+    .catch((error) => {
+        console.error("Erro no envio:", error);
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Erro ao enviar: " + error.message;
+    });
 }
 
 function verificarSessaoUsuario() {
