@@ -703,79 +703,78 @@ body {
         flex-direction: column !important;
     }
 
-  chat-layout, 
-    #chatContainerFlex, 
-    .modal-chat-content {
+ /* 1. Modal e Container em Coluna Única */
+    #chatModal .auth-container,
+    #chatModal .modal-content,
+    #chatContainerFlex,
+    .chat-layout {
         display: flex !important;
         flex-direction: column !important;
+        grid-template-columns: 1fr !important; /* Desativa qualquer Grid antigo */
         width: 100% !important;
-        height: 100% !important;
+        max-width: 100% !important;
         box-sizing: border-box !important;
-        gap: 8px !important;
-        transform: none !important; /* Garante que nada fica virado de lado */
+        gap: 10px !important;
+        padding: 10px !important;
     }
 
-    /* Barra de Salas (Comunidades) na horizontal estrita no topo */
-    #chatSidebar, 
+    /* 2. Barra Superior de Comunidades (Horizontal) */
+    #chatSidebar,
     .chat-sidebar {
-        width: 100% !important;
-        min-width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
         display: flex !important;
         flex-direction: row !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        height: auto !important;
+        min-height: unset !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
-        background: rgba(15, 23, 42, 0.8) !important;
+        background: #0f172a !important;
         padding: 8px !important;
         border-radius: 8px !important;
         gap: 8px !important;
-        align-items: center !important;
         box-sizing: border-box !important;
     }
 
-    /* Estilo dos botões das salas na barra superior */
-    #chatSidebar .chat-tab, 
-    .chat-sidebar button,
-    #chatSidebar button {
+    /* Botões dentro da barra de comunidades */
+    #chatSidebar *,
+    .chat-sidebar * {
         flex: 0 0 auto !important;
         width: auto !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        padding: 6px 12px !important;
-        font-size: 0.85rem !important;
-        border-radius: 20px !important;
-        margin: 0 !important;
     }
 
-    /* Área principal do chat logo abaixo das salas */
-    .chat-main-area, 
+    /* 3. Área Completa do Chat por Baixo */
+    .chat-main-area,
     #chatMainContent {
+        display: flex !important;
+        flex-direction: column !important;
         width: 100% !important;
         min-width: 100% !important;
         flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        transform: none !important;
+        box-sizing: border-box !important;
     }
 
-    /* Mensagens com tamanho ideal no telemóvel */
+    /* Caixa das Mensagens */
     #chatMessages {
         width: 100% !important;
-        height: 250px !important;
-        max-height: 45vh !important;
+        height: 220px !important;
+        max-height: 40vh !important;
+        box-sizing: border-box !important;
     }
 
-    /* Campo de escrita e botão enviar alinhados em baixo */
-    .chat-input-area, form {
-        width: 100% !important;
+    /* Input e Botão Enviar */
+    .chat-input-area,
+    .chat-main-area form {
         display: flex !important;
+        width: 100% !important;
         gap: 6px !important;
+        box-sizing: border-box !important;
     }
 
     #chatInput {
         flex: 1 !important;
-        font-size: 16px !important; /* Impede o zoom automático no telemóvel */
+        width: 100% !important;
+        font-size: 16px !important;
     }
+}
 }
