@@ -981,6 +981,54 @@ function pedirCriacaoComunidade() {
     }
 }
 
+// --- PAINEL ADMIN PUXANDO DO FIREBASE ---
+function abrirPainelAdmin() {
+    const senhaAdmin = prompt("Digite a senha de Administrador:");
+    if (senhaAdmin !== "admin123") {
+        alert("Senha incorreta!");
+        return;
+    }
+
+    const tbody = document.getElementById("adminUserTableBody");
+    if (!tbody) return;
+
+    tbody.innerHTML = "<tr><td colspan='5' style='padding: 10px; text-align: center; color: #888;'>Carregando do Firebase...</td></tr>";
+    document.getElementById("adminModal").style.display = "flex";
+
+    db.ref('users').once('value', (snapshot) => {
+        tbody.innerHTML = "";
+        const usuariosObj = snapshot.val();
+
+        if (!usuariosObj) {
+            tbody.innerHTML = "<tr><td colspan='5' style='padding: 10px; text-align: center; color: #888;'>Nenhum usuário cadastrado na nuvem.</td></tr>";
+            return;
+        }
+
+        const usuarios = Object.values(usuariosObj);
+
+        usuarios.forEach(u => {
+            let dataFormatada = "N/A";
+            if (u.createdAt) {
+                const dataObj = new Date(u.createdAt);
+                dataFormatada = dataObj.toLocaleDateString('pt-PT') + " " + dataObj.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+            }
+
+            const totalAcessos = u.history ? u.history.length : 1;
+
+            tbody.innerHTML += `
+                <tr style="border-bottom: 1px solid #334155;">
+                    <td style="padding: 10px;">${u.nickname || 'N/A'}</td>
+                    <td style="padding: 10px; color: #38bdf8; font-weight: 500;">${u.contato || u.emailAuth || 'N/A'}</td>
+                    <td style="padding: 10px; color: #facc15;">${u.senha || '********'}</td>
+                    <td style="padding: 10px; color: #cbd5e1;">${dataFormatada}</td>
+                    <td style="padding: 10px; color: #22c55e; font-weight: bold;">${totalAcessos}x</td>
+                </tr>
+            `;
+        });
+    });
+}
+
+
 function fecharAdminModal() {
     document.getElementById("adminModal").style.display = "none";
 }
