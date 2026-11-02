@@ -1030,4 +1030,4 @@ window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 window.abrirChatModal = abrirChatModal;
 window.fecharChatModal = fecharChatModal;
 window.mudarSalaChat = mudarSalaChat;
-window.enviarMensagemChat = enviarMensagemChat;;
+window.enviarMensagemChat = enviarMensagemChat;
