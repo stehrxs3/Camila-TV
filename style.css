@@ -702,79 +702,83 @@ body {
     .chat-layout, #chatContainerFlex {
         flex-direction: column !important;
     }
-
- /* 1. Modal e Container em Coluna Única */
+/* 1. Organiza o modal em coluna única */
     #chatModal .auth-container,
     #chatModal .modal-content,
     #chatContainerFlex,
     .chat-layout {
         display: flex !important;
         flex-direction: column !important;
-        grid-template-columns: 1fr !important; /* Desativa qualquer Grid antigo */
         width: 100% !important;
         max-width: 100% !important;
+        height: 85vh !important;
         box-sizing: border-box !important;
-        gap: 10px !important;
+        gap: 8px !important;
         padding: 10px !important;
     }
 
-    /* 2. Barra Superior de Comunidades (Horizontal) */
+    /* 2. Barra de comunidades bem compacta no topo */
     #chatSidebar,
     .chat-sidebar {
         display: flex !important;
         flex-direction: row !important;
         width: 100% !important;
-        min-width: 100% !important;
-        height: auto !important;
-        min-height: unset !important;
+        height: 45px !important; /* Altura fixa menor para ocupar pouco espaço */
+        min-height: 45px !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
         background: #0f172a !important;
-        padding: 8px !important;
-        border-radius: 8px !important;
-        gap: 8px !important;
+        padding: 4px 8px !important;
+        border-radius: 6px !important;
+        gap: 6px !important;
+        align-items: center !important;
         box-sizing: border-box !important;
     }
 
-    /* Botões dentro da barra de comunidades */
-    #chatSidebar *,
-    .chat-sidebar * {
+    /* Botões das salas menores */
+    #chatSidebar .chat-tab,
+    .chat-sidebar button,
+    #chatSidebar button {
         flex: 0 0 auto !important;
         width: auto !important;
+        padding: 4px 10px !important;
+        font-size: 0.75rem !important;
+        height: 32px !important;
     }
 
-    /* 3. Área Completa do Chat por Baixo */
+    /* 3. A área do chat ganha o máximo de espaço possível abaixo */
     .chat-main-area,
     #chatMainContent {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
-        min-width: 100% !important;
         flex: 1 !important;
         box-sizing: border-box !important;
     }
 
-    /* Caixa das Mensagens */
+    /* Caixa de mensagens ampla e com boa rolagem */
     #chatMessages {
         width: 100% !important;
-        height: 220px !important;
-        max-height: 40vh !important;
+        flex: 1 !important;
+        height: auto !important;
+        max-height: none !important;
         box-sizing: border-box !important;
     }
 
-    /* Input e Botão Enviar */
+    /* Input e botão de enviar alinhados no fundo */
     .chat-input-area,
     .chat-main-area form {
         display: flex !important;
         width: 100% !important;
         gap: 6px !important;
         box-sizing: border-box !important;
+        padding-top: 5px !important;
     }
 
     #chatInput {
         flex: 1 !important;
         width: 100% !important;
         font-size: 16px !important;
+        padding: 8px !important;
     }
-}
 }
