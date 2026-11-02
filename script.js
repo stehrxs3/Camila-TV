@@ -756,9 +756,8 @@ function fazerLogout() {
 }
 
 
-// --- LÓGICA DO MODAL E ASSINATURA VIP COM PAYPAL NATIVO ---
+/// --- LÓGICA DO MODAL E ASSINATURA VIP ---
 let videoTentandoAssistir = null;
-let paypalRenderizado = false;
 
 function abrirVipModal(video) {
     videoTentandoAssistir = video;
@@ -768,36 +767,8 @@ function abrirVipModal(video) {
     const vipModal = document.getElementById("vipModal");
     if (vipModal) {
         vipModal.style.display = "flex";
-        
-        // Renderiza o botão nativo do PayPal apenas uma vez para evitar duplicação
-        if (!paypalRenderizado && window.paypal) {
-            paypal.Buttons({
-                style: {
-                    shape: 'rect',
-                    color: 'blue',
-                    layout: 'vertical',
-                    label: 'subscribe'
-                },
-                createSubscription: function(data, actions) {
-                    return actions.subscription.create({
-                        'plan_id': 'P-SEU_ID_DO_PLANO_PAYPAL' // Substitui pelo teu ID do PayPal
-                    });
-                },
-                onApprove: function(data, actions) {
-                    alert('Subscrição aprovada com sucesso! ID: ' + data.subscriptionID);
-                    ativarPlanoVipFirebase();
-                },
-                onError: function (err) {
-                    console.error("Erro no pagamento PayPal:", err);
-                    if(feedback) {
-                        feedback.style.color = "#e50914";
-                        feedback.innerText = "Erro ao processar pagamento via PayPal.";
-                    }
-                }
-            }).render('#paypal-button-container');
-            
-            paypalRenderizado = true;
-        }
+    } else {
+        console.error("Erro: Elemento #vipModal não encontrado no HTML.");
     }
 }
 
@@ -807,46 +778,58 @@ function fecharVipModal() {
     videoTentandoAssistir = null;
 }
 
-// Função auxiliar para aplicar o plano VIP após aprovação de pagamento nativo
-function ativarPlanoVipFirebase() {
-    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuarioLogado) return;
+function realizarAssinaturaVIP() {
+    const feedback = document.getElementById("mensagemVipFeedback");
+    if (feedback) {
+        feedback.style.color = "#38bdf8";
+        feedback.innerText = "A processar assinatura...";
+    }
 
-    usuarioLogado.plano = "VIP";
-    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+    setTimeout(() => {
+        let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (!usuarioLogado) {
+            alert("Precisa de iniciar sessão para fazer o upgrade!");
+            abrirAuthModal();
+            return;
+        }
 
-    if (auth.currentUser) {
-        db.ref('users/' + auth.currentUser.uid).update({ 
-            plano: "VIP",
-            atualizadoEm: new Date().toISOString()
-        }).then(() => {
-            verificarSessaoUsuario();
-            setTimeout(() => {
-                fecharVipModal();
-                if (videoTentandoAssistir) {
-                    abrirVideo(videoTentandoAssistir);
+        // Atualiza o plano para VIP no objeto local
+        usuarioLogado.plano = "VIP";
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+
+        // Atualiza o plano diretamente no Firebase Realtime Database
+        if (auth.currentUser) {
+            db.ref('users/' + auth.currentUser.uid).update({ 
+                plano: "VIP",
+                atualizadoEm: new Date().toISOString()
+            }).then(() => {
+                if (feedback) {
+                    feedback.style.color = "#22c55e";
+                    feedback.innerText = "Assinatura VIP ativada com sucesso!";
                 }
-            }, 1500);
-        });
-    }
-}
-// --- LÓGICA DE ABERTURA DO MODAL DE CHAT ---
-function abrirChatModal() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!usuarioLogado) {
-        alert("Você precisa fazer login para acessar o chat!");
-        abrirAuthModal();
-        return;
-    }
-    const modal = document.getElementById("chatModal");
-    if (modal) modal.style.display = "flex";
-}
 
-function fecharChatModal() {
-    const modal = document.getElementById("chatModal");
-    if (modal) modal.style.display = "none";
-}
+                // Atualiza os botões e informações visuais do perfil
+                verificarSessaoUsuario();
 
+                setTimeout(() => {
+                    fecharVipModal();
+                    // Se o utilizador estava a tentar ver um vídeo ou live restrita, libera o acesso agora
+                    if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
+                        abrirTransmissaoAoVivo();
+                    } else if (videoTentandoAssistir) {
+                        abrirVideo(videoTentandoAssistir);
+                    }
+                }, 1500);
+            }).catch((error) => {
+                console.error("Erro ao atualizar plano no Firebase:", error);
+                if (feedback) {
+                    feedback.style.color = "#e50914";
+                    feedback.innerText = "Erro ao ativar assinatura.";
+                }
+            });
+        }
+    }, 1500);
+}
 // --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
