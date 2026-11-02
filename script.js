@@ -778,67 +778,65 @@ function fecharVipModal() {
 }
 
 function realizarAssinaturaVIP() {
- const feedback = document.getElementById("mensagemVipFeedback");
- if (feedback) {
- feedback.style.color = "#38bdf8";
- feedback.innerText = "A simular ativação VIP...";
- }
+    const feedback = document.getElementById("mensagemVipFeedback");
+    if (feedback) {
+        feedback.style.color = "#38bdf8";
+        feedback.innerText = "A simular ativação VIP...";
+    }
 
- // Simula um breve atraso de carregamento de rede
- setTimeout(() => {
- let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
- if (!usuarioLogado) {
- alert("Precisa de iniciar sessão para fazer o upgrade!");
- abrirAuthModal();
- return;
- }
+    setTimeout(() => {
+        let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (!usuarioLogado) {
+            alert("Precisa de iniciar sessão para fazer o upgrade!");
+            abrirAuthModal();
+            return;
+        }
 
- // Atualiza o plano para VIP no objeto local
- usuarioLogado.plano = "VIP";
- localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+        // Atualiza o plano localmente
+        usuarioLogado.plano = "VIP";
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
- // Atualiza o plano diretamente no Firebase Realtime Database
- if (auth.currentUser) {
- db.ref('users/' + auth.currentUser.uid).update({ 
- plano: "VIP",
- atualizadoEm: new Date().toISOString()
- }).then(() => {
- if (feedback) {
- feedback.style.color = "#22c55e";
- feedback.innerText = "Assinatura VIP ativada com sucesso (Modo Teste)!";
- }
+        // Atualiza no Realtime Database se o utilizador estiver autenticado
+        if (auth.currentUser) {
+            db.ref('users/' + auth.currentUser.uid).update({ 
+                plano: "VIP",
+                atualizadoEm: new Date().toISOString()
+            }).then(() => {
+                if (feedback) {
+                    feedback.style.color = "#22c55e";
+                    feedback.innerText = "VIP ativado com sucesso (Modo Teste)!";
+                }
 
- // Atualiza os botões e informações visuais do perfil
- verificarSessaoUsuario();
+                verificarSessaoUsuario();
 
- setTimeout(() => {
- fecharVipModal();
- // Se o utilizador estava a tentar ver um vídeo ou live restrita, libera o acesso agora
- if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
- abrirTransmissaoAoVivo();
- } else if (videoTentandoAssistir) {
- abrirVideo(videoTentandoAssistir);
- }
- }, 1500);
- }).catch((error) => {
- console.error("Erro ao atualizar plano no Firebase:", error);
- if (feedback) {
- feedback.style.color = "#e50914";
- feedback.innerText = "Erro ao ativar assinatura.";
- }
- });
- } else {
- // Caso ocorra algum teste sem o auth ativo no momento
- if (feedback) {
- feedback.style.color = "#22c55e";
- feedback.innerText = "VIP ativado localmente!";
- }
- setTimeout(() => {
- fecharVipModal();
- if (videoTentandoAssistir) abrirVideo(videoTentandoAssistir);
- }, 1200);
- }
- }, 1000);
+                setTimeout(() => {
+                    fecharVipModal();
+                    if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
+                        abrirTransmissaoAoVivo();
+                    } else if (videoTentandoAssistir) {
+                        abrirVideo(videoTentandoAssistir);
+                    }
+                }, 1200);
+            }).catch((error) => {
+                console.error("Erro no Firebase:", error);
+                if (feedback) {
+                    feedback.style.color = "#e50914";
+                    feedback.innerText = "Erro ao atualizar no banco de dados.";
+                }
+            });
+        } else {
+            // Caso o login seja apenas em localStorage durante testes
+            if (feedback) {
+                feedback.style.color = "#22c55e";
+                feedback.innerText = "VIP ativado localmente!";
+            }
+            verificarSessaoUsuario();
+            setTimeout(() => {
+                fecharVipModal();
+                if (videoTentandoAssistir) abrirVideo(videoTentandoAssistir);
+            }, 1200);
+        }
+    }, 800);
 }
 // --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
