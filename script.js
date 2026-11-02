@@ -681,6 +681,19 @@ function abrirProfileModal() {
     const fileInput = document.getElementById("editAvatarFile");
     if (fileInput) fileInput.value = "";
 
+    const planoDiv = document.getElementById("profileUserPlano");
+    const btnUpgrade = document.getElementById("btnUpgradePerfil");
+
+    if (usuarioLogado.plano === "VIP") {
+        planoDiv.innerText = "VIP 👑";
+        planoDiv.style.color = "#22c55e";
+        if (btnUpgrade) btnUpgrade.style.display = "none";
+    } else {
+        planoDiv.innerText = "FREE 👤";
+        planoDiv.style.color = "#facc15";
+        if (btnUpgrade) btnUpgrade.style.display = "inline-block";
+    }
+
     document.getElementById("mensagemProfileFeedback").innerText = "";
     document.getElementById("profileModal").style.display = "flex";
 }
@@ -798,8 +811,6 @@ function realizarAssinaturaVIP() {
     }, 2000);
 }
 
-// --- LÓGICA DO CHAT VIP EM TEMPO REAL ---
-
 // --- LÓGICA DE ABERTURA DO MODAL DE CHAT ---
 function abrirChatModal() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
@@ -824,23 +835,23 @@ let chatListenerAtual = null;
 function mudarSalaChat(sala, btn) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    // Regra: Se a sala for uma comunidade exclusiva, exige plano VIP
     if (sala !== "global") {
         if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
             abrirVipModal({ titulo: "Comunidade Exclusiva VIP" });
-            return; // Impede a troca de aba
+            return; 
         }
     }
 
     salaAtual = sala;
 
-    // Atualiza o estilo visual das abas
     document.querySelectorAll(".chat-tab").forEach(b => {
         b.style.background = "rgba(255,255,255,0.08)";
         b.style.color = "#94a3b8";
     });
-    btn.style.background = "#2b39d2";
-    btn.style.color = "#fff";
+    if (btn) {
+        btn.style.background = "#2b39d2";
+        btn.style.color = "#fff";
+    }
 
     iniciarEscutaChat();
 }
@@ -900,7 +911,6 @@ function enviarMensagemChat(event) {
         return;
     }
 
-    // Validação extra de segurança no envio para as comunidades
     if (salaAtual !== "global" && (!usuarioLogado.plano || usuarioLogado.plano !== "VIP")) {
         abrirVipModal();
         return;
@@ -921,18 +931,9 @@ function enviarMensagemChat(event) {
     input.value = "";
 }
 
-// Inicializa a escuta padrão da sala global ao carregar a página
-document.addEventListener("DOMContentLoaded", () => {
-    configurarDestaque();
-    carregarVideos(listaDeVideos);
-    verificarSessaoUsuario();
-    iniciarEscutaChat();
-});
-
 function criarNovaComunidade() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    // Opcional: Permitir apenas que utilizadores VIP criem comunidades
     if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
         alert("Apenas utilizadores VIP podem criar novas comunidades!");
         abrirVipModal();
@@ -944,13 +945,11 @@ function criarNovaComunidade() {
 
     if (!nomeSala) return;
 
-    // Garante que começa com # e remove espaços ou caracteres inválidos
     if (!nomeSala.startsWith("#")) {
         nomeSala = "#" + nomeSala;
     }
     nomeSala = nomeSala.replace(/[^a-z0-9#_]/g, "");
 
-    // Salva a nova sala no Firebase para que outros utilizadores também a vejam
     db.ref(`comunidades/${nomeSala.replace('#', '')}`).set({
         criadoPor: usuarioLogado.nickname,
         criadoEm: new Date().toISOString()
@@ -958,11 +957,8 @@ function criarNovaComunidade() {
 
     alert(`Comunidade ${nomeSala} criada com sucesso!`);
     input.value = "";
-    
-    // Muda automaticamente para a nova sala criada
-    mudarSalaChat(nomeSala.replace('#', ''), document.activeElement);
+    mudarSalaChat(nomeSala.replace('#', ''), null);
 }
-
 
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
@@ -1040,7 +1036,7 @@ function clicarLogoAdmin() {
     }
 }
 
-// Expõe globalmente para os botões do HTML
+// Expõe globalmente
 window.abrirAuthModal = abrirAuthModal;
 window.fecharAuthModal = fecharAuthModal;
 window.fecharVideo = fecharVideo;
@@ -1066,3 +1062,4 @@ window.abrirChatModal = abrirChatModal;
 window.fecharChatModal = fecharChatModal;
 window.mudarSalaChat = mudarSalaChat;
 window.enviarMensagemChat = enviarMensagemChat;
+window.criarNovaComunidade = criarNovaComunidade;
