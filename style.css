@@ -698,4 +698,41 @@ body {
         overflow-y: auto;  
         padding: 20px 16px;
     }
+
+    /* Transforma o layout do chat numa coluna única flexível */
+    .chat-layout, #chatContainerFlex {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        height: 100% !important;
+    }
+
+    /* A barra lateral de comunidades vira uma barra horizontal de deslizar */
+    #chatSidebar, .chat-sidebar {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        gap: 6px !important;
+        padding-bottom: 5px !important;
+    }
+
+    /* Os botões das salas ficam compactos lado a lado */
+    #chatSidebar .chat-tab, .chat-sidebar button {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* A área de conversas ajusta-se para ocupar o espaço restante perfeitamente */
+    .chat-main-area, #chatMainContent {
+        flex: 1 !important;
+        width: 100% !important;
+    }
+
+    /* Caixa de mensagens com tamanho ideal para telemóvel */
+    #chatMessages {
+        height: 250px !important;
+    }
 }
