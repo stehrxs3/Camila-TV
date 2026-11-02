@@ -929,6 +929,41 @@ document.addEventListener("DOMContentLoaded", () => {
     iniciarEscutaChat();
 });
 
+function criarNovaComunidade() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    // Opcional: Permitir apenas que utilizadores VIP criem comunidades
+    if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
+        alert("Apenas utilizadores VIP podem criar novas comunidades!");
+        abrirVipModal();
+        return;
+    }
+
+    const input = document.getElementById("novaSalaInput");
+    let nomeSala = input.value.trim().toLowerCase();
+
+    if (!nomeSala) return;
+
+    // Garante que começa com # e remove espaços ou caracteres inválidos
+    if (!nomeSala.startsWith("#")) {
+        nomeSala = "#" + nomeSala;
+    }
+    nomeSala = nomeSala.replace(/[^a-z0-9#_]/g, "");
+
+    // Salva a nova sala no Firebase para que outros utilizadores também a vejam
+    db.ref(`comunidades/${nomeSala.replace('#', '')}`).set({
+        criadoPor: usuarioLogado.nickname,
+        criadoEm: new Date().toISOString()
+    });
+
+    alert(`Comunidade ${nomeSala} criada com sucesso!`);
+    input.value = "";
+    
+    // Muda automaticamente para a nova sala criada
+    mudarSalaChat(nomeSala.replace('#', ''), document.activeElement);
+}
+
+
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
