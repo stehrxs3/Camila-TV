@@ -800,16 +800,68 @@ function realizarAssinaturaVIP() {
 
 // --- LÓGICA DO CHAT VIP EM TEMPO REAL ---
 
+// --- LÓGICA DE ABERTURA DO MODAL DE CHAT ---
+function abrirChatModal() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuarioLogado) {
+        alert("Você precisa fazer login para acessar o chat!");
+        abrirAuthModal();
+        return;
+    }
+    const modal = document.getElementById("chatModal");
+    if (modal) modal.style.display = "flex";
+}
+
+function fecharChatModal() {
+    const modal = document.getElementById("chatModal");
+    if (modal) modal.style.display = "none";
+}
+
+// --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
+let salaAtual = "global"; 
+let chatListenerAtual = null; 
+
+function mudarSalaChat(sala, btn) {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    // Regra: Se a sala for uma comunidade exclusiva, exige plano VIP
+    if (sala !== "global") {
+        if (!usuarioLogado || usuarioLogado.plano !== "VIP") {
+            abrirVipModal({ titulo: "Comunidade Exclusiva VIP" });
+            return; // Impede a troca de aba
+        }
+    }
+
+    salaAtual = sala;
+
+    // Atualiza o estilo visual das abas
+    document.querySelectorAll(".chat-tab").forEach(b => {
+        b.style.background = "rgba(255,255,255,0.08)";
+        b.style.color = "#94a3b8";
+    });
+    btn.style.background = "#2b39d2";
+    btn.style.color = "#fff";
+
+    iniciarEscutaChat();
+}
+
 function iniciarEscutaChat() {
     const chatBox = document.getElementById("chatMessages");
     if (!chatBox) return;
 
-    db.ref('chat_vip').limitToLast(50).on('value', (snapshot) => {
+    if (chatListenerAtual) {
+        db.ref(`chats/${chatListenerAtual}`).off();
+    }
+
+    chatListenerAtual = salaAtual;
+    chatBox.innerHTML = "<p style='color: #64748b; text-align: center; font-size: 0.9rem;'>Carregando mensagens...</p>";
+
+    db.ref(`chats/${salaAtual}`).limitToLast(50).on('value', (snapshot) => {
         chatBox.innerHTML = "";
         const mensagensObj = snapshot.val();
 
         if (!mensagensObj) {
-            chatBox.innerHTML = "<p style='color: #64748b; text-align: center; font-size: 0.9rem;'>Ainda não há mensagens no chat. Seja o primeiro a falar!</p>";
+            chatBox.innerHTML = `<p style='color: #64748b; text-align: center; font-size: 0.9rem;'>Ainda não há mensagens na sala #${salaAtual}. Seja o primeiro a falar!</p>`;
             return;
         }
 
@@ -817,12 +869,16 @@ function iniciarEscutaChat() {
             const msgElement = document.createElement("div");
             msgElement.style.cssText = "margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start;";
             
+            const badgeVip = msg.plano === "VIP" 
+                ? `<span style="background: #facc15; color: #000; font-size: 0.65rem; font-weight: bold; padding: 1px 6px; border-radius: 4px;">VIP 👑</span>` 
+                : `<span style="background: rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.65rem; padding: 1px 6px; border-radius: 4px;">FREE</span>`;
+
             msgElement.innerHTML = `
-                <img src="${msg.avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #facc15;">
-                <div>
+                <img src="${msg.avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #2b39d2;">
+                <div style="flex: 1;">
                     <div style="display: flex; align-items: center; gap: 6px;">
                         <strong style="color: #38bdf8; font-size: 0.9rem;">${msg.nickname}</strong>
-                        <span style="background: #facc15; color: #000; font-size: 0.65rem; font-weight: bold; padding: 1px 6px; border-radius: 4px;">VIP 👑</span>
+                        ${badgeVip}
                     </div>
                     <span style="color: #cbd5e1; font-size: 0.9rem; word-break: break-word;">${msg.texto}</span>
                 </div>
@@ -838,14 +894,14 @@ function enviarMensagemChat(event) {
     event.preventDefault();
 
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
     if (!usuarioLogado) {
         alert("Você precisa fazer login para participar do chat!");
         abrirAuthModal();
         return;
     }
 
-    if (!usuarioLogado.plano || usuarioLogado.plano !== "VIP") {
+    // Validação extra de segurança no envio para as comunidades
+    if (salaAtual !== "global" && (!usuarioLogado.plano || usuarioLogado.plano !== "VIP")) {
         abrirVipModal();
         return;
     }
@@ -854,15 +910,24 @@ function enviarMensagemChat(event) {
     const texto = input.value.trim();
     if (!texto) return;
 
-    db.ref('chat_vip').push({
+    db.ref(`chats/${salaAtual}`).push({
         nickname: usuarioLogado.nickname,
         avatar: usuarioLogado.avatar,
+        plano: usuarioLogado.plano || "FREE",
         texto: texto,
         timestamp: new Date().toISOString()
     });
 
     input.value = "";
 }
+
+// Inicializa a escuta padrão da sala global ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    configurarDestaque();
+    carregarVideos(listaDeVideos);
+    verificarSessaoUsuario();
+    iniciarEscutaChat();
+});
 
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
@@ -962,4 +1027,7 @@ window.abrirTransmissaoAoVivo = abrirTransmissaoAoVivo;
 window.abrirVipModal = abrirVipModal;
 window.fecharVipModal = fecharVipModal;
 window.realizarAssinaturaVIP = realizarAssinaturaVIP;
-window.enviarMensagemChat = enviarMensagemChat;
+window.abrirChatModal = abrirChatModal;
+window.fecharChatModal = fecharChatModal;
+window.mudarSalaChat = mudarSalaChat;
+window.enviarMensagemChat = enviarMensagemChat;;
