@@ -755,80 +755,90 @@ function fazerLogout() {
     }
 }
 
-
-/// --- LÓGICA DO MODAL E ASSINATURA VIP ---
+/// --- LÓGICA DO MODAL E ASSINATURA VIP (MODO TESTE) ---
 let videoTentandoAssistir = null;
 
 function abrirVipModal(video) {
-    videoTentandoAssistir = video;
-    const feedback = document.getElementById("mensagemVipFeedback");
-    if (feedback) feedback.innerText = "";
-    
-    const vipModal = document.getElementById("vipModal");
-    if (vipModal) {
-        vipModal.style.display = "flex";
-    } else {
-        console.error("Erro: Elemento #vipModal não encontrado no HTML.");
-    }
+ videoTentandoAssistir = video;
+ const feedback = document.getElementById("mensagemVipFeedback");
+ if (feedback) feedback.innerText = "";
+ 
+ const vipModal = document.getElementById("vipModal");
+ if (vipModal) {
+ vipModal.style.display = "flex";
+ } else {
+ console.error("Erro: Elemento #vipModal não encontrado no HTML.");
+ }
 }
 
 function fecharVipModal() {
-    const vipModal = document.getElementById("vipModal");
-    if (vipModal) vipModal.style.display = "none";
-    videoTentandoAssistir = null;
+ const vipModal = document.getElementById("vipModal");
+ if (vipModal) vipModal.style.display = "none";
+ videoTentandoAssistir = null;
 }
 
 function realizarAssinaturaVIP() {
-    const feedback = document.getElementById("mensagemVipFeedback");
-    if (feedback) {
-        feedback.style.color = "#38bdf8";
-        feedback.innerText = "A processar assinatura...";
-    }
+ const feedback = document.getElementById("mensagemVipFeedback");
+ if (feedback) {
+ feedback.style.color = "#38bdf8";
+ feedback.innerText = "A simular ativação VIP...";
+ }
 
-    setTimeout(() => {
-        let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-        if (!usuarioLogado) {
-            alert("Precisa de iniciar sessão para fazer o upgrade!");
-            abrirAuthModal();
-            return;
-        }
+ // Simula um breve atraso de carregamento de rede
+ setTimeout(() => {
+ let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+ if (!usuarioLogado) {
+ alert("Precisa de iniciar sessão para fazer o upgrade!");
+ abrirAuthModal();
+ return;
+ }
 
-        // Atualiza o plano para VIP no objeto local
-        usuarioLogado.plano = "VIP";
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+ // Atualiza o plano para VIP no objeto local
+ usuarioLogado.plano = "VIP";
+ localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
 
-        // Atualiza o plano diretamente no Firebase Realtime Database
-        if (auth.currentUser) {
-            db.ref('users/' + auth.currentUser.uid).update({ 
-                plano: "VIP",
-                atualizadoEm: new Date().toISOString()
-            }).then(() => {
-                if (feedback) {
-                    feedback.style.color = "#22c55e";
-                    feedback.innerText = "Assinatura VIP ativada com sucesso!";
-                }
+ // Atualiza o plano diretamente no Firebase Realtime Database
+ if (auth.currentUser) {
+ db.ref('users/' + auth.currentUser.uid).update({ 
+ plano: "VIP",
+ atualizadoEm: new Date().toISOString()
+ }).then(() => {
+ if (feedback) {
+ feedback.style.color = "#22c55e";
+ feedback.innerText = "Assinatura VIP ativada com sucesso (Modo Teste)!";
+ }
 
-                // Atualiza os botões e informações visuais do perfil
-                verificarSessaoUsuario();
+ // Atualiza os botões e informações visuais do perfil
+ verificarSessaoUsuario();
 
-                setTimeout(() => {
-                    fecharVipModal();
-                    // Se o utilizador estava a tentar ver um vídeo ou live restrita, libera o acesso agora
-                    if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
-                        abrirTransmissaoAoVivo();
-                    } else if (videoTentandoAssistir) {
-                        abrirVideo(videoTentandoAssistir);
-                    }
-                }, 1500);
-            }).catch((error) => {
-                console.error("Erro ao atualizar plano no Firebase:", error);
-                if (feedback) {
-                    feedback.style.color = "#e50914";
-                    feedback.innerText = "Erro ao ativar assinatura.";
-                }
-            });
-        }
-    }, 1500);
+ setTimeout(() => {
+ fecharVipModal();
+ // Se o utilizador estava a tentar ver um vídeo ou live restrita, libera o acesso agora
+ if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
+ abrirTransmissaoAoVivo();
+ } else if (videoTentandoAssistir) {
+ abrirVideo(videoTentandoAssistir);
+ }
+ }, 1500);
+ }).catch((error) => {
+ console.error("Erro ao atualizar plano no Firebase:", error);
+ if (feedback) {
+ feedback.style.color = "#e50914";
+ feedback.innerText = "Erro ao ativar assinatura.";
+ }
+ });
+ } else {
+ // Caso ocorra algum teste sem o auth ativo no momento
+ if (feedback) {
+ feedback.style.color = "#22c55e";
+ feedback.innerText = "VIP ativado localmente!";
+ }
+ setTimeout(() => {
+ fecharVipModal();
+ if (videoTentandoAssistir) abrirVideo(videoTentandoAssistir);
+ }, 1200);
+ }
+ }, 1000);
 }
 // --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
