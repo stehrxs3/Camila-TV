@@ -286,43 +286,28 @@
         </div>
     </div>
 
-    <!-- Modal do Chat VIP -->
-    <div id="chatModal" class="modal" style="display: none;">
-        <div class="auth-container" style="max-width: 500px; padding: 25px;">
-            <span class="close-btn" onclick="fecharChatModal()">&times;</span>
-            <h2 style="color: #fff; margin-bottom: 15px;">💬 Chat Global VIP</h2>
-            
-            <div id="chatMessages" style="height: 320px; overflow-y: auto; background: #030712; padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.08);">
-                <p style="color: #64748b; text-align: center; font-size: 0.9rem;">Carregando mensagens...</p>
-            </div>
-
-            <form onsubmit="enviarMensagemChat(event)" style="display: flex; gap: 8px;">
-                <input type="text" id="chatInput" placeholder="Escreva a sua mensagem (Apenas VIPs)..." required style="flex: 1; padding: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; outline: none; font-size: 0.9rem;">
-                <button type="submit" style="padding: 0 16px; background: #2b39d2; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer;">Enviar</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Modal do Chat com Comunidades, Restrição VIP e Criação de Salas -->
     <div id="chatModal" class="modal" style="display: none;">
         <div class="auth-container" style="max-width: 550px; padding: 25px;">
             <span class="close-btn" onclick="fecharChatModal()">&times;</span>
             <h2 style="color: #fff; margin-bottom: 10px;">💬 Comunidades & Chat</h2>
-
-            <div style="margin-bottom: 15px; display: flex; gap: 8px;">
-        <input type="text" id="novaSalaInput" placeholder="Nome da nova comunidade (ex: #tour2026)..." style="flex: 1; padding: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; outline: none; font-size: 0.8rem;">
-    <button onclick="criarNovaComunidade()" style="padding: 0 12px; background: #22c55e; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">Criar</button>
-            </div>
             
             <!-- Abas das Salas / Comunidades -->
-            <div style="display: flex; gap: 6px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px;">
+            <div style="display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 5px;">
                 <button class="chat-tab active" onclick="mudarSalaChat('global', this)" style="background: #2b39d2; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">🌐 #global</button>
                 <button class="chat-tab" onclick="mudarSalaChat('camilizers', this)" style="background: rgba(255,255,255,0.08); color: #94a3b8; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">👑 #camilizers (VIP)</button>
                 <button class="chat-tab" onclick="mudarSalaChat('camren', this)" style="background: rgba(255,255,255,0.08); color: #94a3b8; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">👑 #camren (VIP)</button>
                 <button class="chat-tab" onclick="mudarSalaChat('5h', this)" style="background: rgba(255,255,255,0.08); color: #94a3b8; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">👑 #5h (VIP)</button>
             </div>
 
+            <!-- Campo para Criar Nova Comunidade (Exclusivo VIP) -->
+            <div style="margin-bottom: 15px; display: flex; gap: 8px;">
+                <input type="text" id="novaSalaInput" placeholder="Criar comunidade (ex: #tour2026)..." style="flex: 1; padding: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; outline: none; font-size: 0.8rem;">
+                <button onclick="criarNovaComunidade()" style="padding: 0 12px; background: #22c55e; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">Criar</button>
+            </div>
+
             <!-- Caixa de Mensagens -->
-            <div id="chatMessages" style="height: 300px; overflow-y: auto; background: #030712; padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.08);">
+            <div id="chatMessages" style="height: 260px; overflow-y: auto; background: #030712; padding: 12px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.08);">
                 <p style="color: #64748b; text-align: center; font-size: 0.9rem;">Carregando mensagens...</p>
             </div>
 
