@@ -285,6 +285,17 @@ function converterParaEmbedDrive(url) {
     return url.replace(/\/view(\?.*)?$/, "/preview").replace(/\/edit(\?.*)?$/, "/preview");
 }
 
+function converterParaVideoDiretoDrive(url) {
+    if (!url) return "";
+    if (url.includes("drive.google.com")) {
+        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) {
+            return `https://lh3.googleusercontent.com/d/${match[1]}`;
+        }
+    }
+    return url;
+}
+
 function configurarDestaque() {
     const destaque = listaDeVideos.find(v => v.destaque) || listaDeVideos[0];
     if (!destaque) return;
@@ -354,7 +365,6 @@ function filtrarPorBusca() {
     carregarVideos(filtrados);
 }
 
-// --- FUNÇÃO ABRIR VÍDEO ATUALIZADA COM SUPORTE A LEGENDA ---
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
@@ -380,8 +390,11 @@ function abrirVideo(video) {
     container.innerHTML = "";
     let url = video.videoUrl || "";
 
-    // Se o vídeo for MP4/WebM ou possuir legendas configuradas, renderiza com suporte a <track>
-    if (url.endsWith(".mp4") || url.endsWith(".webm") || video.legendas) {
+    if (video.legendas || url.endsWith(".mp4") || url.endsWith(".webm") || url.includes("drive.google.com")) {
+        if (url.includes("drive.google.com")) {
+            url = converterParaVideoDiretoDrive(url);
+        }
+
         let tracksHtml = "";
         if (video.legendas) {
             if (video.legendas.pt) tracksHtml += `<track src="${video.legendas.pt}" kind="subtitles" srclang="pt" label="Português" default>`;
@@ -772,7 +785,6 @@ function fazerLogout() {
     }
 }
 
-// --- LÓGICA DO MODAL E ASSINATURA VIP ---
 let videoTentandoAssistir = null;
 
 function abrirVipModal(video) {
@@ -828,7 +840,6 @@ function realizarAssinaturaVIP() {
     }, 2000);
 }
 
-// --- LÓGICA DE ABERTURA DO MODAL DE CHAT ---
 function abrirChatModal() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     if (!usuarioLogado) {
@@ -845,7 +856,6 @@ function fecharChatModal() {
     if (modal) modal.style.display = "none";
 }
 
-// --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
 
@@ -995,7 +1005,6 @@ function pedirCriacaoComunidade() {
     }
 }
 
-// --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
     if (senhaAdmin !== "admin123") {
@@ -1072,7 +1081,6 @@ function clicarLogoAdmin() {
     }
 }
 
-// Expõe globalmente
 window.abrirAuthModal = abrirAuthModal;
 window.fecharAuthModal = fecharAuthModal;
 window.fecharVideo = fecharVideo;
