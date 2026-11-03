@@ -243,6 +243,18 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
+
+      {
+        id:  ,
+        titulo: "'Havana', 'Crying in the Club' e 'Bad Things' Today Show ",
+        categoria: "Performances",
+        data: "29 de setembro de 2017",
+        capa: "",
+        banner: "",
+        descricao: "Durante a performance de “Havana”, a cantora dedicou o momento aos jovens beneficiários do programa DACA (conhecidos como DREAMers) e fez um discurso em defesa de uma América inclusiva",
+        videoUrl: "https://drive.google.com/file/d/1elxXcPt3ICPEehvmz-O8ipbOhUBCnXzp/view?usp=sharing",
+        destaque: false
+    },
   
     
       {
