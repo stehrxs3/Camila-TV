@@ -243,20 +243,73 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
-
-      {
+        
+         {
         id:  ,
-        titulo: "'Havana', 'Crying in the Club' e 'Bad Things' Today Show ",
+        titulo: " MTV Europe Music Awards",
         categoria: "Performances",
-        data: "29 de setembro de 2017",
+        data: "12 de novembro de 2017",
         capa: "",
         banner: "",
+        descricao: "",
+        videoUrl: "",
+        destaque: false
+    },
+        {
+        id:  ,
+        titulo: "'Havana' LOS40 Music Awards",
+        categoria: "Performances",
+        data: "10 de novembro de 2017",
+        capa: "https://media.gettyimages.com/id/873503030/photo/madrid-spain-camila-cabello-attends-40-principales-awards-2017-on-november-10-2017-in-madrid.jpg?s=612x612&w=0&k=20&c=V3rg6rZDXdcv1YMurA4AtQ_YKclowXMzFNO9EKGo4wQ=",
+        banner: "",
+        descricao: "",
+        videoUrl: "",
+        destaque: false
+    },
+       {
+        id:  ,
+        titulo: "'Havana' Latin American Music Awards (Latin AMAs)",
+        categoria: "Performances",
+        data: " 26 de outubro de 2017",
+        capa: "https://media.gettyimages.com/id/867050180/photo/hollywood-ca-camila-cabello-performs-onstage-during-the-2017-latin-american-music-awards-at.jpg?s=612x612&w=0&k=20&c=dQ79t4qT7DySpItaHIRV4VAxH8Y7WQcxXHblJ1uoCvA=",
+        banner: "https://media.gettyimages.com/id/867190500/photo/2017-latin-american-music-awards-show-pictured-camila-cabello-performing-at-the-dolby-theatre.jpg?s=612x612&w=0&k=20&c=qe6LPSnskS-H1LzXVy3gv10x00eZ3_O9SzeAldt-UFc=",
+        descricao: "Camila Cabello apresentou uma versão em Spanglish do seu sucesso mundial Havana no Latin American Music Awards (Latin AMAs)",
+        videoUrl: "https://drive.google.com/file/d/1PffQJoAzHtYomRI5-rHk4UNB8V8HoVcT/view?usp=sharing",
+        destaque: false
+    },    
+        {
+        id: ,
+        titulo: "'Say You Won't Let Go' BBC Radio 1’s Teen Awards ",
+        categoria: "Performances",
+        data: "22 de outubro de 2017",
+        capa: "https://media.gettyimages.com/id/865050632/photo/london-england-camila-cabello-performs-at-the-bbc-radio-1-teen-awards-2017-at-wembley-arena-on.jpg?s=612x612&w=0&k=20&c=Wp5acKJWsLSIh7adcWeitK4377cb6K63HX_7DZTFEFM=",
+        banner: "https://media.gettyimages.com/id/865047344/photo/london-england-james-arthur-and-camila-cabello-perform-on-stage-at-the-bbc-radio-1-teen-awards.jpg?s=612x612&w=0&k=20&c=NfSqP8Up8FhV_TlGF0wnBXOk1NTDCnCFbpkOVbWD7mE=",
+        descricao: "",
+        videoUrl: "https://drive.google.com/file/d/1ikMQRPb54AYcjfx4J6jKY47TEZ-YjXB2/view?usp=sharing",
+        destaque: false
+    },
+        {
+        id: 17,
+        titulo: "'Havana'  BBC Radio 1’s Teen Awards ",
+        categoria: "Performances",
+        data: "22 de outubro de 2017",
+        capa: "https://media.gettyimages.com/id/865050982/photo/london-england-camila-cabello-performs-at-the-bbc-radio-1-teen-awards-2017-at-wembley-arena-on.jpg?s=612x612&w=0&k=20&c=leO3H6aYjH0KHjyp5KqogMuwK6xgp1FTOFV4Qg6swmU=",
+        banner: "https://media.gettyimages.com/id/865050608/photo/london-england-camila-cabello-performs-at-the-bbc-radio-1-teen-awards-2017-at-wembley-arena-on.jpg?s=612x612&w=0&k=20&c=QII7YgRtBNDQ625sfLPRfVShZtMQ48wVZfvxUYFFvmA=",
+        descricao: "",
+        videoUrl: "",
+        destaque: false
+    },
+      {
+        id:  ,
+        titulo: "'Havana','Crying in the Club' e 'Bad Things' Today Show ",
+        categoria: "Performances",
+        data: "29 de setembro de 2017",
+        capa: "https://media.gettyimages.com/id/855530056/pt/foto/new-york-ny-camila-cabello-performs-onstage-wearing-an-aclu-ribbon-on-nbcs-today-at-rockefeller.jpg?s=612x612&w=0&k=20&c=cdfb31XZBHnudHtkifHBGmD4u4pSKbJZSC_uE8D-J2A=",
+        banner: "https://media.gettyimages.com/id/855541408/pt/foto/new-york-ny-camila-cabello-performs-onstage-showing-her-support-for-daca-while-wearing-an-aclu.jpg?s=612x612&w=0&k=20&c=7KzQPFf8hC-M0B7Vu7U05WUwxUDHaM4qm-LwPlvW8ts=",
         descricao: "Durante a performance de “Havana”, a cantora dedicou o momento aos jovens beneficiários do programa DACA (conhecidos como DREAMers) e fez um discurso em defesa de uma América inclusiva",
         videoUrl: "https://drive.google.com/file/d/1elxXcPt3ICPEehvmz-O8ipbOhUBCnXzp/view?usp=sharing",
         destaque: false
     },
-  
-    
       {
         id: 20,
         titulo: "'Havana' The Tonight Show Starring Jimmy Fallon",
