@@ -244,30 +244,9 @@ const listaDeVideos = [
         destaque: false
     },
   
+    
       {
-        id: ,
-        titulo: "",
-        categoria: "Performances",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-      {
-        id: ,
-        titulo: "",
-        categoria: "Performances",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-      {
-        id: ,
+        id: 20,
         titulo: "'Havana' The Tonight Show Starring Jimmy Fallon",
         categoria: "Performances",
         data: "25 de setembro de 2017",
@@ -278,7 +257,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: ,
+        id: 21,
         titulo: "'Crying in the Club' The Tonight Show Starring Jimmy Fallon",
         categoria: "Performances",
         data: "22 de junho de 2017",
@@ -289,7 +268,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: ,
+        id: 22,
         titulo: "'I Have Questions' e 'Crying in the Club' iHeartRadio MuchMusic Video Awards (MMVAs)",
         categoria: "Performances",
         data: "18 de junho de 2017",
@@ -301,7 +280,7 @@ const listaDeVideos = [
     },
 
     {
-        id: ,
+        id: 23,
         titulo: "'Crying in the Club' Britain's Got Talent",
         categoria: "Performances",
         data: "31 de maio de 2017",
@@ -312,7 +291,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: ,
+        id: 24,
         titulo: "'I Have Questions' e 'Crying in the Club' Billboard Music Awards",
         categoria: "Performances",
         data: "21 de maio de 2017",
@@ -323,7 +302,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: ,
+        id: 25,
         titulo: "'Hey Ma' MTV Movie & TV Awards",
         categoria: "Performances",
         data: " 7 de maio de 2017",
@@ -334,7 +313,7 @@ const listaDeVideos = [
         destaque: false
     },
    {
-        id: ,
+        id: 26,
         titulo: "'Bad Things' ACLU Benefit Concert ",
         categoria: "Performances",
         data: "3 de abril de 2017",
@@ -345,7 +324,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: ,
+        id: 27,
         titulo: "'Man In The Mirror' ACLU Benefit Concert",
         categoria: "Performances",
         data: "3 de abril de 2017",
@@ -356,7 +335,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: ,
+        id: 28,
         titulo: "'Bad Things' Nickelodeon Kids' Choice Awards",
         categoria: "Performances",
         data: " 11 de março de 2017",
@@ -367,7 +346,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-       id: ,
+       id: 29,
        titulo:"'Say You Won't Let Go' BBC Radio 1 Live Lounge",
        categoria:"Performances",
        data:" 31 de janeiro de 2017",
@@ -376,9 +355,9 @@ const listaDeVideos = [
        descricao:" ",
        videoUrl: " https://drive.google.com/file/d/1BW1jzxKTjp-gnMLHWpKyzWlWMX2Fu5l1/view?usp=sharing",
        destaque: false
-       
+    },
     {
-        id: ,
+        id: 30,
         titulo: "'Bad Things' BBC Radio 1 Live Lounge",
         categoria: "Performances",
         data: " 31 de janeiro de 2017",
@@ -389,7 +368,7 @@ const listaDeVideos = [
         destaque: false
     },
    {
-        id: ,
+        id: 31,
         titulo: "'Bad Things' The Ellen DeGeneres Show",
         categoria: "Performances",
         data: " 30 de janeiro de 2017",
@@ -397,6 +376,18 @@ const listaDeVideos = [
         banner: "https://www.hotnewhiphop.com/i/v1/765x430-cover-81-auto/cover/39/01/1485810139_4f6ea6773b19a5d7fed06904c01a5473.jpg",
         descricao: "Machine Gun Kelly e Camila Cabello apresentaram o hit “Bad Things” no programa The Ellen DeGeneres Show ,Embora ela já tenha tocado a música antes, esta é sua primeira aparição na TV desde que deixou o grupo em dezembro.",
         videoUrl: "https://drive.google.com/file/d/1wvYujATwFv_th5byzQ7-itPIesa9TqJH/view?usp=sharing",
+        destaque: false
+    },
+    
+      {
+        id: 32 ,
+        titulo: "",
+        categoria: "Performances",
+        data: "",
+        capa: "",
+        banner: "",
+        descricao: "",
+        videoUrl: "",
         destaque: false
     },
 ];
