@@ -243,17 +243,162 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
-    {
-        id: 20,
-        titulo: "Performance Especial",
+  
+      {
+        id: ,
+        titulo: "",
         categoria: "Performances",
-        data: "2025",
+        data: "",
         capa: "",
         banner: "",
-        descricao: "Performance exclusiva.",
+        descricao: "",
         videoUrl: "",
         destaque: false
-    }
+    },
+      {
+        id: ,
+        titulo: "",
+        categoria: "Performances",
+        data: "",
+        capa: "",
+        banner: "",
+        descricao: "",
+        videoUrl: "",
+        destaque: false
+    },
+      {
+        id: ,
+        titulo: "'Havana' The Tonight Show Starring Jimmy Fallon",
+        categoria: "Performances",
+        data: "25 de setembro de 2017",
+        capa: "https://pmstudio.com/pmstudio/images/Camila-Cabello12.jpg",
+        banner: "https://media.gettyimages.com/id/853852454/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0744-pictured-singer-camila-cabello-performs.jpg?s=612x612&w=0&k=20&c=BkaI3pEcd5i0dC2EMawAVma-sq_GSvKnMo8k7E8oiQE=",
+        descricao: "Camila esteve no programa de Jimmy Fallon para cantar 'Havana' pela primeira vez na TV e conversou sobre a inspiração pessoal da música e a reação emocionada de sua avó.",
+        videoUrl: "https://drive.google.com/file/d/1kqAX61gb3hgsvM8ZgkrfEuNvkQYAfdTa/view?usp=sharing",
+        destaque: false
+    },
+      {
+        id: ,
+        titulo: "'Crying in the Club' The Tonight Show Starring Jimmy Fallon",
+        categoria: "Performances",
+        data: "22 de junho de 2017",
+        capa: "https://media.gettyimages.com/id/699981094/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0698-pictured-musical-guest-camila-cabello.jpg?s=612x612&w=0&k=20&c=L4ZRTDjGAdb6Y4J1jbeXO2ttyhQ_ovmPqlQJeYQTiUI=",
+        banner: "https://media.gettyimages.com/id/699980704/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0698-pictured-musical-guest-camila-cabello.jpg?s=612x612&w=0&k=20&c=4kGl-9RZWJAdtkvv1Tg3AvOPImmwvbuEAHA5KfZRTAw=",
+        descricao: "Camila Cabello apresentou o seu single solo de estreia no programa The Tonight Show Starring Jimmy Fallon",
+        videoUrl: "https://drive.google.com/file/d/1hXBgVnHjiWqt7eHIJr6xf9zI7Y9TCAje/view?usp=sharing",
+        destaque: false
+    },
+     {
+        id: ,
+        titulo: "'I Have Questions' e 'Crying in the Club' iHeartRadio MuchMusic Video Awards (MMVAs)",
+        categoria: "Performances",
+        data: "18 de junho de 2017",
+        capa: "https://media.gettyimages.com/id/697460192/pt/foto/toronto-on-camila-cabello-performs-at-the-2017-iheartradio-muchmusic-video-awards-at-muchmusic.jpg?s=612x612&w=0&k=20&c=A0NXEB7PHzP5l6_cPZLaqTHYM-JagkR4nqcWlsR-Xdo=",
+        banner: "https://media.gettyimages.com/id/697460474/pt/foto/toronto-on-camila-cabello-performs-at-the-2017-iheartradio-muchmusic-video-awards-at-muchmusic.jpg?s=612x612&w=0&k=20&c=OqKOMWvJhkVIOIwFF4Wd_9qWB8WpTG_QO_s5zJHAMks=",
+        descricao: "A performance de Camila Cabello no iHeartRadio MuchMusic Video Awards (MMVAs) de 2017. Durante a noite, Camila também ganhou o prêmio de International New Artist Award (Artista Internacional Revelação)",
+        videoUrl: "https://drive.google.com/file/d/1lDi6V-21dSwlakvVbKivZJzQTE0PUa2n/view?usp=sharing",
+        destaque: false
+    },
+
+    {
+        id: ,
+        titulo: "'Crying in the Club' Britain's Got Talent",
+        categoria: "Performances",
+        data: "31 de maio de 2017",
+        capa: "https://celebmafia.com/wp-content/uploads/2017/06/camila-cabello-performs-at-britain-s-got-talent-in-london-05-30-2017-1.jpg",
+        banner: "",
+        descricao: "Fazendo sua estreia solo na parada britânica, ‘Crying in the Club’ estreou em 48º lugar no Official UK Charts",
+        videoUrl: "https://drive.google.com/file/d/1SQ2EThTRidKzJZe1IjmYyGfBaGHB8XMQ/view?usp=sharing",
+        destaque: false
+    },
+    {
+        id: ,
+        titulo: "'I Have Questions' e 'Crying in the Club' Billboard Music Awards",
+        categoria: "Performances",
+        data: "21 de maio de 2017",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXhBrazYHzt71N7PXDCgWSQTTleNmVQs1Zb6mzAnY0cA&s=10",
+        banner: "https://www.billboard.com/wp-content/uploads/media/camila-cabello-bbmas-performance-a-2017-billboard-1548.jpg",
+        descricao: "Camila Cabello fez sua primeira apresentação solo na televisão no Billboard Music Awards",
+        videoUrl: "",
+        destaque: false
+    },
+     {
+        id: ,
+        titulo: "'Hey Ma' MTV Movie & TV Awards",
+        categoria: "Performances",
+        data: " 7 de maio de 2017",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFrj0trYCW8xDekFNNK0MAo-nS6l8MXVuwEbBlPhRow&s=10",
+        banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmne6_8GR9RhuVMRbpKGT1f-En5M-g9q9kW4rCYVv8lA&s=10",
+        descricao: "Camila Cabello, Pitbull e J Balvin se apresentaram juntos no palco cantando o hit “Hey Ma”, parte da trilha sonora do filme Velozes e Furiosos 8.",
+        videoUrl: "https://drive.google.com/file/d/1-2br99MXlobLI5aO8st-ztCbG4EdUYdO/view?usp=sharing",
+        destaque: false
+    },
+   {
+        id: ,
+        titulo: "'Bad Things' ACLU Benefit Concert ",
+        categoria: "Performances",
+        data: "3 de abril de 2017",
+        capa: "https://media.gettyimages.com/id/664384568/photo/los-angeles-ca-camila-cabello-performs-during-zedd-presents-welcome-fundraising-concert.jpg?s=612x612&w=0&k=20&c=MqScnwtfn21uhq3hYtSvh-mW6i-WLq20c2DAZofOeQ0=",
+        banner: "https://media.gettyimages.com/id/664471372/photo/los-angeles-ca-singers-machine-gun-kelly-and-camila-cabello-perform-onstage-during-the-welcome.jpg?s=612x612&w=0&k=20&c=eIs8efQ4jWeMdZ82cfHx4SpevFOOuJ4zJwyIexOYB2Y=",
+        descricao: "Performance ao vivo do grande sucesso em parceria com Machine Gun Kelly.",
+        videoUrl: "https://drive.google.com/file/d/1yNKMNI7_pxhtmfAFB8AiOo4UxlDlBs8o/view?usp=sharing",
+        destaque: false
+    },
+    {
+        id: ,
+        titulo: "'Man In The Mirror' ACLU Benefit Concert",
+        categoria: "Performances",
+        data: "3 de abril de 2017",
+        capa: "https://media.gettyimages.com/id/664864660/photo/los-angeles-ca-singer-camila-cabello-performs-onstage-during-the-welcome-fundraising-concert.jpg?s=612x612&w=0&k=20&c=7NEn8BIIhEU3gzx6eSvU4QcyQf38TzePN8j4foAQPBs=",
+        banner: "https://assets.teenvogue.com/photos/58e3c0799093dd2fbd6babe3/16:9/w_1920,c_limit/GettyImages-664471336.jpg",
+        descricao: "Foi a primeira apresentação solo de Camila Cabello após sua saída do grupo Fifth Harmony, na qual ela brilhou cantando um cover de 'Man in the Mirror', clássico de Michael Jackson, acompanhada por uma banda completa e coro.",
+        videoUrl: "https://drive.google.com/file/d/1n9Lc9nbLu0MhZawvlQ2FsG0r1ru3R4xC/view?usp=sharing",
+        destaque: false
+    },
+      {
+        id: ,
+        titulo: "'Bad Things' Nickelodeon Kids' Choice Awards",
+        categoria: "Performances",
+        data: " 11 de março de 2017",
+        capa: "https://media.gettyimages.com/id/652257744/pt/foto/los-angeles-ca-singer-camila-cabello-and-rapper-machine-gun-kelly-perform-onstage-at.jpg?s=612x612&w=0&k=20&c=J0wxeuzRx0e-wldD_wqYVCTej4JOgNSyoID78N8Wy-w=",
+        banner: "https://media.gettyimages.com/id/652234870/pt/foto/los-angeles-ca-singer-camila-cabello-and-rapper-machine-gun-kelly-perform-onstage-at.jpg?s=612x612&w=0&k=20&c=l1RasQeUSjEN3uclzdiUlx8i_oDPfOHtsw44dZr4vJU=",
+        descricao: "Essa foi a primeira aparição pública de Camila Cabello no mesmo evento que o seu antigo grupo, o Fifth Harmony, logo após a sua saída oficial da banda.",
+        videoUrl: "https://drive.google.com/file/d/1PaZCg2O-eul3qXPhh7B_aMH_-X8TkxUc/view?usp=sharing",
+        destaque: false
+    },
+    {
+       id: ,
+       titulo:"'Say You Won't Let Go' BBC Radio 1 Live Lounge",
+       categoria:"Performances",
+       data:" 31 de janeiro de 2017",
+       capa:" ",
+       banner:"https://ichef.bbci.co.uk/images/ic/768xn/p04rffw3.jpg ",
+       descricao:" ",
+       videoUrl: " https://drive.google.com/file/d/1BW1jzxKTjp-gnMLHWpKyzWlWMX2Fu5l1/view?usp=sharing",
+       destaque: false
+       
+    {
+        id: ,
+        titulo: "'Bad Things' BBC Radio 1 Live Lounge",
+        categoria: "Performances",
+        data: " 31 de janeiro de 2017",
+        capa: "",
+        banner: "https://ichef.bbci.co.uk/images/ic/640x360/p04rf43v.jpg",
+        descricao: "Eles tocaram uma versão acústica e stripped-down (simplificada/despojada) do hit em parceria, acompanhados por um quarteto de cordas e pela banda completa de MGK. Na época, o single alcançou a 4ª posição na Billboard Hot 100.",
+        videoUrl: "https://drive.google.com/file/d/1rHhfRgyt4MSdxlbL-udfESa7xuYXyZY6/view?usp=sharing",
+        destaque: false
+    },
+   {
+        id: ,
+        titulo: "'Bad Things' The Ellen DeGeneres Show",
+        categoria: "Performances",
+        data: " 30 de janeiro de 2017",
+        capa: "https://jj-justjared-media.s3.amazonaws.com/wp-content/uploads/2017/01/cabello-ellen/thumbs/camila-cabello-machine-gun-kelly-ellen-show-04.JPG",
+        banner: "https://www.hotnewhiphop.com/i/v1/765x430-cover-81-auto/cover/39/01/1485810139_4f6ea6773b19a5d7fed06904c01a5473.jpg",
+        descricao: "Machine Gun Kelly e Camila Cabello apresentaram o hit “Bad Things” no programa The Ellen DeGeneres Show ,Embora ela já tenha tocado a música antes, esta é sua primeira aparição na TV desde que deixou o grupo em dezembro.",
+        videoUrl: "https://drive.google.com/file/d/1wvYujATwFv_th5byzQ7-itPIesa9TqJH/view?usp=sharing",
+        destaque: false
+    },
 ];
 
 let videoDestaqueAtual = null;
