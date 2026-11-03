@@ -245,7 +245,7 @@ const listaDeVideos = [
     },
         
          {
-        id:  ,
+        id: 20 ,
         titulo: " MTV Europe Music Awards",
         categoria: "Performances",
         data: "12 de novembro de 2017",
@@ -256,7 +256,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 21 ,
         titulo: "'Havana' LOS40 Music Awards",
         categoria: "Performances",
         data: "10 de novembro de 2017",
@@ -267,7 +267,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id:  22,
         titulo: "'Havana' Latin American Music Awards (Latin AMAs)",
         categoria: "Performances",
         data: " 26 de outubro de 2017",
@@ -278,7 +278,7 @@ const listaDeVideos = [
         destaque: false
     },    
         {
-        id: ,
+        id: 23,
         titulo: "'Say You Won't Let Go' BBC Radio 1’s Teen Awards ",
         categoria: "Performances",
         data: "22 de outubro de 2017",
@@ -289,7 +289,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id: 17,
+        id: 24,
         titulo: "'Havana'  BBC Radio 1’s Teen Awards ",
         categoria: "Performances",
         data: "22 de outubro de 2017",
@@ -300,7 +300,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id:  25,
         titulo: "'Havana','Crying in the Club' e 'Bad Things' Today Show ",
         categoria: "Performances",
         data: "29 de setembro de 2017",
@@ -311,7 +311,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 20,
+        id: 26,
         titulo: "'Havana' The Tonight Show Starring Jimmy Fallon",
         categoria: "Performances",
         data: "25 de setembro de 2017",
@@ -322,7 +322,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 21,
+        id: 27,
         titulo: "'Crying in the Club' The Tonight Show Starring Jimmy Fallon",
         categoria: "Performances",
         data: "22 de junho de 2017",
@@ -333,7 +333,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 22,
+        id: 28,
         titulo: "'I Have Questions' e 'Crying in the Club' iHeartRadio MuchMusic Video Awards (MMVAs)",
         categoria: "Performances",
         data: "18 de junho de 2017",
@@ -345,7 +345,7 @@ const listaDeVideos = [
     },
 
     {
-        id: 23,
+        id: 29,
         titulo: "'Crying in the Club' Britain's Got Talent",
         categoria: "Performances",
         data: "31 de maio de 2017",
@@ -356,7 +356,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: 24,
+        id: 30,
         titulo: "'I Have Questions' e 'Crying in the Club' Billboard Music Awards",
         categoria: "Performances",
         data: "21 de maio de 2017",
@@ -367,7 +367,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 25,
+        id: 31,
         titulo: "'Hey Ma' MTV Movie & TV Awards",
         categoria: "Performances",
         data: " 7 de maio de 2017",
@@ -378,7 +378,7 @@ const listaDeVideos = [
         destaque: false
     },
    {
-        id: 26,
+        id: 32,
         titulo: "'Bad Things' ACLU Benefit Concert ",
         categoria: "Performances",
         data: "3 de abril de 2017",
@@ -389,7 +389,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: 27,
+        id: 33,
         titulo: "'Man In The Mirror' ACLU Benefit Concert",
         categoria: "Performances",
         data: "3 de abril de 2017",
@@ -400,7 +400,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 28,
+        id: 34,
         titulo: "'Bad Things' Nickelodeon Kids' Choice Awards",
         categoria: "Performances",
         data: " 11 de março de 2017",
@@ -411,7 +411,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-       id: 29,
+       id: 35,
        titulo:"'Say You Won't Let Go' BBC Radio 1 Live Lounge",
        categoria:"Performances",
        data:" 31 de janeiro de 2017",
@@ -422,7 +422,7 @@ const listaDeVideos = [
        destaque: false
     },
     {
-        id: 30,
+        id: 36,
         titulo: "'Bad Things' BBC Radio 1 Live Lounge",
         categoria: "Performances",
         data: " 31 de janeiro de 2017",
@@ -433,7 +433,7 @@ const listaDeVideos = [
         destaque: false
     },
    {
-        id: 31,
+        id: 37,
         titulo: "'Bad Things' The Ellen DeGeneres Show",
         categoria: "Performances",
         data: " 30 de janeiro de 2017",
@@ -445,7 +445,7 @@ const listaDeVideos = [
     },
     
       {
-        id: 32 ,
+        id: 38 ,
         titulo: "",
         categoria: "Performances",
         data: "",
