@@ -243,16 +243,39 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
-        
-         {
-        id: 20 ,
-        titulo: " MTV Europe Music Awards",
+
+  
+        {
+        id:  ,
+        titulo: "'Havana' Dick Clark's Rockin' New Year's Eve",
         categoria: "Performances",
-        data: "12 de novembro de 2017",
-        capa: "",
-        banner: "",
+        data: "31 de dezembro de 2017",
+        capa: "https://akns-images.eonline.com/eol_images/Entire_Site/20171131/rs_634x1024-171231174917-634.camila-cabello-nye.ct.123117.jpg?fit=around%7C634:1024&output-quality=90&crop=634:1024;center,top",
+        banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65ebuVGsjDtV5Vz50jc7RfdDbSLsmRbT-3z-x0rHlOQ&s=10",
         descricao: "",
         videoUrl: "",
+        destaque: false
+    },
+         {
+        id: ,
+        titulo: "'Havana' Billboard Women in Music",
+        categoria: "Performances",
+        data: "30 de novembro de 2017",
+        capa: "https://media.gettyimages.com/id/883392474/photo/hollywood-ca-honoree-camila-cabello-performs-onstage-at-billboard-women-in-music-2017-at-the.jpg?s=612x612&w=0&k=20&c=h5oThpMCnMDN63WO08XGDhg0cmIzBxG1asTOlgL8nSk=",
+        banner: "https://media.gettyimages.com/id/883391734/photo/hollywood-ca-honoree-camila-cabello-performs-onstage-at-billboard-women-in-music-2017-at-the.jpg?s=612x612&w=0&k=20&c=iy6aW6HCgw75zZLh5D3NihwmnvpelePkHMK7gHYtghw=",
+        descricao: "",
+        videoUrl: "https://drive.google.com/file/d/1j0zGTJV-89RlYj45s-uP9lteqgAIWGEQ/view?usp=sharing",
+        destaque: false
+    },
+         {
+        id: 20 ,
+        titulo: " 'Havana' MTV Europe Music Awards",
+        categoria: "Performances",
+        data: "12 de novembro de 2017",
+        capa: "https://media.gettyimages.com/id/873366400/photo/london-england-camila-cabello-performs-on-stage-during-the-mtv-emas-2017-held-at-the-sse-arena.jpg?s=612x612&w=0&k=20&c=tud_xO0-kBfc0ZUnKykewvxOwkG3o7d-0oKS926VKSA=",
+        banner: "https://media.gettyimages.com/id/873366636/photo/london-england-camila-cabello-performs-on-stage-during-the-mtv-emas-2017-held-at-the-sse-arena.jpg?s=612x612&w=0&k=20&c=FRLvCsV6odnTg2YLN6vBGBjuR8LepOB_q3pTIjnkUq0=",
+        descricao: "",
+        videoUrl: "https://drive.google.com/file/d/1FlXuJb0idErLUeMEAEghpFPhJG6h8AHb/view?usp=sharing",
         destaque: false
     },
         {
@@ -363,7 +386,7 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXhBrazYHzt71N7PXDCgWSQTTleNmVQs1Zb6mzAnY0cA&s=10",
         banner: "https://www.billboard.com/wp-content/uploads/media/camila-cabello-bbmas-performance-a-2017-billboard-1548.jpg",
         descricao: "Camila Cabello fez sua primeira apresentação solo na televisão no Billboard Music Awards",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1mivopROXaUe3uAofiwFX0peqisd8LrEB/view?usp=sharing",
         destaque: false
     },
      {
@@ -440,7 +463,7 @@ const listaDeVideos = [
         capa: "https://jj-justjared-media.s3.amazonaws.com/wp-content/uploads/2017/01/cabello-ellen/thumbs/camila-cabello-machine-gun-kelly-ellen-show-04.JPG",
         banner: "https://www.hotnewhiphop.com/i/v1/765x430-cover-81-auto/cover/39/01/1485810139_4f6ea6773b19a5d7fed06904c01a5473.jpg",
         descricao: "Machine Gun Kelly e Camila Cabello apresentaram o hit “Bad Things” no programa The Ellen DeGeneres Show ,Embora ela já tenha tocado a música antes, esta é sua primeira aparição na TV desde que deixou o grupo em dezembro.",
-        videoUrl: "https://drive.google.com/file/d/1wvYujATwFv_th5byzQ7-itPIesa9TqJH/view?usp=sharing",
+        videoUrl: " ",
         destaque: false
     },
     
