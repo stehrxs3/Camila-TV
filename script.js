@@ -34,6 +34,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 const listaDeVideos = [
+  //Shows//
     {
         id: 1,
         titulo: "The Town",
@@ -41,7 +42,7 @@ const listaDeVideos = [
         data: "13 de setembro de 2025",
         capa: "https://drive.google.com/file/d/1ID9G0SteQCO3Q3qrJ7tTWO0NL7RQ_VdN/view?usp=sharing",
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
-        descricao: "Assista ao show completo de Camila Cabello no The Town, sendo a última parada da C,XOXO Tour.",
+        descricao: "Apresentação inesquecível que marcou o encerramento oficial da Yours' C Tour com direito a violão em Ai Se Eu Te Pego, funk no palco e muita proximidade com os fãs na grade.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
         destaque: true
     },
@@ -52,7 +53,7 @@ const listaDeVideos = [
         data: "17 de agosto de 2025",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlwvQSJ4ypl6knolhMiEE9Yahf1BB7xsImJBvrYG1ksg&s=10",
         banner: "https://www.summersonic.com/wp/wp-content/uploads/2025/08/005-196.jpg?v=1755512287",
-        descricao: "Assista aos melhores momentos das performances no festival Summer Sonic no Japão.",
+        descricao: "Show que fechou a passagem da cantora pelo festival japonês com chave de ouro e entregou um dos momentos mais aclamados da edição.",
         videoUrl: "https://drive.google.com/file/d/1nHYSRQUiakqT6ha8yaJVOeJijjvW7VCp/view?usp=sharing",
         destaque: false
     },
@@ -63,7 +64,7 @@ const listaDeVideos = [
         data: "20 de setembro de 2024",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2rqjw7FC8dh-RgxdeOT3vnFRpVHHax0XPP-h-qcNS0w&s=10",
         banner: "https://media.gettyimages.com/id/2173487877/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=Tm4ZJmkXVqEa2AEQWhH96NxQlvLFJ4urW-voPR2nOVM=",
-        descricao: "Show eletrizante no iHeartRadio Music Festival 2024.",
+        descricao: "Apresentação marcante que trouxe a cantora de jaqueta de couro e botas peludas, remix de funk para Shameless e momentos de carinho com a plateia.",
         videoUrl: "",
         destaque: false
     },
@@ -74,7 +75,7 @@ const listaDeVideos = [
         data: "29 de junho de 2024",
         capa: "https://media.gettyimages.com/id/2159846745/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=I6U1Io-fy0l_NxpL5TA47PFYf5bk_ggC09l5Ru5x1ng=",
         banner: "https://media.gettyimages.com/id/2159836703/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=_4Oj66cMwi0ZwZQozs5qzjLh9o-zET8Ajb9uX0KiRsI=",
-        descricao: "Apresentação icônica no festival Glastonbury 2024.",
+        descricao: "Apresentação eletrizante no The Other Stage que marcou sua estreia em Worthy Farm com uma estética hyperpop marcante e as faixas do álbum C,XOXO.",
         videoUrl: "",
         destaque: false
     },
@@ -85,7 +86,7 @@ const listaDeVideos = [
         data: "23 de junho de 2024",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeYBYDVs2dYsWoja06ekRWwmUBi7RVGLJiFewt6aVC1A&s=10",
         banner: "https://images.impresa.pt/expresso/2024-06-24-camilacabelo_mundo_diegopadilha_rirlisboa2024_23jun-7269.jpg-ac3c7552/3x2/mw-694",
-        descricao: "Show completo no Rock in Rio Lisboa 2024.",
+        descricao: "Show íconica no Parque do Tejo que marcou o primeiro show solo da cantora em Portugal e a estreia ao vivo das faixas do álbum C,XOXO.",
         videoUrl: "https://drive.google.com/file/d/1ujbG4Y88WCUCmHmMrm1fmX0ZfekWAFn3/view?usp=sharing",
         destaque: false
     },
@@ -96,7 +97,7 @@ const listaDeVideos = [
         data: "10 de setembro de 2022",
         capa: "https://media.gettyimages.com/id/1243121400/pt/foto/us-cuban-singer-camila-cabello-performs-on-the-main-stage-of-the-rock-in-rio-music-festival-at.jpg?s=612x612&w=0&k=20&c=KsZ1OTYNbFmsXhIsM2rrfGGTQMEx38LuukhsllYLomw=",
         banner: "https://media.gettyimages.com/id/1422667658/pt/foto/rio-de-janeiro-brazil-camila-cabello-performs-at-the-mundo-stage-during-the-rock-in-rio.jpg?s=612x612&w=0&k=20&c=Q5pZ2vHYsdYBIDJMg43v2xm-dKbMFuhsnsR1zfIQKTE=",
-        descricao: "Performance histórica no Palco Mundo do Rock in Rio 2022.",
+        descricao: "Apresentação histórica no Palco Mundo que enfrentou a chuva com Ai Preto ao lado de L7NNON, Hasta Los Dientes com María Becerra, bordões hilários em português e os maiores sucessos da era Familia.",
         videoUrl: "",
         destaque: false
     },
@@ -107,7 +108,7 @@ const listaDeVideos = [
         data: "4 de junho de 2022",
         capa: "https://media.gettyimages.com/id/1401261095/pt/foto/carson-california-singer-camila-cabello-performing-at-the-iheartradio-concert-at-wango-tango.jpg?s=612x612&w=0&k=20&c=0bBQ-fmV1_t-RyM1_uBtrY4M_zYdWZBp51PyaJhIApw=",
         banner: "https://media.gettyimages.com/id/1401260356/pt/foto/carson-california-singer-camila-cabello-performing-at-the-iheartradio-concert-at-wango-tango.jpg?s=612x612&w=0&k=20&c=7ricEAvrhF-SlOJZXjL68L95WFKjBEyLDP2HqUPrK8A=",
-        descricao: "Performance no festival Wango Tango 2022.",
+        descricao: "Show que destacou um mashup surpreendente de No Doubt com Gasolina, muita coreografia e os hits Bam Bam e psychofreak.",
         videoUrl: "https://drive.google.com/file/d/1k90V_-YORgQeT5AD9jsk63cTe2cM6qcr/view?usp=sharing",
         destaque: false
     },
@@ -118,7 +119,7 @@ const listaDeVideos = [
         data: "25 de setembro de 2021",
         capa: "https://media.gettyimages.com/id/1342508806/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-global-citizen-live-new-york-on.jpg?s=612x612&w=0&k=20&c=27pfpGkkTwixJwCUIoALvhH99Gfb6wcP3frKX7zMO8M=",
         banner: "https://media.gettyimages.com/id/1235516869/pt/foto/new-york-ny-camila-cabello-at-global-citizen-live-on-september-25-2021-in-new-york-city.jpg?s=612x612&w=0&k=20&c=0rcdZV303rshiNf4CcbOqtgwuDqgJd8tK3uq6CqOFjM=",
-        descricao: "Performance no Global Citizen Live em Nova York.",
+        descricao: "Apresentação marcante no palco de Nova York que uniu grandes colaborações ao vivo, vocais impecáveis e hits globais.",
         videoUrl: "https://drive.google.com/file/d/1yHI_3P4Sm0xt8yzl8XB4E6U4lCS0HFU7/view?usp=sharing",
         destaque: false
     },
@@ -129,7 +130,7 @@ const listaDeVideos = [
         data: "21 de novembro de 2019",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyek7IGOhzvk7QZjo__hr9qDntGPdoeaSd4XZ1Op5K8g&s",
         banner: "",
-        descricao: "Apresentação especial para o Apple Music New Music Daily.",
+        descricao: "Apresentação intimista promovida pela Apple Music que marcou o lançamento do álbum Romance com orquestra ao vivo.",
         videoUrl: "https://drive.google.com/file/d/1t4TOMOPPi_Ul-fMknRd1JZaeN40Prdvb/view?usp=sharing",
         destaque: false
     },
@@ -140,7 +141,7 @@ const listaDeVideos = [
         data: "2019",
         capa: "https://media.gettyimages.com/id/1193821355/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=SuAV38TgPP8TNVep50ayatwwb9LpwEPnyIMwnmr1wbM=",
         banner: "https://media.gettyimages.com/id/1193821767/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=K_DrlPmO1IDZecDEAOx3aRu3uXMeLbqHUw-QVuLLNtU=",
-        descricao: "Apresentação no Jingle Ball 2019.",
+        descricao: "Apresentação inesquecível no lendário Madison Square Garden que celebrou o lançamento do álbum Romance com um figurino icônico de pérolas e látex.",
         videoUrl: "https://drive.google.com/file/d/1yzCJeVlDfP-_PVKDr9gmb5iNeA2fhiMw/view?usp=sharing",
         destaque: false
     },
@@ -151,7 +152,7 @@ const listaDeVideos = [
         data: "20 de setembro de 2019",
         capa: "https://media.gettyimages.com/id/1177003039/pt/foto/las-vegas-nevada-camila-cabello-performs-at-t-mobile-arena-on-september-20-2019-in-las-vegas.jpg?s=612x612&w=0&k=20&c=QlDvVHM0FUt-fvVYJEgn2lGlao3SEeXJLe21cbDr_bU=",
         banner: "https://media.gettyimages.com/id/1176060717/pt/foto/las-vegas-nevada-camila-cabello-performs-onstage-during-the-2019-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=hWKHIApRxAGL7jRlZR_K0dHq_nKSpFfZuGY2XYTtlvc=",
-        descricao: "Show em Las Vegas no iHeartRadio Festival 2019.",
+        descricao: "Show incrível na T-Mobile Arena que marcou as primeiras performances ao vivo de Shameless e Liar.",
         videoUrl: "https://drive.google.com/file/d/1OQsQkKUuccFD4HNQpBO_b95bZqcIeVY1/view?usp=sharing",
         destaque: false
     },
@@ -162,7 +163,7 @@ const listaDeVideos = [
         data: "7 de outubro de 2018",
         capa: "https://media.gettyimages.com/id/1047445330/pt/foto/austin-tx-camila-cabello-performs-during-the-2018-austin-city-limits-music-festival-at-zilker.jpg?s=612x612&w=0&k=20&c=nY3iPoT_WLFGiwnzDttvhTh_TmPsL2W5FvkSvGE9Avc=",
         banner: "https://media.gettyimages.com/id/1047445328/pt/foto/austin-tx-camila-cabello-performs-during-the-2018-austin-city-limits-music-festival-at-zilker.jpg?s=612x612&w=0&k=20&c=7IOxaq0lDyf7fbETPEZ2r97tc4mG8xoN6XyKBJ-nPao=",
-        descricao: "Austin City Limits Music Festival 2018.",
+        descricao: "Apresentação inesquecível que levou a energia contagiante da Never Be the Same Tour para os palcos do Texas.",
         videoUrl: "https://drive.google.com/file/d/1wc7av7YEvK7xOFX9YiXjCRilCWJ8PTVh/view?usp=sharing",
         destaque: false
     },
@@ -173,7 +174,7 @@ const listaDeVideos = [
         data: "2 de agosto de 2018",
         capa: "https://media.gettyimages.com/id/1085989112/photo/chicago-il-camila-cabello-performs-on-day-one-of-lollapalooza-at-grant-park-on-august-2-2018.jpg?s=612x612&w=0&k=20&c=MvlkMXOsp3eafqjiFNOgWLMK1umCjsatY4ej0wCmUIs=",
         banner: "https://media.gettyimages.com/id/1012311284/photo/chicago-il-camila-cabello-performs-at-lollapalooza-2018-in-grant-park-on-august-2-2018-in.jpg?s=612x612&w=0&k=20&c=YVczRSqjEMfj3Syxj9tZHu5Wn4aD-he_COZLZ92ke6Q=",
-        descricao: "Lollapalooza Chicago 2018 no Grant Park.",
+        descricao: "Show eletrizante que reuniu dançarinos, ritmos caribenhos em Inside Out e um lindo tributo a Elvis Presley.",
         videoUrl: "https://drive.google.com/file/d/17VKNLqaGVyomvgIljSmOXJ6ln2Aej2Bq/view?usp=sharing",
         destaque: false
     },
@@ -184,7 +185,7 @@ const listaDeVideos = [
         data: "24 de junho de 2018",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoXP-SWd5YneNoP3PyC_3oxLnoTDmNobRg93JcnUyxZA&s=10",
         banner: "https://i.dailymail.co.uk/i/newpix/2018/06/24/23/4D97737200000578-5880531-In_the_moment_Camila_commanded_attention_as_she_interacted_with_-a-40_1529878946662.jpg",
-        descricao: "Isle of Wight Festival 2018.",
+        descricao: "Show eletrizante da passagem pela Europa que incendiou Newport com os sucessos do álbum Camila e covers inesquecíveis.",
         videoUrl: "https://drive.google.com/file/d/1TYQL_bFKxtpRDam_SwDMIpYU0CR8bnFv/view?usp=sharing",
         destaque: false
     },
@@ -195,7 +196,7 @@ const listaDeVideos = [
         data: "9 de junho de 2018",
         capa: "https://media.gettyimages.com/id/970340138/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=XzQ0O5L1055pStQ8EwZqpAs7syHIzyFBFIGAuEC3ClM=",
         banner: "https://metro.co.uk/wp-content/uploads/2018/06/sei_16179016.jpg?quality=90&strip=all",
-        descricao: "Capital's Summertime Ball no Wembley Stadium.",
+        descricao: "Show inesquecível que abriu o festival no lotado Estádio de Wembley para 80 mil pessoas com os maiores sucessos do álbum Camila.",
         videoUrl: "https://drive.google.com/file/d/1CnGEpf8eVLbuFSL-dIOa6M396TspLASt/view?usp=sharing",
         destaque: false
     },
@@ -206,7 +207,7 @@ const listaDeVideos = [
         data: "27 de maio de 2018",
         capa: "https://media.gettyimages.com/id/962996256/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=gtJ8FfYJ4qDDlR12hDG6FkaeMMbLHAy_lcz6y_0bD-o=",
         banner: "https://media.gettyimages.com/id/963001974/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=fn4VdBtUD0NbtJkoK9MgBxjMLzVTnzcANdYvti4yI7Q=",
-        descricao: "BBC Radio 1's Biggest Weekend em Swansea.",
+        descricao: "Apresentação marcante no palco principal de Gales que consagrou sua presença nos grandes festivais britânicos da era Camila.",
         videoUrl: "https://drive.google.com/file/d/15v8Hpnz2qLtEGE3es8nQD699WvzAkDCK/view?usp=sharing",
         destaque: false
     },
@@ -217,7 +218,7 @@ const listaDeVideos = [
         data: "17 de março de 2018",
         capa: "",
         banner: "",
-        descricao: "Lollapalooza Chile 2018.",
+        descricao: "Apresentação inesquecível no Parque O'Higgins onde a cantora superou atrasos e problemas técnicos para entregar um show épico com hits como Inside Out e Havana.",
         videoUrl: "",
         destaque: false
     },
@@ -228,10 +229,12 @@ const listaDeVideos = [
         data: "16 de março de 2018",
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfCS8nhSn5NEHWeW2kxb1Pm7DOpmTYk4MXUdt9Iac--w&s=10",
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSFyFThZuX9A92iKCnGXm1XN_8s0m1VAqMCPKvB0UQfg&s=10",
-        descricao: "Lollapalooza Argentina 2018.",
+        descricao: "Apresentação histórica no Palco Alternativo do Hipódromo de San Isidro que marcou um dos primeiros grandes momentos da cantora promovendo seu álbum solo de estreia.",
         videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
         destaque: false
     },
+
+  //Performances//
     {
         id: 19,
         titulo: "iHeartRadio Festa Latina",
@@ -478,8 +481,23 @@ const listaDeVideos = [
         videoUrl: "",
         destaque: false
     },   
+
+  //Entrevistas//
+  {
+        id: 41 ,
+        titulo: "",
+        categoria: "Entrevistas",
+        data: "",
+        capa: "",
+        banner: "",
+        descricao: "",
+        videoUrl: "",
+        destaque: false
+    },
+      
+  //Movies & Series//
         {
-        id:  ,
+        id: 42 ,
         titulo: "Rob Peace",
         categoria: "Movies & Series",
         data: "",
@@ -490,7 +508,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 43 ,
         titulo: "Trolls 3",
         categoria: "Movies & Series",
         data: "",
@@ -501,7 +519,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 44 ,
         titulo: "Cinderela",
         categoria: "Movies & Series",
         data: "",
@@ -512,7 +530,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 45 ,
         titulo: "GODSPEED",
         categoria: "Movies & Series",
         data: "",
@@ -523,7 +541,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 46 ,
         titulo: "Chanel No.5",
         categoria: "Movies & Series",
         data: "",
@@ -534,7 +552,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 47 ,
         titulo: "HE KNOWS",
         categoria: "Movies & Series",
         data: "",
@@ -545,7 +563,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id:  48,
         titulo: "I LUV IT",
         categoria: "Movies & Series",
         data: "",
@@ -556,7 +574,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id: 49 ,
         titulo: "Ambulancia",
         categoria: "Movies & Series",
         data: "",
@@ -567,7 +585,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id: 50 ,
         titulo: "Mon amour",
         categoria: "Movies & Series",
         data: "",
@@ -578,7 +596,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 51 ,
         titulo: "Hasta los Dientes",
         categoria: "Movies & Series",
         data: "",
@@ -589,7 +607,7 @@ const listaDeVideos = [
         destaque: false
     },
          {
-        id:  ,
+        id: 52 ,
         titulo: "Psychofreak",
         categoria: "Movies & Series",
         data: "",
@@ -600,7 +618,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 53 ,
         titulo: "Bam Bam",
         categoria: "Movies & Series",
         data: "",
@@ -611,7 +629,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 54 ,
         titulo: "I'll Be Home For Christmas",
         categoria: "Movies & Series",
         data: "",
@@ -622,7 +640,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id: 55 ,
         titulo: "I'll Be Home For Christmas",
         categoria: "Movies & Series",
         data: "",
@@ -634,7 +652,7 @@ const listaDeVideos = [
     },
 
         {
-        id:  ,
+        id: 56 ,
         titulo: "Million to One",
         categoria: "Movies & Series",
         data: "",
@@ -645,7 +663,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 57 ,
         titulo: "Don't Go Yet",
         categoria: "Movies & Series",
         data: "",
@@ -656,7 +674,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id:  58,
         titulo: "First Man",
         categoria: "Movies & Series",
         data: "",
@@ -667,7 +685,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id: 59 ,
         titulo: "My Oh My",
         categoria: "Movies & Series",
         data: "",
@@ -678,7 +696,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id: 60 ,
         titulo: "Rockin' Around the Christmas Tree",
         categoria: "Movies & Series",
         data: "",
@@ -689,7 +707,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 61 ,
         titulo: "Living Proof",
         categoria: "Movies & Series",
         data: "",
@@ -700,7 +718,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 62 ,
         titulo: "South of the Border",
         categoria: "Movies & Series",
         data: "",
@@ -711,7 +729,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 63 ,
         titulo: "Liar",
         categoria: "Movies & Series",
         data: "",
@@ -722,7 +740,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 64 ,
         titulo: "Shameless",
         categoria: "Movies & Series",
         data: "",
@@ -733,7 +751,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 65 ,
         titulo: "Find U Again",
         categoria: "Movies & Series",
         data: "",
@@ -744,7 +762,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  ,
+        id: 66 ,
         titulo: "Señorita",
         categoria: "Movies & Series",
         data: "",
@@ -755,7 +773,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 67 ,
         titulo: "Mi Persona Favorita",
         categoria: "Movies & Series",
         data: "",
@@ -766,7 +784,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id:  68,
         titulo: "Consequences",
         categoria: "Movies & Series",
         data: "",
@@ -777,7 +795,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 69 ,
         titulo: "Beautiful",
         categoria: "Movies & Series",
         data: "",
@@ -788,7 +806,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 70 ,
         titulo: "Never Be the Same",
         categoria: "Movies & Series",
         data: "",
@@ -799,7 +817,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id:  71,
         titulo: "Almost Like Praying",
         categoria: "Movies & Series",
         data: "",
@@ -810,7 +828,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id:  ,
+        id: 72 ,
         titulo: "Havana",
         categoria: "Movies & Series",
         data: "",
@@ -821,7 +839,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id:  73,
         titulo: "Know No Better",
         categoria: "Movies & Series",
         data: "",
@@ -832,7 +850,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id:  74,
         titulo: "Crying in the Club",
         categoria: "Movies & Series",
         data: "",
@@ -843,7 +861,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 75 ,
         titulo: "Hey Ma",
         categoria: "Movies & Series",
         data: "",
@@ -854,7 +872,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 76 ,
         titulo: "Bad Things",
         categoria: "Movies & Series",
         data: "",
@@ -865,7 +883,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 77 ,
         titulo: "I Know What You Did Last Summer",
         categoria: "Movies & Series",
         data: "",
@@ -877,7 +895,7 @@ const listaDeVideos = [
     },
 
         {
-        id:  ,
+        id: 78 ,
         titulo: "That's My Girl",
         categoria: "Movies & Series",
         data: "",
@@ -888,7 +906,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 79 ,
         titulo: "All in My Head (Flex)",
         categoria: "Movies & Series",
         data: "23 de junho de 2016",
@@ -899,7 +917,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 80 ,
         titulo: "Work from Home",
         categoria: "Movies & Series",
         data: "",
@@ -910,7 +928,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 81 ,
         titulo: "I'm in Love with a Monster",
         categoria: "Movies & Series",
         data: "",
@@ -921,7 +939,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 82 ,
         titulo: "Worth It",
         categoria: "Movies & Series",
         data: "",
@@ -932,7 +950,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 83 ,
         titulo: "All I Want for Christmas Is You",
         categoria: "Movies & Series",
         data: "3 de dezembro de 2014.",
@@ -943,7 +961,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 84 ,
         titulo: "Sledgehammer",
         categoria: "Movies & Series",
         data: "25 de novembro de 2014.",
@@ -954,7 +972,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id:  ,
+        id: 85 ,
         titulo: "BO$$",
         categoria: "Movies & Series",
         data: "8 de julho de 2014.",
@@ -965,7 +983,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id: 86 ,
         titulo: "Me & My Girls",
         categoria: "Movies & Series",
         data: "24 de agosto de 2013",
@@ -976,7 +994,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  ,
+        id: 87 ,
         titulo: "Miss Movin' On",
         categoria: "Movies & Series",
         data: "15 de julho de 2013",
@@ -987,7 +1005,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  ,
+        id:  88,
         titulo: "",
         categoria: "Movies & Series",
         data: "",
