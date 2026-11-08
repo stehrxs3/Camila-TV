@@ -255,7 +255,7 @@ const listaDeVideos = [
         capa: "https://akns-images.eonline.com/eol_images/Entire_Site/20171131/rs_634x1024-171231174917-634.camila-cabello-nye.ct.123117.jpg?fit=around%7C634:1024&output-quality=90&crop=634:1024;center,top",
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65ebuVGsjDtV5Vz50jc7RfdDbSLsmRbT-3z-x0rHlOQ&s=10",
         descricao: "",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1os9RAWpquH5ZMWAbAzyUkkrVH9R_njU0/view?usp=sharing",
         destaque: false
     },
          {
@@ -321,7 +321,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/865050982/photo/london-england-camila-cabello-performs-at-the-bbc-radio-1-teen-awards-2017-at-wembley-arena-on.jpg?s=612x612&w=0&k=20&c=leO3H6aYjH0KHjyp5KqogMuwK6xgp1FTOFV4Qg6swmU=",
         banner: "https://media.gettyimages.com/id/865050608/photo/london-england-camila-cabello-performs-at-the-bbc-radio-1-teen-awards-2017-at-wembley-arena-on.jpg?s=612x612&w=0&k=20&c=QII7YgRtBNDQ625sfLPRfVShZtMQ48wVZfvxUYFFvmA=",
         descricao: "",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1Pb_ML1A3TSxbN7sv20u-8U-Y5lfoicuJ/view?usp=sharing",
         destaque: false
     },
       {
@@ -421,7 +421,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/664864660/photo/los-angeles-ca-singer-camila-cabello-performs-onstage-during-the-welcome-fundraising-concert.jpg?s=612x612&w=0&k=20&c=7NEn8BIIhEU3gzx6eSvU4QcyQf38TzePN8j4foAQPBs=",
         banner: "https://assets.teenvogue.com/photos/58e3c0799093dd2fbd6babe3/16:9/w_1920,c_limit/GettyImages-664471336.jpg",
         descricao: "Foi a primeira apresentação solo de Camila Cabello após sua saída do grupo Fifth Harmony, na qual ela brilhou cantando um cover de 'Man in the Mirror', clássico de Michael Jackson, acompanhada por uma banda completa e coro.",
-        videoUrl: "https://drive.google.com/file/d/1n9Lc9nbLu0MhZawvlQ2FsG0r1ru3R4xC/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
       {
@@ -454,7 +454,7 @@ const listaDeVideos = [
         capa: "",
         banner: "https://ichef.bbci.co.uk/images/ic/640x360/p04rf43v.jpg",
         descricao: "Eles tocaram uma versão acústica e stripped-down (simplificada/despojada) do hit em parceria, acompanhados por um quarteto de cordas e pela banda completa de MGK. Na época, o single alcançou a 4ª posição na Billboard Hot 100.",
-        videoUrl: "https://drive.google.com/file/d/1rHhfRgyt4MSdxlbL-udfESa7xuYXyZY6/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
    {
