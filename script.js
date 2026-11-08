@@ -65,7 +65,7 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2rqjw7FC8dh-RgxdeOT3vnFRpVHHax0XPP-h-qcNS0w&s=10",
         banner: "https://media.gettyimages.com/id/2173487877/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=Tm4ZJmkXVqEa2AEQWhH96NxQlvLFJ4urW-voPR2nOVM=",
         descricao: "Apresentação marcante que trouxe a cantora de jaqueta de couro e botas peludas, remix de funk para Shameless e momentos de carinho com a plateia.",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1pKLYeZymRpJS_4y21AKwpx5ZHCeoJAM-/view?usp=sharing",
         destaque: false
     },
     {
@@ -216,7 +216,7 @@ const listaDeVideos = [
         titulo: "Lollapalooza Chile",
         categoria: "Shows",
         data: "17 de março de 2018",
-        capa: "",
+        capa: "https://www.billboard.com/wp-content/uploads/media/05-Camila-Cabello-lollapalooza-argentina-march-16-2018-billboard-1548.jpg?w=1280",
         banner: "",
         descricao: "Apresentação inesquecível no Parque O'Higgins onde a cantora superou atrasos e problemas técnicos para entregar um show épico com hits como Inside Out e Havana.",
         videoUrl: "https://drive.google.com/file/d/1kBumzvi0IfhFvemXR_Trvs4cJl13Of_R/view?usp=sharing",
@@ -462,9 +462,9 @@ const listaDeVideos = [
         titulo: "'Bad Things' The Ellen DeGeneres Show",
         categoria: "Performances",
         data: " 30 de janeiro de 2017",
-        capa: "https://jj-justjared-media.s3.amazonaws.com/wp-content/uploads/2017/01/cabello-ellen/thumbs/camila-cabello-machine-gun-kelly-ellen-show-04.JPG",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnHRCa_ycWh38quC3NQh--TD6OBqTIsmy6V2903Lg68g&s=10",
         banner: "https://www.hotnewhiphop.com/i/v1/765x430-cover-81-auto/cover/39/01/1485810139_4f6ea6773b19a5d7fed06904c01a5473.jpg",
-        descricao: "Machine Gun Kelly e Camila Cabello apresentaram o hit “Bad Things” no programa The Ellen DeGeneres Show ,Embora ela já tenha tocado a música antes, esta é sua primeira aparição na TV desde que deixou o grupo em dezembro.",
+        descricao: "Assista à performance de Bad Things por Machine Gun Kelly e Camila Cabello no The Ellen DeGeneres Show, registro inesquecível de 2017 que impulsionou o single rumo ao topo das paradas",
         videoUrl: " ",
         destaque: false
     },
@@ -558,17 +558,17 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW_uLijIbJtKw42OSKYqRG6DtBgfrjdd2lc_JgZHUGIg&s=10",
         banner: "",
         descricao: "Assista ao videoclipe oficial de HE KNOWS, produção vibrante e cheia de atitude que acompanha uma noite inesquecível de festa e sedução pelas ruas de Miami.",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1Rd-0owGOENLdtFC5xNe0DuUY6e8XJUk_/view?usp=sharing",
         destaque: false
     },
         {
         id:  48,
         titulo: "I LUV IT",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "27 de março de 2024",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWZq840y2E8DGZh6yU5Z0-bdxkBs9Uh0sZFf2lbF0RaQ&s=10",
         banner: "",
-        descricao: "",
+        descricao: "Assista ao videoclipe oficial de I LUV IT, produção caótica, futurista e eletrizante que marca a transição ousada da cantora para a era C,XOXO.",
         videoUrl: "https://drive.google.com/file/d/1fatcrG-1q_jJiPOAvaZJIWeAEWENjElK/view?usp=sharing",
         destaque: false
     },
@@ -576,82 +576,93 @@ const listaDeVideos = [
         id: 49 ,
         titulo: "Ambulancia",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "24 de janeiro de 2023",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA7nA9yuJXHeDvNZTJq_haxRa-BLUrYkCO8XAiFnp3Lg&s=10",
         banner: "",
-        descricao: "",
+        descricao: "Assista ao videoclipe oficial de Ambulancia, vídeo esteticamente único que marcou um dos grandes encontros da música latina em 2023.",
         videoUrl: "https://drive.google.com/file/d/17ZEUHv92imNKtO-RqiLuqoIMJcLdfq2c/view?usp=sharing",
         destaque: false
     },
+        {
+        id:  50,
+        titulo: "Ku lo sa",
+        categoria: "Movies & Series",
+        data: "16 de dezembro de 2022",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Rob2GiFWzoNTjcN3EcWgLPAgscOUMGKecJfTopN1Kg&s=10",
+        banner: "",
+        descricao: "Assista ao videoclipe oficial de Ku Lo Sa, colaboração irresistível que levou o grande hit global do afrobeat a uma nova dimensão.",
+        videoUrl: "https://drive.google.com/file/d/1H8kFq2TEbRzwV6ZWcNlASSM0NY64Pgh6/view?usp=sharing",
+        destaque: false
+    },
        {
-        id: 50 ,
+        id: 51 ,
         titulo: "Mon amour",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "27 de julho de 2022",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9aq-wsJci8nbui6voNDombluPhTTpQRzp3ZwpRGyStw&s=10",
         banner: "",
-        descricao: "",
-        videoUrl: "",
+        descricao: "Assista ao videoclipe oficial de Mon Amour, paródia hilaria e colorida que ironiza os clichês e dramas dos reality shows de namoro em uma villa de verão.",
+        videoUrl: "https://drive.google.com/file/d/1pGU1u9LiOHxO3HYB7f_5VG7ebYsaqNn3/view?usp=sharing",
         destaque: false
     },
         {
-        id: 51 ,
+        id: 52 ,
         titulo: "Hasta los Dientes",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "13 de maio de 202",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG0IaYs0YxKKKWOdw6JOWHqrCs-nfWEU2VWSBQpuqlBw&s=10",
         banner: "",
-        descricao: "",
+        descricao: "Assista ao videoclipe oficial de Hasta los Dientes, colaboração pop latina contagiante embalada por uma estética espacial única.",
         videoUrl: "https://drive.google.com/file/d/1FZWA8ZD7Qw27MhbJzZex6IO_L6MeuZRk/view?usp=sharing",
         destaque: false
     },
          {
-        id: 52 ,
+        id: 53 ,
         titulo: "Psychofreak",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "8 de abril de 2022",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXONUMtrYwYauZTThA4pAFVV8jwkDfzNNdvjNupo_Cpw&s=10",
         banner: "",
-        descricao: "",
-        videoUrl: "",
+        descricao: "Assista ao videoclipe oficial de Psychofreak, produção hipnotizante e surreal que explora temas de ansiedade e dissociação em um cenário com gravidade distorcida.",
+        videoUrl: "https://drive.google.com/file/d/1nYKUgp9eHCheHN7Wtjsj_IJLUHlrGVhi/view?usp=sharing",
         destaque: false
     },
         {
-        id: 53 ,
+        id: 54 ,
         titulo: "Bam Bam",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "4 de março de 2022",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr7EyOrCQlHUpFr95VIs8NJWUPXTmJQ18sdlDKv91Ilw&s=10",
         banner: "",
-        descricao: "",
+        descricao: "Assista ao videoclipe oficial de Bam Bam, vídeo indicado ao Grammy que conquistou fãs no mundo inteiro com sua vibe festiva e alto astral.",
         videoUrl: "https://drive.google.com/file/d/1gOHc1rFqileDUd6EONlvJT0j6RvQnNIV/view?usp=sharing",
         destaque: false
     },
       {
-        id: 54 ,
-        titulo: "I'll Be Home For Christmas",
-        categoria: "Movies & Series",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-       {
         id: 55 ,
         titulo: "I'll Be Home For Christmas",
         categoria: "Movies & Series",
-        data: "",
-        capa: "",
+        data: "21 de dezembro de 2021.",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGb2wso5s2-u07oV1xoZCvU6onmN6SK49n0byCb-sRMQ&s=10",
         banner: "",
-        descricao: "",
-        videoUrl: "",
+        descricao: "Assista à performance oficial de I'll Be Home For Christmas por Camila Cabello na Casa Branca, apresentação marcante para o especial Spirit of the Season acompanhada por um talentoso grupo mariachi.",
+        videoUrl: "https://drive.google.com/file/d/1TboPic_6IBXPabouGhcdlkIAudnddC4e/view?usp=sharing",
+        destaque: false
+    },
+       {
+        id: 56 ,
+        titulo: "I'll Be Home For Christmas",
+        categoria: "Movies & Series",
+        data: "8 de dez. de 2021",
+        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_20ARKLXMFBM9jVwRV1Czr1yZdhZTf_i1JTLh1uDF-g&s=10",
+        banner: "",
+        descricao: "Assista à performance especial de I'll Be Home For Christmas de Michael Bublé com Camila Cabello, dueto acolhedor e sofisticado gravado para o especial de fim de ano em Nova York.",
+        videoUrl: "https://drive.google.com/file/d/1xE1TVpVnqKxSRlSeUsqunsI1dmrJVVc3/view?usp=sharing",
         destaque: false
     },
 
         {
-        id: 56 ,
+        id: 57 ,
         titulo: "Million to One",
         categoria: "Movies & Series",
         data: " 31 de agosto de 2021",
@@ -662,7 +673,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id: 57 ,
+        id: 58 ,
         titulo: "Don't Go Yet",
         categoria: "Movies & Series",
         data: " 23 de julho de 2021",
@@ -673,7 +684,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id:  58,
+        id:  59,
         titulo: "First Man",
         categoria: "Movies & Series",
         data:  "21 de junho de 2020",
@@ -684,7 +695,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id: 59 ,
+        id: 60 ,
         titulo: "My Oh My",
         categoria: "Movies & Series",
         data: "12 de fevereiro de 2020",
@@ -695,7 +706,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id: 60 ,
+        id: 61 ,
         titulo: "Rockin' Around the Christmas Tree",
         categoria: "Movies & Series",
         data: "29 de novembro de 2019",
@@ -706,7 +717,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 61 ,
+        id: 62 ,
         titulo: "Living Proof",
         categoria: "Movies & Series",
         data: "24 de novembro de 2019",
@@ -717,7 +728,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 62 ,
+        id: 63 ,
         titulo: "South of the Border",
         categoria: "Movies & Series",
         data: "4 de outubro de 2019",
@@ -728,7 +739,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 63 ,
+        id: 64 ,
         titulo: "Liar",
         categoria: "Movies & Series",
         data: "12 de setembro de 2019",
@@ -739,7 +750,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 64 ,
+        id: 65 ,
         titulo: "Shameless",
         categoria: "Movies & Series",
         data: " de setembro de 2019",
@@ -750,7 +761,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 65 ,
+        id: 66 ,
         titulo: "Find U Again",
         categoria: "Movies & Series",
         data: "9 de julho de 2019",
@@ -761,7 +772,7 @@ const listaDeVideos = [
         destaque: false
     },
        {
-        id: 66 ,
+        id: 67 ,
         titulo: "Señorita",
         categoria: "Movies & Series",
         data: "21 de junho de 2019",
@@ -772,7 +783,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 67 ,
+        id: 68 ,
         titulo: "Mi Persona Favorita",
         categoria: "Movies & Series",
         data: " 28 de março de 2019",
@@ -783,7 +794,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  68,
+        id:  69,
         titulo: "Consequences",
         categoria: "Movies & Series",
         data: "10 de outubro de 2018",
@@ -794,7 +805,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 69 ,
+        id: 70 ,
         titulo: "Beautiful",
         categoria: "Movies & Series",
         data: " 15 de outubro de 2018",
@@ -805,7 +816,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 70 ,
+        id: 71,
         titulo: "Never Be the Same",
         categoria: "Movies & Series",
         data: "8 de março de 2018.",
@@ -816,7 +827,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  71,
+        id:  72,
         titulo: "Almost Like Praying",
         categoria: "Movies & Series",
         data: "6 de outubro de 2017",
@@ -827,7 +838,7 @@ const listaDeVideos = [
         destaque: false
     },
     {
-        id: 72 ,
+        id: 73 ,
         titulo: "Havana",
         categoria: "Movies & Series",
         data: "24 de outubro de 2017",
@@ -838,7 +849,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  73,
+        id:  74,
         titulo: "Know No Better",
         categoria: "Movies & Series",
         data: "11 de julho de 2017",
@@ -849,7 +860,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id:  74,
+        id:  75,
         titulo: "Crying in the Club",
         categoria: "Movies & Series",
         data: "19 de maio de 2017",
@@ -860,7 +871,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 75 ,
+        id: 76 ,
         titulo: "Hey Ma",
         categoria: "Movies & Series",
         data: "10 de março de 2017",
@@ -871,7 +882,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 76 ,
+        id: 77 ,
         titulo: "Bad Things",
         categoria: "Movies & Series",
         data: "1 de dezembro de 2016",
@@ -882,7 +893,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 77 ,
+        id: 78,
         titulo: "I Know What You Did Last Summer",
         categoria: "Movies & Series",
         data: "20 de novembro de 2015",
@@ -894,7 +905,7 @@ const listaDeVideos = [
     },
 
         {
-        id: 78 ,
+        id: 79 ,
         titulo: "That's My Girl",
         categoria: "Movies & Series",
         data: "19 de setembro de 2016",
@@ -905,7 +916,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 79 ,
+        id: 80 ,
         titulo: "All in My Head (Flex)",
         categoria: "Movies & Series",
         data: "23 de junho de 2016",
@@ -916,7 +927,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 80 ,
+        id: 81 ,
         titulo: "Work from Home",
         categoria: "Movies & Series",
         data: "26 de fevereiro de 2016",
@@ -927,7 +938,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 81 ,
+        id: 82 ,
         titulo: "I'm in Love with a Monster",
         categoria: "Movies & Series",
         data: "27 de agosto de 2015",
@@ -938,7 +949,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 82 ,
+        id: 83 ,
         titulo: "Worth It",
         categoria: "Movies & Series",
         data: " 28 de março de 2015.",
@@ -949,7 +960,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 83 ,
+        id: 84 ,
         titulo: "All I Want for Christmas Is You",
         categoria: "Movies & Series",
         data: "3 de dezembro de 2014.",
@@ -960,7 +971,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 84 ,
+        id: 85 ,
         titulo: "Sledgehammer",
         categoria: "Movies & Series",
         data: "25 de novembro de 2014.",
@@ -971,7 +982,7 @@ const listaDeVideos = [
         destaque: false
     },
         {
-        id: 85 ,
+        id: 86,
         titulo: "BO$$",
         categoria: "Movies & Series",
         data: "8 de julho de 2014.",
@@ -982,7 +993,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id: 86 ,
+        id: 87,
         titulo: "Me & My Girls",
         categoria: "Movies & Series",
         data: "24 de agosto de 2013",
@@ -993,7 +1004,7 @@ const listaDeVideos = [
         destaque: false
     },
      {
-        id: 87 ,
+        id: 88 ,
         titulo: "Miss Movin' On",
         categoria: "Movies & Series",
         data: "15 de julho de 2013",
@@ -1004,7 +1015,7 @@ const listaDeVideos = [
         destaque: false
     },
       {
-        id:  88,
+        id:  89,
         titulo: "",
         categoria: "Movies & Series",
         data: "",
