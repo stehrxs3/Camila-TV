@@ -98,7 +98,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/1243121400/pt/foto/us-cuban-singer-camila-cabello-performs-on-the-main-stage-of-the-rock-in-rio-music-festival-at.jpg?s=612x612&w=0&k=20&c=KsZ1OTYNbFmsXhIsM2rrfGGTQMEx38LuukhsllYLomw=",
         banner: "https://media.gettyimages.com/id/1422667658/pt/foto/rio-de-janeiro-brazil-camila-cabello-performs-at-the-mundo-stage-during-the-rock-in-rio.jpg?s=612x612&w=0&k=20&c=Q5pZ2vHYsdYBIDJMg43v2xm-dKbMFuhsnsR1zfIQKTE=",
         descricao: "Apresentação histórica no Palco Mundo que enfrentou a chuva com Ai Preto ao lado de L7NNON, Hasta Los Dientes com María Becerra, bordões hilários em português e os maiores sucessos da era Familia.",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1XxEhKzy53Xxbe4KVdkotLvBF5fBJYPzt/view?usp=sharing",
         destaque: false
     },
     {
@@ -219,7 +219,7 @@ const listaDeVideos = [
         capa: "",
         banner: "",
         descricao: "Apresentação inesquecível no Parque O'Higgins onde a cantora superou atrasos e problemas técnicos para entregar um show épico com hits como Inside Out e Havana.",
-        videoUrl: "",
+        videoUrl: "https://drive.google.com/file/d/1kBumzvi0IfhFvemXR_Trvs4cJl13Of_R/view?usp=sharing",
         destaque: false
     },
     {
@@ -233,8 +233,6 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
         destaque: false
     },
-
-  //Performances//
     {
         id: 19,
         titulo: "iHeartRadio Festa Latina",
@@ -246,7 +244,8 @@ const listaDeVideos = [
         videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
         destaque: false
     },
-
+  
+//Performances//
   
         {
         id:  20,
