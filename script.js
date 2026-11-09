@@ -482,8 +482,19 @@ const listaDeVideos = [
     },   
 
   //Entrevistas//
-  {
+   {
         id: 41 ,
+        titulo: "cccccc",
+        categoria: "Entrevistas",
+        data: "",
+        capa: "",
+        banner: "",
+        descricao: "",
+        videoUrl: "https://drive.google.com/file/d/1ZNiWLAZQi6gOHyCDJ3awph5qghXYwNGe/view?usp=sharing",
+        destaque: false
+    },
+  {
+        id:  ,
         titulo: "",
         categoria: "Entrevistas",
         data: "",
