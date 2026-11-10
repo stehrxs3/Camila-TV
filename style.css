@@ -430,14 +430,26 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     background-color: #000000;
+    overflow: hidden; 
 }
 
 .iframe-container iframe,
 .iframe-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: cover;
 }
+
+
+.iframe-container iframe {
+    top: -45px;
+    height: calc(100% + 45px);
+}
+
 
 .modal-info-body {
     padding: 24px 28px;
