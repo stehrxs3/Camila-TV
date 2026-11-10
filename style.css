@@ -5,7 +5,7 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.body {
+body {
     background: #030712;
     color: #ffffff;
     overflow-x: hidden;
@@ -52,7 +52,6 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Container de fundo escuro com desfoque */
 #vipModal {
     display: none;
     position: fixed;
@@ -67,7 +66,6 @@
     align-items: center;
 }
 
-/* Caixa principal do Modal */
 #vipModal .modal-content {
     background: linear-gradient(145deg, #1e293b, #0f172a);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -81,7 +79,6 @@
     animation: modalFadeIn 0.3s ease-out;
 }
 
-/* Botão de Fechar (X) */
 #vipModal .close {
     position: absolute;
     top: 15px;
@@ -96,7 +93,6 @@
     color: #ffffff;
 }
 
-/* Cartão do Plano */
 #vipModal .plan-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(250, 204, 21, 0.3);
@@ -112,7 +108,6 @@
     color: #cbd5e1;
 }
 
-/* Botão Principal de Ativação */
 #btnUpgradeVIP {
     background: linear-gradient(135deg, #2563eb, #1d4ed8);
     color: #ffffff;
@@ -136,7 +131,6 @@
     transform: translateY(0);
 }
 
-/* Animação de Entrada */
 @keyframes modalFadeIn {
     from {
         opacity: 0;
@@ -147,6 +141,7 @@
         transform: scale(1);
     }
 }
+
 .cat-btn {
     background: none;
     border: none;
@@ -362,7 +357,7 @@
 
 .card img {
     width: 100%;
-    height: 331,1px;
+    height: 331px;
     object-fit: cover;
 }
 
@@ -430,26 +425,19 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     background-color: #000000;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .iframe-container iframe,
 .iframe-container video {
     position: absolute;
-    top: 0;
+    top: -45px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 45px);
     border: none;
     object-fit: cover;
 }
-
-
-.iframe-container iframe {
-    top: -45px;
-    height: calc(100% + 45px);
-}
-
 
 .modal-info-body {
     padding: 24px 28px;
@@ -647,7 +635,6 @@
     text-align: center;
 }
 
-
 @media screen and (max-width: 768px) {
     .navbar {
         padding: 8px 10px;
@@ -767,10 +754,10 @@
     }
 
     .card img {
-    width: 100%;
-    height: 331,1px;
-    object-fit: cover;
-}
+        width: 100%;
+        height: 331px;
+        object-fit: cover;
+    }
     
     .video-grid {
         grid-template-columns: repeat(2, 1fr);
