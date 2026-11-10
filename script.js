@@ -470,7 +470,7 @@ const listaDeVideos = [
     },
     
       {
-        id: ,
+        id: 40,
         titulo: "",
         categoria: "Performances",
         data: "",
@@ -483,7 +483,7 @@ const listaDeVideos = [
 
   //Entrevistas//
    {
-        id: 40 ,
+        id: 41 ,
         titulo: "Therapuss with Jake Shane",
         categoria: "Entrevistas",
         data: "9 de maio de 2024",
@@ -492,150 +492,7 @@ const listaDeVideos = [
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1y9jxtFd-O779W7qEM1gUiubhK7B0cGHu/view?usp=sharing",
         destaque: false
-    },
-       {
-        id: 41 ,
-        titulo: "The Elle Duncan Show",
-        categoria: "Entrevistas",
-        data: "6 de maio de 2024",
-        capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSA4rZOwhorSNCrg7tx5_fXi6twJTFFgRGkhd4Isbh6w&s=10",
-        banner: "",
-        descricao: "",
-        videoUrl: "https://drive.google.com/file/d/1xcaZJWwtbbQ1VCUf51y2jpFvHJMQAS1T/view?usp=sharing",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "Entrevista com Zane Lowe",
-        categoria: "Entrevistas",
-        data: "28 de março de 2024",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-   {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
-  {
-        id:  ,
-        titulo: "",
-        categoria: "Entrevistas",
-        data: "",
-        capa: "",
-        banner: "",
-        descricao: "",
-        videoUrl: "",
-        destaque: false
-    },
+   },
       
   //Movies & Series//
         {
