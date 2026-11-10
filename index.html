@@ -59,8 +59,11 @@
     <div id="videoModal" class="modal">
         <div class="modal-content modal-clean">
             <span class="close-btn" onclick="fecharVideo()">&times;</span>
+            
             <div class="iframe-container" id="videoContainer">
                 <iframe id="videoPlayer" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <div class="video-overlay-blocker"></div>
+                <button class="btn-sair-video" onclick="fecharModal()" title="Fechar">✕</button>
             </div>
             <div class="modal-info-body">
                 <h2 id="modalVideoTitle" class="video-info-title">Título do Vídeo</h2>
