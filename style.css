@@ -672,42 +672,6 @@ body {
     text-align: center;
 }
 
-.auth-container form {
-    display: none;
-}
-
-.auth-container form.ativo,
-#loginForm[style*="display: block"],
-#registerForm[style*="display: block"] {
-    display: flex !important;
-    flex-direction: column;
-    width: 100%;
-}
-
-#loginForm, #registerForm {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-}
-
-#registerForm button[type="submit"],
-#loginForm button[type="submit"] {
-    width: 100%;
-    background-color: #2b39d2;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
-}
-
-#registerForm button[type="submit"]:hover,
-#loginForm button[type="submit"]:hover {
-    background-color: #1e289f;
-}
 
 @media screen and (max-width: 768px) {
     .navbar {
