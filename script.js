@@ -1224,23 +1224,24 @@ function mudarAba(aba) {
 
     if (feedback) feedback.innerText = "";
 
-    // Oculta todos primeiro
+    // Oculta todos os formulários primeiro
     if (loginForm) loginForm.style.display = "none";
     if (registerForm) registerForm.style.display = "none";
     if (resetForm) resetForm.style.display = "none";
 
+    // Remove a classe active das abas
     if (tabLogin) tabLogin.classList.remove("active");
     if (tabRegister) tabRegister.classList.remove("active");
 
-    // Mostra o selecionado
+    // Mostra apenas o formulário correspondente à aba clicada
     if (aba === 'login') {
-        if (loginForm) loginForm.style.display = "flex";
+        if (loginForm) loginForm.style.display = "block";
         if (tabLogin) tabLogin.classList.add("active");
     } else if (aba === 'register') {
-        if (registerForm) registerForm.style.display = "flex";
+        if (registerForm) registerForm.style.display = "block";
         if (tabRegister) tabRegister.classList.add("active");
     } else if (aba === 'reset') {
-        if (resetForm) resetForm.style.display = "flex";
+        if (resetForm) resetForm.style.display = "block";
     }
 }
 
