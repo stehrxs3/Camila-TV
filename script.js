@@ -197,7 +197,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/970340138/pt/foto/camila-cabello-on-stage-during-capitals-summertime-ball-with-vodafone-at-wembley-stadium-london.jpg?s=612x612&w=0&k=20&c=XzQ0O5L1055pStQ8EwZqpAs7syHIzyFBFIGAuEC3ClM=",
         banner: "https://metro.co.uk/wp-content/uploads/2018/06/sei_16179016.jpg?quality=90&strip=all",
         descricao: "Show inesquecível que abriu o festival no lotado Estádio de Wembley para 80 mil pessoas com os maiores sucessos do álbum Camila.",
-        videoUrl: "https://drive.google.com/file/d/1CnGEpf8eVLbuFSL-dIOa6M396TspLASt/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
     {
@@ -208,7 +208,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/962996256/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=gtJ8FfYJ4qDDlR12hDG6FkaeMMbLHAy_lcz6y_0bD-o=",
         banner: "https://media.gettyimages.com/id/963001974/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=fn4VdBtUD0NbtJkoK9MgBxjMLzVTnzcANdYvti4yI7Q=",
         descricao: "Apresentação marcante no palco principal de Gales que consagrou sua presença nos grandes festivais britânicos da era Camila.",
-        videoUrl: "https://drive.google.com/file/d/15v8Hpnz2qLtEGE3es8nQD699WvzAkDCK/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
     {
@@ -241,7 +241,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/870318566/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=2X-C0tgCPMFgLAp8EourmteU5xc1FZd150JamU0VUuw=",
         banner: "https://media.gettyimages.com/id/870316968/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=CFSakseKeNi-LeDCb2ttb_9daDS4p_XM6K7dmjw5ECo=",
         descricao: "iHeartRadio Festa Latina em Miami.",
-        videoUrl: "https://drive.google.com/file/d/1IT2EWR9fjLMKCW1yBToaO7z6Qn1bpO_z/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
   
@@ -255,7 +255,7 @@ const listaDeVideos = [
         capa: "https://akns-images.eonline.com/eol_images/Entire_Site/20171131/rs_634x1024-171231174917-634.camila-cabello-nye.ct.123117.jpg?fit=around%7C634:1024&output-quality=90&crop=634:1024;center,top",
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65ebuVGsjDtV5Vz50jc7RfdDbSLsmRbT-3z-x0rHlOQ&s=10",
         descricao: "Apresentação inesquecível na Times Square na virada de ano que impulsionou o hit rumo ao topo da Billboard Hot 100.",
-        videoUrl: "https://drive.google.com/file/d/1os9RAWpquH5ZMWAbAzyUkkrVH9R_njU0/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
          {
@@ -288,7 +288,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/873503030/photo/madrid-spain-camila-cabello-attends-40-principales-awards-2017-on-november-10-2017-in-madrid.jpg?s=612x612&w=0&k=20&c=V3rg6rZDXdcv1YMurA4AtQ_YKclowXMzFNO9EKGo4wQ=",
         banner: "",
         descricao: "",
-        videoUrl: "Apresentação marcante no WiZink Center em Madri na noite em que conquistou o prêmio de Melhor Artista.",
+        videoUrl: ".",
         destaque: false
     },
        {
@@ -332,7 +332,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/855530056/pt/foto/new-york-ny-camila-cabello-performs-onstage-wearing-an-aclu-ribbon-on-nbcs-today-at-rockefeller.jpg?s=612x612&w=0&k=20&c=cdfb31XZBHnudHtkifHBGmD4u4pSKbJZSC_uE8D-J2A=",
         banner: "https://media.gettyimages.com/id/855541408/pt/foto/new-york-ny-camila-cabello-performs-onstage-showing-her-support-for-daca-while-wearing-an-aclu.jpg?s=612x612&w=0&k=20&c=7KzQPFf8hC-M0B7Vu7U05WUwxUDHaM4qm-LwPlvW8ts=",
         descricao: "Durante a performance de “Havana”, a cantora dedicou o momento aos jovens beneficiários do programa DACA (conhecidos como DREAMers) e fez um discurso em defesa de uma América inclusiva",
-        videoUrl: "https://drive.google.com/file/d/1elxXcPt3ICPEehvmz-O8ipbOhUBCnXzp/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
       {
@@ -354,7 +354,7 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/699981094/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0698-pictured-musical-guest-camila-cabello.jpg?s=612x612&w=0&k=20&c=L4ZRTDjGAdb6Y4J1jbeXO2ttyhQ_ovmPqlQJeYQTiUI=",
         banner: "https://media.gettyimages.com/id/699980704/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0698-pictured-musical-guest-camila-cabello.jpg?s=612x612&w=0&k=20&c=4kGl-9RZWJAdtkvv1Tg3AvOPImmwvbuEAHA5KfZRTAw=",
         descricao: "Camila Cabello apresentou o seu single solo de estreia no programa The Tonight Show Starring Jimmy Fallon",
-        videoUrl: "https://drive.google.com/file/d/1hXBgVnHjiWqt7eHIJr6xf9zI7Y9TCAje/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
      {
@@ -377,7 +377,7 @@ const listaDeVideos = [
         capa: "https://celebmafia.com/wp-content/uploads/2017/06/camila-cabello-performs-at-britain-s-got-talent-in-london-05-30-2017-1.jpg",
         banner: "",
         descricao: "Fazendo sua estreia solo na parada britânica, ‘Crying in the Club’ estreou em 48º lugar no Official UK Charts",
-        videoUrl: "https://drive.google.com/file/d/1SQ2EThTRidKzJZe1IjmYyGfBaGHB8XMQ/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
     {
@@ -388,7 +388,7 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXhBrazYHzt71N7PXDCgWSQTTleNmVQs1Zb6mzAnY0cA&s=10",
         banner: "https://www.billboard.com/wp-content/uploads/media/camila-cabello-bbmas-performance-a-2017-billboard-1548.jpg",
         descricao: "Camila Cabello fez sua primeira apresentação solo na televisão no Billboard Music Awards",
-        videoUrl: "https://drive.google.com/file/d/1mivopROXaUe3uAofiwFX0peqisd8LrEB/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
      {
@@ -399,7 +399,7 @@ const listaDeVideos = [
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFrj0trYCW8xDekFNNK0MAo-nS6l8MXVuwEbBlPhRow&s=10",
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmne6_8GR9RhuVMRbpKGT1f-En5M-g9q9kW4rCYVv8lA&s=10",
         descricao: "Camila Cabello, Pitbull e J Balvin se apresentaram juntos no palco cantando o hit “Hey Ma”, parte da trilha sonora do filme Velozes e Furiosos 8.",
-        videoUrl: "https://drive.google.com/file/d/1-2br99MXlobLI5aO8st-ztCbG4EdUYdO/view?usp=sharing",
+        videoUrl: "",
         destaque: false
     },
    {
@@ -431,8 +431,8 @@ const listaDeVideos = [
         data: " 11 de março de 2017",
         capa: "https://media.gettyimages.com/id/652257744/pt/foto/los-angeles-ca-singer-camila-cabello-and-rapper-machine-gun-kelly-perform-onstage-at.jpg?s=612x612&w=0&k=20&c=J0wxeuzRx0e-wldD_wqYVCTej4JOgNSyoID78N8Wy-w=",
         banner: "https://media.gettyimages.com/id/652234870/pt/foto/los-angeles-ca-singer-camila-cabello-and-rapper-machine-gun-kelly-perform-onstage-at.jpg?s=612x612&w=0&k=20&c=l1RasQeUSjEN3uclzdiUlx8i_oDPfOHtsw44dZr4vJU=",
-        descricao: "Essa foi a primeira aparição pública de Camila Cabello no mesmo evento que o seu antigo grupo, o Fifth Harmony, logo após a sua saída oficial da banda.",
-        videoUrl: "https://drive.google.com/file/d/1PaZCg2O-eul3qXPhh7B_aMH_-X8TkxUc/view?usp=sharing",
+        descricao: "",
+        videoUrl: " ",
         destaque: false
     },
     {
