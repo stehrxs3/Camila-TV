@@ -1265,56 +1265,31 @@ function carregarFotoCadastro(event) {
 
 function realizarCadastro(event) {
     event.preventDefault();
-    console.log("Botão de cadastro clicado!"); // Para verificar na consola (F12)
 
     const feedback = document.getElementById("mensagemFeedback");
-    if (feedback) feedback.innerText = "";
+    const lgpdAceito = document.getElementById("regLgpd") ? document.getElementById("regLgpd").checked : true;
 
-    const nicknameInput = document.getElementById("regNickname");
-    const contatoInput = document.getElementById("regContato");
-    const passInput = document.getElementById("regPass");
-    const lgpdCheckbox = document.getElementById("regLgpd");
-
-    const nickname = nicknameInput ? nicknameInput.value.trim() : "";
-    const contato = contatoInput ? contatoInput.value.trim() : "";
-    const senha = passInput ? passInput.value : "";
-    const lgpdAceito = lgpdCheckbox ? lgpdCheckbox.checked : true;
-
-    // 1. Validação de campos vazios
-    if (!nickname || !contato || !senha) {
-        if (feedback) {
-            feedback.style.color = "#e50914";
-            feedback.innerText = "Por favor, preencha todos os campos do formulário.";
-        }
-        return;
-    }
-
-    // 2. Validação do tamanho mínimo da senha (Firebase exige 6 caracteres)
-    if (senha.length < 6) {
-        if (feedback) {
-            feedback.style.color = "#e50914";
-            feedback.innerText = "A senha deve ter pelo menos 6 caracteres.";
-        }
-        return;
-    }
-
-    // 3. Validação da LGPD
     if (!lgpdAceito) {
-        if (feedback) {
-            feedback.style.color = "#e50914";
-            feedback.innerText = "Você precisa aceitar os termos da LGPD para continuar.";
-        }
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Você precisa aceitar os termos da LGPD para continuar.";
         return;
     }
      
+    const nickname = document.getElementById("regNickname").value.trim();
+    const contato = document.getElementById("regContato").value.trim();
+    const senha = document.getElementById("regPass").value;
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
-    const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
 
-    if (feedback) {
-        feedback.style.color = "#38bdf8";
-        feedback.innerText = "A processar o cadastro...";
+    // Garante que se for telefone, ele cria um formato de e-mail válido para o Firebase Auth
+    let emailAuth = contato;
+    if (!contato.includes("@")) {
+        const apenasNumeros = contato.replace(/\D/g, '');
+        emailAuth = `user_${apenasNumeros}@camilatv.com`;
     }
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A processar o cadastro...";
 
     auth.createUserWithEmailAndPassword(emailAuth, senha)
         .then((userCredential) => {
@@ -1325,7 +1300,7 @@ function realizarCadastro(event) {
                 nickname: nickname,
                 contato: contato,
                 emailAuth: emailAuth,
-                senha: senha,
+                senha: senha, // Nota: por segurança real evite salvar senha em texto puro, mas mantido conforme sua estrutura atual
                 plano: "FREE",
                 avatar: fotoTempCadastro,
                 device: device,
@@ -1335,36 +1310,21 @@ function realizarCadastro(event) {
                 history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
             });
 
-            if (feedback) {
-                feedback.style.color = "#38bdf8";
-                feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
-            }
+            feedback.style.color = "#22c55e";
+            feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
             setTimeout(() => {
-                const regForm = document.getElementById("registerForm");
-                if (regForm) regForm.reset();
+                document.getElementById("registerForm").reset();
                 fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
                 mudarAba('login');
             }, 1500);
         })
         .catch((error) => {
             console.error("Erro no cadastro:", error);
-            if (feedback) {
-                feedback.style.color = "#e50914";
-                let mensagemErro = error.message;
-                if (error.code === 'auth/email-already-in-use') {
-                    mensagemErro = "Este e-mail ou número já está associado a outra conta.";
-                } else if (error.code === 'auth/weak-password') {
-                    mensagemErro = "A palavra-passe é muito fraca (mínimo de 6 carateres).";
-                } else if (error.code === 'auth/operation-not-allowed') {
-                    mensagemErro = "O método Email/Password não está ativo na consola do Firebase.";
-                }
-                feedback.innerText = "Erro: " + mensagemErro;
-            }
+            feedback.style.color = "#e50914";
+            feedback.innerText = "Erro ao cadastrar: " + error.message;
         });
 }
-
-
 function onSubmit(token) {
     const formElement = document.getElementById("registerForm");
     if (formElement) {
@@ -1382,7 +1342,14 @@ function realizarLogin(event) {
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    const emailAuth = contatoInput.includes("@") ? contatoInput : `${contatoInput.replace(/\D/g, '')}@camilatv.com`;
+    let emailAuth = contatoInput;
+    if (!contatoInput.includes("@")) {
+        const apenasNumeros = contatoInput.replace(/\D/g, '');
+        emailAuth = `user_${apenasNumeros}@camilatv.com`;
+    }
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A entrar...";
 
     auth.signInWithEmailAndPassword(emailAuth, senhaInput)
         .then((userCredential) => {
