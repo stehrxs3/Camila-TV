@@ -1,4 +1,3 @@
-
 const firebaseConfig = {
   apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
@@ -1222,26 +1221,23 @@ function mudarAba(aba) {
     const tabRegister = document.getElementById("tabRegister");
     const feedback = document.getElementById("mensagemFeedback");
 
-    if (feedback) feedback.innerText = "";
+    feedback.innerText = "";
 
-    // Oculta todos os formulários primeiro
-    if (loginForm) loginForm.style.display = "none";
-    if (registerForm) registerForm.style.display = "none";
+    loginForm.style.display = "none";
+    registerForm.style.display = "none";
     if (resetForm) resetForm.style.display = "none";
 
-    // Atualiza o estado visual das abas
-    if (tabLogin) tabLogin.classList.remove("active");
-    if (tabRegister) tabRegister.classList.remove("active");
+    tabLogin.classList.remove("active");
+    tabRegister.classList.remove("active");
 
-    // Exibe apenas o formulário da aba selecionada
     if (aba === 'login') {
-        if (loginForm) loginForm.style.display = "flex";
-        if (tabLogin) tabLogin.classList.add("active");
+        loginForm.style.display = "block";
+        tabLogin.classList.add("active");
     } else if (aba === 'register') {
-        if (registerForm) registerForm.style.display = "flex";
-        if (tabRegister) tabRegister.classList.add("active");
+        registerForm.style.display = "block";
+        tabRegister.classList.add("active");
     } else if (aba === 'reset') {
-        if (resetForm) resetForm.style.display = "flex";
+        resetForm.style.display = "block";
     }
 }
 
@@ -1904,4 +1900,3 @@ window.mudarSalaChat = mudarSalaChat;
 window.criarNovaComunidade = criarNovaComunidade;
 window.enviarMensagemChat = enviarMensagemChat;
 window.pedirCriacaoComunidade = pedirCriacaoComunidade;
-window.onClick = onClick;
