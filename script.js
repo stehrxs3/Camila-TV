@@ -1379,8 +1379,15 @@ function realizarLogin(event) {
     feedback.style.color = "#38bdf8";
     feedback.innerText = "A entrar...";
 
+    // Timeout de segurança: se o Firebase demorar mais de 6 segundos, destrava o botão
+    const timerSeguranca = setTimeout(() => {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Tempo limite excedido. Verifique a sua conexão ou regras do Firebase.";
+    }, 6000);
+
     auth.signInWithEmailAndPassword(emailAuth, senhaInput)
         .then((userCredential) => {
+            clearTimeout(timerSeguranca); // Cancela o timeout pois respondeu
             const user = userCredential.user;
             const userRef = db.ref('users/' + user.uid);
 
@@ -1393,7 +1400,7 @@ function realizarLogin(event) {
                     lastAccess: dataAtual,
                     device: device,
                     history: historico
-                });
+                }).catch(err => console.log("Erro ao atualizar histórico:", err));
 
                 feedback.style.color = "#22c55e";
                 feedback.innerText = `Bem-vindo(a), ${userData.nickname || 'Usuário'}!`;
@@ -1408,57 +1415,38 @@ function realizarLogin(event) {
                 setTimeout(() => {
                     fecharAuthModal();
                     verificarSessaoUsuario();
-                }, 1200);
+                }, 1000);
+            }, (errorDb) => {
+                // Caso dê erro ao ler o Realtime Database, faz o login mesmo assim via LocalStorage para não travar o utilizador
+                console.warn("Erro ao ler dados do Database, prosseguindo com dados básicos:", errorDb);
+                feedback.style.color = "#22c55e";
+                feedback.innerText = "Login efetuado com sucesso!";
+                
+                localStorage.setItem("usuarioLogado", JSON.stringify({ 
+                    contato: contatoInput,
+                    nickname: "Usuário",
+                    avatar: "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg",
+                    plano: "FREE"
+                }));
+
+                setTimeout(() => {
+                    fecharAuthModal();
+                    verificarSessaoUsuario();
+                }, 1000);
             });
         })
         .catch((error) => {
-            console.error("Erro no login:", error);
+            clearTimeout(timerSeguranca);
+            console.error("Erro detalhado no login:", error);
             feedback.style.color = "#e50914";
-            feedback.innerText = "E-mail/Telefone ou senha incorretos.";
+            
+            // Mensagens claras baseadas no erro do Firebase
+            if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                feedback.innerText = "E-mail/Telefone ou senha incorretos.";
+            } else {
+                feedback.innerText = "Erro ao entrar: " + error.message;
+            }
         });
-}
-
-function solicitarRedefinicaoFirebase(event) {
-    event.preventDefault();
-    const emailInput = document.getElementById("resetEmail").value.trim();
-    const feedback = document.getElementById("mensagemFeedback");
-
-    if (!emailInput) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Por favor, digite o seu e-mail cadastrado.";
-        return;
-    }
-
-    if (!emailInput.includes("@") || emailInput.endsWith("@camilatv.com")) {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Recuperação disponível apenas para contas cadastradas com e-mail real.";
-        return;
-    }
-
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A enviar o link de redefinição...";
-
-    // Configurações do redirecionamento
-    const actionCodeSettings = {
-        url: 'https://camilatv.vercel.app', // Substitua pelo seu domínio da Vercel
-        handleCodeInApp: true
-    };
-
-    auth.sendPasswordResetEmail(emailInput, actionCodeSettings)
-    .then(() => {
-        feedback.style.color = "#22c55e";
-        feedback.innerText = "E-mail enviado com sucesso! Verifique a caixa de entrada e o SPAM.";
-        
-        setTimeout(() => {
-            document.getElementById("resetForm").reset();
-            mudarAba('login');
-        }, 3000);
-    })
-    .catch((error) => {
-        console.error("Erro no envio:", error);
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Erro ao enviar: " + error.message;
-    });
 }
 
 function verificarSessaoUsuario() {
