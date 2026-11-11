@@ -111,9 +111,9 @@
                 </div>
                 <button type="submit" class="btn-submit">Entrar</button>
             </form>
-         <form id="form-cadastro">
-            <button type="submit">Cadastrar</button>
-     </form>
+            
+    <form id="registerForm" class="auth-form" onsubmit="realizarCadastro(event)" style="display: none;">
+                <h2>Crie sua conta</h2>
                 
                 <div class="input-group">
                     <label>Nickname (Nome Público)</label>
@@ -172,8 +172,29 @@
                     </label>
                 </div>
                 
-               <button type="button" class="btn-submit" onclick="executarCadastroComRecaptcha(event)">Cadastrar</button>
+                <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
+
+            <form id="resetForm" onsubmit="solicitarRedefinicaoFirebase(event)" style="display: none;">
+                <h3>Recuperar Senha</h3>
+                <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 15px;">
+                    Digite o seu e-mail cadastrado para receber o link de redefinição de senha.
+                </p>
+
+                <div class="input-group">
+                    <input type="email" id="resetEmail" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Link de Recuperação</button>
+                
+                <p style="text-align: center; margin-top: 15px;">
+                    <a href="#" onclick="mudarAba('login')" style="color: #38bdf8; font-size: 0.85rem;">Voltar para o Login</a>
+                </p>
+            </form>
+
+            <div id="mensagemFeedback" class="feedback"></div>
+        </div>
+    </div>
 
             <form id="resetForm" onsubmit="solicitarRedefinicaoFirebase(event)" style="display: none;">
                 <h3>Recuperar Senha</h3>
