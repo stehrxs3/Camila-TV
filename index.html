@@ -172,12 +172,7 @@
                     </label>
                 </div>
                 
-                <button type="submit" class="btn-submit g-recaptcha"
-                    data-sitekey="6Lda5gsuAAAAALjXRgR-23fW5JuGO3kbhzmzNN8r"
-                    data-callback="onSubmit"
-                    data-action="submit">
-                    Cadastrar
-                </button>
+               <button type="button" class="btn-submit" onclick="executarCadastroComRecaptcha(event)">Cadastrar</button>
             </form>
 
             <form id="resetForm" onsubmit="solicitarRedefinicaoFirebase(event)" style="display: none;">
