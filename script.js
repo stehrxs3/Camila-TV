@@ -1901,3 +1901,4 @@ window.mudarSalaChat = mudarSalaChat;
 window.criarNovaComunidade = criarNovaComunidade;
 window.enviarMensagemChat = enviarMensagemChat;
 window.pedirCriacaoComunidade = pedirCriacaoComunidade;
+window.onClick = onClick;
