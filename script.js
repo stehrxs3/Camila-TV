@@ -10,7 +10,6 @@ const firebaseConfig = {
   measurementId: "G-HW0HS9T0KV"
 };
 
-
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
@@ -1282,14 +1281,7 @@ function realizarCadastro(event) {
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    let emailAuth = contato;
-    if (!contato.includes("@")) {
-        const apenasNumeros = contato.replace(/\D/g, '');
-        emailAuth = `user_${apenasNumeros}@camilatv.com`;
-    }
-
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A processar o cadastro...";
+    const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
 
     auth.createUserWithEmailAndPassword(emailAuth, senha)
         .then((userCredential) => {
@@ -1310,7 +1302,7 @@ function realizarCadastro(event) {
                 history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
             });
 
-            feedback.style.color = "#22c55e";
+            feedback.style.color = "#38bdf8";
             feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
             setTimeout(() => {
@@ -1326,67 +1318,13 @@ function realizarCadastro(event) {
         });
 }
 
-
-function executarCadastroComRecaptcha(event) {
-    event.preventDefault();
-    const feedback = document.getElementById("mensagemFeedback");
-    
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A validar segurança...";
-
-    if (typeof grecaptcha !== 'undefined' && grecaptcha.enterprise) {
-        grecaptcha.enterprise.ready(() => {
-            grecaptcha.enterprise.execute('6Lda5gsuAAAAALjXRgR-23fW5JuGO3kbhzmzNN8r', { action: 'submit' }).then((token) => {
-                tokenGeradoCache = token;
-                forcarEnvioCadastroDireto();
-            }).catch((err) => {
-                console.warn("Aviso do reCAPTCHA Enterprise:", err);
-                forcarEnvioCadastroDireto();
-            });
-        });
-    } else {
-        forcarEnvioCadastroDireto();
-    }
-}
-
-async function onClick(e) {
-    if (e && e.preventDefault) {
-        e.preventDefault();
-    }
-    
-    const feedback = document.getElementById("mensagemFeedback");
-    if (feedback) {
-        feedback.style.color = "#38bdf8";
-        feedback.innerText = "A validar segurança...";
-    }
-
-    grecaptcha.enterprise.ready(async () => {
-        try {
-            const token = await grecaptcha.enterprise.execute('6LeaMRouAAAAABEbqaSAD7HQI--nlMgaBWKciEZ-', { action: 'LOGIN' });
-            window.tokenGeradoCache = token;
-            
-            // Se já tiver a função de login direto, chama ela, senão chama o realizarLogin normal
-            if (typeof realizarLoginDireto === 'function') {
-                realizarLoginDireto();
-            } else if (typeof realizarLogin === 'function') {
-                realizarLogin(e);
-            }
-        } catch (error) {
-            console.error("Erro ao executar o reCAPTCHA Enterprise:", error);
-            if (feedback) {
-                feedback.style.color = "#e50914";
-                feedback.innerText = "Erro na validação de segurança.";
-            }
-        }
-    });
-}
-function forcarEnvioCadastroDireto() {
+function onSubmit(token) {
     const formElement = document.getElementById("registerForm");
     if (formElement) {
-        const eventSubmit = new Event('submit', { cancelable: true });
-        formElement.dispatchEvent(eventSubmit);
+        const event = new Event('submit', { cancelable: true });
+        formElement.dispatchEvent(event);
     }
-}
+} 
 
 function realizarLogin(event) {
     event.preventDefault();
@@ -1397,25 +1335,10 @@ function realizarLogin(event) {
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    let emailAuth = contatoInput;
-    if (!contatoInput.includes("@")) {
-        const apenasNumeros = contatoInput.replace(/\D/g, '');
-        emailAuth = `user_${apenasNumeros}@camilatv.com`;
-    }
-
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A entrar...";
-
-    // Segurança: se o Firebase demorar mais de 6 segundos, destrava o botão para não ficar eterno
-    const timerSeguranca = setTimeout(() => {
-        feedback.style.color = "#e50914";
-        feedback.innerText = "Demora excessiva na resposta. Verifique a consola (F12) ou a sua conexão.";
-        console.warn("Timeout de login atingido. Verifique se as chaves do Firebase ou as regras de rede estão corretas.");
-    }, 6000);
+    const emailAuth = contatoInput.includes("@") ? contatoInput : `${contatoInput.replace(/\D/g, '')}@camilatv.com`;
 
     auth.signInWithEmailAndPassword(emailAuth, senhaInput)
         .then((userCredential) => {
-            clearTimeout(timerSeguranca);
             const user = userCredential.user;
             const userRef = db.ref('users/' + user.uid);
 
@@ -1428,7 +1351,7 @@ function realizarLogin(event) {
                     lastAccess: dataAtual,
                     device: device,
                     history: historico
-                }).catch(err => console.log("Erro menor no histórico:", err));
+                });
 
                 feedback.style.color = "#22c55e";
                 feedback.innerText = `Bem-vindo(a), ${userData.nickname || 'Usuário'}!`;
@@ -1443,40 +1366,82 @@ function realizarLogin(event) {
                 setTimeout(() => {
                     fecharAuthModal();
                     verificarSessaoUsuario();
-                }, 1000);
-            }, (errorDb) => {
-                // Se falhar a leitura da base de dados, faz login com os dados locais para não bloquear o utilizador
-                console.warn("Aviso: Falha ao ler base de dados, a prosseguir com sessão local.", errorDb);
-                feedback.style.color = "#22c55e";
-                feedback.innerText = "Login efetuado com sucesso!";
-                
-                localStorage.setItem("usuarioLogado", JSON.stringify({ 
-                    contato: contatoInput,
-                    nickname: "Utilizador",
-                    avatar: "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg",
-                    plano: "FREE"
-                }));
-
-                setTimeout(() => {
-                    fecharAuthModal();
-                    verificarSessaoUsuario();
-                }, 1000);
+                }, 1200);
             });
         })
         .catch((error) => {
-            clearTimeout(timerSeguranca);
-            console.error("Erro crítico no Firebase Auth:", error);
+            console.error("Erro no login:", error);
             feedback.style.color = "#e50914";
-            
-            if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                feedback.innerText = "E-mail/Telefone ou senha incorretos.";
-            } else if (error.code === 'auth/network-request-failed') {
-                feedback.innerText = "Erro de rede. Verifique a sua conexão com a internet.";
-            } else {
-                feedback.innerText = "Erro ao entrar: " + error.message;
-            }
+            feedback.innerText = "E-mail/Telefone ou senha incorretos.";
         });
 }
+
+function solicitarRedefinicaoFirebase(event) {
+    event.preventDefault();
+    const emailInput = document.getElementById("resetEmail").value.trim();
+    const feedback = document.getElementById("mensagemFeedback");
+
+    if (!emailInput) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Por favor, digite o seu e-mail cadastrado.";
+        return;
+    }
+
+    if (!emailInput.includes("@") || emailInput.endsWith("@camilatv.com")) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Recuperação disponível apenas para contas cadastradas com e-mail real.";
+        return;
+    }
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A enviar o link de redefinição...";
+
+    // Configurações do redirecionamento
+    const actionCodeSettings = {
+        url: 'https://camilatv.vercel.app', // Substitua pelo seu domínio da Vercel
+        handleCodeInApp: true
+    };
+
+    auth.sendPasswordResetEmail(emailInput, actionCodeSettings)
+    .then(() => {
+        feedback.style.color = "#22c55e";
+        feedback.innerText = "E-mail enviado com sucesso! Verifique a caixa de entrada e o SPAM.";
+        
+        setTimeout(() => {
+            document.getElementById("resetForm").reset();
+            mudarAba('login');
+        }, 3000);
+    })
+    .catch((error) => {
+        console.error("Erro no envio:", error);
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Erro ao enviar: " + error.message;
+    });
+}
+
+function verificarSessaoUsuario() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const btnAuth = document.getElementById("userAuthBtn");
+
+    if (!btnAuth) return;
+
+    if (usuarioLogado && usuarioLogado.nickname) {
+        btnAuth.className = "user-profile-btn";
+        btnAuth.innerHTML = `
+            <img src="${usuarioLogado.avatar}" alt="Avatar">
+            <span>${usuarioLogado.nickname}</span>
+        `;
+        btnAuth.onclick = (e) => {
+            e.preventDefault();
+            abrirProfileModal();
+        };
+    } else {
+        btnAuth.className = "btn-auth-trigger";
+        btnAuth.innerText = "Entrar";
+        btnAuth.onclick = abrirAuthModal;
+    }
+}
+
 let fotoTempPerfil = "";
 
 function abrirProfileModal() {
