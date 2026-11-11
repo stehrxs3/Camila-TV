@@ -1222,23 +1222,25 @@ function mudarAba(aba) {
     const tabRegister = document.getElementById("tabRegister");
     const feedback = document.getElementById("mensagemFeedback");
 
-    feedback.innerText = "";
+    if (feedback) feedback.innerText = "";
 
-    loginForm.style.display = "none";
-    registerForm.style.display = "none";
+    // Oculta todos primeiro
+    if (loginForm) loginForm.style.display = "none";
+    if (registerForm) registerForm.style.display = "none";
     if (resetForm) resetForm.style.display = "none";
 
-    tabLogin.classList.remove("active");
-    tabRegister.classList.remove("active");
+    if (tabLogin) tabLogin.classList.remove("active");
+    if (tabRegister) tabRegister.classList.remove("active");
 
+    // Mostra o selecionado
     if (aba === 'login') {
-        loginForm.style.display = "block";
-        tabLogin.classList.add("active");
+        if (loginForm) loginForm.style.display = "flex";
+        if (tabLogin) tabLogin.classList.add("active");
     } else if (aba === 'register') {
-        registerForm.style.display = "block";
-        tabRegister.classList.add("active");
+        if (registerForm) registerForm.style.display = "flex";
+        if (tabRegister) tabRegister.classList.add("active");
     } else if (aba === 'reset') {
-        resetForm.style.display = "block";
+        if (resetForm) resetForm.style.display = "flex";
     }
 }
 
