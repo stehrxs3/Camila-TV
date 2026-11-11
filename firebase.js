@@ -6,7 +6,7 @@ import { getAnalytics } from "firebase/analytics";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAN9_GKVO_dONh11QlV0kpektMYcIhEZHo",
+  apiKey: "AIzaSyAN9_GKVO_dOnh11QLvOkpektMYcIhEZHo",
   authDomain: "camilatv-e6782.firebaseapp.com",
   databaseURL: "https://camilatv-e6782-default-rtdb.firebaseio.com", 
   projectId: "camilatv-e6782",
