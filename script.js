@@ -1281,14 +1281,7 @@ function realizarCadastro(event) {
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    let emailAuth = contato;
-    if (!contato.includes("@")) {
-        const apenasNumeros = contato.replace(/\D/g, '');
-        emailAuth = `user_${apenasNumeros}@camilatv.com`;
-    }
-
-    feedback.style.color = "#38bdf8";
-    feedback.innerText = "A processar o cadastro...";
+    const emailAuth = contato.includes("@") ? contato : `${contato.replace(/\D/g, '')}@camilatv.com`;
 
     auth.createUserWithEmailAndPassword(emailAuth, senha)
         .then((userCredential) => {
@@ -1309,7 +1302,7 @@ function realizarCadastro(event) {
                 history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
             });
 
-            feedback.style.color = "#22c55e";
+            feedback.style.color = "#38bdf8";
             feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
             setTimeout(() => {
@@ -1325,7 +1318,13 @@ function realizarCadastro(event) {
         });
 }
 
-
+function onSubmit(token) {
+    const formElement = document.getElementById("registerForm");
+    if (formElement) {
+        const event = new Event('submit', { cancelable: true });
+        formElement.dispatchEvent(event);
+    }
+} 
 
 function realizarLogin(event) {
     event.preventDefault();
