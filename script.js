@@ -1379,15 +1379,16 @@ function realizarLogin(event) {
     feedback.style.color = "#38bdf8";
     feedback.innerText = "A entrar...";
 
-    // Timeout de segurança: se o Firebase demorar mais de 6 segundos, destrava o botão
+    // Segurança: se o Firebase demorar mais de 6 segundos, destrava o botão para não ficar eterno
     const timerSeguranca = setTimeout(() => {
         feedback.style.color = "#e50914";
-        feedback.innerText = "Tempo limite excedido. Verifique a sua conexão ou regras do Firebase.";
+        feedback.innerText = "Demora excessiva na resposta. Verifique a consola (F12) ou a sua conexão.";
+        console.warn("Timeout de login atingido. Verifique se as chaves do Firebase ou as regras de rede estão corretas.");
     }, 6000);
 
     auth.signInWithEmailAndPassword(emailAuth, senhaInput)
         .then((userCredential) => {
-            clearTimeout(timerSeguranca); // Cancela o timeout pois respondeu
+            clearTimeout(timerSeguranca);
             const user = userCredential.user;
             const userRef = db.ref('users/' + user.uid);
 
@@ -1400,7 +1401,7 @@ function realizarLogin(event) {
                     lastAccess: dataAtual,
                     device: device,
                     history: historico
-                }).catch(err => console.log("Erro ao atualizar histórico:", err));
+                }).catch(err => console.log("Erro menor no histórico:", err));
 
                 feedback.style.color = "#22c55e";
                 feedback.innerText = `Bem-vindo(a), ${userData.nickname || 'Usuário'}!`;
@@ -1417,14 +1418,14 @@ function realizarLogin(event) {
                     verificarSessaoUsuario();
                 }, 1000);
             }, (errorDb) => {
-                // Caso dê erro ao ler o Realtime Database, faz o login mesmo assim via LocalStorage para não travar o utilizador
-                console.warn("Erro ao ler dados do Database, prosseguindo com dados básicos:", errorDb);
+                // Se falhar a leitura da base de dados, faz login com os dados locais para não bloquear o utilizador
+                console.warn("Aviso: Falha ao ler base de dados, a prosseguir com sessão local.", errorDb);
                 feedback.style.color = "#22c55e";
                 feedback.innerText = "Login efetuado com sucesso!";
                 
                 localStorage.setItem("usuarioLogado", JSON.stringify({ 
                     contato: contatoInput,
-                    nickname: "Usuário",
+                    nickname: "Utilizador",
                     avatar: "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg",
                     plano: "FREE"
                 }));
@@ -1437,41 +1438,18 @@ function realizarLogin(event) {
         })
         .catch((error) => {
             clearTimeout(timerSeguranca);
-            console.error("Erro detalhado no login:", error);
+            console.error("Erro crítico no Firebase Auth:", error);
             feedback.style.color = "#e50914";
             
-            // Mensagens claras baseadas no erro do Firebase
             if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
                 feedback.innerText = "E-mail/Telefone ou senha incorretos.";
+            } else if (error.code === 'auth/network-request-failed') {
+                feedback.innerText = "Erro de rede. Verifique a sua conexão com a internet.";
             } else {
                 feedback.innerText = "Erro ao entrar: " + error.message;
             }
         });
 }
-
-function verificarSessaoUsuario() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    const btnAuth = document.getElementById("userAuthBtn");
-
-    if (!btnAuth) return;
-
-    if (usuarioLogado && usuarioLogado.nickname) {
-        btnAuth.className = "user-profile-btn";
-        btnAuth.innerHTML = `
-            <img src="${usuarioLogado.avatar}" alt="Avatar">
-            <span>${usuarioLogado.nickname}</span>
-        `;
-        btnAuth.onclick = (e) => {
-            e.preventDefault();
-            abrirProfileModal();
-        };
-    } else {
-        btnAuth.className = "btn-auth-trigger";
-        btnAuth.innerText = "Entrar";
-        btnAuth.onclick = abrirAuthModal;
-    }
-}
-
 let fotoTempPerfil = "";
 
 function abrirProfileModal() {
