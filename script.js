@@ -1281,21 +1281,14 @@ function realizarCadastro(event) {
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    // Validação básica para garantir que o e-mail/contato é válido para o Firebase
     let emailAuth = contato;
     if (!contato.includes("@")) {
-        // Se for apenas números/telemóvel, limpamos caracteres especiais e geramos um domínio válido do projeto
         const apenasNumeros = contato.replace(/\D/g, '');
-        if (apenasNumeros.length < 5) {
-            feedback.style.color = "#e50914";
-            feedback.innerText = "Por favor, insira um e-mail ou telemóvel válido.";
-            return;
-        }
-        emailAuth = `${apenasNumeros}@camilatv-e6782.firebaseapp.com`;
+        emailAuth = `user_${apenasNumeros}@camilatv.com`;
     }
 
     feedback.style.color = "#38bdf8";
-    feedback.innerText = "A processar cadastro...";
+    feedback.innerText = "A processar o cadastro...";
 
     auth.createUserWithEmailAndPassword(emailAuth, senha)
         .then((userCredential) => {
@@ -1306,7 +1299,7 @@ function realizarCadastro(event) {
                 nickname: nickname,
                 contato: contato,
                 emailAuth: emailAuth,
-                senha: senha, // Nota: Guardar a senha em texto plano no Database não é seguro em produção, mas mantinha a sua estrutura
+                senha: senha,
                 plano: "FREE",
                 avatar: fotoTempCadastro,
                 device: device,
@@ -1316,32 +1309,23 @@ function realizarCadastro(event) {
                 history: [{ action: "cadastro", timestamp: dataAtual, device: device }]
             });
 
-            feedback.style.color = "#38bdf8";
+            feedback.style.color = "#22c55e";
             feedback.innerText = "Cadastro realizado com sucesso! Faça login.";
 
             setTimeout(() => {
                 document.getElementById("registerForm").reset();
-                fotoTempCadastro = "https://i.pinimg.com/1200x/7d/def/02/7def02d4b167cc8d963c023b4174b360.jpg";
+                fotoTempCadastro = "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg";
                 mudarAba('login');
             }, 1500);
         })
         .catch((error) => {
             console.error("Erro no cadastro:", error);
             feedback.style.color = "#e50914";
-            
-            // Tradução amigável dos erros mais comuns do Firebase Auth
-            let mensagemErro = error.message;
-            if (error.code === 'auth/email-already-in-use') {
-                mensagemErro = "Este e-mail/contacto já está registado.";
-            } else if (error.code === 'auth/weak-password') {
-                mensagemErro = "A palavra-passe deve ter pelo menos 6 caracteres.";
-            } else if (error.code === 'auth/invalid-email') {
-                mensagemErro = "O formato do e-mail/contacto é inválido.";
-            }
-            
-            feedback.innerText = "Erro ao cadastrar: " + mensagemErro;
+            feedback.innerText = "Erro ao cadastrar: " + error.message;
         });
 }
+
+
 
 function realizarLogin(event) {
     event.preventDefault();
