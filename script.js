@@ -1281,7 +1281,6 @@ function realizarCadastro(event) {
     const device = navigator.userAgent;
     const dataAtual = new Date().toISOString();
 
-    // Garante que se for telefone, ele cria um formato de e-mail válido para o Firebase Auth
     let emailAuth = contato;
     if (!contato.includes("@")) {
         const apenasNumeros = contato.replace(/\D/g, '');
@@ -1300,7 +1299,7 @@ function realizarCadastro(event) {
                 nickname: nickname,
                 contato: contato,
                 emailAuth: emailAuth,
-                senha: senha, // Nota: por segurança real evite salvar senha em texto puro, mas mantido conforme sua estrutura atual
+                senha: senha,
                 plano: "FREE",
                 avatar: fotoTempCadastro,
                 device: device,
@@ -1325,13 +1324,42 @@ function realizarCadastro(event) {
             feedback.innerText = "Erro ao cadastrar: " + error.message;
         });
 }
+
+
+function executarCadastroComRecaptcha(event) {
+    event.preventDefault();
+    const feedback = document.getElementById("mensagemFeedback");
+    
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "A validar segurança...";
+
+    if (typeof grecaptcha !== 'undefined' && grecaptcha.enterprise) {
+        grecaptcha.enterprise.ready(() => {
+            grecaptcha.enterprise.execute('6Lda5gsuAAAAALjXRgR-23fW5JuGO3kbhzmzNN8r', { action: 'submit' }).then((token) => {
+                tokenGeradoCache = token;
+                forcarEnvioCadastroDireto();
+            }).catch((err) => {
+                console.warn("Aviso do reCAPTCHA Enterprise:", err);
+                forcarEnvioCadastroDireto();
+            });
+        });
+    } else {
+        forcarEnvioCadastroDireto();
+    }
+}
+
 function onSubmit(token) {
+    tokenGeradoCache = token;
+    forcarEnvioCadastroDireto();
+}
+
+function forcarEnvioCadastroDireto() {
     const formElement = document.getElementById("registerForm");
     if (formElement) {
-        const event = new Event('submit', { cancelable: true });
-        formElement.dispatchEvent(event);
+        const eventSubmit = new Event('submit', { cancelable: true });
+        formElement.dispatchEvent(eventSubmit);
     }
-} 
+}
 
 function realizarLogin(event) {
     event.preventDefault();
