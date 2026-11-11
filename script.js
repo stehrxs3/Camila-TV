@@ -1348,11 +1348,37 @@ function executarCadastroComRecaptcha(event) {
     }
 }
 
-function onSubmit(token) {
-    tokenGeradoCache = token;
-    forcarEnvioCadastroDireto();
-}
+async function onClick(e) {
+    if (e && e.preventDefault) {
+        e.preventDefault();
+    }
+    
+    const feedback = document.getElementById("mensagemFeedback");
+    if (feedback) {
+        feedback.style.color = "#38bdf8";
+        feedback.innerText = "A validar segurança...";
+    }
 
+    grecaptcha.enterprise.ready(async () => {
+        try {
+            const token = await grecaptcha.enterprise.execute('6LeaMRouAAAAABEbqaSAD7HQI--nlMgaBWKciEZ-', { action: 'LOGIN' });
+            window.tokenGeradoCache = token;
+            
+            // Se já tiver a função de login direto, chama ela, senão chama o realizarLogin normal
+            if (typeof realizarLoginDireto === 'function') {
+                realizarLoginDireto();
+            } else if (typeof realizarLogin === 'function') {
+                realizarLogin(e);
+            }
+        } catch (error) {
+            console.error("Erro ao executar o reCAPTCHA Enterprise:", error);
+            if (feedback) {
+                feedback.style.color = "#e50914";
+                feedback.innerText = "Erro na validação de segurança.";
+            }
+        }
+    });
+}
 function forcarEnvioCadastroDireto() {
     const formElement = document.getElementById("registerForm");
     if (formElement) {
