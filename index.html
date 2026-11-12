@@ -283,21 +283,32 @@
 <!-- Modal de Assinatura VIP -->
 <div id="vipModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
     <div class="modal-content">
-        <span class="close" onclick="fecharVipModal()">&times;</span>
+        <span class="close" onclick="fecharVipModal()">×</span>
         <div style="font-size: 3rem; text-align: center;">👑</div>
         <h2 style="text-align: center;">Assinatura VIP Camila TV+</h2>
         <p style="text-align: center;">Desbloqueie chats exclusivos e transmissões ao vivo.</p>
 
         <div class="plan-card" style="text-align: center; margin: 20px 0;">
             <h3>Plano VIP Mensal</h3>
-            <p class="price" style="font-size: 1.5rem; font-weight: bold; color: #facc15;">R$ 5,00  <span style="font-size: 0.9rem; color: #888;">/mês</span></p>
+            <p class="price" style="font-size: 1.5rem; font-weight: bold; color: #facc15;">R$ 5,00 <span style="font-size: 0.9rem; color: #888;">/mês</span></p>
         </div>
 
         <p id="mensagemVipFeedback" style="text-align: center; font-weight: bold; margin-bottom: 15px;"></p>
-
-        <button id="btnUpgradeVIP" onclick="realizarAssinaturaVIP()" style="background-color: #2b39d2; color: white; padding: 14px; border: none; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; font-size: 1rem;">
-            👑 Fazer Upgrade para VIP
+        
+        <!-- 1. Assinatura Recorrente Automática (Cartão de Crédito) -->
+        <button id="btnUpgradeVIP" onclick="realizarAssinaturaVIP()" style="background-color: #2b39d2; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; font-size: 0.95rem; margin-bottom: 10px;">
+            💳 Assinatura Mensal (Cartão de Crédito)
         </button>
+
+        <!-- 2. Pagamento Avulso (Pix, Boleto ou Débito - Mercado Pago) -->
+        <a href="https://mpago.la/1FHpKL1" target="_blank" rel="noopener noreferrer" style="display: block; background-color: #009ee3; color: white; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; font-size: 0.95rem; margin-bottom: 10px;">
+            💠 Pagar 1 Mês com Pix, Boleto ou Débito
+        </a>
+
+        <!-- 3. Pagamento Internacional (PayPal) -->
+        <a href="COLE_AQUI_O_LINK_DO_PAYPAL" target="_blank" rel="noopener noreferrer" style="display: block; background-color: #003087; color: white; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; font-size: 0.95rem;">
+            🌍 International Payment (PayPal)
+        </a>
     </div>
 </div>
     
