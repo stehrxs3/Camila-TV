@@ -1793,6 +1793,43 @@ function pedirCriacaoComunidade() {
     }
 }
 
+function enviarMensagemContato(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("contactName").value.trim();
+    const email = document.getElementById("contactEmail").value.trim();
+    const mensagem = document.getElementById("contactMessage").value.trim();
+    const feedback = document.getElementById("mensagemContatoFeedback");
+
+    if (!nome || !email || !mensagem) {
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Por favor, preencha todos os campos.";
+        return;
+    }
+
+    feedback.style.color = "#38bdf8";
+    feedback.innerText = "Enviando mensagem...";
+
+    // Registra a mensagem no Firebase Realtime Database
+    db.ref('mensagens_contato').push({
+        nome: nome,
+        email: email,
+        mensagem: mensagem,
+        timestamp: new Date().toISOString()
+    }).then(() => {
+        feedback.style.color = "#22c55e";
+        feedback.innerText = "Mensagem enviada com sucesso! Em breve entraremos em contato.";
+        document.getElementById("contactForm").reset();
+    }).catch((error) => {
+        console.error("Erro ao enviar mensagem:", error);
+        feedback.style.color = "#e50914";
+        feedback.innerText = "Erro ao enviar mensagem. Tente novamente mais tarde.";
+    });
+}
+
+// Expõe a função no escopo global
+
+
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
 function abrirPainelAdmin() {
     const senhaAdmin = prompt("Digite a senha de Administrador:");
@@ -1900,3 +1937,4 @@ window.mudarSalaChat = mudarSalaChat;
 window.criarNovaComunidade = criarNovaComunidade;
 window.enviarMensagemChat = enviarMensagemChat;
 window.pedirCriacaoComunidade = pedirCriacaoComunidade;
+window.enviarMensagemContato = enviarMensagemContato;
