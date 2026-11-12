@@ -1579,6 +1579,22 @@ function realizarAssinaturaVIP() {
     }, 800);
 }
 
+function verificarExpiracaoVip(userId, userData) {
+    if (userData.plano === "VIP" && userData.dataExpiracao) {
+        const dataAtual = new Date();
+        const dataExpiracao = new Date(userData.dataExpiracao);
+
+        // Se o prazo venceu, revoga o VIP automaticamente
+        if (dataAtual > dataExpiracao) {
+            db.ref('users/' + userId).update({
+                plano: "FREE"
+            });
+            userData.plano = "FREE";
+        }
+    }
+    return userData.plano;
+}
+
 // --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
