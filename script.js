@@ -1590,6 +1590,63 @@ function verificarExpiracaoVip(userId, userData) {
     return userData.plano;
 }
 
+function cancelarAssinaturaVIP() {
+    if (!confirm("Tem certeza de que deseja cancelar a sua assinatura VIP? Você perderá o acesso aos chats exclusivos e transmissões ao vivo.")) {
+        return;
+    }
+
+    const feedback = document.getElementById("mensagemProfileFeedback");
+    if (feedback) {
+        feedback.style.color = "#38bdf8";
+        feedback.innerText = "A processar o cancelamento...";
+    }
+
+    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    
+    if (usuarioLogado) {
+        usuarioLogado.plano = "FREE";
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+    }
+
+    if (auth.currentUser) {
+        db.ref('users/' + auth.currentUser.uid).update({
+            plano: "FREE",
+            canceladoEm: new Date().toISOString()
+        }).then(() => {
+            if (feedback) {
+                feedback.style.color = "#22c55e";
+                feedback.innerText = "Assinatura cancelada com sucesso. Plano alterado para FREE.";
+            }
+
+            verificarSessaoUsuario();
+
+            setTimeout(() => {
+                fecharProfileModal();
+                location.reload();
+            }, 1500);
+
+        }).catch((error) => {
+            console.error("Erro ao cancelar no Firebase:", error);
+            if (feedback) {
+                feedback.style.color = "#e50914";
+                feedback.innerText = "Erro ao atualizar no banco de dados.";
+            }
+        });
+    } else {
+        if (feedback) {
+            feedback.style.color = "#22c55e";
+            feedback.innerText = "Plano alterado para FREE!";
+        }
+        setTimeout(() => {
+            fecharProfileModal();
+            location.reload();
+        }, 1200);
+    }
+}
+
+// Garanta que está exportada globalmente lá no final do script.js:
+
+
 // --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
@@ -1911,3 +1968,4 @@ window.criarNovaComunidade = criarNovaComunidade;
 window.enviarMensagemChat = enviarMensagemChat;
 window.pedirCriacaoComunidade = pedirCriacaoComunidade;
 window.enviarMensagemContato = enviarMensagemContato;
+window.cancelarAssinaturaVIP = cancelarAssinaturaVIP;
