@@ -1452,25 +1452,20 @@ function abrirProfileModal() {
     
     fotoTempPerfil = usuarioLogado.avatar;
 
-    const radios = document.getElementsByName("editAvatarSelect");
-    radios.forEach(radio => {
-        radio.checked = (radio.value === usuarioLogado.avatar);
-    });
-
-    const fileInput = document.getElementById("editAvatarFile");
-    if (fileInput) fileInput.value = "";
-
     const planoDiv = document.getElementById("profileUserPlano");
     const btnUpgrade = document.getElementById("btnUpgradePerfil");
+    const divCancelar = document.getElementById("divCancelarAssinatura");
 
     if (usuarioLogado.plano === "VIP") {
         planoDiv.innerText = "VIP 👑";
         planoDiv.style.color = "#22c55e";
-        if (btnUpgrade) btnUpgrade.style.display = "none";
+        if (btnUpgrade) btnUpgrade.style.display = "none";    // Esconde o botão de upgrade para VIPs
+        if (divCancelar) divCancelar.style.display = "block"; // Mostra o link discreto de cancelar
     } else {
         planoDiv.innerText = "FREE 👤";
         planoDiv.style.color = "#facc15";
-        if (btnUpgrade) btnUpgrade.style.display = "inline-block";
+        if (btnUpgrade) btnUpgrade.style.display = "block";    // Mostra o botão chamativo para os utilizadores FREE
+        if (divCancelar) divCancelar.style.display = "none";  // Esconde o link de cancelar
     }
 
     document.getElementById("mensagemProfileFeedback").innerText = "";
