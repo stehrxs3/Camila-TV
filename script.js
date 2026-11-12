@@ -1434,15 +1434,17 @@ function realizarAssinaturaVIP() {
         feedback.innerText = "A redirecionar para o pagamento seguro...";
     }
 
-    // URL do link de pagamento que você gerou no Mercado Pago ou PayPal
+    // COLE O LINK DO SEU MERCADO PAGO ENTRE AS ASPAS ABAIXO:
     const linkPagamentoMercadoPago = "https://mpago.la/2GdDyS9";
 
-    // Opcional: Salva no localStorage ou Firebase que o usuário tentou assinar, 
-    // e redireciona para a página de pagamento
     setTimeout(() => {
+        // Redireciona o usuário para a página de pagamento oficial
         window.location.href = linkPagamentoMercadoPago;
-    }, 1000);
+    }, 800);
 }
+
+// Garante que a função está global
+window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
@@ -1959,6 +1961,7 @@ window.fecharVipModal = fecharVipModal;
 window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 window.abrirChatModal = abrirChatModal;
 window.fecharChatModal = fecharChatModal;
+window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 window.mudarSalaChat = mudarSalaChat;
 window.criarNovaComunidade = criarNovaComunidade;
 window.enviarMensagemChat = enviarMensagemChat;
