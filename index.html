@@ -340,6 +340,34 @@
     </div>
 </div>
 
+    <!-- Seção de Contato -->
+    <footer class="contact-section" id="contato">
+        <div class="contact-container">
+            <h2>Entre em Contato</h2>
+            <p>Dúvidas, sugestões ou suporte? Mande uma mensagem para a equipe do Camila TV+.</p>
+
+            <form id="contactForm" onsubmit="enviarMensagemContato(event)" class="contact-form">
+                <div class="input-group">
+                    <label for="contactName">Nome</label>
+                    <input type="text" id="contactName" placeholder="Seu nome" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="contactEmail">E-mail</label>
+                    <input type="email" id="contactEmail" placeholder="Seu e-mail" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="contactMessage">Mensagem</label>
+                    <textarea id="contactMessage" rows="4" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Mensagem</button>
+            </form>
+            <div id="mensagemContatoFeedback" class="feedback"></div>
+        </div>
+    </footer>
+    
     <div id="adminModal" class="modal">
         <div class="auth-container" style="max-width: 650px;">
             <span class="close-btn" onclick="fecharAdminModal()">&times;</span>
