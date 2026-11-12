@@ -1857,21 +1857,6 @@ function enviarMensagemContato(event) {
     });
 }
 
-function abrirTermosModal() {
-    const modal = document.getElementById("termosModal");
-    if (modal) modal.style.display = "flex";
-}
-
-function fecharTermosModal() {
-    const modal = document.getElementById("termosModal");
-    if (modal) modal.style.display = "none";
-}
-
-function abrirCookiesModal() {
-    alert("Cookies: O Camila TV+ utiliza apenas cookies essenciais de sessão e autenticação (Firebase) para manter o seu login seguro e ativo.");
-}
-
-// Expõe globalmente
 
 
 // --- PAINEL ADMIN PUXANDO DO FIREBASE ---
@@ -1983,7 +1968,3 @@ window.enviarMensagemChat = enviarMensagemChat;
 window.pedirCriacaoComunidade = pedirCriacaoComunidade;
 window.enviarMensagemContato = enviarMensagemContato;
 window.cancelarAssinaturaVIP = cancelarAssinaturaVIP;
-window.abrirTermosModal = abrirTermosModal;
-window.fecharTermosModal = fecharTermosModal;
-window.abrirCookiesModal = abrirCookiesModal;
-
