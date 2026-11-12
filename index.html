@@ -227,22 +227,22 @@
                     <img id="profileModalAvatar" src="" alt="Avatar Atual" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #2b39d2;">
                 </div>
 
-                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
-                    <span style="font-size: 0.85rem; color: #94a3b8;">Plano Atual:</span>
-                    <div id="profileUserPlano" style="font-size: 1.1rem; font-weight: bold; color: #facc15; margin: 4px 0;">FREE 👤</div>
-                    
-                    <!-- Botão de Upgrade (aparece se for FREE) -->
-                    <button type="button" id="btnUpgradePerfil" onclick="abrirVipModal()" style="background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-top: 5px;">👑 Fazer Upgrade para VIP</button>
+               <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+    <span style="font-size: 0.85rem; color: #94a3b8;">Plano Atual:</span>
+    <div id="profileUserPlano" style="font-size: 1.1rem; font-weight: bold; color: #facc15; margin: 4px 0;">FREE 👤</div>
+    
+    <!-- Botão de Upgrade BEM CHAMATIVO (Aparece em destaque se for FREE) -->
+    <button type="button" id="btnUpgradePerfil" onclick="abrirVipModal()" style="background: linear-gradient(135deg, #e50914, #ff2233); color: #fff; border: none; padding: 12px 20px; border-radius: 6px; font-size: 0.95rem; font-weight: bold; cursor: pointer; margin-top: 10px; width: 100%; box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);">
+        👑 FAZER UPGRADE PARA VIP AGORA
+    </button>
 
-                    <!-- Botão de Cancelar Assinatura (Pode estilizar ou exibir via JS quando for VIP) -->
-                    <button type="button" onclick="cancelarAssinaturaVIP()" style="background-color: rgba(229, 9, 20, 0.2); color: #ff4d4f; border: 1px solid #e50914; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px;">
-                        ❌ Cancelar Assinatura / Voltar para FREE
-                    </button>
-                    <p style="font-size: 0.7rem; color: #94a3b8; margin-top: 6px; line-height: 1.2;">
-                        *Se assinou por cartão recorrente, lembre-se também de pausar a cobrança na sua conta do Mercado Pago ou PayPal.
-                    </p>
-                </div>
-
+    <!-- Link de Cancelamento BEM DISCRETO (Oculto por padrão, só aparece para VIPs) -->
+    <div id="divCancelarAssinatura" style="display: none; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
+        <a href="#" onclick="cancelarAssinaturaVIP(); return false;" style="font-size: 0.7rem; color: #475569; text-decoration: none;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#475569'">
+            Gerenciar ou cancelar assinatura
+        </a>
+    </div>
+</div>
                 <div class="input-group">
                     <label>Nickname (Nome Público)</label>
                     <input type="text" id="editNickname" required>
