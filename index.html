@@ -165,13 +165,15 @@
                     <input type="password" id="regPass" required placeholder="Crie uma senha segura">
                 </div>
                 
-                <div class="input-group" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-                    <input type="checkbox" id="regLgpd" required style="width: auto; cursor: pointer;">
-                    <label for="regLgpd" style="font-size: 0.8rem; color: #94a3b8; cursor: pointer;">
-                        Li e aceito os <a href="#" onclick="alert('Ao cadastrar-se, concorda com o armazenamento dos seus dados para uso exclusivo na plataforma Camila TV+.')" style="color: #38bdf8; text-decoration: underline;">Termos da LGPD</a>.
-                    </label>
-                </div>
-                
+                <div class="input-group" style="display: flex; align-items: flex-start; gap: 8px; margin-top: 10px;">
+    <input type="checkbox" id="regLgpd" required style="width: auto; cursor: pointer; margin-top: 3px;">
+    <label for="regLgpd" style="font-size: 0.75rem; color: #94a3b8; cursor: pointer; line-height: 1.4;">
+        Li e concordo com os 
+        <a href="#" onclick="alert('Termos de Uso e Política de Privacidade (Camila TV+)\nÚltima atualização: Novembro de 2026\n\nBem-vindo(a) ao Camila TV+. Ao utilizar nossa plataforma, criar uma conta ou realizar uma assinatura, você concorda com os termos descritos abaixo, elaborados em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).\n\n1. Coleta e Uso de Dados (LGPD)\n- Quais dados coletamos: Recolhemos apenas o estritamente necessário para o funcionamento da sua conta: endereço de e-mail, nome de exibição (nickname) e foto de perfil.\n- Para que utilizamos: Os dados servem exclusivamente para gerenciar o seu acesso à plataforma, autenticação via Firebase, personalização do perfil e controle do seu plano de assinatura (FREE ou VIP).\n- Seus Direitos: De acordo com a LGPD, você pode, a qualquer momento, solicitar a visualização, alteração ou exclusão definitiva dos seus dados pessoais e histórico de acesso enviando uma solicitação através do nosso suporte ou cancelando a sua conta.\n\n2. Uso de Cookies\nO Camila TV+ utiliza cookies estritamente necessários para garantir a sua autenticação, manter a sessão ativa de forma segura e lembrar as suas preferências de navegação. Ao continuar navegando em nosso site, você concorda com o uso desses cookies de sessão.'); return false;" style="color: #38bdf8; text-decoration: underline;">Termos de Uso e Privacidade</a>, a 
+        <a href="#" onclick="alert('Política de Pagamentos, Assinaturas e Renovação\n\n- Formas de Pagamento: Oferecemos opções de assinatura recorrente via cartão de crédito e pagamentos avulsos (Pix, Boleto, Débito e PayPal) através de gateways de pagamento seguros e terceirizados (Mercado Pago e PayPal).\n\n- Cancelamento: O usuário VIP tem total liberdade para gerenciar ou solicitar o cancelamento de sua assinatura a qualquer momento diretamente através das configurações do seu Perfil. Caso possua uma cobrança recorrente ativa em cartão, o usuário também é responsável por pausar a recorrência diretamente na sua conta do Mercado Pago ou PayPal para evitar novas cobranças futuras. O acesso VIP permanece ativo até o fim do período já pago/vigente.'); return false;" style="color: #38bdf8; text-decoration: underline;">Política de Renovação e Pagamentos</a> e o 
+        <a href="#" onclick="alert('Compromisso Social (Fundo de Doações)\n\n- Transparência Solidária: O Camila TV+ tem um compromisso com o impacto social positivo. Informamos que 10% (dez por cento) do valor líquido arrecadado de todas as assinaturas da plataforma são direcionados para um Fundo de Doações dedicado a causas beneficentes e apoio social. Ao assinar o plano VIP, você também apoia indiretamente esta iniciativa solidária.'); return false;" style="color: #38bdf8; text-decoration: underline;">Compromisso Social</a>.
+    </label>
+</div>
                 <button type="submit" class="btn-submit">Cadastrar</button>
             </form>
 
