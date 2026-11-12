@@ -230,7 +230,17 @@
                 <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
                     <span style="font-size: 0.85rem; color: #94a3b8;">Plano Atual:</span>
                     <div id="profileUserPlano" style="font-size: 1.1rem; font-weight: bold; color: #facc15; margin: 4px 0;">FREE 👤</div>
+                    
+                    <!-- Botão de Upgrade (aparece se for FREE) -->
                     <button type="button" id="btnUpgradePerfil" onclick="abrirVipModal()" style="background: linear-gradient(135deg, #e50914, #b20710); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; cursor: pointer; margin-top: 5px;">👑 Fazer Upgrade para VIP</button>
+
+                    <!-- Botão de Cancelar Assinatura (Pode estilizar ou exibir via JS quando for VIP) -->
+                    <button type="button" onclick="cancelarAssinaturaVIP()" style="background-color: rgba(229, 9, 20, 0.2); color: #ff4d4f; border: 1px solid #e50914; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px;">
+                        ❌ Cancelar Assinatura / Voltar para FREE
+                    </button>
+                    <p style="font-size: 0.7rem; color: #94a3b8; margin-top: 6px; line-height: 1.2;">
+                        *Se assinou por cartão recorrente, lembre-se também de pausar a cobrança na sua conta do Mercado Pago ou PayPal.
+                    </p>
                 </div>
 
                 <div class="input-group">
