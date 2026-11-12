@@ -1434,17 +1434,14 @@ function realizarAssinaturaVIP() {
         feedback.innerText = "A redirecionar para o pagamento seguro...";
     }
 
-    // COLE O LINK DO SEU MERCADO PAGO ENTRE AS ASPAS ABAIXO:
+    // Seu link oficial do Mercado Pago já configurado
     const linkPagamentoMercadoPago = "https://mpago.la/2GdDyS9";
 
     setTimeout(() => {
-        // Redireciona o usuário para a página de pagamento oficial
+        // Redireciona o usuário direto para o Mercado Pago
         window.location.href = linkPagamentoMercadoPago;
     }, 800);
 }
-
-// Garante que a função está global
-window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
@@ -1958,7 +1955,6 @@ window.solicitarRedefinicaoFirebase = solicitarRedefinicaoFirebase;
 window.abrirTransmissaoAoVivo = abrirTransmissaoAoVivo;
 window.abrirVipModal = abrirVipModal;
 window.fecharVipModal = fecharVipModal;
-window.realizarAssinaturaVIP = realizarAssinaturaVIP;
 window.abrirChatModal = abrirChatModal;
 window.fecharChatModal = fecharChatModal;
 window.realizarAssinaturaVIP = realizarAssinaturaVIP;
