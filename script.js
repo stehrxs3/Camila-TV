@@ -1418,6 +1418,32 @@ function solicitarRedefinicaoFirebase(event) {
     });
 }
 
+function realizarAssinaturaVIP() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    
+    if (!usuarioLogado) {
+        alert("Você precisa iniciar sessão para fazer o upgrade!");
+        fecharVipModal();
+        abrirAuthModal();
+        return;
+    }
+
+    const feedback = document.getElementById("mensagemVipFeedback");
+    if (feedback) {
+        feedback.style.color = "#38bdf8";
+        feedback.innerText = "A redirecionar para o pagamento seguro...";
+    }
+
+    // URL do link de pagamento que você gerou no Mercado Pago ou PayPal
+    const linkPagamentoMercadoPago = "https://mpago.la/2GdDyS9";
+
+    // Opcional: Salva no localStorage ou Firebase que o usuário tentou assinar, 
+    // e redireciona para a página de pagamento
+    setTimeout(() => {
+        window.location.href = linkPagamentoMercadoPago;
+    }, 1000);
+}
+
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
