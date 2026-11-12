@@ -1418,31 +1418,6 @@ function solicitarRedefinicaoFirebase(event) {
     });
 }
 
-function realizarAssinaturaVIP() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    
-    if (!usuarioLogado) {
-        alert("Você precisa iniciar sessão para fazer o upgrade!");
-        fecharVipModal();
-        abrirAuthModal();
-        return;
-    }
-
-    const feedback = document.getElementById("mensagemVipFeedback");
-    if (feedback) {
-        feedback.style.color = "#38bdf8";
-        feedback.innerText = "A redirecionar para o pagamento seguro...";
-    }
-
-    // Seu link oficial do Mercado Pago já configurado
-    const linkPagamentoMercadoPago = "https://mpago.la/2GdDyS9";
-
-    setTimeout(() => {
-        // Redireciona o usuário direto para o Mercado Pago
-        window.location.href = linkPagamentoMercadoPago;
-    }, 800);
-}
-
 function verificarSessaoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const btnAuth = document.getElementById("userAuthBtn");
@@ -1559,89 +1534,51 @@ function fazerLogout() {
     }
 }
 
-/// --- LÓGICA DO MODAL E ASSINATURA VIP (MODO TESTE) ---
 let videoTentandoAssistir = null;
 
 function abrirVipModal(video) {
- videoTentandoAssistir = video;
- const feedback = document.getElementById("mensagemVipFeedback");
- if (feedback) feedback.innerText = "";
- 
- const vipModal = document.getElementById("vipModal");
- if (vipModal) {
- vipModal.style.display = "flex";
- } else {
- console.error("Erro: Elemento #vipModal não encontrado no HTML.");
- }
+    videoTentandoAssistir = video;
+    const feedback = document.getElementById("mensagemVipFeedback");
+    if (feedback) feedback.innerText = "";
+    
+    const vipModal = document.getElementById("vipModal");
+    if (vipModal) {
+        vipModal.style.display = "flex";
+    } else {
+        console.error("Erro: Elemento #vipModal não encontrado no HTML.");
+    }
 }
 
 function fecharVipModal() {
- const vipModal = document.getElementById("vipModal");
- if (vipModal) vipModal.style.display = "none";
- videoTentandoAssistir = null;
+    const vipModal = document.getElementById("vipModal");
+    if (vipModal) vipModal.style.display = "none";
+    videoTentandoAssistir = null;
 }
 
 function realizarAssinaturaVIP() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    
+    if (!usuarioLogado) {
+        alert("Precisa de iniciar sessão para fazer o upgrade!");
+        fecharVipModal();
+        abrirAuthModal();
+        return;
+    }
+
     const feedback = document.getElementById("mensagemVipFeedback");
     if (feedback) {
         feedback.style.color = "#38bdf8";
-        feedback.innerText = "A simular ativação VIP...";
+        feedback.innerText = "A redirecionar para o pagamento seguro...";
     }
 
+    // Link oficial do Mercado Pago integrado
+    const linkPagamentoMercadoPago = "https://mpago.la/2GdDyS9";
+
     setTimeout(() => {
-        let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-        if (!usuarioLogado) {
-            alert("Precisa de iniciar sessão para fazer o upgrade!");
-            abrirAuthModal();
-            return;
-        }
-
-        // Atualiza o plano localmente
-        usuarioLogado.plano = "VIP";
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-
-        // Atualiza no Realtime Database se o utilizador estiver autenticado
-        if (auth.currentUser) {
-            db.ref('users/' + auth.currentUser.uid).update({ 
-                plano: "VIP",
-                atualizadoEm: new Date().toISOString()
-            }).then(() => {
-                if (feedback) {
-                    feedback.style.color = "#22c55e";
-                    feedback.innerText = "VIP ativado com sucesso (Modo Teste)!";
-                }
-
-                verificarSessaoUsuario();
-
-                setTimeout(() => {
-                    fecharVipModal();
-                    if (videoTentandoAssistir && videoTentandoAssistir.titulo === "Transmissão Ao Vivo") {
-                        abrirTransmissaoAoVivo();
-                    } else if (videoTentandoAssistir) {
-                        abrirVideo(videoTentandoAssistir);
-                    }
-                }, 1200);
-            }).catch((error) => {
-                console.error("Erro no Firebase:", error);
-                if (feedback) {
-                    feedback.style.color = "#e50914";
-                    feedback.innerText = "Erro ao atualizar no banco de dados.";
-                }
-            });
-        } else {
-            // Caso o login seja apenas em localStorage durante testes
-            if (feedback) {
-                feedback.style.color = "#22c55e";
-                feedback.innerText = "VIP ativado localmente!";
-            }
-            verificarSessaoUsuario();
-            setTimeout(() => {
-                fecharVipModal();
-                if (videoTentandoAssistir) abrirVideo(videoTentandoAssistir);
-            }, 1200);
-        }
+        window.location.href = linkPagamentoMercadoPago;
     }, 800);
 }
+
 // --- LÓGICA DE COMUNIDADES E RESTRIÇÃO VIP POR SALA ---
 let salaAtual = "global"; 
 let chatListenerAtual = null; 
