@@ -17,7 +17,10 @@
 
     <header class="navbar">
         <div class="nav-left">
-            <h1 class="logo" onclick="clicarLogoAdmin()" style="cursor: pointer;">Camila<span class="plus"> tv+</span></h1>
+            <a href="#" onclick="clicarLogoAdmin(); return false;" class="logo-link">
+            <img src="LOGO NOVA CAMILA TV-.png" alt="Camila TV+" class="logo-img" style="height: 38px; cursor: pointer; display: block;">
+        </a>
+            
             <nav class="categories">
                 <button class="cat-btn active" onclick="filtrarCategoria('todos', this)">Início</button>
                 <button class="cat-btn" onclick="filtrarCategoria('Shows', this)">Shows</button>
