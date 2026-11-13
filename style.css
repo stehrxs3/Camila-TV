@@ -30,16 +30,24 @@ body {
     gap: 35px;
 }
 
-.logo {
-    font-size: 1.9rem;
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: -0.5px;
+.logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 36px; /* Altura exata equivalente ao texto antigo */
+    width: 175px; /* Largura ajustada para o nome CAMILATV+ */
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
-.logo .plus {
-    color: #2b39d2;
-    font-weight: 700;
+/* Dá zoom na imagem para preencher o recorte e eliminar a margem invisível */
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.65); /* Corta o excesso vazio ao redor */
+    display: block;
 }
 
 .categories {
@@ -738,11 +746,16 @@ body {
         min-width: 0;
     }
 
-    .logo {
-        font-size: 1rem;
-        white-space: nowrap;
+  .logo-link {
+        height: 22px;
+        width: 105px;
         flex-shrink: 0;
     }
+
+    .logo-img {
+        transform: scale(1.65);
+    }
+}
 
     .categories {
         display: flex;
