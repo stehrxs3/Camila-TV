@@ -42,7 +42,7 @@ body {
 }
 
 .logo-img {
-    height: 32px; /* Altura perfeita para ficar proporcional ao menu */
+    height: 38px; /* Altura perfeita para ficar proporcional ao menu */
     width: auto;
     object-fit: contain;
     display: block;
@@ -749,12 +749,14 @@ body {
     
 .logo-link {
         height: 26px;
-        margin-left: -5px; /* Ajuste fino para colar na borda no celular */
-        margin-right: 8px;
+        margin-left: -12px;
+        margin-right: 10px;
     }
-   .logo-img {
+    
+  .logo-img {
         height: 22px;
-        transform: scale(1.4);
+        transform: scale(1.5);
+        transform-origin: center;
     }
     
     .categories {
