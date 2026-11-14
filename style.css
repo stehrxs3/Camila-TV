@@ -740,15 +740,14 @@ body {
         gap: 8px;
         flex: 1;
         min-width: 0;
+
     }
+    
 .logo-link {
-        width: 105px;   /* Largura proporcional para telas menores */
-        height: 26px;   /* Altura compacta para não quebrar o menu */
+        height: 26px;
     }
-
-
     .logo-img {
-        transform: scale(1.65);
+        height: 20px;
     }
     
     .categories {
