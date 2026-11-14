@@ -33,17 +33,20 @@ body {
 .logo-link {
     display: inline-flex;
     align-items: center;
-    height: 36px; /* Mesma altura que o texto antigo tinha */
+    height: 38px; /* Mesma altura que o texto antigo tinha */
     cursor: pointer;
     text-decoration: none;
     flex-shrink: 0;
+    margin-right: 15px;
 }
 
 .logo-img {
-    height: 28px; /* Altura perfeita para ficar proporcional ao menu */
+    height: 32px; /* Altura perfeita para ficar proporcional ao menu */
     width: auto;
     object-fit: contain;
     display: block;
+    transform: scale(1.55);
+    transform-origin: left center;
 }
 
 .categories {
