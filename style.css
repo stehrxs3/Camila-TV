@@ -32,10 +32,10 @@ body {
 
 .logo-link {
     display: inline-block;
-    width: 140px;      /* Largura exata para caber CAMILATV+ sem sobrar espaço */
-    height: 38px;      /* Altura alinhada com a barra de navegação */
+    width: 155px;      /* Largura exata para o texto CAMILATV+ */
+    height: 38px;      /* Altura alinhada com a barra */
     background-image: url('https://lh3.googleusercontent.com/d/1slAzvZHQXsDZcjXh91hVYA2_JDh4Ay4N');
-    background-size: contain;   /* Faz a logo inteira caber perfeitamente na caixa */
+    background-size: contain;   
     background-repeat: no-repeat;
     background-position: left center;
     cursor: pointer;
@@ -746,8 +746,8 @@ body {
         min-width: 0;
     }
 .logo-link {
-        width: 100px;   /* Largura reduzida proporcionalmente para celular */
-        height: 26px;   /* Altura compacta para não quebrar o menu mobile */
+        width: 105px;   /* Largura proporcional para telas menores */
+        height: 26px;   /* Altura compacta para não quebrar o menu */
     }
 
 
