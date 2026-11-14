@@ -38,10 +38,11 @@ body {
     text-decoration: none;
     flex-shrink: 0;
     margin-right: 15px;
+    margin-left: -10px;
 }
 
 .logo-img {
-    height: 32px; /* Altura perfeita para ficar proporcional ao menu */
+    height: 39px; /* Altura perfeita para ficar proporcional ao menu */
     width: auto;
     object-fit: contain;
     display: block;
