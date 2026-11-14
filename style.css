@@ -37,17 +37,17 @@ body {
     cursor: pointer;
     text-decoration: none;
     flex-shrink: 0;
-    margin-right: 15px;
-    margin-left: -10px;
+    margin-right: 20px;
+    margin-left: -25px;
 }
 
 .logo-img {
-    height: 39px; /* Altura perfeita para ficar proporcional ao menu */
+    height: 32px; /* Altura perfeita para ficar proporcional ao menu */
     width: auto;
     object-fit: contain;
     display: block;
-    transform: scale(1.55);
-    transform-origin: left center;
+    transform: scale(1.75);
+    transform-origin: center;
 }
 
 .categories {
@@ -749,9 +749,12 @@ body {
     
 .logo-link {
         height: 26px;
+        margin-left: -5px; /* Ajuste fino para colar na borda no celular */
+        margin-right: 8px;
     }
-    .logo-img {
-        height: 20px;
+   .logo-img {
+        height: 22px;
+        transform: scale(1.4);
     }
     
     .categories {
