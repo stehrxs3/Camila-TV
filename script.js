@@ -44,6 +44,7 @@ const listaDeVideos = [
         descricao: "Apresentação inesquecível que marcou o encerramento oficial da Yours' C Tour com direito a violão em Ai Se Eu Te Pego, funk no palco e muita proximidade com os fãs na grade.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
         destaque: true
+      
     },
     {
         id: 2,
@@ -1125,12 +1126,29 @@ function filtrarPorBusca() {
 function abrirVideo(video) {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    if (!usuarioLogado) {
-        alert("Você precisa fazer login ou se cadastrar para assistir aos vídeos!");
-        abrirAuthModal();
-        return;
+    // 1. Se o vídeo for VIP, exige login e plano VIP ativo
+    if (video.isVip) {
+        if (!usuarioLogado) {
+            alert("Este é um conteúdo exclusivo VIP. Faça login ou cadastre-se para continuar!");
+            abrirAuthModal();
+            return;
+        }
+
+        if (usuarioLogado.plano !== "VIP") {
+            // Abre o modal de assinatura VIP que você já tem estruturado
+            abrirVipModal(video);
+            return;
+        }
+    } else {
+        // Se não for VIP, exige apenas que esteja logado (como já era no seu código)
+        if (!usuarioLogado) {
+            alert("Você precisa fazer login ou se cadastrar para assistir aos vídeos!");
+            abrirAuthModal();
+            return;
+        }
     }
 
+    // 2. Se passou pelas validações, abre o modal do player normalmente
     const modal = document.getElementById("videoModal");
     const container = document.getElementById("videoContainer");
 
