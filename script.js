@@ -1469,9 +1469,10 @@ function realizarLogin(event) {
                     contato: userData.contato || contatoInput,
                     nickname: userData.nickname || "Usuário",
                     avatar: userData.avatar || "https://i.pinimg.com/1200x/7d/ef/02/7def02d4b167cc8d963c023b4174b360.jpg",
-                    plano: userData.plano || "FREE"
+                    plano: userData.plano || "FREE" // Lê o plano real do banco de dados (FREE ou VIP)
                 }));
 
+              
                 setTimeout(() => {
                     fecharAuthModal();
                     verificarSessaoUsuario();
