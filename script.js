@@ -43,8 +43,8 @@ const listaDeVideos = [
         banner: "https://rollingstone.com.br/wp-content/uploads/2025/09/Camila-Cabello-The-Town-2025-foto-Ellen-Artie-02-1536x1024.jpg",
         descricao: "Apresentação inesquecível que marcou o encerramento oficial da Yours' C Tour com direito a violão em Ai Se Eu Te Pego, funk no palco e muita proximidade com os fãs na grade.",
         videoUrl: "https://drive.google.com/file/d/1K6cnGIMG5hp7T-Bzeu6XSEleqmq7fB7m/view?usp=sharing",
-        destaque: true
-      
+        destaque: true,
+        isVip: false
     },
     {
         id: 2,
@@ -55,7 +55,8 @@ const listaDeVideos = [
         banner: "https://www.summersonic.com/wp/wp-content/uploads/2025/08/005-196.jpg?v=1755512287",
         descricao: "Show que fechou a passagem da cantora pelo festival japonês com chave de ouro e entregou um dos momentos mais aclamados da edição.",
         videoUrl: "https://drive.google.com/file/d/1nHYSRQUiakqT6ha8yaJVOeJijjvW7VCp/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 3,
@@ -66,7 +67,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/2173487877/pt/foto/las-vegas-nevada-camila-cabello-performs-during-the-2024-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=Tm4ZJmkXVqEa2AEQWhH96NxQlvLFJ4urW-voPR2nOVM=",
         descricao: "Apresentação marcante que trouxe a cantora de jaqueta de couro e botas peludas, remix de funk para Shameless e momentos de carinho com a plateia.",
         videoUrl: "https://drive.google.com/file/d/1ujbG4Y88WCUCmHmMrm1fmX0ZfekWAFn3/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 4,
@@ -77,7 +79,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/2159836703/pt/foto/glastonbury-england-camila-cabello-performs-on-the-other-stage-during-day-four-of-glastonbury.jpg?s=612x612&w=0&k=20&c=_4Oj66cMwi0ZwZQozs5qzjLh9o-zET8Ajb9uX0KiRsI=",
         descricao: "Apresentação eletrizante no The Other Stage que marcou sua estreia em Worthy Farm com uma estética hyperpop marcante e as faixas do álbum C,XOXO.",
         videoUrl: "https://drive.google.com/file/d/1ktvi5-Iq2rNPu5oEVXV9I-TluSfJoBhZ/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 5,
@@ -88,7 +91,8 @@ const listaDeVideos = [
         banner: "https://images.impresa.pt/expresso/2024-06-24-camilacabelo_mundo_diegopadilha_rirlisboa2024_23jun-7269.jpg-ac3c7552/3x2/mw-694",
         descricao: "Show íconica no Parque do Tejo que marcou o primeiro show solo da cantora em Portugal e a estreia ao vivo das faixas do álbum C,XOXO.",
         videoUrl: "https://drive.google.com/file/d/1ujbG4Y88WCUCmHmMrm1fmX0ZfekWAFn3/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 6,
@@ -99,7 +103,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1422667658/pt/foto/rio-de-janeiro-brazil-camila-cabello-performs-at-the-mundo-stage-during-the-rock-in-rio.jpg?s=612x612&w=0&k=20&c=Q5pZ2vHYsdYBIDJMg43v2xm-dKbMFuhsnsR1zfIQKTE=",
         descricao: "Apresentação histórica no Palco Mundo que enfrentou a chuva com Ai Preto ao lado de L7NNON, Hasta Los Dientes com María Becerra, bordões hilários em português e os maiores sucessos da era Familia.",
         videoUrl: "https://drive.google.com/file/d/1XxEhKzy53Xxbe4KVdkotLvBF5fBJYPzt/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 7,
@@ -110,7 +115,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1401260356/pt/foto/carson-california-singer-camila-cabello-performing-at-the-iheartradio-concert-at-wango-tango.jpg?s=612x612&w=0&k=20&c=7ricEAvrhF-SlOJZXjL68L95WFKjBEyLDP2HqUPrK8A=",
         descricao: "Show que destacou um mashup surpreendente de No Doubt com Gasolina, muita coreografia e os hits Bam Bam e psychofreak.",
         videoUrl: "https://drive.google.com/file/d/1k90V_-YORgQeT5AD9jsk63cTe2cM6qcr/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 8,
@@ -121,7 +127,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1235516869/pt/foto/new-york-ny-camila-cabello-at-global-citizen-live-on-september-25-2021-in-new-york-city.jpg?s=612x612&w=0&k=20&c=0rcdZV303rshiNf4CcbOqtgwuDqgJd8tK3uq6CqOFjM=",
         descricao: "Apresentação marcante no palco de Nova York que uniu grandes colaborações ao vivo, vocais impecáveis e hits globais.",
         videoUrl: "https://drive.google.com/file/d/1yHI_3P4Sm0xt8yzl8XB4E6U4lCS0HFU7/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 9,
@@ -132,7 +139,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Apresentação intimista promovida pela Apple Music que marcou o lançamento do álbum Romance com orquestra ao vivo.",
         videoUrl: "https://drive.google.com/file/d/1t4TOMOPPi_Ul-fMknRd1JZaeN40Prdvb/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 10,
@@ -143,7 +151,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1193821767/pt/foto/new-york-new-york-camila-cabello-performs-onstage-during-iheartradios-z100-jingle-ball-2019.jpg?s=612x612&w=0&k=20&c=K_DrlPmO1IDZecDEAOx3aRu3uXMeLbqHUw-QVuLLNtU=",
         descricao: "Apresentação inesquecível no lendário Madison Square Garden que celebrou o lançamento do álbum Romance com um figurino icônico de pérolas e látex.",
         videoUrl: "https://drive.google.com/file/d/1yzCJeVlDfP-_PVKDr9gmb5iNeA2fhiMw/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 11,
@@ -154,7 +163,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1176060717/pt/foto/las-vegas-nevada-camila-cabello-performs-onstage-during-the-2019-iheartradio-music-festival-at.jpg?s=612x612&w=0&k=20&c=hWKHIApRxAGL7jRlZR_K0dHq_nKSpFfZuGY2XYTtlvc=",
         descricao: "Show incrível na T-Mobile Arena que marcou as primeiras performances ao vivo de Shameless e Liar.",
         videoUrl: "https://drive.google.com/file/d/1yzCJeVlDfP-_PVKDr9gmb5iNeA2fhiMw/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 12,
@@ -165,7 +175,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1047445328/pt/foto/austin-tx-camila-cabello-performs-during-the-2018-austin-city-limits-music-festival-at-zilker.jpg?s=612x612&w=0&k=20&c=7IOxaq0lDyf7fbETPEZ2r97tc4mG8xoN6XyKBJ-nPao=",
         descricao: "Apresentação inesquecível que levou a energia contagiante da Never Be the Same Tour para os palcos do Texas.",
         videoUrl: "https://drive.google.com/file/d/1wc7av7YEvK7xOFX9YiXjCRilCWJ8PTVh/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 13,
@@ -176,7 +187,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/1012311284/photo/chicago-il-camila-cabello-performs-at-lollapalooza-2018-in-grant-park-on-august-2-2018-in.jpg?s=612x612&w=0&k=20&c=YVczRSqjEMfj3Syxj9tZHu5Wn4aD-he_COZLZ92ke6Q=",
         descricao: "Show eletrizante que reuniu dançarinos, ritmos caribenhos em Inside Out e um lindo tributo a Elvis Presley.",
         videoUrl: "https://drive.google.com/file/d/17VKNLqaGVyomvgIljSmOXJ6ln2Aej2Bq/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 14,
@@ -187,7 +199,8 @@ const listaDeVideos = [
         banner: "https://i.dailymail.co.uk/i/newpix/2018/06/24/23/4D97737200000578-5880531-In_the_moment_Camila_commanded_attention_as_she_interacted_with_-a-40_1529878946662.jpg",
         descricao: "Show eletrizante da passagem pela Europa que incendiou Newport com os sucessos do álbum Camila e covers inesquecíveis.",
         videoUrl: "https://drive.google.com/file/d/1TYQL_bFKxtpRDam_SwDMIpYU0CR8bnFv/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 15,
@@ -198,7 +211,8 @@ const listaDeVideos = [
         banner: "https://metro.co.uk/wp-content/uploads/2018/06/sei_16179016.jpg?quality=90&strip=all",
         descricao: "Show inesquecível que abriu o festival no lotado Estádio de Wembley para 80 mil pessoas com os maiores sucessos do álbum Camila.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 16,
@@ -209,7 +223,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/963001974/pt/foto/swansea-wales-camila-cabello-performs-during-day-2-of-bbc-radio-1s-biggest-weekend-2018-held-at.jpg?s=612x612&w=0&k=20&c=fn4VdBtUD0NbtJkoK9MgBxjMLzVTnzcANdYvti4yI7Q=",
         descricao: "Apresentação marcante no palco principal de Gales que consagrou sua presença nos grandes festivais britânicos da era Camila.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 17,
@@ -220,7 +235,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Apresentação inesquecível no Parque O'Higgins onde a cantora superou atrasos e problemas técnicos para entregar um show épico com hits como Inside Out e Havana.",
         videoUrl: "https://drive.google.com/file/d/1kBumzvi0IfhFvemXR_Trvs4cJl13Of_R/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 18,
@@ -231,7 +247,8 @@ const listaDeVideos = [
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSFyFThZuX9A92iKCnGXm1XN_8s0m1VAqMCPKvB0UQfg&s=10",
         descricao: "Apresentação histórica no Palco Alternativo do Hipódromo de San Isidro que marcou um dos primeiros grandes momentos da cantora promovendo seu álbum solo de estreia.",
         videoUrl: "https://drive.google.com/file/d/1ewkEbFNBf4swm52PCrUqXtBsg7oWY2Rf/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 19,
@@ -242,7 +259,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/870316968/pt/foto/miami-fl-camila-cabello-performs-onstage-during-the-iheartradio-fiesta-latina-celebrating-our.jpg?s=612x612&w=0&k=20&c=CFSakseKeNi-LeDCb2ttb_9daDS4p_XM6K7dmjw5ECo=",
         descricao: "iHeartRadio Festa Latina em Miami.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
   
 //Performances//
@@ -256,7 +274,8 @@ const listaDeVideos = [
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65ebuVGsjDtV5Vz50jc7RfdDbSLsmRbT-3z-x0rHlOQ&s=10",
         descricao: "Apresentação inesquecível na Times Square na virada de ano que impulsionou o hit rumo ao topo da Billboard Hot 100.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
          {
         id: 21,
@@ -267,7 +286,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/883391734/photo/hollywood-ca-honoree-camila-cabello-performs-onstage-at-billboard-women-in-music-2017-at-the.jpg?s=612x612&w=0&k=20&c=iy6aW6HCgw75zZLh5D3NihwmnvpelePkHMK7gHYtghw=",
         descricao: "Versão acústica e intimista em Hollywood marcando a noite em que recebeu o prêmio de Artista Revelação.",
         videoUrl: "https://drive.google.com/file/d/1j0zGTJV-89RlYj45s-uP9lteqgAIWGEQ/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
          {
         id: 22 ,
@@ -278,7 +298,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/873366636/photo/london-england-camila-cabello-performs-on-stage-during-the-mtv-emas-2017-held-at-the-sse-arena.jpg?s=612x612&w=0&k=20&c=FRLvCsV6odnTg2YLN6vBGBjuR8LepOB_q3pTIjnkUq0=",
         descricao: "Apresentação icônica na The SSE Arena em que a cantora entregou um visual marcante de body vermelho em babados e dança dramática",
         videoUrl: "https://drive.google.com/file/d/1FlXuJb0idErLUeMEAEghpFPhJG6h8AHb/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 23 ,
@@ -289,7 +310,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "",
         videoUrl: ".",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
        {
         id:  24,
@@ -300,7 +322,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/867190500/photo/2017-latin-american-music-awards-show-pictured-camila-cabello-performing-at-the-dolby-theatre.jpg?s=612x612&w=0&k=20&c=qe6LPSnskS-H1LzXVy3gv10x00eZ3_O9SzeAldt-UFc=",
         descricao: "Versão especial em Spanglish no Dolby Theatre em Hollywood que celebrou suas raízes cubanas com passos de salsa.",
         videoUrl: "https://drive.google.com/file/d/1PffQJoAzHtYomRI5-rHk4UNB8V8HoVcT/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },    
         {
         id: 25,
@@ -311,7 +334,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/865047344/photo/london-england-james-arthur-and-camila-cabello-perform-on-stage-at-the-bbc-radio-1-teen-awards.jpg?s=612x612&w=0&k=20&c=NfSqP8Up8FhV_TlGF0wnBXOk1NTDCnCFbpkOVbWD7mE=",
         descricao: "Dueto surpresa e emocionante na Wembley Arena em Londres que uniu as vozes dos artistas em um arranjo acústico inesquecível",
         videoUrl: "https://drive.google.com/file/d/1ikMQRPb54AYcjfx4J6jKY47TEZ-YjXB2/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 26,
@@ -322,7 +346,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/865050608/photo/london-england-camila-cabello-performs-at-the-bbc-radio-1-teen-awards-2017-at-wembley-arena-on.jpg?s=612x612&w=0&k=20&c=QII7YgRtBNDQ625sfLPRfVShZtMQ48wVZfvxUYFFvmA=",
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1Pb_ML1A3TSxbN7sv20u-8U-Y5lfoicuJ/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id:  27,
@@ -333,7 +358,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/855541408/pt/foto/new-york-ny-camila-cabello-performs-onstage-showing-her-support-for-daca-while-wearing-an-aclu.jpg?s=612x612&w=0&k=20&c=7KzQPFf8hC-M0B7Vu7U05WUwxUDHaM4qm-LwPlvW8ts=",
         descricao: "Durante a performance de “Havana”, a cantora dedicou o momento aos jovens beneficiários do programa DACA (conhecidos como DREAMers) e fez um discurso em defesa de uma América inclusiva",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
       {
         id: 28,
@@ -344,7 +370,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/853852454/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0744-pictured-singer-camila-cabello-performs.jpg?s=612x612&w=0&k=20&c=BkaI3pEcd5i0dC2EMawAVma-sq_GSvKnMo8k7E8oiQE=",
         descricao: "Camila esteve no programa de Jimmy Fallon para cantar 'Havana' pela primeira vez na TV e conversou sobre a inspiração pessoal da música e a reação emocionada de sua avó.",
         videoUrl: "https://drive.google.com/file/d/1kqAX61gb3hgsvM8ZgkrfEuNvkQYAfdTa/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 29,
@@ -355,7 +382,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/699980704/pt/foto/the-tonight-show-starring-jimmy-fallon-episode-0698-pictured-musical-guest-camila-cabello.jpg?s=612x612&w=0&k=20&c=4kGl-9RZWJAdtkvv1Tg3AvOPImmwvbuEAHA5KfZRTAw=",
         descricao: "Camila Cabello apresentou o seu single solo de estreia no programa The Tonight Show Starring Jimmy Fallon",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
      {
         id: 30,
@@ -366,7 +394,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/697460474/pt/foto/toronto-on-camila-cabello-performs-at-the-2017-iheartradio-muchmusic-video-awards-at-muchmusic.jpg?s=612x612&w=0&k=20&c=OqKOMWvJhkVIOIwFF4Wd_9qWB8WpTG_QO_s5zJHAMks=",
         descricao: "A performance de Camila Cabello no iHeartRadio MuchMusic Video Awards (MMVAs) de 2017. Durante a noite, Camila também ganhou o prêmio de International New Artist Award (Artista Internacional Revelação)",
         videoUrl: "https://drive.google.com/file/d/1lDi6V-21dSwlakvVbKivZJzQTE0PUa2n/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
 
     {
@@ -378,7 +407,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Fazendo sua estreia solo na parada britânica, ‘Crying in the Club’ estreou em 48º lugar no Official UK Charts",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
     {
         id: 32,
@@ -389,7 +419,8 @@ const listaDeVideos = [
         banner: "https://www.billboard.com/wp-content/uploads/media/camila-cabello-bbmas-performance-a-2017-billboard-1548.jpg",
         descricao: "Camila Cabello fez sua primeira apresentação solo na televisão no Billboard Music Awards",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
      {
         id: 33,
@@ -400,7 +431,8 @@ const listaDeVideos = [
         banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmne6_8GR9RhuVMRbpKGT1f-En5M-g9q9kW4rCYVv8lA&s=10",
         descricao: "Camila Cabello, Pitbull e J Balvin se apresentaram juntos no palco cantando o hit “Hey Ma”, parte da trilha sonora do filme Velozes e Furiosos 8.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
    {
         id: 34,
@@ -411,7 +443,8 @@ const listaDeVideos = [
         banner: "https://media.gettyimages.com/id/664471372/photo/los-angeles-ca-singers-machine-gun-kelly-and-camila-cabello-perform-onstage-during-the-welcome.jpg?s=612x612&w=0&k=20&c=eIs8efQ4jWeMdZ82cfHx4SpevFOOuJ4zJwyIexOYB2Y=",
         descricao: "Performance ao vivo do grande sucesso em parceria com Machine Gun Kelly.",
         videoUrl: "https://drive.google.com/file/d/1yNKMNI7_pxhtmfAFB8AiOo4UxlDlBs8o/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 35,
@@ -422,7 +455,8 @@ const listaDeVideos = [
         banner: "https://assets.teenvogue.com/photos/58e3c0799093dd2fbd6babe3/16:9/w_1920,c_limit/GettyImages-664471336.jpg",
         descricao: "Foi a primeira apresentação solo de Camila Cabello após sua saída do grupo Fifth Harmony, na qual ela brilhou cantando um cover de 'Man in the Mirror', clássico de Michael Jackson, acompanhada por uma banda completa e coro.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 36,
@@ -432,8 +466,9 @@ const listaDeVideos = [
         capa: "https://media.gettyimages.com/id/652257744/pt/foto/los-angeles-ca-singer-camila-cabello-and-rapper-machine-gun-kelly-perform-onstage-at.jpg?s=612x612&w=0&k=20&c=J0wxeuzRx0e-wldD_wqYVCTej4JOgNSyoID78N8Wy-w=",
         banner: "https://media.gettyimages.com/id/652234870/pt/foto/los-angeles-ca-singer-camila-cabello-and-rapper-machine-gun-kelly-perform-onstage-at.jpg?s=612x612&w=0&k=20&c=l1RasQeUSjEN3uclzdiUlx8i_oDPfOHtsw44dZr4vJU=",
         descricao: "",
-        videoUrl: " ",
-        destaque: false
+        videoUrl: "https://drive.google.com/file/d/1PaZCg2O-eul3qXPhh7B_aMH_-X8TkxUc/view?usp=sharing ",
+        destaque: false,
+        isVip: true
     },
     {
        id: 37,
@@ -444,7 +479,8 @@ const listaDeVideos = [
        banner:"https://ichef.bbci.co.uk/images/ic/768xn/p04rffw3.jpg ",
        descricao:" ",
        videoUrl: " https://drive.google.com/file/d/1BW1jzxKTjp-gnMLHWpKyzWlWMX2Fu5l1/view?usp=sharing",
-       destaque: false
+       destaque: false,
+        isVip: false
     },
     {
         id: 38,
@@ -455,7 +491,8 @@ const listaDeVideos = [
         banner: "https://ichef.bbci.co.uk/images/ic/640x360/p04rf43v.jpg",
         descricao: "Eles tocaram uma versão acústica e stripped-down (simplificada/despojada) do hit em parceria, acompanhados por um quarteto de cordas e pela banda completa de MGK. Na época, o single alcançou a 4ª posição na Billboard Hot 100.",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
    {
         id: 39,
@@ -466,7 +503,8 @@ const listaDeVideos = [
         banner: "https://www.hotnewhiphop.com/i/v1/765x430-cover-81-auto/cover/39/01/1485810139_4f6ea6773b19a5d7fed06904c01a5473.jpg",
         descricao: "Assista à performance de Bad Things por Machine Gun Kelly e Camila Cabello no The Ellen DeGeneres Show, registro inesquecível de 2017 que impulsionou o single rumo ao topo das paradas",
         videoUrl: " ",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     
       {
@@ -478,7 +516,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: false
     },   
 
   //Entrevistas//
@@ -491,7 +530,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "",
         videoUrl: "https://drive.google.com/file/d/1y9jxtFd-O779W7qEM1gUiubhK7B0cGHu/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
    },
       
   //Movies & Series//
@@ -504,7 +544,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
       {
         id: 43 ,
@@ -515,7 +556,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
       {
         id: 44 ,
@@ -526,7 +568,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "",
         videoUrl: "",
-        destaque: false
+        destaque: false,
+        isVip: true
     },
       {
         id: 45 ,
@@ -537,7 +580,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de GODSPEED de Camila Cabello, vídeo carregado de simbolismo e estética melancólica que encerra um dos capítulos mais visuais da cantora.",
         videoUrl: "https://drive.google.com/file/d/1VCuqHfxLOCTFyf2wg__3huFHMi6sqMb3/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 46 ,
@@ -548,7 +592,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Chanel No.5, produção minimalista e magnética que destaca uma performance de dança hipnotizante no universo estético do C,XOXO.",
         videoUrl: "https://drive.google.com/file/d/1LL_sjFFWgS0snXyvNW5OzAcjBVIwACZM/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 47 ,
@@ -559,7 +604,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de HE KNOWS, produção vibrante e cheia de atitude que acompanha uma noite inesquecível de festa e sedução pelas ruas de Miami.",
         videoUrl: "https://drive.google.com/file/d/1Rd-0owGOENLdtFC5xNe0DuUY6e8XJUk_/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id:  48,
@@ -570,7 +616,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de I LUV IT, produção caótica, futurista e eletrizante que marca a transição ousada da cantora para a era C,XOXO.",
         videoUrl: "https://drive.google.com/file/d/1fatcrG-1q_jJiPOAvaZJIWeAEWENjElK/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id: 49 ,
@@ -581,7 +628,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Ambulancia, vídeo esteticamente único que marcou um dos grandes encontros da música latina em 2023.",
         videoUrl: "https://drive.google.com/file/d/17ZEUHv92imNKtO-RqiLuqoIMJcLdfq2c/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id:  50,
@@ -592,7 +640,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Ku Lo Sa, colaboração irresistível que levou o grande hit global do afrobeat a uma nova dimensão.",
         videoUrl: "https://drive.google.com/file/d/1H8kFq2TEbRzwV6ZWcNlASSM0NY64Pgh6/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id: 51 ,
@@ -603,7 +652,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Mon Amour, paródia hilaria e colorida que ironiza os clichês e dramas dos reality shows de namoro em uma villa de verão.",
         videoUrl: "https://drive.google.com/file/d/1pGU1u9LiOHxO3HYB7f_5VG7ebYsaqNn3/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 52 ,
@@ -614,7 +664,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Hasta los Dientes, colaboração pop latina contagiante embalada por uma estética espacial única.",
         videoUrl: "https://drive.google.com/file/d/1FZWA8ZD7Qw27MhbJzZex6IO_L6MeuZRk/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
          {
         id: 53 ,
@@ -625,7 +676,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Psychofreak, produção hipnotizante e surreal que explora temas de ansiedade e dissociação em um cenário com gravidade distorcida.",
         videoUrl: "https://drive.google.com/file/d/1nYKUgp9eHCheHN7Wtjsj_IJLUHlrGVhi/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 54 ,
@@ -636,7 +688,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Bam Bam, vídeo indicado ao Grammy que conquistou fãs no mundo inteiro com sua vibe festiva e alto astral.",
         videoUrl: "https://drive.google.com/file/d/1gOHc1rFqileDUd6EONlvJT0j6RvQnNIV/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 55 ,
@@ -647,7 +700,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista à performance oficial de I'll Be Home For Christmas por Camila Cabello na Casa Branca, apresentação marcante para o especial Spirit of the Season acompanhada por um talentoso grupo mariachi.",
         videoUrl: "https://drive.google.com/file/d/1TboPic_6IBXPabouGhcdlkIAudnddC4e/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id: 56 ,
@@ -658,7 +712,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista à performance especial de I'll Be Home For Christmas de Michael Bublé com Camila Cabello, dueto acolhedor e sofisticado gravado para o especial de fim de ano em Nova York.",
         videoUrl: "https://drive.google.com/file/d/1xE1TVpVnqKxSRlSeUsqunsI1dmrJVVc3/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
 
         {
@@ -670,7 +725,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Million to One, hino de força e determinação que traz cenas marcantes da cantora no papel principal do filme Cinderella.",
         videoUrl: "https://drive.google.com/file/d/13VRJKqkldob9OFN5JVaS585d7SIvBDqH/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 58 ,
@@ -681,7 +737,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Don't Go Yeto, vídeo aclamado que deu a largada na era FAMILIA com uma celebração calorosa das raízes culturais da cantora.",
         videoUrl: "https://drive.google.com/file/d/1WRR6QT3Scy_YLRcUnXhBdDS-n0nprQJs/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id:  59,
@@ -692,7 +749,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de First Man, clipe comovente e intimista que abre o arquivo de memórias de família para homenagear o primeiro grande amor de sua vida.",
         videoUrl: "https://drive.google.com/file/d/1mNSKOzZMgfIzLiZaHDVyvNlv6a1S9y9T/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id: 60 ,
@@ -703,7 +761,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de My Oh My, superprodução ambientada na era de ouro de Hollywood que acompanha uma atriz de cinema mudo em busca de papéis mais ousados.",
         videoUrl: "https://drive.google.com/file/d/1OmcOOHEpyzUriz6ICeDjn14nszl3oID-/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id: 61 ,
@@ -714,7 +773,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista à performance oficial de Rockin' Around the Christmas Tree de Kacey Musgraves com Camila Cabello, dueto natalino contagiante que uniu duas grandes vozes do pop e do country.",
         videoUrl: "https://drive.google.com/file/d/1NeOfc1vjRjaqgpUc1nVZt1zCluKp12jj/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 62 ,
@@ -725,7 +785,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Living Proof, produção etérea e poética inspirada em elementos mitológicos e telas renascentistas.",
         videoUrl: "https://drive.google.com/file/d/1YPG1FYtX66mwnf1UJF8t5N9-WUKtaLr8/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 63 ,
@@ -736,7 +797,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de South of the Border, curta-metragem divertido no estilo filme de espionagem repleto de reviravoltas, perseguições e um valioso colar em jogo.",
         videoUrl: "https://drive.google.com/file/d/1r-mCH3wswTZHgytYwHS3iFYjciXiYQNS/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 64 ,
@@ -747,7 +809,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Liar, curta-metragem divertido e surrealista onde a cantora fica presa em um ciclo hilário de pesadelos cada vez que tenta negar seus sentimentos",
         videoUrl: "https://drive.google.com/file/d/1WFzCyQGMv8V-CDFQydzZ_IpYqHOXNxoc/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 65 ,
@@ -758,7 +821,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Shameless, lançamento eletrizante que deu o pontapé inicial na era Romance com visuais marcantes e muita intensidade.",
         videoUrl: "https://drive.google.com/file/d/1gqTQbExCZdqufpmwCYe7uiuQ75gmvC7h/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 66 ,
@@ -769,7 +833,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Find U Again, produção estilizada no estilo neo-noir que traz a cantora disfarçada em um clube noturno fugindo de caçadores de recompensa.",
         videoUrl: "https://drive.google.com/file/d/1JIdo6QxEEQadM-0VLkmnFODra2Dsi6qs/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
        {
         id: 67 ,
@@ -780,7 +845,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Señorita, vídeo icônico premiado no MTV VMA que se tornou uma das produções mais marcantes da videografia pop recente.",
         videoUrl: "https://drive.google.com/file/d/1xqRIjKzy2pwf_AYKSmKiddeFxwljq-I4/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 68 ,
@@ -791,7 +857,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Mi Persona Favorita, colaboração inesquecível e premiada no Latin GRAMMY que homenageia as conexões reais da vida.",
         videoUrl: "https://drive.google.com/file/d/1ims21fIRj9V6V2W5Yi-xDzhLJVKxI6l1/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id:  69,
@@ -802,7 +869,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Consequences (orchestral), vídeo cinematográfico aclamado pela crítica que entregou uma das interpretações mais vulneráveis da videografia da cantora.",
         videoUrl: "https://drive.google.com/file/d/1lCWbsGFsmNN4b0V6w855d3hnPjQ5wnTy/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 70 ,
@@ -813,7 +881,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Beautiful de Bazzi, vídeo elegante e atemporal que entregou um dos visuais mais encantadores da videografia da cantora em 2018.",
         videoUrl: "https://drive.google.com/file/d/18hxKyGF69SP_eeEGUBBtARMByCbKRnzk/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 71,
@@ -824,7 +893,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Never Be the Same, visual marcante e apaixonante do álbum CAMILA que consolidou o estilo conceitual da cantora.",
         videoUrl: "https://drive.google.com/file/d/1XoMP9qQ4qCbM6FEoWzGqlruL3V9grDia/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id:  72,
@@ -835,7 +905,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Almost Like Praying de Lin-Manuel Miranda e artistas pela ajuda a Porto Rico, projeto emocionante que reúne Camila Cabello e grandes nomes da música em uma homenagem cheia de esperança.",
         videoUrl: "https://drive.google.com/file/d/1syhOIMlATWe0C_V7ENNxHbCxFynz6oOB/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
     {
         id: 73 ,
@@ -846,7 +917,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Havana de Camila Cabello com Young Thug, maior fenômeno de sua videografia que conquistou bilhões de visualizações e o prêmio de Clipe do Ano no MTV VMA.",
         videoUrl: "https://drive.google.com/file/d/1pD8ELxX-WXNGaGxN3ZCm6EsOAf5YQuWU/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id:  74,
@@ -857,7 +929,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Know No Better, produção contagiante que acompanha os sonhos de um jovem dançarino em meio a coreografias dinâmicas e muita energia.",
         videoUrl: "https://drive.google.com/file/d/1O6TAiBJesUzXXadyk5jtklYkeW8ddOb-/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id:  75,
@@ -868,7 +941,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Crying in the Club de Camila Cabello, marco histórico que deu o pontapé inicial em sua carreira solo com vocais poderosos e um conceito visual marcante.",
         videoUrl: "https://drive.google.com/file/d/1ZZJ7bPDC-lUvy1ldJgOlE0H-F8bc0S1l/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 76 ,
@@ -879,7 +953,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Hey Ma, produção vibrante gravada nas ruas de Havana que celebra a cultura latina como tema do filme Velozes & Furiosos 8.",
         videoUrl: "https://drive.google.com/file/d/1_0TrztzPJ7ssYOJ5Gl22qeCaQDROCrEo/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 77 ,
@@ -890,7 +965,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Bad Things, grande marco na transição solo da cantora que dominou as paradas mundiais com uma estética marcante.",
         videoUrl: "https://drive.google.com/file/d/1AAtC_cg6ElX5VA-fJgSpPxBPefzS2k6y/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 78,
@@ -901,9 +977,9 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de I Know What You Did Last Summer, vídeo que conquistou as paradas mundiais e entregou um dos momentos visuais mais aclamados de 2015.",
         videoUrl: "https://drive.google.com/file/d/19tGaN1h1DKotf3f0UhkuEVYaGCoqFloP/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
-
         {
         id: 79 ,
         titulo: "That's My Girl",
@@ -913,7 +989,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de That's My Girl, hino de coragem que marcou a reta final da formação original do grupo com um conceito visual cinematográfico.",
         videoUrl: "https://drive.google.com/file/d/1zvZcxBFdebT8brsvIn7_8GkvotaZ-QyL/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 80 ,
@@ -924,7 +1001,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de All in My Head (Flex), produção solar e vibrante marcada por rochas à beira-mar, figurinos praianos estilosos e uma atmosfera praiana inesquecível.",
         videoUrl: "https://drive.google.com/file/d/1sXXzTKqKVolz4vuVfIkWpHEZC8YX4kN3/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 81 ,
@@ -935,7 +1013,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Work from Home, produção histórica e sensual que conquistou bilhões de visualizações ao transformar ferramentas de construção e retroescavadeiras em um cenário pop inesquecível.",
         videoUrl: "https://drive.google.com/file/d/1fxQmbxvgkQ0p5EBp985SiblPmVZkU8QU/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 82 ,
@@ -946,7 +1025,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de I'm in Love with a Monster, produção divertida e vintage inspirada nos anos 1940 que integra a trilha sonora oficial do filme Hotel Transilvânia 2",
         videoUrl: "https://drive.google.com/file/d/1mVlYc8XWf2HvR_lS-DEV_RhwYNDg0wAt/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 83 ,
@@ -957,7 +1037,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Worth It, vídeo que marcou uma virada histórica na videografia da cantora e consagrou um dos maiores hinos pop da década.",
         videoUrl: "https://drive.google.com/file/d/1t3bAHLs2hpzT3_exi5sRkxJhoii0t1Kp/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 84 ,
@@ -968,7 +1049,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de All I Want for Christmas Is You, vídeo especial que marcou o repertório comemorativo da cantora e entregou um momento visual inesquecível para os fãs.",
         videoUrl: "https://drive.google.com/file/d/1Wex1WQ-3C8M3NLo1N70ihYVOYGD1crmK/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 85 ,
@@ -979,7 +1061,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Sledgehammer, vídeo que marcou uma das fases mais aclamadas da videografia do grupo e entregou momentos visuais inesquecíveis.",
         videoUrl: "https://drive.google.com/file/d/1q7-eCQNd0JCargN9kXsI7RgTuwilaPMx/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
         {
         id: 86,
@@ -990,7 +1073,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de BO$$, produção estilizada e poderosa que consagrou um dos hinos de empoderamento mais icônicos do pop dos anos 2010.",
         videoUrl: "https://drive.google.com/file/d/1arjNufXgWcQ8bpw2utkImzjFSHnY-4Zk/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id: 87,
@@ -1001,7 +1085,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Me & My Girls, vídeo que marcou os primeiros passos da videografia da cantora e entregou um dos momentos mais marcantes da era de estreia.",
         videoUrl: "https://drive.google.com/file/d/1dg_G4L95BKOnjscS2J7dWKC2M26dpHwy/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
      {
         id: 88 ,
@@ -1012,7 +1097,8 @@ const listaDeVideos = [
         banner: "",
         descricao: "Assista ao videoclipe oficial de Miss Movin' On, marco inicial da videografia de Camila Cabello que traz o grupo em um parque de diversões superando desilusões amorosas com um visual vibrante dos anos 2010.",
         videoUrl: "https://drive.google.com/file/d/1-qka8_gFCLfOC73sEYJ8OytLdd7TaQ3_/view?usp=sharing",
-        destaque: false
+        destaque: false,
+        isVip: false
     },
       {
         id:  89,
@@ -1082,8 +1168,14 @@ function carregarVideos(videos) {
         card.onclick = () => abrirVideo(video);
 
         const imagemCapa = converterImagemDrive(video.capa);
+        
+        // Cria um selo visual se o vídeo for VIP
+        const seloVipHtml = video.isVip 
+            ? `<span style="position: absolute; top: 8px; right: 8px; background: #facc15; color: #000; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; z-index: 2;">VIP 👑</span>` 
+            : "";
 
         card.innerHTML = `
+            ${seloVipHtml}
             <img src="${imagemCapa}" alt="${video.titulo}">
             <div class="card-info">
                 <div class="card-title">${video.titulo}</div>
